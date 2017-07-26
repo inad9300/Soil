@@ -1,2 +1,2 @@
-# Soil.js
+# Soil
 A foundational library to help building reliable web applications.
