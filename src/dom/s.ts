@@ -8,67 +8,67 @@
  * List of all SVG tag names.
  */
 export type SvgTag
-= 'a'
-| 'circle'
-| 'clipPath'
-| 'componentTransferFunction'
-| 'defs'
-| 'desc'
-| 'ellipse'
-| 'feBlend'
-| 'feColorMatrix'
-| 'feComponentTransfer'
-| 'feComposite'
-| 'feConvolveMatrix'
-| 'feDiffuseLighting'
-| 'feDisplacementMap'
-| 'feDistantLight'
-| 'feFlood'
-| 'feFuncA'
-| 'feFuncB'
-| 'feFuncG'
-| 'feFuncR'
-| 'feGaussianBlur'
-| 'feImage'
-| 'feMerge'
-| 'feMergeNode'
-| 'feMorphology'
-| 'feOffset'
-| 'fePointLight'
-| 'feSpecularLighting'
-| 'feSpotLight'
-| 'feTile'
-| 'feTurbulence'
-| 'filter'
-| 'foreignObject'
-| 'g'
-| 'gradient'
-| 'image'
-| 'line'
-| 'linearGradient'
-| 'marker'
-| 'mask'
-| 'metadata'
-| 'path'
-| 'pattern'
-| 'polygon'
-| 'polyline'
-| 'radialGradient'
-| 'rect'
-| 'script'
-| 'stop'
-| 'style'
-| 'svg'
-| 'switch'
-| 'symbol'
-| 'text'
-| 'textContent'
-| 'textPath'
-| 'textPositioning'
-| 'title'
-| 'tspan'
-| 'use'
-| 'view'
+    = 'a'
+    | 'circle'
+    | 'clipPath'
+    | 'componentTransferFunction'
+    | 'defs'
+    | 'desc'
+    | 'ellipse'
+    | 'feBlend'
+    | 'feColorMatrix'
+    | 'feComponentTransfer'
+    | 'feComposite'
+    | 'feConvolveMatrix'
+    | 'feDiffuseLighting'
+    | 'feDisplacementMap'
+    | 'feDistantLight'
+    | 'feFlood'
+    | 'feFuncA'
+    | 'feFuncB'
+    | 'feFuncG'
+    | 'feFuncR'
+    | 'feGaussianBlur'
+    | 'feImage'
+    | 'feMerge'
+    | 'feMergeNode'
+    | 'feMorphology'
+    | 'feOffset'
+    | 'fePointLight'
+    | 'feSpecularLighting'
+    | 'feSpotLight'
+    | 'feTile'
+    | 'feTurbulence'
+    | 'filter'
+    | 'foreignObject'
+    | 'g'
+    | 'gradient'
+    | 'image'
+    | 'line'
+    | 'linearGradient'
+    | 'marker'
+    | 'mask'
+    | 'metadata'
+    | 'path'
+    | 'pattern'
+    | 'polygon'
+    | 'polyline'
+    | 'radialGradient'
+    | 'rect'
+    | 'script'
+    | 'stop'
+    | 'style'
+    | 'svg'
+    | 'switch'
+    | 'symbol'
+    | 'text'
+    | 'textContent'
+    | 'textPath'
+    | 'textPositioning'
+    | 'title'
+    | 'tspan'
+    | 'use'
+    | 'view'
 
 /**
 * Aliases for SVG tag types, whose native counterparts are not always easy to guess or find.
@@ -144,19 +144,19 @@ export type SVGElementChildren = Node[] | string
 * Helper function to concisely create instances of any SVG element.
 */
 export default function s(name: SvgTag, props?: Partial<SVGElement>, children?: SVGElementChildren): SVGElement {
-const elem = document.createElementNS('http://www.w3.org/2000/svg', name)
+    const elem = document.createElementNS('http://www.w3.org/2000/svg', name)
 
-Object.assign(elem, props)
+    Object.assign(elem, props)
 
-if (children !== undefined && children !== null) {
-    if (typeof children === 'string') {
-        elem.appendChild(document.createTextNode(children))
-    } else {
-        children.forEach(child => elem.appendChild(child))
+    if (children !== undefined && children !== null) {
+        if (typeof children === 'string') {
+            elem.appendChild(document.createTextNode(children))
+        } else {
+            children.forEach(child => elem.appendChild(child))
+        }
     }
-}
 
-return elem
+    return elem
 }
 
 /**
