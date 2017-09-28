@@ -71,8 +71,8 @@ export type SvgTag
     | 'view'
 
 /**
-* Aliases for SVG tag types, whose native counterparts are not always easy to guess or find.
-*/
+ * Aliases for SVG tag types, whose native counterparts are not always easy to guess or find.
+ */
 export type A = SVGAElement
 export type Circle = SVGCircleElement
 export type ClipPath = SVGClipPathElement
@@ -136,13 +136,13 @@ export type Use = SVGUseElement
 export type View = SVGViewElement
 
 /**
-* Allowed types for the children of SVG elements.
-*/
+ * Allowed types for the children of SVG elements.
+ */
 export type SVGElementChildren = Node[] | string
 
 /**
-* Helper function to concisely create instances of any SVG element.
-*/
+ * Helper function to concisely create instances of any SVG element.
+ */
 export default function s(name: SvgTag, props?: Partial<SVGElement>, children?: SVGElementChildren): SVGElement {
     const elem = document.createElementNS('http://www.w3.org/2000/svg', name)
 
@@ -160,9 +160,9 @@ export default function s(name: SvgTag, props?: Partial<SVGElement>, children?: 
 }
 
 /**
-* Helpers to allow creating any concrete SVG element. Prefer over the generic `s()` function, as the types of these
-* are stricter, e.g. they return a type more specialized than `SVGElement`.
-*/
+ * Helpers to allow creating any concrete SVG element. Prefer over the generic `s()` function, as the types of these
+ * are stricter, e.g. they return a type more specialized than `SVGElement`.
+ */
 export const a = (props?: Partial<A>, children?: SVGElementChildren): A => s('a', props, children) as A
 export const circle = (props?: Partial<Circle>, children?: SVGElementChildren): Circle => s('circle', props, children) as Circle
 export const clipPath = (props?: Partial<ClipPath>, children?: SVGElementChildren): ClipPath => s('clipPath', props, children) as ClipPath

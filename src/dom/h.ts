@@ -137,11 +137,11 @@ export type HtmlTag
     | NewHtmlTag
 
 /**
-* Aliases for HTML tag types, whose native counterparts are not always easy to guess or find.
-* 
-* Notice that some elements do not have a specific interface to define them, and they resort to a more generic one,
-* e.g. Ul (unordered list) is well-defined by HTMLUListElement, but B (bold) simply delegates to HTMLElement.
-*/
+ * Aliases for HTML tag types, whose native counterparts are not always easy to guess or find.
+ * 
+ * Notice that some elements do not have a specific interface to define them, and they resort to a more generic one,
+ * e.g. Ul (unordered list) is well-defined by HTMLUListElement, but B (bold) simply delegates to HTMLElement.
+ */
 export type A = HTMLAnchorElement
 export type Abbr = HTMLElement
 export type Acronym = HTMLElement
@@ -270,13 +270,13 @@ export type Xmp = HTMLPreElement
 export type XMsWebview = MSHTMLWebViewElement
 
 /**
-* Allowed types for the children of normal HTML elements.
-*/
+ * Allowed types for the children of normal HTML elements.
+ */
 export type HTMLElementChildren = Node[] | string
 
 /**
-* Helper function to concisely create instances of any HTML element, including custom ones.
-*/
+ * Helper function to concisely create instances of any HTML element, including custom ones.
+ */
 export default function h(name: HtmlTag | string, props?: Partial<HTMLElement>, children?: HTMLElementChildren): HTMLElement {
     const elem = document.createElement(name)
 
@@ -294,10 +294,10 @@ export default function h(name: HtmlTag | string, props?: Partial<HTMLElement>, 
 }
 
 /**
-* Helpers to allow creating any concrete HTML element. Prefer over the generic `h()` function, as the types of these
-* are stricter, e.g. `br()` will not let you pass any children and will return `HTMLBRElement`, as opposed to the more
-* generic `HTMLElement`.
-*/
+ * Helpers to allow creating any concrete HTML element. Prefer over the generic `h()` function, as the types of these
+ * are stricter, e.g. `br()` will not let you pass any children and will return `HTMLBRElement`, as opposed to the more
+ * generic `HTMLElement`.
+ */
 export const a = (props?: Partial<A>, children?: HTMLElementChildren): A => h('a', props, children) as A
 export const abbr = (props?: Partial<Abbr>, children?: HTMLElementChildren): Abbr => h('abbr', props, children) as Abbr
 export const acronym = (props?: Partial<Acronym>, children?: HTMLElementChildren): Acronym => h('acronym', props, children) as Acronym
