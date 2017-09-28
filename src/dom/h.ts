@@ -1,5 +1,8 @@
 // Set of helper functions to facilitate the work with HTML elements, specially their creation.
 
+// Notice that these silently depend on the `document` variable being globally available. Therefore, unit tests of
+// components that use them must be run inside a browser, or must expose `document`, e.g. through PhantomJS or jsdom.
+
 // The HTML elements considered below are based on the TypeScript (version 2.5.2) interface ElementTagNameMap and its
 // ascendents, as well as on the list of void, raw text and other special elements available at
 // https://www.w3.org/TR/html51/syntax.html#writing-html-documents-elements.
