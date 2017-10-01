@@ -141,7 +141,7 @@ export type HtmlTag
 
 /**
  * Aliases for HTML tag types, whose native counterparts are not always easy to guess or find.
- * 
+ *
  * Notice that some elements do not have a specific interface to define them, and they resort to a more generic one,
  * e.g. Ul (unordered list) is well-defined by HTMLUListElement, but B (bold) simply delegates to HTMLElement.
  */
@@ -275,7 +275,7 @@ export type XMsWebview = MSHTMLWebViewElement
 /**
  * Allowed types for the children of normal HTML elements.
  */
-export type HTMLElementChildren = Node[] | string
+type HTMLElementChildren = Element[] | string
 
 /**
  * Helper function to concisely create instances of any HTML element, including custom ones.

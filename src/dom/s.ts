@@ -141,7 +141,7 @@ export type View = SVGViewElement
 /**
  * Allowed types for the children of SVG elements.
  */
-export type SVGElementChildren = Node[] | string
+type SVGElementChildren = SVGElement[] | string
 
 /**
  * Helper function to concisely create instances of any SVG element.
