@@ -1,0 +1,7 @@
+{
+    "extends": "../../tsconfig",
+    "compilerOptions": {
+        "outFile": "build/todo-app.js"
+    },
+    "include": [".", "../../src/dom/h.ts", "../../src/core/Component.ts"]
+}

@@ -1,0 +1,13 @@
+{
+    "name": "Soil",
+    "version": "0.0.0",
+    "license": "AGPLv3",
+    "scripts": {
+        "compile": "rm -rf build && tsc",
+        "compile:todo-app": "rm -rf examples/todo-app/build && tsc --project examples/todo-app"
+    },
+    "devDependencies": {
+        "requirejs": "2.3.5",
+        "typescript": "2.5.3"
+    }
+}
