@@ -76,6 +76,10 @@ const counter = (/* Dependencies. */) => (args: {initalValue: number}) {
 
 As you may have noticed, Soil leverages type safety through TypeScript.
 
+The best path forward to continue learning the principles of Soil is to check
+out the [examples](https://github.com/inad9300/Soil/tree/master/examples/)
+available on this repository, and eventually dive into the [source code](https://github.com/inad9300/Soil/tree/master/src).
+
 ## Installation
 *An npm package is on the making.*
 
