@@ -1,6 +1,16 @@
 {
     "name": "Soil",
-    "version": "0.0.0",
+    "version": "0.0.1",
+    "description": "A foundational set of ideas to help building enduring web applications.",
+    "keywords": ["typescript", "web", "framework"],
+    "homepage": "https://github.com/inad9300/Soil",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/inad9300/Soil"
+    },
+    "bugs": {
+        "url": "https://github.com/inad9300/Soil/issues"
+    },
     "license": "AGPLv3",
     "scripts": {
         "compile": "rm -rf build && tsc",
