@@ -4,6 +4,8 @@ import {todoList} from './TodoList'
 import {todoFilters} from './TodoFilters'
 import {TodoService} from './TodoService'
 
+// Composition root of the application.
+
 const todoService = new TodoService
 const $todoApp = todoApp(
     todoInput(todoService),
