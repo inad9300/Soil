@@ -1,8 +1,8 @@
 {
-    "name": "Soil",
+    "name": "soil-framework",
     "version": "0.0.1",
     "description": "A foundational set of ideas to help building enduring web applications.",
-    "keywords": ["typescript", "web", "framework"],
+    "keywords": ["Soil", "typescript", "web", "framework", "components"],
     "homepage": "https://github.com/inad9300/Soil",
     "repository": {
         "type": "git",
