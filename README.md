@@ -86,7 +86,7 @@ available on this repository, and eventually dive into the [source code](https:/
 ## Contributions
 Please, feel free and encouraged to [open new discussions](https://github.com/inad9300/Soil/issues)
 on any non-technical topic that may help maturing Soil. For technical
-contributions, merge requests are also welcomed.
+contributions, pull requests are also welcomed.
 
 ## License
 The Soil project is licensed under the [GNU Affero General Public License](https://github.com/inad9300/Soil/blob/master/LICENSE).
