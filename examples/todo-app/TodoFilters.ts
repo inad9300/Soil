@@ -7,7 +7,7 @@ export type TodoFiltersI = {
 }
 
 export type TodoFiltersO = {
-    $el: Div
+    readonly $el: Div
     enable: () => void
     disable: () => void
 }

@@ -7,7 +7,7 @@ import {TodoFiltersI, TodoFiltersO} from './TodoFilters'
 export type TodoAppI = {}
 
 export type TodoAppO = {
-    $el: Div
+    readonly $el: Div
 }
 
 export const todoApp = (todoInput: Component<TodoInputI, TodoInputO>,

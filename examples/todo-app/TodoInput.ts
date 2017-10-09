@@ -8,7 +8,7 @@ export type TodoInputI = {
 }
 
 export type TodoInputO = {
-    $el: Div
+    readonly $el: Div
 }
 
 export const todoInput = (todoService: TodoService) => (args: TodoInputI): TodoInputO => {

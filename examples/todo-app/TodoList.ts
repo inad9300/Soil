@@ -9,7 +9,7 @@ export type TodoListI = {
 }
 
 export type TodoListO = {
-    $el: Ul
+    readonly $el: Ul
     addTodo: (todo: Todo) => void
     filterTodos: (filter: TodoFilterFn) => void
 }
