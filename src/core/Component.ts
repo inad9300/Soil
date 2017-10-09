@@ -2,7 +2,7 @@
  * Base shape of the input a component takes. It is defined as a map to resemble the way native HTML elements are
  * created, as components should be considered special cases of those (as in Web Components).
  */
-type BaseInput = {
+export type BaseInput = {
     [argName: string]: any
 }
 
@@ -13,7 +13,7 @@ type BaseInput = {
  * properties as readonly. Nevertheless, the `$el` property should ideally be readonly, as it is a resource handled by
  * a component which should not be manipulated by external agents.
  */
-type BaseOutput = {
+export type BaseOutput = {
     readonly $el: HTMLElement
 }
 
