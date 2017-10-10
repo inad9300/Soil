@@ -43,9 +43,9 @@ type safety on top.
 > is a way to provide an initial value to the element, and changing it will have
 > no effect on the screen. On the other hand, the [`value` property of the
 > `HTMLInputElement` interface](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#Properties)
-> is synchronized with the visible value of the element, meaning any value
-> entered by the user will be reflected on the property, and updating the
-> property will change the value the user sees.
+> is synchronized with the visible value of the element, meaning updating the
+> property will change the value the user sees, and any value entered by the
+> user will be reflected on the property.
 
 Logic other than that to control the user interface should be pushed out of the
 components into *services*: classes, functions, etc. that get injected into
