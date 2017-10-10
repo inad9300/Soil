@@ -33,19 +33,19 @@ using globally-available functions with a one-to-one correspondence with HTML
 elements. This provides a look-and-feel similar to regular HTML, but adds some
 type safety on top.
 
-Be aware of the difference between [HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes)
-and [properties of `Element` objects](https://developer.mozilla.org/en-US/docs/Web/API/Element)
-and its children (e.g. [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement)).
-While for most of them there is a one-to-one correspondence, this is not always
-the case.
-
-For instance the [`value` attribute of the `<input>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-value)
-is a way to provide an initial value to the element, and changing it will have
-no effect on the screen. On the other hand, the [`value` property of the
-`HTMLInputElement` interface](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#Properties)
-is synchronized with the visible value of the element, meaning any value
-entered by the user will be reflected on the property, and updating the property
-will change the value the user sees.
+> Be aware of the difference between [HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes)
+> and [properties of `Element` objects](https://developer.mozilla.org/en-US/docs/Web/API/Element)
+> and its children (e.g. [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement)).
+> While for most of them there is a one-to-one correspondence, this is not
+> always the case.
+>
+> For instance the [`value` attribute of the `<input>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-value)
+> is a way to provide an initial value to the element, and changing it will have
+> no effect on the screen. On the other hand, the [`value` property of the
+> `HTMLInputElement` interface](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#Properties)
+> is synchronized with the visible value of the element, meaning any value
+> entered by the user will be reflected on the property, and updating the
+> property will change the value the user sees.
 
 Logic other than that to control the user interface should be pushed out of the
 components into *services*: classes, functions, etc. that get injected into
