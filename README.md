@@ -53,7 +53,7 @@ components and are concerned with server communication, where (most of) the
 business logic should be placed. Services may also serve as a way to communicate
 components that are not close in the shared component hierarchy.
 
-The different pieces are glued together through [pure DI](http://blog.ploeh.dk/2014/06/10/pure-di/)
+The different pieces are glued together through [pure dependency injection](http://blog.ploeh.dk/2014/06/10/pure-di/)
 at the application's [composition root](http://blog.ploeh.dk/2011/07/28/CompositionRoot/).
 In particular, every component has a *factory* associated with it, through which
 it will get its dependencies. Dependency injection improves testability and
