@@ -1,11 +1,15 @@
 // Set of helper functions to facilitate the work with SVG elements, specially their creation.
 
-// Notice that these silently depend on the `document` variable being globally available. Therefore, unit tests of
-// components that use them must be run inside a browser, or must expose `document`, e.g. through PhantomJS or jsdom.
+// NOTE The following functions silently depend on the `document` variable being globally available. Therefore, unit
+// tests of components that use them must be run inside a browser, or must expose `document` globally, e.g. through
+// PhantomJS or jsdom.
 
 // The SVG elements considered below are based on the TypeScript (version 2.5.2) types for the `createElementNS()`
 // function. Some information is completed based on MDN's SVG element reference available at
 // https://developer.mozilla.org/en-US/docs/Web/SVG/Element.
+
+import {deepAssign} from '../extra/deepAssign'
+import {DeepPartial} from '../extra/DeepPartial'
 
 /**
  * List of all SVG tag names.
@@ -146,12 +150,14 @@ type SVGElementChildren = SVGElement[] | string
 /**
  * Helper function to concisely create instances of any SVG element.
  */
-export default function s(name: SvgTag, props?: Partial<SVGElement>, children?: SVGElementChildren): SVGElement {
+export function s(name: SvgTag, props?: DeepPartial<SVGElement>, children?: SVGElementChildren): SVGElement {
     const elem = document.createElementNS('http://www.w3.org/2000/svg', name)
 
-    Object.assign(elem, props)
+    if (props !== undefined) {
+        deepAssign(elem, props)
+    }
 
-    if (children !== undefined && children !== null) {
+    if (children !== undefined) {
         if (typeof children === 'string') {
             elem.appendChild(document.createTextNode(children))
         } else {
