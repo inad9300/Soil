@@ -3,6 +3,7 @@ import {todoInput} from './TodoInput'
 import {todoList} from './TodoList'
 import {todoFilters} from './TodoFilters'
 import {TodoService} from './TodoService'
+import {autofocus} from '../../src/fix/autofocus'
 
 // Composition root of the application.
 
@@ -14,8 +15,4 @@ const $todoApp = todoApp(
 )
 
 document.body.appendChild($todoApp().$el)
-
-const $firstFocusable = document.querySelector('[autofocus]')
-if ($firstFocusable) {
-    ($firstFocusable as HTMLElement).focus()
-}
+autofocus()
