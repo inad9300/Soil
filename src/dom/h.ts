@@ -268,8 +268,6 @@ export function h(name: HtmlTag | string, props?: DeepPartial<HTMLElement>, chil
     return elem
 }
 
-h('a', {style: {color: 'red'}})
-
 /**
  * Helpers to allow creating any concrete HTML element. Prefer over the generic `h()` function, as the types of these
  * are stricter, e.g. `br()` will not let you pass any children and will return `HTMLBRElement`, as opposed to the more
