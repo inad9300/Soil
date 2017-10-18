@@ -386,7 +386,7 @@ export const wbr = (props?: Partial<Wbr>): Wbr => h('wbr', props) as Wbr
 
 // Tags added manually as they are not present in TypeScript 2.5.2 but listed in W3Schools, see
 // https://github.com/Microsoft/TypeScript/issues/17828 and https://www.w3schools.com/html/html5_new_elements.asp.
-// TODO: re-evaluate and rearrange when available in TypeScript.
+// TODO Re-evaluate and rearrange when available in TypeScript.
 
 type NewHtmlTag
     = 'bdi'
