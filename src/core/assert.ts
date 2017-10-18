@@ -10,7 +10,7 @@ export class AssertionError extends Error {}
  * included as part of the error message in case of failure, thus providing immediate feedback to help determine the
  * the reason the assertion did not hold true.
  */
-export function assert(assertion: boolean | (() => boolean), message: string = '') {
+export function assert(assertion: boolean | (() => boolean), message: string = ''): void {
     const assertionIsFunction = typeof assertion === 'function'
 
     const ok = assertionIsFunction
