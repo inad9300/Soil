@@ -4,8 +4,8 @@
 type Listener<TMessage> = (message: TMessage) => void
 
 /**
- * Type-safe event mini-bus, or publisher/subscriber system. It is a useful way to establish communication between
- * components which are far away in the shared component hierarchy.
+ * Type-safe event mini-bus, or publisher/subscriber system. It is a useful mechanism for establishing communication
+ * between components which are far away in the shared component hierarchy.
  */
 export class Channel<TMessage> {
 
