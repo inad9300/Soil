@@ -15,7 +15,7 @@ export class Channel<TMessage> {
      * Subscribe a listener to the event channel. A function is returned which can be called to unsubscribe the same
      * listener.
      */
-    do(listener: Listener<TMessage>) {
+    do(listener: Listener<TMessage>): () => void {
         this.listeners.push(listener)
 
         return () => this.stop(listener)
@@ -26,7 +26,7 @@ export class Channel<TMessage> {
      * time after the subscription. A function is returned which can be called to unsubscribe the listener even before
      * this happens automatically.
      */
-    once(listener: Listener<TMessage>) {
+    once(listener: Listener<TMessage>): () => void {
         const stop = () => this.stop(listener)
 
         const listenerWrapper = (message: TMessage) => {
@@ -42,7 +42,7 @@ export class Channel<TMessage> {
     /**
      * Unsubscribe a listener from the event channel.
      */
-    stop(listener: Listener<TMessage>) {
+    stop(listener: Listener<TMessage>): void {
         const listenerPos = this.listeners.indexOf(listener)
         if (listenerPos > -1) {
             this.listeners.splice(listenerPos, 1)
@@ -52,14 +52,14 @@ export class Channel<TMessage> {
     /**
      * Send an event to all listeners, with a payload.
      */
-    echo(message: TMessage) {
+    echo(message: TMessage): void {
         this.listeners.forEach(l => l(message))
     }
 
     /**
      * Unsubscribe all listeners from the event channel.
      */
-    close() {
+    close(): void {
         this.listeners = []
     }
 }

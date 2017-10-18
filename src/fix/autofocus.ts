@@ -5,7 +5,7 @@
  * to set the focus programmatically by yourself on the appropriate element, you can call this function after your
  * components have been mounted in the DOM.
  */
-export function autofocus() {
+export function autofocus(): void {
     if (document.readyState === 'loading') {
         console.warn('autofocus() has been called while the DOM is still not accessible.'
             + ' Delaying the call is recommended.')
