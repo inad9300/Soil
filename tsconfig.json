@@ -1,10 +1,12 @@
 {
     "compilerOptions": {
+        "module": "amd",
         "target": "es5",
         "lib": ["dom", "es6"],
-        "module": "amd",
+        "types": ["intern"],
         "strict": true,
-        "outDir": "build"
+        "outDir": "build/src",
+        "sourceMap": true
     },
     "include": ["src"]
 }

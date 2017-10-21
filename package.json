@@ -2,7 +2,13 @@
     "name": "soil-framework",
     "version": "0.0.1",
     "description": "A foundational set of ideas to help building enduring web applications.",
-    "keywords": ["Soil", "typescript", "web", "framework", "components"],
+    "keywords": [
+        "Soil",
+        "typescript",
+        "web",
+        "framework",
+        "components"
+    ],
     "homepage": "https://github.com/inad9300/Soil",
     "repository": {
         "type": "git",
@@ -11,12 +17,18 @@
     "bugs": {
         "url": "https://github.com/inad9300/Soil/issues"
     },
-    "license": "AGPLv3",
+    "license": "AGPL-3.0",
     "scripts": {
-        "compile": "rm -rf build && tsc",
-        "compile:todo-app": "rm -rf examples/todo-app/build && tsc --project examples/todo-app"
+        "precompile": "rm -rf build/src",
+        "compile": "tsc",
+        "pretest": "npm run compile",
+        "test": "intern",
+        "pretodo-app:compile": "rm -rf examples/todo-app/build",
+        "todo-app:compile": "tsc --project examples/todo-app"
     },
     "devDependencies": {
+        "@dojo/loader": "0.1.0",
+        "intern": "4.0.2",
         "requirejs": "2.3.5",
         "typescript": "2.5.3"
     }
