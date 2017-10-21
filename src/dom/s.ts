@@ -8,7 +8,7 @@
 // function. Some information is completed based on MDN's SVG element reference available at
 // https://developer.mozilla.org/en-US/docs/Web/SVG/Element.
 
-import {deepAssign} from '../extra/deepAssign'
+import {assignProperties} from './assignProperties'
 import {DeepPartial} from '../extra/DeepPartial'
 
 /**
@@ -145,16 +145,21 @@ export type View = SVGViewElement
 /**
  * Allowed types for the children of SVG elements.
  */
-type SVGElementChildren = SVGElement[] | string
+export type SVGElementChildren = SVGElement[] | string
+
+/**
+ * Allowed types for the properties of SVG elements.
+ */
+export type SVGElementProperties = DeepPartial<SVGElement> & {[prop: string]: any}
 
 /**
  * Helper function to concisely create instances of any SVG element.
  */
-export function s(name: SvgTag, props?: DeepPartial<SVGElement>, children?: SVGElementChildren): SVGElement {
+export function s(name: SvgTag, props?: SVGElementProperties, children?: SVGElementChildren): SVGElement {
     const elem = document.createElementNS('http://www.w3.org/2000/svg', name)
 
     if (props !== undefined) {
-        deepAssign(elem, props)
+        assignProperties<SVGElement, SVGElementProperties>(elem, props)
     }
 
     if (children !== undefined) {

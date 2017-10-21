@@ -10,7 +10,7 @@
 // HTML elements provided by https://developer.mozilla.org/en-US/docs/Web/HTML/Element#Obsolete_and_deprecated_elements.
 // (Non-standard elements, such as `<x-ms-webview>`, are also excluded.)
 
-import {deepAssign} from '../extra/deepAssign'
+import {assignProperties} from './assignProperties'
 import {DeepPartial} from '../extra/DeepPartial'
 
 /**
@@ -243,18 +243,23 @@ export type Video = HTMLVideoElement
 export type Wbr = HTMLElement
 
 /**
- * Allowed types for the children of normal HTML elements.
+ * Allowed types for the children of those HTML elements accepting them.
  */
-type HTMLElementChildren = Element[] | string
+export type HTMLElementChildren = Element[] | string
+
+/**
+ * Allowed types for the properties of HTML elements.
+ */
+export type HTMLElementProperties = DeepPartial<HTMLElement> & {[prop: string]: any}
 
 /**
  * Helper function to concisely create instances of any HTML element, including custom ones.
  */
-export function h(name: HtmlTag | string, props?: DeepPartial<HTMLElement>, children?: HTMLElementChildren): HTMLElement {
+export function h(name: HtmlTag | string, props?: HTMLElementProperties, children?: HTMLElementChildren): HTMLElement {
     const elem = document.createElement(name)
 
     if (props !== undefined) {
-        deepAssign(elem, props)
+        assignProperties<HTMLElement, HTMLElementProperties>(elem, props)
     }
 
     if (children !== undefined) {
