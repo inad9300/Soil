@@ -22,9 +22,13 @@ export const todoApp = (todoInput: Component<TodoInputI, TodoInputO>,
         onFilterChange: filter => $todoList.filterTodos(filter)
     })
 
+    const $todoInput = todoInput({
+        onAddTodo: todo => $todoList.addTodo(todo)
+    })
+
     const $el = div({}, [
         h1({}, 'Todo'),
-        todoInput({onAddTodo: todo => $todoList.addTodo(todo)}).$el,
+        $todoInput.$el,
         $todoList.$el,
         $todoFilters.$el
     ])
