@@ -1,7 +1,7 @@
 /**
  * Signature for the functions that are called when an event is sent.
  */
-type Listener<TMessage> = (message: TMessage) => void
+export type Listener<TMessage> = (message: TMessage) => void
 
 /**
  * Type-safe event mini-bus, or publisher/subscriber system. It is a useful mechanism for establishing communication
@@ -12,12 +12,18 @@ export class Channel<TMessage> {
     private listeners: Listener<TMessage>[] = []
 
     /**
+     * Return the number of entities listening on the channel.
+     */
+    get length(): number {
+        return this.listeners.length
+    }
+
+    /**
      * Subscribe a listener to the event channel. A function is returned which can be called to unsubscribe the same
      * listener.
      */
     do(listener: Listener<TMessage>): () => void {
         this.listeners.push(listener)
-
         return () => this.stop(listener)
     }
 
@@ -27,33 +33,25 @@ export class Channel<TMessage> {
      * this happens automatically.
      */
     once(listener: Listener<TMessage>): () => void {
-        const stop = () => this.stop(listener)
-
         const listenerWrapper = (message: TMessage) => {
+            this.stop(listenerWrapper)
             listener(message)
-            stop()
         }
-
-        this.listeners.push(listenerWrapper)
-
-        return stop
+        return this.do(listenerWrapper)
     }
 
     /**
      * Unsubscribe a listener from the event channel.
      */
     stop(listener: Listener<TMessage>): void {
-        const listenerPos = this.listeners.indexOf(listener)
-        if (listenerPos > -1) {
-            this.listeners.splice(listenerPos, 1)
-        }
+        this.listeners = this.listeners.filter(l => l !== listener)
     }
 
     /**
      * Send an event to all listeners, with a payload.
      */
     echo(message: TMessage): void {
-        this.listeners.forEach(l => l(message))
+        this.listeners.slice().forEach(l => l(message))
     }
 
     /**
