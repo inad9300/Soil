@@ -81,7 +81,6 @@ export type HtmlTag
     | 'nav'
     | 'nextid'
     | 'nobr'
-    | 'noframes'
     | 'noscript'
     | 'object'
     | 'ol'
@@ -197,7 +196,6 @@ export type Meter = HTMLMeterElement
 export type Nav = HTMLElement
 export type Nextid = HTMLUnknownElement
 export type Nobr = HTMLElement
-export type Noframes = HTMLElement
 export type Noscript = HTMLElement
 export type Object = HTMLObjectElement
 export type Ol = HTMLOListElement
@@ -243,7 +241,7 @@ export type Video = HTMLVideoElement
 export type Wbr = HTMLElement
 
 /**
- * Allowed types for the children of those HTML elements accepting them.
+ * Allowed types for the children of those HTML elements accepting them and without special constraints.
  */
 export type HTMLElementChildren = Element[] | string
 
@@ -278,115 +276,114 @@ export function h(name: HtmlTag | string, props?: HTMLElementProperties, childre
  * are stricter, e.g. `br()` will not let you pass any children and will return `HTMLBRElement`, as opposed to the more
  * generic `HTMLElement`.
  */
-export const a = (props?: Partial<A>, children?: HTMLElementChildren): A => h('a', props, children) as A
-export const abbr = (props?: Partial<Abbr>, children?: HTMLElementChildren): Abbr => h('abbr', props, children) as Abbr
-export const address = (props?: Partial<Address>, children?: HTMLElementChildren): Address => h('address', props, children) as Address
-export const area = (props?: Partial<Area>): Area => h('area', props) as Area
-export const article = (props?: Partial<Article>, children?: HTMLElementChildren): Article => h('article', props, children) as Article
-export const aside = (props?: Partial<Aside>, children?: HTMLElementChildren): Aside => h('aside', props, children) as Aside
-export const audio = (props?: Partial<Audio>, children?: HTMLElementChildren): Audio => h('audio', props, children) as Audio
-export const b = (props?: Partial<B>, children?: HTMLElementChildren): B => h('b', props, children) as B
-export const base = (props?: Partial<Base>): Base => h('base', props) as Base
-export const bdo = (props?: Partial<Bdo>, children?: HTMLElementChildren): Bdo => h('bdo', props, children) as Bdo
-export const blockquote = (props?: Partial<Blockquote>, children?: HTMLElementChildren): Blockquote => h('blockquote', props, children) as Blockquote
-export const body = (props?: Partial<Body>, children?: HTMLElementChildren): Body => h('body', props, children) as Body
-export const br = (props?: Partial<Br>): Br => h('br', props) as Br
-export const button = (props?: Partial<Button>, children?: HTMLElementChildren): Button => h('button', props, children) as Button
-export const canvas = (props?: Partial<Canvas>, children?: HTMLElementChildren): Canvas => h('canvas', props, children) as Canvas
-export const caption = (props?: Partial<Caption>, children?: HTMLElementChildren): Caption => h('caption', props, children) as Caption
-export const cite = (props?: Partial<Cite>, children?: HTMLElementChildren): Cite => h('cite', props, children) as Cite
-export const code = (props?: Partial<Code>, children?: HTMLElementChildren): Code => h('code', props, children) as Code
-export const col = (props?: Partial<Col>): Col => h('col', props) as Col
-export const colgroup = (props?: Partial<Colgroup>, children?: HTMLElementChildren): Colgroup => h('colgroup', props, children) as Colgroup
-export const data = (props?: Partial<Data>, children?: HTMLElementChildren): Data => h('data', props, children) as Data
-export const datalist = (props?: Partial<Datalist>, children?: HTMLElementChildren): Datalist => h('datalist', props, children) as Datalist
-export const dd = (props?: Partial<Dd>, children?: HTMLElementChildren): Dd => h('dd', props, children) as Dd
-export const del = (props?: Partial<Del>, children?: HTMLElementChildren): Del => h('del', props, children) as Del
-export const dfn = (props?: Partial<Dfn>, children?: HTMLElementChildren): Dfn => h('dfn', props, children) as Dfn
-export const div = (props?: Partial<Div>, children?: HTMLElementChildren): Div => h('div', props, children) as Div
-export const dl = (props?: Partial<Dl>, children?: HTMLElementChildren): Dl => h('dl', props, children) as Dl
-export const dt = (props?: Partial<Dt>, children?: HTMLElementChildren): Dt => h('dt', props, children) as Dt
-export const em = (props?: Partial<Em>, children?: HTMLElementChildren): Em => h('em', props, children) as Em
-export const embed = (props?: Partial<Embed>): Embed => h('embed', props) as Embed
-export const fieldset = (props?: Partial<Fieldset>, children?: HTMLElementChildren): Fieldset => h('fieldset', props, children) as Fieldset
-export const figcaption = (props?: Partial<Figcaption>, children?: HTMLElementChildren): Figcaption => h('figcaption', props, children) as Figcaption
-export const figure = (props?: Partial<Figure>, children?: HTMLElementChildren): Figure => h('figure', props, children) as Figure
-export const font = (props?: Partial<Font>, children?: HTMLElementChildren): Font => h('font', props, children) as Font
-export const footer = (props?: Partial<Footer>, children?: HTMLElementChildren): Footer => h('footer', props, children) as Footer
-export const form = (props?: Partial<Form>, children?: HTMLElementChildren): Form => h('form', props, children) as Form
-export const h1 = (props?: Partial<H1>, children?: HTMLElementChildren): H1 => h('h1', props, children) as H1
-export const h2 = (props?: Partial<H2>, children?: HTMLElementChildren): H2 => h('h2', props, children) as H2
-export const h3 = (props?: Partial<H3>, children?: HTMLElementChildren): H3 => h('h3', props, children) as H3
-export const h4 = (props?: Partial<H4>, children?: HTMLElementChildren): H4 => h('h4', props, children) as H4
-export const h5 = (props?: Partial<H5>, children?: HTMLElementChildren): H5 => h('h5', props, children) as H5
-export const h6 = (props?: Partial<H6>, children?: HTMLElementChildren): H6 => h('h6', props, children) as H6
-export const head = (props?: Partial<Head>, children?: HTMLElementChildren): Head => h('head', props, children) as Head
-export const header = (props?: Partial<Header>, children?: HTMLElementChildren): Header => h('header', props, children) as Header
-export const hr = (props?: Partial<Hr>): Hr => h('hr', props) as Hr
-export const html = (props?: Partial<Html>, children?: HTMLElementChildren): Html => h('html', props, children) as Html
-export const i = (props?: Partial<I>, children?: HTMLElementChildren): I => h('i', props, children) as I
-export const iframe = (props?: Partial<Iframe>, children?: HTMLElementChildren): Iframe => h('iframe', props, children) as Iframe
-export const img = (props?: Partial<Img>): Img => h('img', props) as Img
-export const input = (props?: Partial<Input>): Input => h('input', props) as Input
-export const ins = (props?: Partial<Ins>, children?: HTMLElementChildren): Ins => h('ins', props, children) as Ins
-export const kbd = (props?: Partial<Kbd>, children?: HTMLElementChildren): Kbd => h('kbd', props, children) as Kbd
-export const label = (props?: Partial<Label>, children?: HTMLElementChildren): Label => h('label', props, children) as Label
-export const legend = (props?: Partial<Legend>, children?: HTMLElementChildren): Legend => h('legend', props, children) as Legend
-export const li = (props?: Partial<Li>, children?: HTMLElementChildren): Li => h('li', props, children) as Li
-export const link = (props?: Partial<Link>): Link => h('link', props) as Link
-export const map = (props?: Partial<Map>, children?: HTMLElementChildren): Map => h('map', props, children) as Map
-export const mark = (props?: Partial<Mark>, children?: HTMLElementChildren): Mark => h('mark', props, children) as Mark
-export const menu = (props?: Partial<Menu>, children?: HTMLElementChildren): Menu => h('menu', props, children) as Menu
-export const meta = (props?: Partial<Meta>): Meta => h('meta', props) as Meta
-export const meter = (props?: Partial<Meter>, children?: HTMLElementChildren): Meter => h('meter', props, children) as Meter
-export const nav = (props?: Partial<Nav>, children?: HTMLElementChildren): Nav => h('nav', props, children) as Nav
-export const nextid = (props?: Partial<Nextid>, children?: HTMLElementChildren): Nextid => h('nextid', props, children) as Nextid
-export const nobr = (props?: Partial<Nobr>, children?: HTMLElementChildren): Nobr => h('nobr', props, children) as Nobr
-export const noframes = (props?: Partial<Noframes>, children?: HTMLElementChildren): Noframes => h('noframes', props, children) as Noframes
-export const noscript = (props?: Partial<Noscript>, children?: HTMLElementChildren): Noscript => h('noscript', props, children) as Noscript
-export const object = (props?: Partial<Object>, children?: HTMLElementChildren): Object => h('object', props, children) as Object
-export const ol = (props?: Partial<Ol>, children?: HTMLElementChildren): Ol => h('ol', props, children) as Ol
-export const optgroup = (props?: Partial<Optgroup>, children?: HTMLElementChildren): Optgroup => h('optgroup', props, children) as Optgroup
-export const option = (props?: Partial<Option>, children?: HTMLElementChildren): Option => h('option', props, children) as Option
-export const output = (props?: Partial<Output>, children?: HTMLElementChildren): Output => h('output', props, children) as Output
-export const p = (props?: Partial<P>, children?: HTMLElementChildren): P => h('p', props, children) as P
-export const param = (props?: Partial<Param>): Param => h('param', props) as Param
-export const picture = (props?: Partial<Picture>, children?: HTMLElementChildren): Picture => h('picture', props, children) as Picture
-export const pre = (props?: Partial<Pre>, children?: HTMLElementChildren): Pre => h('pre', props, children) as Pre
-export const progress = (props?: Partial<Progress>, children?: HTMLElementChildren): Progress => h('progress', props, children) as Progress
-export const q = (props?: Partial<Q>, children?: HTMLElementChildren): Q => h('q', props, children) as Q
-export const rt = (props?: Partial<Rt>, children?: HTMLElementChildren): Rt => h('rt', props, children) as Rt
-export const ruby = (props?: Partial<Ruby>, children?: HTMLElementChildren): Ruby => h('ruby', props, children) as Ruby
-export const s = (props?: Partial<S>, children?: HTMLElementChildren): S => h('s', props, children) as S
-export const samp = (props?: Partial<Samp>, children?: HTMLElementChildren): Samp => h('samp', props, children) as Samp
-export const script = (props?: Partial<Script>, child?: string): Script => h('script', props, child) as Script
-export const section = (props?: Partial<Section>, children?: HTMLElementChildren): Section => h('section', props, children) as Section
-export const select = (props?: Partial<Select>, children?: HTMLElementChildren): Select => h('select', props, children) as Select
-export const small = (props?: Partial<Small>, children?: HTMLElementChildren): Small => h('small', props, children) as Small
-export const source = (props?: Partial<Source>): Source => h('source', props) as Source
-export const span = (props?: Partial<Span>, children?: HTMLElementChildren): Span => h('span', props, children) as Span
-export const strong = (props?: Partial<Strong>, children?: HTMLElementChildren): Strong => h('strong', props, children) as Strong
-export const style = (props?: Partial<Style>, child?: string): Style => h('style', props, child) as Style
-export const sub = (props?: Partial<Sub>, children?: HTMLElementChildren): Sub => h('sub', props, children) as Sub
-export const sup = (props?: Partial<Sup>, children?: HTMLElementChildren): Sup => h('sup', props, children) as Sup
-export const table = (props?: Partial<Table>, children?: HTMLElementChildren): Table => h('table', props, children) as Table
-export const tbody = (props?: Partial<Tbody>, children?: HTMLElementChildren): Tbody => h('tbody', props, children) as Tbody
-export const td = (props?: Partial<Td>, children?: HTMLElementChildren): Td => h('td', props, children) as Td
-export const template = (props?: Partial<Template>, children?: HTMLElementChildren): Template => h('template', props, children) as Template
-export const textarea = (props?: Partial<Textarea>, child?: string): Textarea => h('textarea', props, child) as Textarea
-export const tfoot = (props?: Partial<Tfoot>, children?: HTMLElementChildren): Tfoot => h('tfoot', props, children) as Tfoot
-export const th = (props?: Partial<Th>, children?: HTMLElementChildren): Th => h('th', props, children) as Th
-export const thead = (props?: Partial<Thead>, children?: HTMLElementChildren): Thead => h('thead', props, children) as Thead
-export const time = (props?: Partial<Time>, children?: HTMLElementChildren): Time => h('time', props, children) as Time
-export const title = (props?: Partial<Title>, child?: string): Title => h('title', props, child) as Title
-export const tr = (props?: Partial<Tr>, children?: HTMLElementChildren): Tr => h('tr', props, children) as Tr
-export const track = (props?: Partial<Track>): Track => h('track', props) as Track
-export const u = (props?: Partial<U>, children?: HTMLElementChildren): U => h('u', props, children) as U
-export const ul = (props?: Partial<Ul>, children?: HTMLElementChildren): Ul => h('ul', props, children) as Ul
+export const a = (props?: DeepPartial<A>, children?: HTMLElementChildren): A => h('a', props, children) as A
+export const abbr = (props?: DeepPartial<Abbr>, children?: HTMLElementChildren): Abbr => h('abbr', props, children) as Abbr
+export const address = (props?: DeepPartial<Address>, children?: HTMLElementChildren): Address => h('address', props, children) as Address
+export const area = (props?: DeepPartial<Area>): Area => h('area', props) as Area
+export const article = (props?: DeepPartial<Article>, children?: HTMLElementChildren): Article => h('article', props, children) as Article
+export const aside = (props?: DeepPartial<Aside>, children?: HTMLElementChildren): Aside => h('aside', props, children) as Aside
+export const audio = (props?: DeepPartial<Audio>, children?: HTMLElementChildren): Audio => h('audio', props, children) as Audio
+export const b = (props?: DeepPartial<B>, children?: HTMLElementChildren): B => h('b', props, children) as B
+export const base = (props?: DeepPartial<Base>): Base => h('base', props) as Base
+export const bdo = (props?: DeepPartial<Bdo>, children?: HTMLElementChildren): Bdo => h('bdo', props, children) as Bdo
+export const blockquote = (props?: DeepPartial<Blockquote>, children?: HTMLElementChildren): Blockquote => h('blockquote', props, children) as Blockquote
+export const body = (props?: DeepPartial<Body>, children?: HTMLElementChildren): Body => h('body', props, children) as Body
+export const br = (props?: DeepPartial<Br>): Br => h('br', props) as Br
+export const button = (props?: DeepPartial<Button>, children?: HTMLElementChildren): Button => h('button', props, children) as Button
+export const canvas = (props?: DeepPartial<Canvas>, children?: HTMLElementChildren): Canvas => h('canvas', props, children) as Canvas
+export const caption = (props?: DeepPartial<Caption>, children?: HTMLElementChildren): Caption => h('caption', props, children) as Caption
+export const cite = (props?: DeepPartial<Cite>, children?: HTMLElementChildren): Cite => h('cite', props, children) as Cite
+export const code = (props?: DeepPartial<Code>, children?: HTMLElementChildren): Code => h('code', props, children) as Code
+export const col = (props?: DeepPartial<Col>): Col => h('col', props) as Col
+export const colgroup = (props?: DeepPartial<Colgroup>, children?: HTMLElementChildren): Colgroup => h('colgroup', props, children) as Colgroup
+export const data = (props?: DeepPartial<Data>, children?: HTMLElementChildren): Data => h('data', props, children) as Data
+export const datalist = (props?: DeepPartial<Datalist>, children?: HTMLElementChildren): Datalist => h('datalist', props, children) as Datalist
+export const dd = (props?: DeepPartial<Dd>, children?: HTMLElementChildren): Dd => h('dd', props, children) as Dd
+export const del = (props?: DeepPartial<Del>, children?: HTMLElementChildren): Del => h('del', props, children) as Del
+export const dfn = (props?: DeepPartial<Dfn>, children?: HTMLElementChildren): Dfn => h('dfn', props, children) as Dfn
+export const div = (props?: DeepPartial<Div>, children?: HTMLElementChildren): Div => h('div', props, children) as Div
+export const dl = (props?: DeepPartial<Dl>, children?: HTMLElementChildren): Dl => h('dl', props, children) as Dl
+export const dt = (props?: DeepPartial<Dt>, children?: HTMLElementChildren): Dt => h('dt', props, children) as Dt
+export const em = (props?: DeepPartial<Em>, children?: HTMLElementChildren): Em => h('em', props, children) as Em
+export const embed = (props?: DeepPartial<Embed>): Embed => h('embed', props) as Embed
+export const fieldset = (props?: DeepPartial<Fieldset>, children?: HTMLElementChildren): Fieldset => h('fieldset', props, children) as Fieldset
+export const figcaption = (props?: DeepPartial<Figcaption>, children?: HTMLElementChildren): Figcaption => h('figcaption', props, children) as Figcaption
+export const figure = (props?: DeepPartial<Figure>, children?: HTMLElementChildren): Figure => h('figure', props, children) as Figure
+export const font = (props?: DeepPartial<Font>, children?: HTMLElementChildren): Font => h('font', props, children) as Font
+export const footer = (props?: DeepPartial<Footer>, children?: HTMLElementChildren): Footer => h('footer', props, children) as Footer
+export const form = (props?: DeepPartial<Form>, children?: HTMLElementChildren): Form => h('form', props, children) as Form
+export const h1 = (props?: DeepPartial<H1>, children?: HTMLElementChildren): H1 => h('h1', props, children) as H1
+export const h2 = (props?: DeepPartial<H2>, children?: HTMLElementChildren): H2 => h('h2', props, children) as H2
+export const h3 = (props?: DeepPartial<H3>, children?: HTMLElementChildren): H3 => h('h3', props, children) as H3
+export const h4 = (props?: DeepPartial<H4>, children?: HTMLElementChildren): H4 => h('h4', props, children) as H4
+export const h5 = (props?: DeepPartial<H5>, children?: HTMLElementChildren): H5 => h('h5', props, children) as H5
+export const h6 = (props?: DeepPartial<H6>, children?: HTMLElementChildren): H6 => h('h6', props, children) as H6
+export const head = (props?: DeepPartial<Head>, children?: HTMLElementChildren): Head => h('head', props, children) as Head
+export const header = (props?: DeepPartial<Header>, children?: HTMLElementChildren): Header => h('header', props, children) as Header
+export const hr = (props?: DeepPartial<Hr>): Hr => h('hr', props) as Hr
+export const html = (props?: DeepPartial<Html>, children?: HTMLElementChildren): Html => h('html', props, children) as Html
+export const i = (props?: DeepPartial<I>, children?: HTMLElementChildren): I => h('i', props, children) as I
+export const iframe = (props?: DeepPartial<Iframe>, children?: HTMLElementChildren): Iframe => h('iframe', props, children) as Iframe
+export const img = (props?: DeepPartial<Img>): Img => h('img', props) as Img
+export const input = (props?: DeepPartial<Input>): Input => h('input', props) as Input
+export const ins = (props?: DeepPartial<Ins>, children?: HTMLElementChildren): Ins => h('ins', props, children) as Ins
+export const kbd = (props?: DeepPartial<Kbd>, children?: HTMLElementChildren): Kbd => h('kbd', props, children) as Kbd
+export const label = (props?: DeepPartial<Label>, children?: HTMLElementChildren): Label => h('label', props, children) as Label
+export const legend = (props?: DeepPartial<Legend>, children?: HTMLElementChildren): Legend => h('legend', props, children) as Legend
+export const li = (props?: DeepPartial<Li>, children?: HTMLElementChildren): Li => h('li', props, children) as Li
+export const link = (props?: DeepPartial<Link>): Link => h('link', props) as Link
+export const map = (props?: DeepPartial<Map>, children?: HTMLElementChildren): Map => h('map', props, children) as Map
+export const mark = (props?: DeepPartial<Mark>, children?: HTMLElementChildren): Mark => h('mark', props, children) as Mark
+export const menu = (props?: DeepPartial<Menu>, children?: HTMLElementChildren): Menu => h('menu', props, children) as Menu
+export const meta = (props?: DeepPartial<Meta>): Meta => h('meta', props) as Meta
+export const meter = (props?: DeepPartial<Meter>, children?: HTMLElementChildren): Meter => h('meter', props, children) as Meter
+export const nav = (props?: DeepPartial<Nav>, children?: HTMLElementChildren): Nav => h('nav', props, children) as Nav
+export const nextid = (props?: DeepPartial<Nextid>, children?: HTMLElementChildren): Nextid => h('nextid', props, children) as Nextid
+export const nobr = (props?: DeepPartial<Nobr>, children?: HTMLElementChildren): Nobr => h('nobr', props, children) as Nobr
+export const noscript = (props?: DeepPartial<Noscript>, children?: HTMLElementChildren): Noscript => h('noscript', props, children) as Noscript
+export const object = (props?: DeepPartial<Object>, children?: HTMLElementChildren): Object => h('object', props, children) as Object
+export const ol = (props?: DeepPartial<Ol>, children?: HTMLElementChildren): Ol => h('ol', props, children) as Ol
+export const optgroup = (props?: DeepPartial<Optgroup>, children?: HTMLElementChildren): Optgroup => h('optgroup', props, children) as Optgroup
+export const option = (props?: DeepPartial<Option>, children?: HTMLElementChildren): Option => h('option', props, children) as Option
+export const output = (props?: DeepPartial<Output>, children?: HTMLElementChildren): Output => h('output', props, children) as Output
+export const p = (props?: DeepPartial<P>, children?: HTMLElementChildren): P => h('p', props, children) as P
+export const param = (props?: DeepPartial<Param>): Param => h('param', props) as Param
+export const picture = (props?: DeepPartial<Picture>, children?: HTMLElementChildren): Picture => h('picture', props, children) as Picture
+export const pre = (props?: DeepPartial<Pre>, children?: HTMLElementChildren): Pre => h('pre', props, children) as Pre
+export const progress = (props?: DeepPartial<Progress>, children?: HTMLElementChildren): Progress => h('progress', props, children) as Progress
+export const q = (props?: DeepPartial<Q>, children?: HTMLElementChildren): Q => h('q', props, children) as Q
+export const rt = (props?: DeepPartial<Rt>, children?: HTMLElementChildren): Rt => h('rt', props, children) as Rt
+export const ruby = (props?: DeepPartial<Ruby>, children?: HTMLElementChildren): Ruby => h('ruby', props, children) as Ruby
+export const s = (props?: DeepPartial<S>, children?: HTMLElementChildren): S => h('s', props, children) as S
+export const samp = (props?: DeepPartial<Samp>, children?: HTMLElementChildren): Samp => h('samp', props, children) as Samp
+export const script = (props?: DeepPartial<Script>, child?: string): Script => h('script', props, child) as Script
+export const section = (props?: DeepPartial<Section>, children?: HTMLElementChildren): Section => h('section', props, children) as Section
+export const select = (props?: DeepPartial<Select>, children?: Option[] | Optgroup[] | string): Select => h('select', props, children) as Select
+export const small = (props?: DeepPartial<Small>, children?: HTMLElementChildren): Small => h('small', props, children) as Small
+export const source = (props?: DeepPartial<Source>): Source => h('source', props) as Source
+export const span = (props?: DeepPartial<Span>, children?: HTMLElementChildren): Span => h('span', props, children) as Span
+export const strong = (props?: DeepPartial<Strong>, children?: HTMLElementChildren): Strong => h('strong', props, children) as Strong
+export const style = (props?: DeepPartial<Style>, child?: string): Style => h('style', props, child) as Style
+export const sub = (props?: DeepPartial<Sub>, children?: HTMLElementChildren): Sub => h('sub', props, children) as Sub
+export const sup = (props?: DeepPartial<Sup>, children?: HTMLElementChildren): Sup => h('sup', props, children) as Sup
+export const table = (props?: DeepPartial<Table>, children?: HTMLElementChildren): Table => h('table', props, children) as Table
+export const tbody = (props?: DeepPartial<Tbody>, children?: HTMLElementChildren): Tbody => h('tbody', props, children) as Tbody
+export const td = (props?: DeepPartial<Td>, children?: HTMLElementChildren): Td => h('td', props, children) as Td
+export const template = (props?: DeepPartial<Template>, children?: HTMLElementChildren): Template => h('template', props, children) as Template
+export const textarea = (props?: DeepPartial<Textarea>, child?: string): Textarea => h('textarea', props, child) as Textarea
+export const tfoot = (props?: DeepPartial<Tfoot>, children?: HTMLElementChildren): Tfoot => h('tfoot', props, children) as Tfoot
+export const th = (props?: DeepPartial<Th>, children?: HTMLElementChildren): Th => h('th', props, children) as Th
+export const thead = (props?: DeepPartial<Thead>, children?: HTMLElementChildren): Thead => h('thead', props, children) as Thead
+export const time = (props?: DeepPartial<Time>, children?: HTMLElementChildren): Time => h('time', props, children) as Time
+export const title = (props?: DeepPartial<Title>, child?: string): Title => h('title', props, child) as Title
+export const tr = (props?: DeepPartial<Tr>, children?: HTMLElementChildren): Tr => h('tr', props, children) as Tr
+export const track = (props?: DeepPartial<Track>): Track => h('track', props) as Track
+export const u = (props?: DeepPartial<U>, children?: HTMLElementChildren): U => h('u', props, children) as U
+export const ul = (props?: DeepPartial<Ul>, children?: HTMLElementChildren): Ul => h('ul', props, children) as Ul
 // Reserved word suffixed with "_".
-export const var_ = (props?: Partial<Var>, children?: HTMLElementChildren): Var => h('var', props, children) as Var
-export const video = (props?: Partial<Video>, children?: HTMLElementChildren): Video => h('video', props, children) as Video
-export const wbr = (props?: Partial<Wbr>): Wbr => h('wbr', props) as Wbr
+export const var_ = (props?: DeepPartial<Var>, children?: HTMLElementChildren): Var => h('var', props, children) as Var
+export const video = (props?: DeepPartial<Video>, children?: HTMLElementChildren): Video => h('video', props, children) as Video
+export const wbr = (props?: DeepPartial<Wbr>): Wbr => h('wbr', props) as Wbr
 
 
 // Tags added manually as they are not present in TypeScript 2.5.2 but listed in W3Schools, see
@@ -402,13 +399,13 @@ type NewHtmlTag
     | 'rp'
     | 'summary'
 
-export const bdi = (props?: Partial<Bdi>, children?: HTMLElementChildren): Bdi => h('bdi', props, children) as Bdi
-export const details = (props?: Partial<Details>, children?: HTMLElementChildren): Details => h('details', props, children) as Details
-export const dialog = (props?: Partial<Dialog>, children?: HTMLElementChildren): Dialog => h('dialog', props, children) as Dialog
-export const main = (props?: Partial<Main>, children?: HTMLElementChildren): Main => h('main', props, children) as Main
-export const menuitem = (props?: Partial<Menuitem>): Menuitem => h('menuitem', props) as Menuitem
-export const rp = (props?: Partial<Rp>, children?: HTMLElementChildren): Rp => h('rp', props, children) as Rp
-export const summary = (props?: Partial<Summary>, children?: HTMLElementChildren): Summary => h('summary', props, children) as Summary
+export const bdi = (props?: DeepPartial<Bdi>, children?: HTMLElementChildren): Bdi => h('bdi', props, children) as Bdi
+export const details = (props?: DeepPartial<Details>, children?: HTMLElementChildren): Details => h('details', props, children) as Details
+export const dialog = (props?: DeepPartial<Dialog>, children?: HTMLElementChildren): Dialog => h('dialog', props, children) as Dialog
+export const main = (props?: DeepPartial<Main>, children?: HTMLElementChildren): Main => h('main', props, children) as Main
+export const menuitem = (props?: DeepPartial<Menuitem>): Menuitem => h('menuitem', props) as Menuitem
+export const rp = (props?: DeepPartial<Rp>, children?: HTMLElementChildren): Rp => h('rp', props, children) as Rp
+export const summary = (props?: DeepPartial<Summary>, children?: HTMLElementChildren): Summary => h('summary', props, children) as Summary
 
 export type Bdi = HTMLElement
 export type Details = HTMLElement
