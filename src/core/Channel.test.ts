@@ -146,7 +146,7 @@ suite('Channel', () => {
         return defer.promise
     })
 
-    test('channel kicks out all listeners on close', () => {
+    test('channel kicks out all listeners on clear', () => {
         const someChannel = new Channel<undefined>()
 
         someChannel.do(() => {})
@@ -154,7 +154,7 @@ suite('Channel', () => {
         someChannel.once(() => {})
         assert.strictEqual(someChannel.length, 3)
 
-        someChannel.close()
+        someChannel.clear()
         assert.strictEqual(someChannel.length, 0)
     })
 })

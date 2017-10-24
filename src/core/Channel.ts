@@ -57,7 +57,7 @@ export class Channel<TMessage> {
     /**
      * Unsubscribe all listeners from the event channel.
      */
-    close(): void {
+    clear(): void {
         this.listeners = []
     }
 }
