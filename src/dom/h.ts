@@ -408,9 +408,18 @@ export const rp = (props?: DeepPartial<Rp>, children?: HTMLElementChildren): Rp 
 export const summary = (props?: DeepPartial<Summary>, children?: HTMLElementChildren): Summary => h('summary', props, children) as Summary
 
 export type Bdi = HTMLElement
-export type Details = HTMLElement
-export type Dialog = HTMLElement
+export type Details = HTMLElement & {open: boolean}
+export type Dialog = HTMLElement & {open: boolean}
 export type Main = HTMLElement
-export type Menuitem = HTMLElement
+export type Menuitem = HTMLElement & {
+    checked: boolean,
+    command: string,
+    default: boolean,
+    disabled: boolean,
+    icon: string,
+    label: string,
+    radiogroup: string,
+    type: 'command' | 'checkbox' | 'radio'
+}
 export type Rp = HTMLElement
 export type Summary = HTMLElement
