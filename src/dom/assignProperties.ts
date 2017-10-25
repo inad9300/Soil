@@ -1,9 +1,7 @@
 import {DeepPartial} from '../extra/DeepPartial'
 
-type MapToAny = {[key: string]: any}
-
 /**
- * Assign properties to an object of type `Element`.
+ * Assign properties to an object of type `HTMLElement` or `SVGElement`.
  */
 export function assignProperties<E extends Element, P extends DeepPartial<Element>>(elem: E, props: P): void {
     for (const p in props) {
@@ -12,7 +10,7 @@ export function assignProperties<E extends Element, P extends DeepPartial<Elemen
                 // Go one level deeper, for properties such as `style`.
                 for (const subP in props[p]) {
                     if ((props[p] as Object).hasOwnProperty(subP)) {
-                        (elem as MapToAny)[p][subP] = props[p][subP]
+                        (elem as any)[p][subP] = props[p][subP]
                     }
                 }
             } else {
@@ -20,8 +18,8 @@ export function assignProperties<E extends Element, P extends DeepPartial<Elemen
                     // Deal with custom and special attributes, such as `data-*` and `aria-*` attributes.
                     elem.setAttribute(p, props[p])
                 } else {
-                    // Treat the rest as standard `Element` properties.
-                    (elem as MapToAny)[p] = props[p]
+                    // Treat the rest as standard properties.
+                    (elem as any)[p] = props[p]
                 }
             }
         }
