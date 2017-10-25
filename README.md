@@ -71,8 +71,8 @@ const counter = (/* Dependencies. */) => (args: {initalValue: number}) {
         $count.textContent = count
     }
 
-    // In order for other components to incorporate this one, a read-only reference to the local HTML root is returned
-    // as part of the public interface.
+    // In order for other components to incorporate this one, a read-only reference to the local HTML root is
+    // returned as part of the public interface.
     return {$el, decrement, increment}
 }
 ```
