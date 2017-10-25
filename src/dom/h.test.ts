@@ -309,10 +309,8 @@ suite('h()', () => {
         assert.strictEqual(templateElemFromDom.children.length, 1, 'template has one, direct child')
         assert.strictEqual(templateElemFromDom.children[0].tagName, 'TR', 'template has a table row child')
         assert.strictEqual(templateElemFromDom.children[0].children.length, 2, 'template child has two children')
-        assert.strictEqual(templateElemFromDom.children[0].children[0].tagName, 'TD',
-            'template child has table division children')
-        assert.strictEqual(templateElemFromDom.children[0].children[0].className, 'record',
-            'template child has table division children with "record" class')
+        assert.strictEqual(templateElemFromDom.children[0].children[0].tagName, 'TD', 'template child has table division children')
+        assert.strictEqual(templateElemFromDom.children[0].children[0].className, 'record', 'template child has table division children with "record" class')
     })
 
     test('<script>, <style> and <textarea> elements, which only accept text as children', () => {
