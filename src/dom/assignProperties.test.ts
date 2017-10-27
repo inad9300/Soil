@@ -2,6 +2,7 @@ const {suite, test} = intern.getInterface('tdd')
 const {assert} = intern.getPlugin('chai')
 import {createElement} from '../testing/support/createElement'
 
+import {HTMLElementProperties} from './h'
 import {assignProperties} from './assignProperties'
 
 suite('assignProperties()', () => {
@@ -10,7 +11,7 @@ suite('assignProperties()', () => {
         function fun() {}
 
         const div = createElement('<div></div>') as HTMLElement
-        assignProperties(div, {
+        assignProperties<HTMLElement, HTMLElementProperties>(div, {
             id: 'i',
             className: 'c',
             title: 't',
