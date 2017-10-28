@@ -1,8 +1,9 @@
 {
     "compilerOptions": {
         "module": "amd",
+        "moduleResolution": "node",
         "target": "es5",
-        "lib": ["dom", "es6"],
+        "lib": ["es6", "dom"],
         "types": ["intern"],
         "strict": true,
         "outDir": "build/src",
