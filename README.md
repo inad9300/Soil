@@ -2,6 +2,8 @@
 
 A foundational set of ideas to help building enduring web applications.
 
+[![Build Status](https://travis-ci.org/inad9300/Soil.svg?branch=master)](https://travis-ci.org/inad9300/Soil)
+
 ## Motivation
 The pace with which the web ecosystem evolves is unthinkably fast. Parallel to this, popular web frameworks tend to
 create architectures with poor interoperability with tools built on top of standard technologies. Additionaly, the
