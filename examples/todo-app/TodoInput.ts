@@ -1,20 +1,20 @@
-import noop from './noop'
+import {h} from 'soil-web'
+import {noop} from './noop'
 import {Todo} from './Todo'
 import {TodoService} from './TodoService'
-import {input, div, Div, button} from '../../src/dom/h'
 
 export type TodoInputI = {
     onAddTodo: (todo: Todo) => void
 }
 
 export type TodoInputO = {
-    readonly $el: Div
+    readonly $el: h.Div
 }
 
 export const todoInput = (todoService: TodoService) => (args: TodoInputI): TodoInputO => {
     const todoAdded = args.onAddTodo || noop
 
-    const $input = input({
+    const $input = h.input({
         autofocus: true,
         placeholder: `What's left?`,
         onkeydown: (evt: KeyboardEvent) => {
@@ -22,9 +22,9 @@ export const todoInput = (todoService: TodoService) => (args: TodoInputI): TodoI
         }
     })
 
-    const $el = div({}, [
+    const $el = h.div({}, [
         $input,
-        button({onclick: addTodo}, 'Add')
+        h.button({onclick: addTodo}, 'Add')
     ])
 
     function addTodo() {

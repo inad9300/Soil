@@ -1,13 +1,12 @@
-import {div, Div, h1} from '../../src/dom/h'
-import {Component} from '../../src/core/Component'
-import {TodoInputI, TodoInputO} from './TodoInput'
+import {h, Component} from 'soil-web'
 import {TodoListI, TodoListO} from './TodoList'
+import {TodoInputI, TodoInputO} from './TodoInput'
 import {TodoFiltersI, TodoFiltersO} from './TodoFilters'
 
 export type TodoAppI = {}
 
 export type TodoAppO = {
-    readonly $el: Div
+    readonly $el: h.Div
 }
 
 export const todoApp = (todoInput: Component<TodoInputI, TodoInputO>,
@@ -26,8 +25,8 @@ export const todoApp = (todoInput: Component<TodoInputI, TodoInputO>,
         onAddTodo: todo => $todoList.addTodo(todo)
     })
 
-    const $el = div({}, [
-        h1({}, 'Todo'),
+    const $el = h.div({}, [
+        h.h1({}, 'Todo'),
         $todoInput.$el,
         $todoList.$el,
         $todoFilters.$el

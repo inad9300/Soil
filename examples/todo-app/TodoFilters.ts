@@ -1,13 +1,13 @@
-import noop from './noop'
+import {h} from 'soil-web'
+import {noop} from './noop'
 import {TodoFilterFn} from './TodoList'
-import {button, div, Div, Li, Input} from '../../src/dom/h'
 
 export type TodoFiltersI = {
     onFilterChange: (filterFn: TodoFilterFn) => void
 }
 
 export type TodoFiltersO = {
-    readonly $el: Div
+    readonly $el: h.Div
     enable: () => void
     disable: () => void
 }
@@ -16,12 +16,12 @@ export const todoFilters = () => (args: TodoFiltersI): TodoFiltersO => {
     const filterChanged = args.onFilterChange || noop
 
     const $filters = [
-        button({disabled: true, onclick: () => filterChanged(todos => showAllTodos(todos))}, 'All'),
-        button({disabled: true, onclick: () => filterChanged(todos => showActiveTodos(todos))}, 'Active'),
-        button({disabled: true, onclick: () => filterChanged(todos => showCompletedTodos(todos))}, 'Completed')
+        h.button({disabled: true, onclick: () => filterChanged(todos => showAllTodos(todos))}, 'All'),
+        h.button({disabled: true, onclick: () => filterChanged(todos => showActiveTodos(todos))}, 'Active'),
+        h.button({disabled: true, onclick: () => filterChanged(todos => showCompletedTodos(todos))}, 'Completed')
     ]
 
-    const $el = div({}, $filters)
+    const $el = h.div({}, $filters)
 
     function enable() {
         $filters.forEach(btn => btn.disabled = false)
@@ -31,20 +31,20 @@ export const todoFilters = () => (args: TodoFiltersI): TodoFiltersO => {
         $filters.forEach(btn => btn.disabled = true)
     }
 
-    function showAllTodos($todos: Li[]) {
+    function showAllTodos($todos: h.Li[]) {
         return $todos.map(() => true)
     }
 
-    function showActiveTodos($todos: Li[]) {
+    function showActiveTodos($todos: h.Li[]) {
         return $todos.map($todo => !isTodoComplete($todo))
     }
 
-    function showCompletedTodos($todos: Li[]) {
+    function showCompletedTodos($todos: h.Li[]) {
         return $todos.map($todo => isTodoComplete($todo))
     }
 
-    function isTodoComplete($todo: Li): boolean {
-        return ($todo.querySelector('input[type=checkbox]') as Input).checked
+    function isTodoComplete($todo: h.Li): boolean {
+        return ($todo.querySelector('input[type=checkbox]') as h.Input).checked
     }
 
     return {$el, enable, disable}

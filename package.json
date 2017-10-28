@@ -1,8 +1,8 @@
 {
     "name": "soil-web",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "description": "A foundational set of ideas to help building enduring web applications.",
-    "types": "build/src/index.d.ts",
+    "types": "build/src/index",
     "keywords": [
         "Soil",
         "typescript",
@@ -24,14 +24,11 @@
         "compile": "tsc",
         "pretest": "npm run compile",
         "test": "intern",
-        "prepare": "npm run compile",
-        "pretodo-app:compile": "rm -rf examples/todo-app/build",
-        "todo-app:compile": "tsc --project examples/todo-app"
+        "prepare": "npm run compile"
     },
     "devDependencies": {
         "@dojo/loader": "0.1.0",
         "intern": "4.0.2",
-        "requirejs": "2.3.5",
         "typescript": "2.5.3"
     },
     "author": {

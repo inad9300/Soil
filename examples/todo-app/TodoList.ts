@@ -1,36 +1,35 @@
-import * as dom from './dom'
-import noop from './noop'
-import {Todo} from './Todo'
-import {TodoService} from './TodoService'
-// import {ul, Ul, li, Li, button, label, input, Input} from '../../src/dom/h'
 import {h} from 'soil-web'
+import {noop} from './noop'
+import {Todo} from './Todo'
+import {show, hide} from './dom'
+import {TodoService} from './TodoService'
 
 export type TodoListI = {
     onSizeChange: (newSize: number) => void
 }
 
 export type TodoListO = {
-    readonly $el: Ul
+    readonly $el: h.Ul
     addTodo: (todo: Todo) => void
     filterTodos: (filter: TodoFilterFn) => void
 }
 
-export type TodoFilterFn = ($todos: Li[]) => boolean[]
+export type TodoFilterFn = ($todos: h.Li[]) => boolean[]
 
 export const todoList = (todoService: TodoService) => (args: TodoListI): TodoListO => {
     const sizeChanged = args.onSizeChange || noop
 
     todoService.findTodos().then(todos => todos.forEach(addTodo))
 
-    const $el = ul()
+    const $el = h.ul()
 
     function addTodo(todo: Todo) {
-        const $todo = li({}, [
-            button({onclick: () => deleteTodo($todo, todo)}, 'X'),
-            label({textContent: todo.text}, [
-                input({
+        const $todo = h.li({}, [
+            h.button({onclick: () => deleteTodo($todo, todo)}, 'X'),
+            h.label({textContent: todo.text}, [
+                h.input({
                     type: 'checkbox',
-                    onclick: (evt: MouseEvent) => updateTodoStatus($todo, todo, (evt.target as Input).checked)
+                    onclick: (evt: MouseEvent) => updateTodoStatus($todo, todo, (evt.target as h.Input).checked)
                 })
             ])
         ])
@@ -47,14 +46,14 @@ export const todoList = (todoService: TodoService) => (args: TodoListI): TodoLis
         applyActiveFilter()
     }
 
-    function deleteTodo($todo: Li, todo: Todo) {
+    function deleteTodo($todo: h.Li, todo: Todo) {
         todoService.deleteTodo(todo).then(() => {
             $el.removeChild($todo)
             sizeChanged($el.children.length)
         })
     }
 
-    function updateTodoStatus($todo: Li, todo: Todo, completed: boolean) {
+    function updateTodoStatus($todo: h.Li, todo: Todo, completed: boolean) {
         todoService.updateTodoStatus(todo, completed).then(todo => {
             if (todo.completed) {
                 $todo.classList.add('completed')
@@ -69,10 +68,10 @@ export const todoList = (todoService: TodoService) => (args: TodoListI): TodoLis
         if (!activeFilter) {
             return
         }
-        activeFilter(Array.from($el.children) as Li[])
+        activeFilter(Array.from($el.children) as h.Li[])
             .forEach((shouldShow, idx) => {
-                const $todo = $el.children[idx] as Li
-                shouldShow ? dom.show($todo) : dom.hide($todo)
+                const $todo = $el.children[idx] as h.Li
+                shouldShow ? show($todo) : hide($todo)
             })
     }
 
