@@ -111,6 +111,3 @@ topic that may help maturing Soil. For technical contributions, pull requests ar
 
 ## License
 The Soil project is licensed under the [GNU Affero General Public License](LICENSE).
-
-
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Finad9300%2FSoil.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Finad9300%2FSoil?ref=badge_large)
