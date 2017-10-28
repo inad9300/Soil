@@ -6,5 +6,9 @@
     "capabilities": {"fixSessionCapabilities": false},
     "loader": {"script": "dojo2"},
     "suites": ["build/src/**/*.test.js"],
-    "coverage": ["build/src/!(testing)/**/!(*.test).js"]
+    "coverage": ["build/src/!(testing)/**/!(*.test).js"],
+    "reporters": {
+        "name": "jsoncoverage",
+        "options": {"filename": "coverage.json"}
+    }
 }
