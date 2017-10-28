@@ -17,7 +17,7 @@ export const todoInput = (todoService: TodoService) => (args: TodoInputI): TodoI
     const $input = input({
         autofocus: true,
         placeholder: `What's left?`,
-        onkeydown: evt => {
+        onkeydown: (evt: KeyboardEvent) => {
             if (evt.key === 'Enter') addTodo()
         }
     })

@@ -2,7 +2,8 @@ import * as dom from './dom'
 import noop from './noop'
 import {Todo} from './Todo'
 import {TodoService} from './TodoService'
-import {ul, Ul, li, Li, button, label, input, Input} from '../../src/dom/h'
+// import {ul, Ul, li, Li, button, label, input, Input} from '../../src/dom/h'
+import {h} from 'soil-web'
 
 export type TodoListI = {
     onSizeChange: (newSize: number) => void
@@ -29,7 +30,7 @@ export const todoList = (todoService: TodoService) => (args: TodoListI): TodoLis
             label({textContent: todo.text}, [
                 input({
                     type: 'checkbox',
-                    onclick: evt => updateTodoStatus($todo, todo, (evt.target as Input).checked)
+                    onclick: (evt: MouseEvent) => updateTodoStatus($todo, todo, (evt.target as Input).checked)
                 })
             ])
         ])
