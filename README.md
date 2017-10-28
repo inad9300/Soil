@@ -83,7 +83,10 @@ The best path forward to continue learning the principles of Soil is to check ou
 available on this repository, and eventually dive into the [source code](src/).
 
 ## Installation
-*An npm package is on the making.*
+The package is available [at npm](https://www.npmjs.com/package/soil-web), so it can be installed by running:
+```bash
+npm i -S soil-web # AKA npm install --save soil-web
+```
 
 ## Compatibility
 Browser support comes down to the individual functions used internally by Soil. The potentially problematic ones are
