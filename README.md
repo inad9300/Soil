@@ -4,6 +4,7 @@ A foundational set of ideas to help building enduring web applications.
 
 [![Build Status](https://travis-ci.org/inad9300/Soil.svg?branch=master)](https://travis-ci.org/inad9300/Soil)
 [![codecov](https://codecov.io/gh/inad9300/Soil/branch/master/graph/badge.svg)](https://codecov.io/gh/inad9300/Soil)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Finad9300%2FSoil.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Finad9300%2FSoil?ref=badge_shield)
 
 ## Motivation
 The pace with which the web ecosystem evolves is unthinkably fast. Parallel to this, popular web frameworks tend to
