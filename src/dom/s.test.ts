@@ -114,7 +114,7 @@ suite('s()', () => {
         assert.strictEqual(countFromDom.textContent, '3', 'count is 3')
 
         function click(target: SVGElement) {
-            var event = document.createEvent('SVGEvents')
+            const event = document.createEvent('SVGEvents')
             event.initEvent('click', true, true)
             target.dispatchEvent(event)
         }
