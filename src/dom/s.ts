@@ -14,7 +14,7 @@ import {DeepPartial} from '../extra/DeepPartial'
 /**
  * List of all SVG tag names.
  */
-export type SvgTag
+export type SVGTag
     = 'a'
     | 'circle'
     | 'clipPath'
@@ -155,7 +155,7 @@ export type SVGElementProperties = DeepPartial<SVGElement> & {[prop: string]: an
 /**
  * Helper function to concisely create instances of any SVG element.
  */
-export function s(name: SvgTag, props?: SVGElementProperties, children?: SVGElementChildren): SVGElement {
+export function s(name: SVGTag, props?: SVGElementProperties, children?: SVGElementChildren): SVGElement {
     const elem = document.createElementNS('http://www.w3.org/2000/svg', name)
 
     if (props !== undefined) {

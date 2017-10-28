@@ -16,7 +16,7 @@ import {DeepPartial} from '../extra/DeepPartial'
 /**
  * List of all HTML tag names.
  */
-export type HtmlTag
+export type HTMLTag
     = 'a'
     | 'abbr'
     | 'address'
@@ -124,7 +124,7 @@ export type HtmlTag
     | 'var'
     | 'video'
     | 'wbr'
-    | NewHtmlTag
+    | NewHTMLTag
 
 /**
  * Aliases for HTML tag types, whose native counterparts are not always easy to guess or find.
@@ -253,7 +253,7 @@ export type HTMLElementProperties = DeepPartial<HTMLElement> & {[prop: string]: 
 /**
  * Helper function to concisely create instances of any HTML element, including custom ones.
  */
-export function h(name: HtmlTag | string, props?: HTMLElementProperties, children?: HTMLElementChildren): HTMLElement {
+export function h(name: HTMLTag | string, props?: HTMLElementProperties, children?: HTMLElementChildren): HTMLElement {
     const elem = document.createElement(name)
 
     if (props !== undefined) {
@@ -390,7 +390,7 @@ export const wbr = (props?: DeepPartial<Wbr>): Wbr => h('wbr', props) as Wbr
 // https://github.com/Microsoft/TypeScript/issues/17828 and https://www.w3schools.com/html/html5_new_elements.asp.
 // TODO Re-evaluate and rearrange when available in TypeScript.
 
-type NewHtmlTag
+type NewHTMLTag
     = 'bdi'
     | 'details'
     | 'dialog'
