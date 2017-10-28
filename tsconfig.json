@@ -6,7 +6,8 @@
         "types": ["intern"],
         "strict": true,
         "outDir": "build/src",
-        "sourceMap": true
+        "sourceMap": true,
+        "declaration": true
     },
     "include": ["src"]
 }

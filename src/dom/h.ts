@@ -390,7 +390,7 @@ export const wbr = (props?: DeepPartial<Wbr>): Wbr => h('wbr', props) as Wbr
 // https://github.com/Microsoft/TypeScript/issues/17828 and https://www.w3schools.com/html/html5_new_elements.asp.
 // TODO Re-evaluate and rearrange when available in TypeScript.
 
-type NewHTMLTag
+export type NewHTMLTag
     = 'bdi'
     | 'details'
     | 'dialog'
