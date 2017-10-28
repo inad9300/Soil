@@ -9,9 +9,9 @@ technical burden they introduce tends to be significant, and clearer than the be
 them are left with the choice of deprecation and long-term unmaintenability, or the expense of unreasonable amounts of
 resources to try to keep the community's transformation rate.
 
-Soil aims at defining a basic set of concepts that embrace today's web standards and thus last longer, while being
-competitive with commonly-used frameworks in areas such as reliability, testability, reusability, development experience
-and performance.
+Soil aims at putting together a basic set of concepts that embrace today's web standards and thus last longer, while
+being competitive with commonly-used frameworks in areas such as reliability, testability, reusability, development
+experience and performance.
 
 ## Basics
 Soil encourages a structure around *components*, conceptually similar to the [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components)'
@@ -79,15 +79,27 @@ const counter = (/* Dependencies. */) => (args: {initalValue: number}) {
 
 As you may have noticed, Soil leverages type safety through [TypeScript](https://www.typescriptlang.org/).
 
-The best path forward to continue learning the principles of Soil is to check out the [examples](https://github.com/inad9300/Soil/tree/master/examples/)
-available on this repository, and eventually dive into the [source code](https://github.com/inad9300/Soil/tree/master/src).
+The best path forward to continue learning the principles of Soil is to check out the [examples](examples/)
+available on this repository, and eventually dive into the [source code](src/).
 
 ## Installation
 *An npm package is on the making.*
 
+## Browser support
+It all comes down to the individual functions used internally by Soil. The potentially problematic ones are summarized
+below. Polyfills are offered by MDN for many of them.
+
+| Function | Source files | Chrome | Edge | Firefox | Internet Explorer | Opera | Safari
+| [`Object.setPrototypeOf()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf) | [`core/assert.ts`](src/core/assert.ts) | 34 | (Yes) | 31 | 11 | (Yes) | 9
+| [`Array.from()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from) | [`fix/autofocus.ts`](src/fix/autofocus.ts) | 45 | (Yes) | 32 | No | (Yes) | 9
+| [`Array.prototype.forEach()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) | [`core/Channel.ts`](src/core/Channel.ts), [`dom/h.ts`](src/dom/h.ts), [`dom/s.ts`](src/dom/s.ts) | (Yes) | (Yes) | 1.5 | 9 | (Yes) | (Yes)
+| [`Array.prototype.filter()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) | [`core/Channel.ts`](src/core/Channel.ts), [`fix/autofocus.ts`](src/fix/autofocus.ts) | (Yes) | (Yes) | 1.5 | 9 | (Yes) | (Yes)
+| [`document.querySelectorAll()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) | [`fix/autofocus.ts`](src/fix/autofocus.ts)| | 1 | (Yes) | 3.5 | 9 | 10 | 3.2
+| [`Window.getComputedStyle()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle) | [`fix/autofocus.ts`](src/fix/autofocus.ts) | (Yes) | (Yes) | (Yes) | 9 | (Yes) | (Yes)
+
 ## Contributions
-Please, feel free and encouraged to [open new discussions](https://github.com/inad9300/Soil/issues) on any non-technical
+Please, feel free and encouraged to [open new discussions](../../issues) on any non-technical
 topic that may help maturing Soil. For technical contributions, pull requests are also welcomed.
 
 ## License
-The Soil project is licensed under the [GNU Affero General Public License](https://github.com/inad9300/Soil/blob/master/LICENSE).
+The Soil project is licensed under the [GNU Affero General Public License](LICENSE).
