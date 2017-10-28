@@ -85,9 +85,9 @@ available on this repository, and eventually dive into the [source code](src/).
 ## Installation
 *An npm package is on the making.*
 
-## Browser support
-It all comes down to the individual functions used internally by Soil. The potentially problematic ones are summarized
-below. Polyfills are offered by MDN for many of them.
+## Compatibility
+Browser support comes down to the individual functions used internally by Soil. The potentially problematic ones are
+summarized below. Polyfills are offered by MDN for many of them.
 
 | Function | Source files | Chrome | Edge | Firefox | IE  | Opera | Safari
 | -------- | ------------ | ------ | ---- | ------- | --- | ----- | ------
