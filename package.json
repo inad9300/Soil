@@ -24,10 +24,12 @@
         "compile": "tsc",
         "pretest": "npm run compile",
         "test": "intern",
+        "posttest": "codecov",
         "prepare": "npm run compile"
     },
     "devDependencies": {
         "@dojo/loader": "0.1.0",
+        "codecov": "3.0.0",
         "intern": "4.0.2",
         "typescript": "2.5.3"
     },
