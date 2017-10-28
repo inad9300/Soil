@@ -4,12 +4,12 @@ import {createElement} from '../testing/support/createElement'
 import {elementsAreEqual} from '../testing/support/elementsAreEqual'
 
 import {h, HTMLElementProperties} from './h'
-import {a, abbr, address, area, article, aside, audio, b, base, bdo, blockquote, body, br, button, canvas, caption, cite, code, col, colgroup, data, datalist, dd, del, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, head, header, hr, html, i, iframe, img, input, ins, kbd, label, legend, li, link, map, mark, menu, meta, meter, nav, nextid, nobr, noscript, object, ol, optgroup, option, output, p, param, picture, pre, progress, q, rt, ruby, s, samp, script, section, select, small, source, span, strong, style, sub, sup, table, tbody, td, template, textarea, tfoot, th, thead, time, title, tr, track, u, ul, var_, video, wbr, bdi, details, dialog, main, menuitem, rp, summary} from './h'
 import {Audio, Button, Details, H1, Iframe, Input, Noscript, Option, Template, Select, Span} from './h'
-
-const allHtmlTags = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdo', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'data', 'datalist', 'dd', 'del', 'dfn', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'link', 'map', 'mark', 'menu', 'meta', 'meter', 'nav', 'nextid', 'nobr', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture', 'pre', 'progress', 'q', 'rt', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small', 'source', 'span', 'strong', 'style', 'sub', 'sup', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'var', 'video', 'wbr', 'bdi', 'details', 'dialog', 'main', 'menuitem', 'rp', 'summary']
+import {a, abbr, address, area, article, aside, audio, b, base, bdo, blockquote, body, br, button, canvas, caption, cite, code, col, colgroup, data, datalist, dd, del, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, head, header, hr, html, i, iframe, img, input, ins, kbd, label, legend, li, link, map, mark, menu, meta, meter, nav, nextid, nobr, noscript, object, ol, optgroup, option, output, p, param, picture, pre, progress, q, rt, ruby, s, samp, script, section, select, small, source, span, strong, style, sub, sup, table, tbody, td, template, textarea, tfoot, th, thead, time, title, tr, track, u, ul, var_, video, wbr, bdi, details, dialog, main, menuitem, rp, summary} from './h'
 
 const allHtmlFunctions = [a, abbr, address, area, article, aside, audio, b, base, bdo, blockquote, body, br, button, canvas, caption, cite, code, col, colgroup, data, datalist, dd, del, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, head, header, hr, html, i, iframe, img, input, ins, kbd, label, legend, li, link, map, mark, menu, meta, meter, nav, nextid, nobr, noscript, object, ol, optgroup, option, output, p, param, picture, pre, progress, q, rt, ruby, s, samp, script, section, select, small, source, span, strong, style, sub, sup, table, tbody, td, template, textarea, tfoot, th, thead, time, title, tr, track, u, ul, var_, video, wbr, bdi, details, dialog, main, menuitem, rp, summary]
+
+const allHtmlTags = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdo', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'data', 'datalist', 'dd', 'del', 'dfn', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'link', 'map', 'mark', 'menu', 'meta', 'meter', 'nav', 'nextid', 'nobr', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture', 'pre', 'progress', 'q', 'rt', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small', 'source', 'span', 'strong', 'style', 'sub', 'sup', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'var', 'video', 'wbr', 'bdi', 'details', 'dialog', 'main', 'menuitem', 'rp', 'summary']
 
 const tagsExcludedFromCreation = ['html', 'head', 'body', 'caption', 'col', 'colgroup', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr']
 const tagsNotAcceptingChildren = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr', 'menuitem']
@@ -41,9 +41,9 @@ suite('h()', () => {
             .filter(tag => tagsExcludedFromCreation.indexOf(tag) === -1)
             .forEach(tag => {
                 const elemFromJs = h(tag)
-                const elemFromHtml = createElement(`<${tag}></${tag}>`)
+                const elemFromStr = createElement(`<${tag}></${tag}>`)
 
-                elementsAreEqual(elemFromJs, elemFromHtml)
+                elementsAreEqual(elemFromJs, elemFromStr)
             })
     })
 
@@ -68,9 +68,9 @@ suite('h()', () => {
             .filter(tag => tagsExcludedFromCreation.indexOf(tag) === -1)
             .forEach(tag => {
                 const elemFromJs = h(tag, globalAttributesObj)
-                const elemFromHtml = createElement(`<${tag} ${globalAttributesStr}></${tag}>`)
+                const elemFromStr = createElement(`<${tag} ${globalAttributesStr}></${tag}>`)
 
-                elementsAreEqual(elemFromJs, elemFromHtml)
+                elementsAreEqual(elemFromJs, elemFromStr)
             })
     })
 
@@ -86,7 +86,7 @@ suite('h()', () => {
                     h('span', {id: 'c'}, 'C')
                 ])
 
-                const elemFromHtml = createElement(
+                const elemFromStr = createElement(
                     `<${tag}>` +
                         '<span title="A">A</span>' +
                         '<span class="b">B</span>' +
@@ -94,7 +94,7 @@ suite('h()', () => {
                     `</${tag}>`
                 )
 
-                elementsAreEqual(elemFromJs, elemFromHtml)
+                elementsAreEqual(elemFromJs, elemFromStr)
             })
     })
 
@@ -216,7 +216,7 @@ suite('h()', () => {
             ])
         ])
 
-        const completeTableFromHtml = createElement(
+        const completeTableFromStr = createElement(
             '<table>' +
                 '<caption>A table caption.</caption>' +
                 '<colgroup>' +
@@ -247,7 +247,7 @@ suite('h()', () => {
             '</table>'
         )
 
-        elementsAreEqual(completeTableFromJs, completeTableFromHtml)
+        elementsAreEqual(completeTableFromJs, completeTableFromStr)
     })
 
     test('<select> element', () => {
@@ -315,16 +315,16 @@ suite('h()', () => {
 
     test('<script>, <style> and <textarea> elements, which only accept text as children', () => {
         const scriptFromFn = script({}, '// Some JavaScript code...')
-        const scriptFromHtml = createElement('<script>// Some JavaScript code...</script>')
-        elementsAreEqual(scriptFromFn, scriptFromHtml)
+        const scriptFromStr = createElement('<script>// Some JavaScript code...</script>')
+        elementsAreEqual(scriptFromFn, scriptFromStr)
 
         const styleFromFn = style({}, '/* Some CSS styles... */')
-        const styleFromHtml = createElement('<style>/* Some CSS styles... */</style>')
-        elementsAreEqual(styleFromFn, styleFromHtml)
+        const styleFromStr = createElement('<style>/* Some CSS styles... */</style>')
+        elementsAreEqual(styleFromFn, styleFromStr)
 
         const textareaFromFn = textarea({}, 'A value for the textarea.')
-        const textareaFromHtml = createElement('<textarea>A value for the textarea.</textarea>')
-        elementsAreEqual(textareaFromFn, textareaFromHtml)
+        const textareaFromStr = createElement('<textarea>A value for the textarea.</textarea>')
+        elementsAreEqual(textareaFromFn, textareaFromStr)
         assert.strictEqual(textareaFromFn.value, 'A value for the textarea.')
     })
 })
