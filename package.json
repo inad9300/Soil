@@ -4,11 +4,15 @@
     "description": "A foundational set of ideas to help building enduring web applications.",
     "types": "build/src/index",
     "keywords": [
-        "Soil",
+        "soil",
+        "javascript",
         "typescript",
         "web",
         "framework",
-        "components"
+        "components",
+        "architecture",
+        "dependency-injection",
+        "design-by-contract"
     ],
     "homepage": "https://github.com/inad9300/Soil",
     "repository": {
