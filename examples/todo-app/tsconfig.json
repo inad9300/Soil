@@ -2,7 +2,11 @@
     "extends": "../../tsconfig",
     "compilerOptions": {
         "outFile": "build/todo-app.js",
-        "declaration": false
+        "declaration": false,
+        "baseUrl": ".",
+        "paths": {
+            "soil-web": ["node_modules/soil-web/src"]
+        }
     },
     "include": ["."]
 }
