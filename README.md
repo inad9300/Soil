@@ -52,27 +52,39 @@ has a *factory* associated with it, through which it will get its dependencies. 
 testability and often leads to better designs.
 
 ```typescript
-const counter = (/* Dependencies. */) => (args: {initalValue: number}) {
+import {h} from 'soil-web'
 
-    const count = args.initialValue || 0
+type CounterI = {
+    initialValue: number
+}
+
+type CounterO = {
+    readonly $el: h.Div
+    decrement: () => void
+    increment: () => void
+}
+
+const counter = (/* Possible dependencies. */) => (args: CounterI): CounterO => {
+
+    let count = args.initialValue || 0
 
     // For conciseness, variables holding references to HTML elements are prefixed with "$" by convention.
-    const $count = span({}, count)
+    const $count = h.span({}, `${count}`)
 
-    const $el = div({}, [
-        button({onclick: decrement}, '-'),
+    const $el = h.div({}, [
+        h.button({onclick: decrement}, '-'),
         $count,
-        button({onclick: increment}, '+')
+        h.button({onclick: increment}, '+')
     ])
 
     function decrement() {
         count--
-        $count.textContent = count
+        $count.textContent = `${count}`
     }
 
     function increment() {
         count++
-        $count.textContent = count
+        $count.textContent = `${count}`
     }
 
     // In order for other components to incorporate this one, a read-only reference to the local HTML root
