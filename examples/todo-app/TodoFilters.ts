@@ -7,7 +7,7 @@ export type TodoFiltersI = {
 }
 
 export type TodoFiltersO = {
-    readonly $el: h.Div
+    readonly $el: h.Footer
     enable: () => void
     disable: () => void
 }
@@ -21,7 +21,7 @@ export const todoFilters = () => (args: TodoFiltersI): TodoFiltersO => {
         h.button({disabled: true, onclick: () => filterChanged(todos => showCompletedTodos(todos))}, 'Completed')
     ]
 
-    const $el = h.div({}, $filters)
+    const $el = h.footer({}, $filters)
 
     function enable() {
         $filters.forEach(btn => btn.disabled = false)

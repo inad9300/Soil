@@ -25,13 +25,13 @@ export const todoList = (todoService: TodoService) => (args: TodoListI): TodoLis
 
     function addTodo(todo: Todo) {
         const $todo = h.li({}, [
-            h.button({onclick: () => deleteTodo($todo, todo)}, 'X'),
             h.label({textContent: todo.text}, [
                 h.input({
                     type: 'checkbox',
                     onclick: (evt: MouseEvent) => updateTodoStatus($todo, todo, (evt.target as h.Input).checked)
                 })
-            ])
+            ]),
+            h.button({onclick: () => deleteTodo($todo, todo)}, '⨉')
         ])
 
         $el.appendChild($todo)

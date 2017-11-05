@@ -3,11 +3,14 @@
         "soil-web": "0.0.3"
     },
     "devDependencies": {
+        "http-server": "0.10.0",
         "requirejs": "2.3.5",
         "typescript": "2.5.3"
     },
     "scripts": {
         "precompile": "rm -rf build",
-        "compile": "tsc"
+        "compile": "tsc",
+        "prestart": "npm run compile",
+        "start": "http-server"
     }
 }

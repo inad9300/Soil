@@ -15,10 +15,13 @@ export const todoInput = (todoService: TodoService) => (args: TodoInputI): TodoI
     const todoAdded = args.onAddTodo || noop
 
     const $input = h.input({
+        type: 'text',
         autofocus: true,
         placeholder: `What's left?`,
         onkeydown: (evt: KeyboardEvent) => {
-            if (evt.key === 'Enter') addTodo()
+            if (evt.key === 'Enter') {
+                addTodo()
+            }
         }
     })
 
@@ -28,6 +31,10 @@ export const todoInput = (todoService: TodoService) => (args: TodoInputI): TodoI
     ])
 
     function addTodo() {
+        if ($input.value.length === 0) {
+            return
+        }
+
         todoService.createTodo($input.value).then(todo => {
             todoAdded(todo)
 

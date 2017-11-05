@@ -1,7 +1,8 @@
 {
     "extends": "../../tsconfig",
     "compilerOptions": {
-        "outFile": "build/todo-app.js",
+        "module": "amd",
+        "outFile": "build/app.js",
         "declaration": false,
         "baseUrl": ".",
         "paths": {
