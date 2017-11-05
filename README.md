@@ -55,7 +55,7 @@ testability and often leads to better designs.
 import {h} from 'soil-web'
 
 type CounterI = {
-    initialValue: number
+    initialValue?: number
 }
 
 type CounterO = {

@@ -1,0 +1,16 @@
+{
+    "dependencies": {
+        "soil-web": "0.0.3"
+    },
+    "devDependencies": {
+        "http-server": "0.10.0",
+        "systemjs": "0.20.19",
+        "typescript": "2.5.3"
+    },
+    "scripts": {
+        "precompile": "rm -rf build",
+        "compile": "tsc",
+        "prestart": "npm run compile",
+        "start": "http-server"
+    }
+}

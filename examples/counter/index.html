@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Counter 🡅</title>
+    <style>
+        span { margin: 0 5px }
+    </style>
+</head>
+<body>
+    <script src="node_modules/systemjs/dist/system.js"></script>
+    <script>
+        SystemJS.config({
+            packages: {
+                'soil-web': {main: 'index.js'}
+            },
+            map: {'soil-web': 'build/node_modules/soil-web/src'}
+        })
+
+        SystemJS.import('/build/main.js')
+    </script>
+</body>
+</html>
