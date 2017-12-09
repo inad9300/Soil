@@ -30,7 +30,7 @@
         "pretest": "npm run compile -- --p tsconfig.test.json",
         "test": "intern",
         "posttest": "codecov",
-        "prepare": "npm run compile -- --sourceMap false"
+        "prepublish": "npm run compile -- --sourceMap false"
     },
     "devDependencies": {
         "@dojo/loader": "0.1.1",
