@@ -1,9 +1,9 @@
 {
     "name": "soil-web",
-    "version": "0.0.3",
+    "version": "0.0.5",
     "description": "A foundational set of ideas to help building enduring web applications.",
-    "types": "build/src/index",
-    "main": "build/src/index.js",
+    "types": "build/index",
+    "main": "build/index.js",
     "keywords": [
         "soil",
         "javascript",
@@ -25,18 +25,18 @@
     },
     "license": "AGPL-3.0",
     "scripts": {
-        "precompile": "rm -rf build/src",
+        "precompile": "rm -rf build",
         "compile": "tsc",
-        "pretest": "npm run compile",
+        "pretest": "npm run compile -- --p tsconfig.test.json",
         "test": "intern",
         "posttest": "codecov",
-        "prepare": "npm run compile"
+        "prepare": "npm run compile -- --sourceMap false"
     },
     "devDependencies": {
-        "@dojo/loader": "0.1.0",
+        "@dojo/loader": "0.1.1",
         "codecov": "3.0.0",
-        "intern": "4.0.2",
-        "typescript": "2.5.3"
+        "intern": "4.1.4",
+        "typescript": "2.6.2"
     },
     "author": {
         "name": "Daniel Martín",
