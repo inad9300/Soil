@@ -1,0 +1,17 @@
+{
+    "dependencies": {
+        "soil-web": "0.0.4"
+    },
+    "devDependencies": {
+        "http-server": "0.10.0",
+        "browserify": "14.5.0",
+        "typescript": "2.6.2"
+    },
+    "scripts": {
+        "precompile": "rm -rf build",
+        "compile": "tsc",
+        "bundle": "browserify -e build/main.js -o build/app.js -d",
+        "prestart": "npm run compile && npm run bundle",
+        "start": "http-server"
+    }
+}

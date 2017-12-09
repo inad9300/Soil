@@ -1,0 +1,26 @@
+body {
+    font-family: sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.clear {
+    clear: both;
+}
+
+.login.modal .body input {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    padding: 3px 5px;
+}
+
+.login.modal .body input:not(:last-child) {
+    margin-bottom: 7px;
+}
