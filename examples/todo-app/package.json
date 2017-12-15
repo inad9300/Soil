@@ -1,11 +1,11 @@
 {
     "dependencies": {
-        "soil-web": "0.0.3"
+        "soil-web": "0.0.7"
     },
     "devDependencies": {
         "http-server": "0.10.0",
         "requirejs": "2.3.5",
-        "typescript": "2.5.3"
+        "typescript": "2.6.2"
     },
     "scripts": {
         "precompile": "rm -rf build",

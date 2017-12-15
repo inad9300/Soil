@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <title>Counter 🡅</title>
     <style>
+        body { font-family: sans-serif }
         span { margin: 0 5px }
+        button { cursor: pointer }
     </style>
 </head>
 <body>
     <script src="node_modules/systemjs/dist/system.js"></script>
     <script>
         SystemJS.config({
-            packages: {
-                'soil-web': {main: 'index.js'}
+            paths: {
+                'soil-web': 'node_modules/soil-web/build/index'
             },
-            map: {'soil-web': 'build/node_modules/soil-web/src'}
+            packages: {
+                '': {defaultExtension: 'js'}
+            }
         })
-
         SystemJS.import('/build/main.js')
     </script>
 </body>

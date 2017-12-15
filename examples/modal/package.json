@@ -1,6 +1,6 @@
 {
     "dependencies": {
-        "soil-web": "0.0.4"
+        "soil-web": "0.0.7"
     },
     "devDependencies": {
         "http-server": "0.10.0",

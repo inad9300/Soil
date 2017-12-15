@@ -3,11 +3,7 @@
     "compilerOptions": {
         "module": "amd",
         "outFile": "build/app.js",
-        "declaration": false,
-        "baseUrl": ".",
-        "paths": {
-            "soil-web": ["node_modules/soil-web/src"]
-        }
+        "declaration": false
     },
     "include": ["."]
 }

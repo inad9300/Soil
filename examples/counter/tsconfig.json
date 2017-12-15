@@ -3,11 +3,7 @@
     "compilerOptions": {
         "module": "system",
         "outDir": "build",
-        "declaration": false,
-        "baseUrl": ".",
-        "paths": {
-            "soil-web": ["node_modules/soil-web/src"]
-        }
+        "declaration": false
     },
     "include": ["."]
 }
