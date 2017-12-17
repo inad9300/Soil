@@ -3,7 +3,7 @@ const {assert} = intern.getPlugin('chai')
 import {createElement} from '../testing/support/createElement'
 import {elementsAreEqual} from '../testing/support/elementsAreEqual'
 
-import {s, SVGElementProperties, SVGTag} from './s'
+import {s, SVGProperties, SVGTag} from './s'
 import {Tspan} from './s'
 import {a, circle, clipPath, componentTransferFunction, defs, desc, ellipse, feBlend, feColorMatrix, feComponentTransfer, feComposite, feConvolveMatrix, feDiffuseLighting, feDisplacementMap, feDistantLight, feFlood, feFuncA, feFuncB, feFuncG, feFuncR, feGaussianBlur, feImage, feMerge, feMergeNode, feMorphology, feOffset, fePointLight, feSpecularLighting, feSpotLight, feTile, feTurbulence, filter, foreignObject, g, gradient, image, line, linearGradient, marker, mask, metadata, path, pattern, polygon, polyline, radialGradient, rect, script, stop, style, svg, switch_, symbol, text, textContent, textPath, textPositioning, title, tspan, use, view} from './s'
 
@@ -14,7 +14,7 @@ const allSvgTags: SVGTag[] = ['a', 'circle', 'clipPath', 'componentTransferFunct
 const tagsExcludedFromCreation = ['componentTransferFunction', 'textContent', 'textPositioning']
 const tagsFailingDeepEquality = ['desc', 'foreignObject', 'title']
 
-const globalAttributesObj: SVGElementProperties = {
+const globalAttributesObj: SVGProperties = {
     id: 'c',
     tabIndex: 2,
     'font-size': '20px',

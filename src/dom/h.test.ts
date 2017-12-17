@@ -3,7 +3,7 @@ const {assert} = intern.getPlugin('chai')
 import {createElement} from '../testing/support/createElement'
 import {elementsAreEqual} from '../testing/support/elementsAreEqual'
 
-import {h, HTMLElementProperties} from './h'
+import {h, HTMLProperties} from './h'
 import {Audio, Button, Details, H1, Iframe, Input, Noscript, Option, Template, Select, Span} from './h'
 import {a, abbr, address, area, article, aside, audio, b, base, bdo, blockquote, body, br, button, canvas, caption, cite, code, col, colgroup, data, datalist, dd, del, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, head, header, hr, html, i, iframe, img, input, ins, kbd, label, legend, li, link, map, mark, menu, meta, meter, nav, nextid, nobr, noscript, object, ol, optgroup, option, output, p, param, picture, pre, progress, q, rt, ruby, s, samp, script, section, select, small, source, span, strong, style, sub, sup, table, tbody, td, template, textarea, tfoot, th, thead, time, title, tr, track, u, ul, var_, video, wbr, bdi, details, dialog, main, menuitem, rp, summary} from './h'
 
@@ -18,7 +18,7 @@ const tagsNotAcceptingChildren = ['area', 'base', 'br', 'col', 'embed', 'hr', 'i
 // elements from HTML strings (which is the case for `<template>`).
 const tagsNotAcceptingEveryChildren = ['iframe', 'noframes', 'noscript', 'script', 'select', 'style', 'table', 'template', 'textarea', 'title']
 
-const globalAttributesObj: HTMLElementProperties = {
+const globalAttributesObj: HTMLProperties = {
     accessKey: 'A',
     className: 'b',
     contentEditable: 'true',

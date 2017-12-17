@@ -143,23 +143,90 @@ export type Use = SVGUseElement
 export type View = SVGViewElement
 
 /**
+ * Map from SVG tag names to their corresponding types.
+ */
+export interface SVGTagMap {
+    a: A
+    circle: Circle
+    clipPath: ClipPath
+    componentTransferFunction: ComponentTransferFunction
+    defs: Defs
+    desc: Desc
+    ellipse: Ellipse
+    feBlend: FeBlend
+    feColorMatrix: FeColorMatrix
+    feComponentTransfer: FeComponentTransfer
+    feComposite: FeComposite
+    feConvolveMatrix: FeConvolveMatrix
+    feDiffuseLighting: FeDiffuseLighting
+    feDisplacementMap: FeDisplacementMap
+    feDistantLight: FeDistantLight
+    feFlood: FeFlood
+    feFuncA: FeFuncA
+    feFuncB: FeFuncB
+    feFuncG: FeFuncG
+    feFuncR: FeFuncR
+    feGaussianBlur: FeGaussianBlur
+    feImage: FeImage
+    feMerge: FeMerge
+    feMergeNode: FeMergeNode
+    feMorphology: FeMorphology
+    feOffset: FeOffset
+    fePointLight: FePointLight
+    feSpecularLighting: FeSpecularLighting
+    feSpotLight: FeSpotLight
+    feTile: FeTile
+    feTurbulence: FeTurbulence
+    filter: Filter
+    foreignObject: ForeignObject
+    g: G
+    gradient: Gradient
+    image: Image
+    line: Line
+    linearGradient: LinearGradient
+    marker: Marker
+    mask: Mask
+    metadata: Metadata
+    path: Path
+    pattern: Pattern
+    polygon: Polygon
+    polyline: Polyline
+    radialGradient: RadialGradient
+    rect: Rect
+    script: Script
+    stop: Stop
+    style: Style
+    svg: Svg
+    switch: Switch
+    symbol: Symbol
+    text: Text
+    textContent: TextContent
+    textPath: TextPath
+    textPositioning: TextPositioning
+    title: Title
+    tspan: Tspan
+    use: Use
+    view: View
+}
+
+/**
  * Allowed types for the children of SVG elements.
  */
-export type SVGElementChildren = SVGElement[] | string
+export type SVGChildren = SVGElement[] | string
 
 /**
  * Allowed types for the properties of SVG elements.
  */
-export type SVGElementProperties = DeepPartial<SVGElement> & {[prop: string]: any}
+export type SVGProperties<E extends SVGElement = SVGElement> = DeepPartial<E> & {[prop: string]: any}
 
 /**
  * Helper function to concisely create instances of any SVG element.
  */
-export function s(name: SVGTag, props?: SVGElementProperties, children?: SVGElementChildren): SVGElement {
-    const elem = document.createElementNS('http://www.w3.org/2000/svg', name)
+export function s<K extends keyof SVGTagMap>(name: K, props?: SVGProperties<SVGTagMap[K]>, children?: SVGChildren): SVGTagMap[K] {
+    const elem: SVGTagMap[K] = document.createElementNS('http://www.w3.org/2000/svg', name)
 
     if (props !== undefined) {
-        assignProperties<SVGElement, SVGElementProperties>(elem, props)
+        assignProperties<SVGTagMap[K], SVGProperties<SVGTagMap[K]>>(elem, props)
     }
 
     if (children !== undefined) {
@@ -174,68 +241,67 @@ export function s(name: SVGTag, props?: SVGElementProperties, children?: SVGElem
 }
 
 /**
- * Helpers to allow creating any concrete SVG element. Prefer over the generic `s()` function, as the types of these
- * are stricter, e.g. they return a type more specialized than `SVGElement`.
+ * Helpers to allow creating any concrete SVG element in a more concise manner.
  */
-export const a = (props?: DeepPartial<A>, children?: SVGElementChildren): A => s('a', props, children) as A
-export const circle = (props?: DeepPartial<Circle>, children?: SVGElementChildren): Circle => s('circle', props, children) as Circle
-export const clipPath = (props?: DeepPartial<ClipPath>, children?: SVGElementChildren): ClipPath => s('clipPath', props, children) as ClipPath
-export const componentTransferFunction = (props?: DeepPartial<ComponentTransferFunction>, children?: SVGElementChildren): ComponentTransferFunction => s('componentTransferFunction', props, children) as ComponentTransferFunction
-export const defs = (props?: DeepPartial<Defs>, children?: SVGElementChildren): Defs => s('defs', props, children) as Defs
-export const desc = (props?: DeepPartial<Desc>, children?: SVGElementChildren): Desc => s('desc', props, children) as Desc
-export const ellipse = (props?: DeepPartial<Ellipse>, children?: SVGElementChildren): Ellipse => s('ellipse', props, children) as Ellipse
-export const feBlend = (props?: DeepPartial<FeBlend>, children?: SVGElementChildren): FeBlend => s('feBlend', props, children) as FeBlend
-export const feColorMatrix = (props?: DeepPartial<FeColorMatrix>, children?: SVGElementChildren): FeColorMatrix => s('feColorMatrix', props, children) as FeColorMatrix
-export const feComponentTransfer = (props?: DeepPartial<FeComponentTransfer>, children?: SVGElementChildren): FeComponentTransfer => s('feComponentTransfer', props, children) as FeComponentTransfer
-export const feComposite = (props?: DeepPartial<FeComposite>, children?: SVGElementChildren): FeComposite => s('feComposite', props, children) as FeComposite
-export const feConvolveMatrix = (props?: DeepPartial<FeConvolveMatrix>, children?: SVGElementChildren): FeConvolveMatrix => s('feConvolveMatrix', props, children) as FeConvolveMatrix
-export const feDiffuseLighting = (props?: DeepPartial<FeDiffuseLighting>, children?: SVGElementChildren): FeDiffuseLighting => s('feDiffuseLighting', props, children) as FeDiffuseLighting
-export const feDisplacementMap = (props?: DeepPartial<FeDisplacementMap>, children?: SVGElementChildren): FeDisplacementMap => s('feDisplacementMap', props, children) as FeDisplacementMap
-export const feDistantLight = (props?: DeepPartial<FeDistantLight>, children?: SVGElementChildren): FeDistantLight => s('feDistantLight', props, children) as FeDistantLight
-export const feFlood = (props?: DeepPartial<FeFlood>, children?: SVGElementChildren): FeFlood => s('feFlood', props, children) as FeFlood
-export const feFuncA = (props?: DeepPartial<FeFuncA>, children?: SVGElementChildren): FeFuncA => s('feFuncA', props, children) as FeFuncA
-export const feFuncB = (props?: DeepPartial<FeFuncB>, children?: SVGElementChildren): FeFuncB => s('feFuncB', props, children) as FeFuncB
-export const feFuncG = (props?: DeepPartial<FeFuncG>, children?: SVGElementChildren): FeFuncG => s('feFuncG', props, children) as FeFuncG
-export const feFuncR = (props?: DeepPartial<FeFuncR>, children?: SVGElementChildren): FeFuncR => s('feFuncR', props, children) as FeFuncR
-export const feGaussianBlur = (props?: DeepPartial<FeGaussianBlur>, children?: SVGElementChildren): FeGaussianBlur => s('feGaussianBlur', props, children) as FeGaussianBlur
-export const feImage = (props?: DeepPartial<FeImage>, children?: SVGElementChildren): FeImage => s('feImage', props, children) as FeImage
-export const feMerge = (props?: DeepPartial<FeMerge>, children?: SVGElementChildren): FeMerge => s('feMerge', props, children) as FeMerge
-export const feMergeNode = (props?: DeepPartial<FeMergeNode>, children?: SVGElementChildren): FeMergeNode => s('feMergeNode', props, children) as FeMergeNode
-export const feMorphology = (props?: DeepPartial<FeMorphology>, children?: SVGElementChildren): FeMorphology => s('feMorphology', props, children) as FeMorphology
-export const feOffset = (props?: DeepPartial<FeOffset>, children?: SVGElementChildren): FeOffset => s('feOffset', props, children) as FeOffset
-export const fePointLight = (props?: DeepPartial<FePointLight>, children?: SVGElementChildren): FePointLight => s('fePointLight', props, children) as FePointLight
-export const feSpecularLighting = (props?: DeepPartial<FeSpecularLighting>, children?: SVGElementChildren): FeSpecularLighting => s('feSpecularLighting', props, children) as FeSpecularLighting
-export const feSpotLight = (props?: DeepPartial<FeSpotLight>, children?: SVGElementChildren): FeSpotLight => s('feSpotLight', props, children) as FeSpotLight
-export const feTile = (props?: DeepPartial<FeTile>, children?: SVGElementChildren): FeTile => s('feTile', props, children) as FeTile
-export const feTurbulence = (props?: DeepPartial<FeTurbulence>, children?: SVGElementChildren): FeTurbulence => s('feTurbulence', props, children) as FeTurbulence
-export const filter = (props?: DeepPartial<Filter>, children?: SVGElementChildren): Filter => s('filter', props, children) as Filter
-export const foreignObject = (props?: DeepPartial<ForeignObject>, children?: SVGElementChildren): ForeignObject => s('foreignObject', props, children) as ForeignObject
-export const g = (props?: DeepPartial<G>, children?: SVGElementChildren): G => s('g', props, children) as G
-export const gradient = (props?: DeepPartial<Gradient>, children?: SVGElementChildren): Gradient => s('gradient', props, children) as Gradient
-export const image = (props?: DeepPartial<Image>, children?: SVGElementChildren): Image => s('image', props, children) as Image
-export const line = (props?: DeepPartial<Line>, children?: SVGElementChildren): Line => s('line', props, children) as Line
-export const linearGradient = (props?: DeepPartial<LinearGradient>, children?: SVGElementChildren): LinearGradient => s('linearGradient', props, children) as LinearGradient
-export const marker = (props?: DeepPartial<Marker>, children?: SVGElementChildren): Marker => s('marker', props, children) as Marker
-export const mask = (props?: DeepPartial<Mask>, children?: SVGElementChildren): Mask => s('mask', props, children) as Mask
-export const metadata = (props?: DeepPartial<Metadata>, children?: SVGElementChildren): Metadata => s('metadata', props, children) as Metadata
-export const path = (props?: DeepPartial<Path>, children?: SVGElementChildren): Path => s('path', props, children) as Path
-export const pattern = (props?: DeepPartial<Pattern>, children?: SVGElementChildren): Pattern => s('pattern', props, children) as Pattern
-export const polygon = (props?: DeepPartial<Polygon>, children?: SVGElementChildren): Polygon => s('polygon', props, children) as Polygon
-export const polyline = (props?: DeepPartial<Polyline>, children?: SVGElementChildren): Polyline => s('polyline', props, children) as Polyline
-export const radialGradient = (props?: DeepPartial<RadialGradient>, children?: SVGElementChildren): RadialGradient => s('radialGradient', props, children) as RadialGradient
-export const rect = (props?: DeepPartial<Rect>, children?: SVGElementChildren): Rect => s('rect', props, children) as Rect
-export const script = (props?: DeepPartial<Script>, child?: string): Script => s('script', props, child) as Script
-export const stop = (props?: DeepPartial<Stop>, children?: SVGElementChildren): Stop => s('stop', props, children) as Stop
-export const style = (props?: DeepPartial<Style>, child?: string): Style => s('style', props, child) as Style
-export const svg = (props?: DeepPartial<Svg>, children?: SVGElementChildren): Svg => s('svg', props, children) as Svg
+export const a = (props?: DeepPartial<A>, children?: SVGChildren): A => s('a', props, children)
+export const circle = (props?: DeepPartial<Circle>, children?: SVGChildren): Circle => s('circle', props, children)
+export const clipPath = (props?: DeepPartial<ClipPath>, children?: SVGChildren): ClipPath => s('clipPath', props, children)
+export const componentTransferFunction = (props?: DeepPartial<ComponentTransferFunction>, children?: SVGChildren): ComponentTransferFunction => s('componentTransferFunction', props, children)
+export const defs = (props?: DeepPartial<Defs>, children?: SVGChildren): Defs => s('defs', props, children)
+export const desc = (props?: DeepPartial<Desc>, children?: SVGChildren): Desc => s('desc', props, children)
+export const ellipse = (props?: DeepPartial<Ellipse>, children?: SVGChildren): Ellipse => s('ellipse', props, children)
+export const feBlend = (props?: DeepPartial<FeBlend>, children?: SVGChildren): FeBlend => s('feBlend', props, children)
+export const feColorMatrix = (props?: DeepPartial<FeColorMatrix>, children?: SVGChildren): FeColorMatrix => s('feColorMatrix', props, children)
+export const feComponentTransfer = (props?: DeepPartial<FeComponentTransfer>, children?: SVGChildren): FeComponentTransfer => s('feComponentTransfer', props, children)
+export const feComposite = (props?: DeepPartial<FeComposite>, children?: SVGChildren): FeComposite => s('feComposite', props, children)
+export const feConvolveMatrix = (props?: DeepPartial<FeConvolveMatrix>, children?: SVGChildren): FeConvolveMatrix => s('feConvolveMatrix', props, children)
+export const feDiffuseLighting = (props?: DeepPartial<FeDiffuseLighting>, children?: SVGChildren): FeDiffuseLighting => s('feDiffuseLighting', props, children)
+export const feDisplacementMap = (props?: DeepPartial<FeDisplacementMap>, children?: SVGChildren): FeDisplacementMap => s('feDisplacementMap', props, children)
+export const feDistantLight = (props?: DeepPartial<FeDistantLight>, children?: SVGChildren): FeDistantLight => s('feDistantLight', props, children)
+export const feFlood = (props?: DeepPartial<FeFlood>, children?: SVGChildren): FeFlood => s('feFlood', props, children)
+export const feFuncA = (props?: DeepPartial<FeFuncA>, children?: SVGChildren): FeFuncA => s('feFuncA', props, children)
+export const feFuncB = (props?: DeepPartial<FeFuncB>, children?: SVGChildren): FeFuncB => s('feFuncB', props, children)
+export const feFuncG = (props?: DeepPartial<FeFuncG>, children?: SVGChildren): FeFuncG => s('feFuncG', props, children)
+export const feFuncR = (props?: DeepPartial<FeFuncR>, children?: SVGChildren): FeFuncR => s('feFuncR', props, children)
+export const feGaussianBlur = (props?: DeepPartial<FeGaussianBlur>, children?: SVGChildren): FeGaussianBlur => s('feGaussianBlur', props, children)
+export const feImage = (props?: DeepPartial<FeImage>, children?: SVGChildren): FeImage => s('feImage', props, children)
+export const feMerge = (props?: DeepPartial<FeMerge>, children?: SVGChildren): FeMerge => s('feMerge', props, children)
+export const feMergeNode = (props?: DeepPartial<FeMergeNode>, children?: SVGChildren): FeMergeNode => s('feMergeNode', props, children)
+export const feMorphology = (props?: DeepPartial<FeMorphology>, children?: SVGChildren): FeMorphology => s('feMorphology', props, children)
+export const feOffset = (props?: DeepPartial<FeOffset>, children?: SVGChildren): FeOffset => s('feOffset', props, children)
+export const fePointLight = (props?: DeepPartial<FePointLight>, children?: SVGChildren): FePointLight => s('fePointLight', props, children)
+export const feSpecularLighting = (props?: DeepPartial<FeSpecularLighting>, children?: SVGChildren): FeSpecularLighting => s('feSpecularLighting', props, children)
+export const feSpotLight = (props?: DeepPartial<FeSpotLight>, children?: SVGChildren): FeSpotLight => s('feSpotLight', props, children)
+export const feTile = (props?: DeepPartial<FeTile>, children?: SVGChildren): FeTile => s('feTile', props, children)
+export const feTurbulence = (props?: DeepPartial<FeTurbulence>, children?: SVGChildren): FeTurbulence => s('feTurbulence', props, children)
+export const filter = (props?: DeepPartial<Filter>, children?: SVGChildren): Filter => s('filter', props, children)
+export const foreignObject = (props?: DeepPartial<ForeignObject>, children?: SVGChildren): ForeignObject => s('foreignObject', props, children)
+export const g = (props?: DeepPartial<G>, children?: SVGChildren): G => s('g', props, children)
+export const gradient = (props?: DeepPartial<Gradient>, children?: SVGChildren): Gradient => s('gradient', props, children)
+export const image = (props?: DeepPartial<Image>, children?: SVGChildren): Image => s('image', props, children)
+export const line = (props?: DeepPartial<Line>, children?: SVGChildren): Line => s('line', props, children)
+export const linearGradient = (props?: DeepPartial<LinearGradient>, children?: SVGChildren): LinearGradient => s('linearGradient', props, children)
+export const marker = (props?: DeepPartial<Marker>, children?: SVGChildren): Marker => s('marker', props, children)
+export const mask = (props?: DeepPartial<Mask>, children?: SVGChildren): Mask => s('mask', props, children)
+export const metadata = (props?: DeepPartial<Metadata>, children?: SVGChildren): Metadata => s('metadata', props, children)
+export const path = (props?: DeepPartial<Path>, children?: SVGChildren): Path => s('path', props, children)
+export const pattern = (props?: DeepPartial<Pattern>, children?: SVGChildren): Pattern => s('pattern', props, children)
+export const polygon = (props?: DeepPartial<Polygon>, children?: SVGChildren): Polygon => s('polygon', props, children)
+export const polyline = (props?: DeepPartial<Polyline>, children?: SVGChildren): Polyline => s('polyline', props, children)
+export const radialGradient = (props?: DeepPartial<RadialGradient>, children?: SVGChildren): RadialGradient => s('radialGradient', props, children)
+export const rect = (props?: DeepPartial<Rect>, children?: SVGChildren): Rect => s('rect', props, children)
+export const script = (props?: DeepPartial<Script>, child?: string): Script => s('script', props, child)
+export const stop = (props?: DeepPartial<Stop>, children?: SVGChildren): Stop => s('stop', props, children)
+export const style = (props?: DeepPartial<Style>, child?: string): Style => s('style', props, child)
+export const svg = (props?: DeepPartial<Svg>, children?: SVGChildren): Svg => s('svg', props, children)
 // Reserved word suffixed with "_".
-export const switch_ = (props?: DeepPartial<Switch>, children?: SVGElementChildren): Switch => s('switch', props, children) as Switch
-export const symbol = (props?: DeepPartial<Symbol>, children?: SVGElementChildren): Symbol => s('symbol', props, children) as Symbol
-export const text = (props?: DeepPartial<Text>, children?: SVGElementChildren): Text => s('text', props, children) as Text
-export const textContent = (props?: DeepPartial<TextContent>, children?: SVGElementChildren): TextContent => s('textContent', props, children) as TextContent
-export const textPath = (props?: DeepPartial<TextPath>, children?: SVGElementChildren): TextPath => s('textPath', props, children) as TextPath
-export const textPositioning = (props?: DeepPartial<TextPositioning>, children?: SVGElementChildren): TextPositioning => s('textPositioning', props, children) as TextPositioning
-export const title = (props?: DeepPartial<Title>, children?: SVGElementChildren): Title => s('title', props, children) as Title
-export const tspan = (props?: DeepPartial<Tspan>, children?: SVGElementChildren): Tspan => s('tspan', props, children) as Tspan
-export const use = (props?: DeepPartial<Use>, children?: SVGElementChildren): Use => s('use', props, children) as Use
-export const view = (props?: DeepPartial<View>, children?: SVGElementChildren): View => s('view', props, children) as View
+export const switch_ = (props?: DeepPartial<Switch>, children?: SVGChildren): Switch => s('switch', props, children)
+export const symbol = (props?: DeepPartial<Symbol>, children?: SVGChildren): Symbol => s('symbol', props, children)
+export const text = (props?: DeepPartial<Text>, children?: SVGChildren): Text => s('text', props, children)
+export const textContent = (props?: DeepPartial<TextContent>, children?: SVGChildren): TextContent => s('textContent', props, children)
+export const textPath = (props?: DeepPartial<TextPath>, children?: SVGChildren): TextPath => s('textPath', props, children)
+export const textPositioning = (props?: DeepPartial<TextPositioning>, children?: SVGChildren): TextPositioning => s('textPositioning', props, children)
+export const title = (props?: DeepPartial<Title>, children?: SVGChildren): Title => s('title', props, children)
+export const tspan = (props?: DeepPartial<Tspan>, children?: SVGChildren): Tspan => s('tspan', props, children)
+export const use = (props?: DeepPartial<Use>, children?: SVGChildren): Use => s('use', props, children)
+export const view = (props?: DeepPartial<View>, children?: SVGChildren): View => s('view', props, children)
