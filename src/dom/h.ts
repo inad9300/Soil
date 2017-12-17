@@ -12,10 +12,13 @@
 
 import {assignProperties} from './assignProperties'
 import {DeepPartial} from '../extra/DeepPartial'
+import {Svg} from './s'
 
-// Types added manually as they are not present in TypeScript 2.6.2 but listed in W3Schools. See
-// https://github.com/Microsoft/TypeScript/issues/17828 and https://www.w3schools.com/html/html5_new_elements.asp.
-// TODO Re-evaluate and rearrange when available in TypeScript.
+/**
+ * Types added manually as they are not present in TypeScript 2.6.2 but listed in W3Schools. See
+ * https://github.com/Microsoft/TypeScript/issues/17828 and https://www.w3schools.com/html/html5_new_elements.asp.
+ * TODO Re-evaluate and rearrange when available in TypeScript.
+ */
 export type HTMLDetailsElement = HTMLElement & {open: boolean}
 export type HTMLDialogElement = HTMLElement & {open: boolean}
 export type HTMLMenuItemElement = HTMLElement & {
@@ -393,7 +396,7 @@ export interface HTMLTagMap {
 /**
  * Allowed types for the children of those HTML elements accepting them and without special constraints.
  */
-export type HTMLChildren = Element[] | string
+export type HTMLChildren = (HTMLElement | Svg)[] | string
 
 /**
  * Allowed types for the properties of HTML elements.
