@@ -1,35 +1,33 @@
-import {h} from 'soil-web'
+import {h, extend} from 'soil-web'
 
-type CounterI = {
-    initialValue?: number
-}
+export const counter = (options: {value?: number} = {}) => {
 
-type CounterO = {
-    readonly $el: h.Div
-    decrement: () => void
-    increment: () => void
-}
+    // Template.
 
-export const counter = (args: CounterI = {}): CounterO => {
-    let count = args.initialValue || 0
+    const $count = h.span({})
 
-    const $count = h.span({}, `${count}`)
-
-    const $el = h.div({}, [
-        h.button({onclick: decrement}, '-'),
+    const $counter = h.div({}, [
+        h.button({onclick: () => setValue(value - 1)}, '-'),
         $count,
-        h.button({onclick: increment}, '+')
+        h.button({onclick: () => setValue(value + 1)}, '+')
     ])
 
-    function decrement() {
-        count--
-        $count.textContent = `${count}`
+    // Initialization.
+
+    let value: number
+    setValue(options.value || 0)
+
+    // Internal methods.
+
+    function setValue(v: number) {
+        value = v
+        $count.textContent = '' + v
     }
 
-    function increment() {
-        count++
-        $count.textContent = `${count}`
-    }
+    // External API.
 
-    return {$el, decrement, increment}
+    return extend($counter, {
+        get value() { return value },
+        set value(v: number) { setValue(v) }
+    })
 }

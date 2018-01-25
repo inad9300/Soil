@@ -1,27 +1,47 @@
-import {h} from 'soil-web'
+import {h, extend} from 'soil-web'
 import {noop} from './noop'
 import {Todo} from './Todo'
 import {show, hide} from './dom'
 import {TodoService} from './TodoService'
+import {TodosFilterFn} from './TodosFilterFn'
 
-export type TodoListI = {
-    onSizeChange: (newSize: number) => void
+type OnSizeChangeFn = (newSize: number) => void
+
+interface Options {
+    filter?: TodosFilterFn
+    onSizeChange?: OnSizeChangeFn
 }
 
-export type TodoListO = {
-    readonly $el: h.Ul
-    addTodo: (todo: Todo) => void
-    filterTodos: (filter: TodoFilterFn) => void
-}
+export const TodoList = ({todoService = TodoService()} = {}) => (options: Options = {}) => {
 
-export type TodoFilterFn = ($todos: h.Li[]) => boolean[]
+    // Template.
 
-export const todoList = (todoService: TodoService) => (args: TodoListI): TodoListO => {
-    const sizeChanged = args.onSizeChange || noop
+    const $todoList = h.ul()
+
+    // Initialization.
+
+    let activeFilter: TodosFilterFn
+    let onSizeChange: OnSizeChangeFn
+
+    setFilter(options.filter || showAllFilter)
+    setOnSizeChange(options.onSizeChange || noop)
 
     todoService.findTodos().then(todos => todos.forEach(addTodo))
 
-    const $el = h.ul()
+    // Internal methods.
+
+    function setFilter(f: TodosFilterFn) {
+        activeFilter = f
+        applyActiveFilter()
+    }
+
+    function setOnSizeChange(f: OnSizeChangeFn) {
+        onSizeChange = f
+    }
+
+    function showAllFilter(items: h.Input[]) {
+        return items.map(() => true)
+    }
 
     function addTodo(todo: Todo) {
         const $todo = h.li({}, [
@@ -34,23 +54,9 @@ export const todoList = (todoService: TodoService) => (args: TodoListI): TodoLis
             h.button({onclick: () => deleteTodo($todo, todo)}, '⨉')
         ])
 
-        $el.appendChild($todo)
+        $todoList.appendChild($todo)
         applyActiveFilter()
-        sizeChanged($el.children.length)
-    }
-
-    let activeFilter: TodoFilterFn
-
-    function filterTodos(filter: TodoFilterFn) {
-        activeFilter = filter
-        applyActiveFilter()
-    }
-
-    function deleteTodo($todo: h.Li, todo: Todo) {
-        todoService.deleteTodo(todo).then(() => {
-            $el.removeChild($todo)
-            sizeChanged($el.children.length)
-        })
+        onSizeChange($todoList.children.length)
     }
 
     function updateTodoStatus($todo: h.Li, todo: Todo, completed: boolean) {
@@ -64,16 +70,31 @@ export const todoList = (todoService: TodoService) => (args: TodoListI): TodoLis
         })
     }
 
+    function deleteTodo($todo: h.Li, todo: Todo) {
+        todoService.deleteTodo(todo).then(() => {
+            $todoList.removeChild($todo)
+            onSizeChange($todoList.children.length)
+        })
+    }
+
     function applyActiveFilter() {
-        if (!activeFilter) {
-            return
-        }
-        activeFilter(Array.from($el.children) as h.Li[])
+        const checkboxes = (Array.from($todoList.children) as h.Li[])
+            .map(li => li.querySelector('input[type=checkbox]') as h.Input)
+
+        activeFilter(checkboxes)
             .forEach((shouldShow, idx) => {
-                const $todo = $el.children[idx] as h.Li
+                const $todo = $todoList.children[idx] as h.Li
                 shouldShow ? show($todo) : hide($todo)
             })
     }
 
-    return {$el, addTodo, filterTodos}
+    // External API.
+
+    return extend($todoList, {
+        get filter() { return activeFilter },
+        set filter(f: TodosFilterFn) { setFilter(f) },
+        get onSizeChange() { return onSizeChange },
+        set onSizeChange(f: OnSizeChangeFn) { setOnSizeChange(f) },
+        addTodo
+    })
 }

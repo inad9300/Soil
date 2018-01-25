@@ -1,3 +1,6 @@
-import {counter} from './counter.js'
+import {counter} from './counter'
 
-document.body.appendChild(counter().$el)
+const $counter = counter({value: 0})
+$counter.value++
+
+document.body.appendChild($counter)

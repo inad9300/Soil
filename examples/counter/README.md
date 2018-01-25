@@ -1,4 +1,4 @@
-Very simple counter "application", useful for warming up with the coding style favoured by Soil.
+Very simple counter application, useful for warming up with the coding style favoured by Soil.
 
 SystemJS is used as module loader.
 

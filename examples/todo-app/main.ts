@@ -1,18 +1,8 @@
-import {todoApp} from './TodoApp'
-import {todoInput} from './TodoInput'
-import {todoList} from './TodoList'
-import {todoFilters} from './TodoFilters'
-import {TodoService} from './TodoService'
+import {TodoApp} from './TodoApp'
 import {autofocus} from 'soil-web'
 
-// Composition root of the application.
+const todoApp = TodoApp()
+const $todoApp = todoApp()
 
-const todoService = new TodoService
-const $todoApp = todoApp(
-    todoInput(todoService),
-    todoList(todoService),
-    todoFilters()
-)
-
-document.body.appendChild($todoApp().$el)
+document.body.appendChild($todoApp)
 autofocus()

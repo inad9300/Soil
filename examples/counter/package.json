@@ -1,9 +1,9 @@
 {
     "dependencies": {
-        "soil-web": "0.0.7"
+        "soil-web": "0.0.9"
     },
     "devDependencies": {
-        "http-server": "0.10.0",
+        "http-server": "0.11.1",
         "systemjs": "0.20.19",
         "typescript": "2.6.2"
     },

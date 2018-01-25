@@ -1,40 +1,36 @@
-import {h} from 'soil-web'
+import {h, extend} from 'soil-web'
 import {modal} from './modal'
 
-type LoginModalI = {}
+export const loginModal = () => {
 
-type LoginModalO = {
-    readonly $el: h.Div
-    open: () => void
-    close: () => void
-}
-
-export const loginModal = (args?: LoginModalI): LoginModalO => {
+    // Template.
 
     const $username = h.input({placeholder: 'Username'})
     const $password = h.input({placeholder: 'Password', type: 'password'})
 
-    const $modalBody = h.form({}, [
+    const $body = h.form({}, [
         $username,
         $password
     ])
 
-    const $modal = modal({title: 'Log in', body: $modalBody, onSubmit})
-    $modal.$el.classList.add('login')
+    const $modal = modal({title: 'Log in', body: $body, onSubmit})
+    $modal.classList.add('login')
+
+    // Internal methods.
 
     function onSubmit() {
         alert(`Welcome back, ${$username.value}`)
-        close()
-    }
-
-    function open() {
-        $modal.open()
-        $username.focus()
-    }
-
-    function close() {
         $modal.close()
     }
 
-    return {$el: $modal.$el, open, close}
+    const openModal = $modal.open
+
+    function open() {
+        openModal()
+        $username.focus()
+    }
+
+    // External API.
+
+    return extend($modal, {open})
 }

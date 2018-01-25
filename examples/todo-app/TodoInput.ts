@@ -1,18 +1,14 @@
-import {h} from 'soil-web'
-import {noop} from './noop'
+import {h, extend} from 'soil-web'
 import {Todo} from './Todo'
 import {TodoService} from './TodoService'
 
-export type TodoInputI = {
-    onAddTodo: (todo: Todo) => void
+interface Options {
+    onAddTodo(todo: Todo): void
 }
 
-export type TodoInputO = {
-    readonly $el: h.Div
-}
+export const TodoInput = ({todoService = TodoService()} = {}) => (options: Options) => {
 
-export const todoInput = (todoService: TodoService) => (args: TodoInputI): TodoInputO => {
-    const todoAdded = args.onAddTodo || noop
+    // Template.
 
     const $input = h.input({
         type: 'text',
@@ -25,10 +21,21 @@ export const todoInput = (todoService: TodoService) => (args: TodoInputI): TodoI
         }
     })
 
-    const $el = h.div({}, [
+    const $todoInput = h.div({}, [
         $input,
         h.button({onclick: addTodo}, 'Add')
     ])
+
+    // Initialization.
+
+    let onAddTodo: Options['onAddTodo']
+    setOnAddTodo(options.onAddTodo)
+
+    // Internal methods.
+
+    function setOnAddTodo(f: Options['onAddTodo']) {
+        onAddTodo = f
+    }
 
     function addTodo() {
         if ($input.value.length === 0) {
@@ -36,12 +43,17 @@ export const todoInput = (todoService: TodoService) => (args: TodoInputI): TodoI
         }
 
         todoService.createTodo($input.value).then(todo => {
-            todoAdded(todo)
+            onAddTodo(todo)
 
             $input.value = ''
             $input.focus()
         })
     }
 
-    return {$el}
+    // External API.
+
+    return extend($todoInput, {
+        get onAddTodo() { return onAddTodo },
+        set onAddTodo(f: Options['onAddTodo']) { setOnAddTodo(f) }
+    })
 }

@@ -1,43 +1,38 @@
 import {h, Component} from 'soil-web'
-import {TodoListI, TodoListO} from './TodoList'
-import {TodoInputI, TodoInputO} from './TodoInput'
-import {TodoFiltersI, TodoFiltersO} from './TodoFilters'
+import {TodoList} from './TodoList'
+import {TodoInput} from './TodoInput'
+import {todoFilters} from './todoFilters'
 
-export type TodoAppI = {}
+export const TodoApp = ({todoInput = TodoInput(), todoList = TodoList()} = {}) => () => {
 
-export type TodoAppO = {
-    readonly $el: h.Div
-}
-
-export const todoApp = (todoInput: Component<TodoInputI, TodoInputO>,
-    todoList: Component<TodoListI, TodoListO>,
-    todoFilters: Component<TodoFiltersI, TodoFiltersO>) => (args?: TodoAppI): TodoAppO => {
-
-    const $todoList = todoList({
-        onSizeChange: todoSize => toggleFilters(todoSize)
-    })
-
-    const $todoFilters = todoFilters({
-        onFilterChange: filter => $todoList.filterTodos(filter)
-    })
+    // Template.
 
     const $todoInput = todoInput({
         onAddTodo: todo => $todoList.addTodo(todo)
     })
 
-    const $el = h.div({}, [
+    const $todoList = todoList({onSizeChange: toggleFilters})
+
+    const $todoFilters = todoFilters({
+        onFilterChange: filter => $todoList.filter = filter
+    })
+
+    const $todoApp = h.div({}, [
         h.h1({}, 'Todo'),
-        $todoInput.$el,
-        $todoList.$el,
-        $todoFilters.$el
+        $todoInput,
+        $todoList,
+        $todoFilters
     ])
 
+    // Internal methods.
+
     function toggleFilters(todoSize: number) {
-        if (todoSize === 0)
+        if (todoSize === 0) {
             $todoFilters.disable()
-        else if (todoSize === 1)
+        } else if (todoSize === 1) {
             $todoFilters.enable()
+        }
     }
 
-    return {$el}
+    return $todoApp
 }
