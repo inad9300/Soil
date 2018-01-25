@@ -6,9 +6,7 @@ import {extend} from './extend'
 suite('extend()', () => {
 
     test('includes own enumerable properties', () => {
-        const target = {
-            n: 111
-        }
+        const target = {n: 111}
 
         const o = {p: 555}
 
@@ -23,7 +21,8 @@ suite('extend()', () => {
 
         const result = extend(target, source)
 
-        assert.strictEqual(result, target)
+        assert.strictEqual(target, result)
+        assert.notStrictEqual(target, source)
         assert.strictEqual(Object.keys(result).length, 6)
 
         assert.strictEqual(result.n, 222)
@@ -63,16 +62,18 @@ suite('extend()', () => {
     test('ignores inherited properties', () => {
         const target = {}
 
-        const source = {
-            a: 111
-        }
+        class Source {a = 111}
+        ;(Source.prototype as any).b = 222
 
-        ;(source as any).prototype.b = 222
+        const source = new Source
+
+        assert.strictEqual(source.a, 111)
         assert.strictEqual((source as any).b, 222)
 
         const result = extend(target, source)
 
         assert.strictEqual(result.a, 111)
+        assert.strictEqual((result as any).b, undefined)
         assert.notProperty(result, 'b')
     })
 })
