@@ -8,7 +8,7 @@
     "suites": ["build/**/*.test.js"],
     "coverage": ["build/!(testing)/**/!(*.test).js"],
     "reporters": [{
-        "name": "pretty"
+        "name": "simple"
     }, {
         "name": "jsoncoverage",
         "options": {"filename": "coverage.json"}
