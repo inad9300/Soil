@@ -1,8 +1,9 @@
-import {Component, BaseInput, BaseOutput} from './Component'
+import {Component} from './Component'
 
 /**
- * Function returning a Component with the dependencies it demands injected. In most situations, it is better let
- * TypeScript figure out the type than explicitely specifying it.
+ * Function returning a `Component` with the dependencies it demands injected.
+ *
+ * This interface serves as help for humans more than for the compiler. In most situations, it is better to let
+ * TypeScript infer the type rather than explicitly specifying it.
  */
-export type ComponentFactory<TInput extends BaseInput, TOutput extends BaseOutput>
-    = (...dependencies: Object[]) => Component<TInput, TOutput>
+export type ComponentFactory<TInput = any, TOutput = any> = (...dependencies: any[]) => Component<TInput, TOutput>

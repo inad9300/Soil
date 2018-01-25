@@ -1,25 +1,11 @@
 /**
- * Base shape of the input a component takes. It is defined as a map to resemble the way native HTML elements are
- * created, as components should be considered special cases of those (as in Web Components).
- */
-export type BaseInput = {
-    [argName: string]: any
-}
-
-/**
- * Minimum list of properties a component shall return.
- *
- * Notice that in TypeScript, interfaces inheriting from one with readonly properties are not obliged to defined those
- * properties as readonly. Nevertheless, the `$el` property should ideally be readonly, as it is a resource handled by
- * a component which should not be manipulated by external agents.
- */
-export type BaseOutput = {
-    readonly $el: HTMLElement
-}
-
-/**
  * Interface that objects representing UI components implement. The word "component" in this context refers to pieces
  * of code whose (only) purpose is to render HTML elements on the screen and control the user interaction with these.
+ *
+ * Components should be designed to resemble native HTML elements, as custom components should be considered special
+ * cases of native components (as in Web Components).
+ *
+ * This interface serves as help for humans more than for the compiler. In most situations, it is better to let
+ * TypeScript infer the type rather than explicitly specifying it.
  */
-export type Component<TInput extends BaseInput, TOutput extends BaseOutput>
-    = (args: TInput) => TOutput
+export type Component<TInput = any, TOutput = any> = (input: TInput) => TOutput
