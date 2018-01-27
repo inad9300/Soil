@@ -14,8 +14,8 @@ them are left with the choice of deprecation and long-term unmaintainability, or
 resources to try to keep the community's transformation rate.
 
 Soil aims at putting together a minimal set of basic concepts that embrace today's web standards and thus last longer,
-while being competitive with commonly-used frameworks in areas such as reliability, testability, reusability,
-development experience and performance.
+while being competitive with popular frameworks in areas such as reliability, testability, reusability, development
+experience and performance.
 
 ## Basics
 Soil encourages a structure around *components*, conceptually similar to the [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components)'
