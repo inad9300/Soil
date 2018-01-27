@@ -39,7 +39,7 @@ at the application's [composition root](http://blog.ploeh.dk/2011/07/28/Composit
 need of dependencies will have a *factory* associated with them, through which they will gain access to them. As an
 alternative to the composition root, it is possible to use [default parameters for dependency injection](https://medium.freecodecamp.org/how-to-take-advantage-of-javascripts-default-parameters-for-dependency-injection-98fc423328e1).
 
-```typescript
+```javascript
 import {h, extend} from 'soil-web'
 
 export const counter = (input: {value?: number} = {}) => {
