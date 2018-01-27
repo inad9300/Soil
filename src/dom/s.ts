@@ -212,7 +212,7 @@ export interface SVGTagMap {
 /**
  * Allowed types for the children of SVG elements.
  */
-export type SVGChildren = SVGElement[] | string
+export type SVGChildren = string | (SVGElement | string)[]
 
 /**
  * Allowed types for the properties of SVG elements.
@@ -233,7 +233,11 @@ export function s<K extends keyof SVGTagMap>(name: K, props?: SVGProperties<SVGT
         if (typeof children === 'string') {
             elem.appendChild(document.createTextNode(children))
         } else {
-            children.forEach(child => elem.appendChild(child))
+            children.forEach(child => elem.appendChild(
+                typeof child === 'string'
+                    ? document.createTextNode(child)
+                    : child
+            ))
         }
     }
 

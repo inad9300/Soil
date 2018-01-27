@@ -396,7 +396,7 @@ export interface HTMLTagMap {
 /**
  * Allowed types for the children of those HTML elements accepting them and without special constraints.
  */
-export type HTMLChildren = (HTMLElement | Svg)[] | string
+export type HTMLChildren = string | (HTMLElement | Svg | string)[]
 
 /**
  * Allowed types for the properties of HTML elements.
@@ -417,7 +417,11 @@ export function h<K extends keyof HTMLTagMap>(name: K, props?: HTMLProperties<HT
         if (typeof children === 'string') {
             elem.appendChild(document.createTextNode(children))
         } else {
-            children.forEach(child => elem.appendChild(child))
+            children.forEach(child => elem.appendChild(
+                typeof child === 'string'
+                    ? document.createTextNode(child)
+                    : child
+            ))
         }
     }
 

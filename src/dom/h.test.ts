@@ -83,14 +83,16 @@ suite('h()', () => {
                 const elemFromJs = h(tag, {}, [
                     h('span', {title: 'A'}, 'A'),
                     h('span', {className: 'b'}, 'B'),
-                    h('span', {id: 'c'}, 'C')
+                    h('span', {id: 'c'}, [
+                        '(', h('abbr', {title: '??'}, ['C']), ')'
+                    ])
                 ])
 
                 const elemFromStr = createElement(
                     `<${tag}>` +
                         '<span title="A">A</span>' +
                         '<span class="b">B</span>' +
-                        '<span id="c">C</span>' +
+                        '<span id="c">(<abbr title="??">C</abbr>)</span>' +
                     `</${tag}>`
                 )
 

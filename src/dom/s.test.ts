@@ -65,14 +65,16 @@ suite('s()', () => {
                 const elemFromJs = s(tag, {}, [
                     s('tspan', {id: 'a'}, 'A'),
                     s('tspan', {id: 'b'}, 'B'),
-                    s('tspan', {id: 'c'}, 'C')
+                    s('tspan', {id: 'c'}, [
+                        '(', s('a', {href: {baseVal: 'https://developer.mozilla.org/'}}, ['MDN rocks!']), ')'
+                    ])
                 ])
 
                 const elemFromStr = createElement(
                     `<${tag}>` +
                         '<tspan id="a">A</tspan>' +
                         '<tspan id="b">B</tspan>' +
-                        '<tspan id="c">C</tspan>' +
+                        '<tspan id="c">(<a href="https://developer.mozilla.org/">MDN rocks!</a>)</tspan>' +
                     `</${tag}>`,
                     true
                 )
