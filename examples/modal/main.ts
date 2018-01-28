@@ -1,4 +1,4 @@
-import {h} from 'soil-web'
+import {h} from '@soil/web'
 import {loginModal} from './loginModal'
 
 const $loginModal = loginModal()

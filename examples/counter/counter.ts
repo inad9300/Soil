@@ -1,4 +1,4 @@
-import {h, extend} from 'soil-web'
+import {h, extend} from '@soil/web'
 
 export const counter = (options: {value?: number} = {}) => {
 

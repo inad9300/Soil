@@ -1,4 +1,4 @@
-import {h, Component} from 'soil-web'
+import {h, Component} from '@soil/web'
 import {TodoList} from './TodoList'
 import {TodoInput} from './TodoInput'
 import {todoFilters} from './todoFilters'

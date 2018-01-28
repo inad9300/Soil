@@ -1,4 +1,4 @@
-import {h, extend} from 'soil-web'
+import {h, extend} from '@soil/web'
 
 interface Options {
     title: string

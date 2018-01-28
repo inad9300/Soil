@@ -1,4 +1,4 @@
-import {h, extend} from 'soil-web'
+import {h, extend} from '@soil/web'
 import {TodosFilterFn} from './TodosFilterFn'
 
 type OnFilterChangeFn = (filterFn: TodosFilterFn) => void

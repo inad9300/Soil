@@ -1,4 +1,4 @@
-import {h, extend} from 'soil-web'
+import {h, extend} from '@soil/web'
 import {noop} from './noop'
 import {Todo} from './Todo'
 import {show, hide} from './dom'
