@@ -1,12 +1,13 @@
-// Set of helper functions to facilitate the work with SVG elements, specially their creation.
-
-// NOTE The following functions silently depend on the `document` variable being globally available. Therefore, unit
-// tests of components that use them must be run inside a browser, or must expose `document` globally, e.g. through
-// PhantomJS or jsdom.
-
-// The SVG elements considered below are based on the TypeScript (version 2.5.2) types for the `createElementNS()`
-// function. Some information is completed based on MDN's SVG element reference available at
-// https://developer.mozilla.org/en-US/docs/Web/SVG/Element.
+/**
+ * Set of helper functions to facilitate the work with SVG elements, specially their creation.
+ *
+ * NOTE The following functions silently depend on the `document` variable being globally available. Therefore, unit
+ * tests of components that use them must be run inside a browser, or must expose `document` globally, e.g. through
+ * PhantomJS or jsdom.
+ *
+ * The SVG elements considered below are based on the TypeScript (2.6.2) types for the `createElementNS()` function.
+ * Some information was completed based on MDN's [SVG element reference](https://developer.mozilla.org/en-US/docs/Web/SVG/Element).
+ */
 
 import {assignProperties} from './assignProperties'
 import {DeepPartial} from '../extra/DeepPartial'
@@ -78,7 +79,7 @@ export type SVGTag
     | 'view'
 
 /**
- * Aliases for SVG tag types, whose native counterparts are not always easy to guess or find.
+ * Aliases for SVG element types, whose native counterparts are not always easy to guess or find.
  */
 export type A = SVGAElement
 export type Circle = SVGCircleElement

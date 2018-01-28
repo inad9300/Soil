@@ -1,23 +1,25 @@
-// Set of helper functions to facilitate the work with HTML elements, specially their creation.
-
-// NOTE The following functions silently depend on the `document` variable being globally available. Therefore, unit
-// tests of components that use them must be run inside a browser, or must expose `document` globally, e.g. through
-// PhantomJS or jsdom.
-
-// The HTML elements considered below are based on the TypeScript (version 2.5.2) interface `ElementTagNameMap` and its
-// ascendents, on the list of void, raw text and other special elements available at
-// https://www.w3.org/TR/html51/syntax.html#writing-html-documents-elements, and on the list of obsolete and deprecated
-// HTML elements provided by https://developer.mozilla.org/en-US/docs/Web/HTML/Element#Obsolete_and_deprecated_elements.
-// (Non-standard elements, such as `<x-ms-webview>`, are also excluded.)
+/**
+ * Set of helper functions to facilitate the work with HTML elements, specially their creation.
+ *
+ * NOTE The following functions silently depend on the `document` variable being globally available. Therefore, unit
+ * tests of components that use them must be run inside a browser, or must expose `document` globally, e.g. through
+ * PhantomJS or jsdom.
+ *
+ * The HTML elements considered below are based on the TypeScript (2.6.2) interface `ElementTagNameMap` and its
+ * ascendants, on the list of void, raw text and other special elements present in [The HTML syntax](https://www.w3.org/TR/html51/syntax.html#writing-html-documents-elements)
+ * by the W3C, and on MDN's list of [Obsolete and deprecated elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element#Obsolete_and_deprecated_elements).
+ * Non-standard elements, such as `<x-ms-webview>`, are also excluded.
+ */
 
 import {assignProperties} from './assignProperties'
 import {DeepPartial} from '../extra/DeepPartial'
 import {Svg} from './s'
 
 /**
- * Types added manually as they are not present in TypeScript 2.6.2 but listed in W3Schools. See
- * https://github.com/Microsoft/TypeScript/issues/17828 and https://www.w3schools.com/html/html5_new_elements.asp.
- * TODO Re-evaluate and rearrange when available in TypeScript.
+ * Types added manually as they are not yet present in TypeScript (2.6.2) but they are listed in W3Schools' list of
+ * [HTML5 New Elements](https://www.w3schools.com/html/html5_new_elements.asp).
+ *
+ * TODO Follow up [TypeScript issue #17828](https://github.com/Microsoft/TypeScript/issues/17828).
  */
 export type HTMLDetailsElement = HTMLElement & {open: boolean}
 export type HTMLDialogElement = HTMLElement & {open: boolean}
@@ -152,10 +154,10 @@ export type HTMLTag
     | 'wbr'
 
 /**
- * Aliases for HTML tag types, whose native counterparts are not always easy to guess or find.
+ * Aliases for HTML element types, whose native counterparts are not always easy to guess or find.
  *
  * Notice that some elements do not have a specific interface to define them, and they resort to a more generic one,
- * e.g. Ul (unordered list) is well-defined by HTMLUListElement, but B (bold) simply delegates to HTMLElement.
+ * e.g. `Ul` (unordered list) is well-defined by `HTMLUListElement`, but `B` (bold) simply delegates to `HTMLElement`.
  */
 export type A = HTMLAnchorElement
 export type Abbr = HTMLElement
@@ -394,7 +396,7 @@ export interface HTMLTagMap {
 }
 
 /**
- * Allowed types for the children of those HTML elements accepting them and without special constraints.
+ * Allowed types for the children of HTML elements, if they accept them and don't have special constraints.
  */
 export type HTMLChildren = string | (HTMLElement | Svg | string)[]
 
@@ -429,8 +431,9 @@ export function h<K extends keyof HTMLTagMap>(name: K, props?: HTMLProperties<HT
 }
 
 /**
- * Helpers to allow creating any concrete HTML element in a more concise manner. Sometimes, the types of these are
- * stricter as well, e.g. `br()` does not accept children elements as a parameter.
+ * Helpers to allow creating any concrete HTML element in a more concise manner.
+ *
+ * Sometimes, the types of these are stricter than calling `h()`, e.g. `br()` does not accept children.
  */
 export const a = (props?: DeepPartial<A>, children?: HTMLChildren): A => h('a', props, children)
 export const abbr = (props?: DeepPartial<Abbr>, children?: HTMLChildren): Abbr => h('abbr', props, children)
