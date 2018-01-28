@@ -1,6 +1,6 @@
 const {suite, test} = intern.getInterface('tdd')
 const {assert} = intern.getPlugin('chai')
-import {createElement} from '../testing/support/createElement'
+import {createElement} from '../../support/testing/createElement'
 
 import {HTMLProperties} from './h'
 import {assignProperties} from './assignProperties'
