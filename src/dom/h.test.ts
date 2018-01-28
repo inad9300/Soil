@@ -1,7 +1,7 @@
 const {suite, test} = intern.getInterface('tdd')
 const {assert} = intern.getPlugin('chai')
-import {createElement} from '../testing/support/createElement'
-import {elementsAreEqual} from '../testing/support/elementsAreEqual'
+import {createElement} from '../../support/testing/createElement'
+import {elementsAreEqual} from '../../support/testing/elementsAreEqual'
 
 import {h, HTMLProperties} from './h'
 import {Audio, Button, Details, H1, Iframe, Input, Noscript, Option, Template, Select, Span} from './h'

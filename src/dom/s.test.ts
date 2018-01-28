@@ -1,7 +1,7 @@
 const {suite, test} = intern.getInterface('tdd')
 const {assert} = intern.getPlugin('chai')
-import {createElement} from '../testing/support/createElement'
-import {elementsAreEqual} from '../testing/support/elementsAreEqual'
+import {createElement} from '../../support/testing/createElement'
+import {elementsAreEqual} from '../../support/testing/elementsAreEqual'
 
 import {s, SVGProperties, SVGTag} from './s'
 import {Tspan} from './s'
