@@ -1,63 +1,56 @@
 /**
- * Signature for the functions that are called when an event is sent.
+ * Signature for the listener functions called when an event is sent.
  */
 export type Listener<TMessage> = (message: TMessage) => void
 
 /**
- * Type-safe event mini-bus, or publisher/subscriber system. It is a useful mechanism for establishing communication
- * between components which are far away in the shared component hierarchy.
+ * Type-safe event mini-bus, or publisher/subscriber system. Useful for communicating distant components.
  */
 export class Channel<TMessage> {
 
     private listeners: Listener<TMessage>[] = []
 
     /**
-     * Return the number of entities listening on the channel.
+     * Return the number of listeners on the channel.
      */
     get length(): number {
         return this.listeners.length
     }
 
     /**
-     * Subscribe a listener to the event channel. A function is returned which can be called to unsubscribe the same
-     * listener.
+     * Subscribe a listener to the channel. A function is returned which can be called to unsubscribe that same
+     * listener. An optional second argument may be passed to specify the maximum number of times the listener will be
+     * notified before automatically unsubscribing it.
      */
-    do(listener: Listener<TMessage>): () => void {
-        this.listeners.push(listener)
-        return () => this.stop(listener)
-    }
+    listen(listener: Listener<TMessage>, times?: number): () => void {
+        const timesIsDefined = times !== undefined
 
-    /**
-     * Subscribe a listener to the event channel, and unsubscribe from it once the event has been emitted for the first
-     * time after the subscription. A function is returned which can be called to unsubscribe the listener even before
-     * this happens automatically.
-     */
-    once(listener: Listener<TMessage>): () => void {
         const listenerWrapper = (message: TMessage) => {
-            this.stop(listenerWrapper)
+            if (timesIsDefined && --(times as number) === 0) {
+                this.clear(listenerWrapper)
+            }
             listener(message)
         }
-        return this.do(listenerWrapper)
-    }
 
-    /**
-     * Unsubscribe a listener from the event channel.
-     */
-    stop(listener: Listener<TMessage>): void {
-        this.listeners = this.listeners.filter(l => l !== listener)
+        this.listeners.push(listenerWrapper)
+        return () => this.clear(listenerWrapper)
     }
 
     /**
      * Send an event to all listeners, with a payload.
      */
-    echo(message: TMessage): void {
+    send(message: TMessage): void {
         this.listeners.slice().forEach(l => l(message))
     }
 
     /**
-     * Unsubscribe all listeners from the event channel.
+     * Unsubscribe a listener from the channel. If none is provided, unsubscribe all listeners.
      */
-    clear(): void {
-        this.listeners = []
+    clear(listener?: Listener<TMessage>): void {
+        if (listener === undefined) {
+            this.listeners = []
+        } else {
+            this.listeners = this.listeners.filter(l => l !== listener)
+        }
     }
 }

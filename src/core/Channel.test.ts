@@ -3,7 +3,7 @@ const {assert} = intern.getPlugin('chai')
 
 import {Channel} from './Channel'
 
-// Maximum time that should take to send a message to all listeners. If it is longer, a problem must exist somewhere.
+// Maximum time sending a message should take.
 const DELIVERY_TIME_MS = 10
 
 suite('Channel', () => {
@@ -12,21 +12,51 @@ suite('Channel', () => {
         const defer = t.async()
 
         let count = 0
-        const stringChanged = new Channel<string>()
+        const stringChan = new Channel<string>()
 
-        stringChanged.once(newString => {
+        stringChan.listen(newString => {
             count++
             assert.strictEqual(newString, 'S')
-        })
-        assert.strictEqual(stringChanged.length, 1)
+        }, 1)
+        assert.strictEqual(stringChan.length, 1)
 
-        stringChanged.echo('S')
+        stringChan.send('S')
         setTimeout(() => {
-            assert.strictEqual(stringChanged.length, 0)
-            stringChanged.echo('!S')
+            assert.strictEqual(stringChan.length, 0)
+            stringChan.send('!S')
 
             setTimeout(() => {
                 assert.strictEqual(count, 1)
+
+                defer.resolve()
+            }, DELIVERY_TIME_MS)
+        }, DELIVERY_TIME_MS)
+
+        return defer.promise
+    })
+
+    test('channel with one three-times listener', t => {
+        const defer = t.async()
+
+        let count = 0
+        const stringChan = new Channel<string>()
+
+        stringChan.listen(newString => {
+            count++
+            assert.strictEqual(newString, 'S')
+        }, 3)
+        assert.strictEqual(stringChan.length, 1)
+
+        stringChan.send('S')
+        setTimeout(() => {
+            assert.strictEqual(stringChan.length, 1)
+            stringChan.send('S')
+            stringChan.send('S')
+            stringChan.send('!S')
+            stringChan.send('!S')
+
+            setTimeout(() => {
+                assert.strictEqual(count, 3)
 
                 defer.resolve()
             }, DELIVERY_TIME_MS)
@@ -39,14 +69,14 @@ suite('Channel', () => {
         const defer = t.async()
 
         let count = 0
-        const stringChanged = new Channel<string>()
+        const stringChan = new Channel<string>()
 
-        const stop = stringChanged.once(newString => count++)
-        assert.strictEqual(stringChanged.length, 1)
+        const stop = stringChan.listen(newString => count++, 1)
+        assert.strictEqual(stringChan.length, 1)
         stop()
-        assert.strictEqual(stringChanged.length, 0)
+        assert.strictEqual(stringChan.length, 0)
 
-        stringChanged.echo('S')
+        stringChan.send('S')
         setTimeout(() => {
             assert.strictEqual(count, 0)
 
@@ -56,27 +86,27 @@ suite('Channel', () => {
         return defer.promise
     })
 
-    test('channel with one listener which stops listenning after 3 messages', t => {
+    test('channel with one listener which stops listening after 3 messages', t => {
         const defer = t.async()
 
         let count = 0
-        const numberChanged = new Channel<number>()
+        const numberChan = new Channel<number>()
 
-        const stop = numberChanged.do(newNumber => {
+        const stop = numberChan.listen(newNumber => {
             count++
             assert.strictEqual(newNumber, 1)
         })
-        assert.strictEqual(numberChanged.length, 1)
+        assert.strictEqual(numberChan.length, 1)
 
-        numberChanged.echo(1)
-        numberChanged.echo(1)
-        numberChanged.echo(1)
+        numberChan.send(1)
+        numberChan.send(1)
+        numberChan.send(1)
 
         setTimeout(() => {
             stop()
-            assert.strictEqual(numberChanged.length, 0)
+            assert.strictEqual(numberChan.length, 0)
 
-            numberChanged.echo(7)
+            numberChan.send(7)
 
             setTimeout(() => {
                 assert.strictEqual(count, 3)
@@ -94,7 +124,7 @@ suite('Channel', () => {
         type Message = {langCode: 'en' | 'fr'}
 
         let count = 0
-        const langSettingChanged = new Channel<Message>()
+        const langSettingChan = new Channel<Message>()
 
         function countEn(newLang: Message) {
             count++
@@ -106,9 +136,9 @@ suite('Channel', () => {
             assert.deepEqual(newLang, {langCode: 'fr'})
         }
 
-        langSettingChanged.once(countEn)
-        langSettingChanged.once(countEn)
-        langSettingChanged.do(newLang => {
+        langSettingChan.listen(countEn, 1)
+        langSettingChan.listen(countEn, 1)
+        langSettingChan.listen(newLang => {
             if (count <= 2) {
                 assert.deepEqual(newLang, {langCode: 'en'})
             } else {
@@ -116,28 +146,28 @@ suite('Channel', () => {
             }
             count++
         })
-        assert.strictEqual(langSettingChanged.length, 3)
+        assert.strictEqual(langSettingChan.length, 3)
 
-        langSettingChanged.echo({langCode: 'en'})
+        langSettingChan.send({langCode: 'en'})
 
         setTimeout(() => {
-            assert.strictEqual(langSettingChanged.length, 1)
+            assert.strictEqual(langSettingChan.length, 1)
             assert.strictEqual(count, 3)
 
-            langSettingChanged.do(countFr)
-            langSettingChanged.once(countFr)
-            langSettingChanged.do(countFr)
-            langSettingChanged.do(countFr)
-            langSettingChanged.once(countFr)
-            langSettingChanged.do(countFr)
+            langSettingChan.listen(countFr)
+            langSettingChan.listen(countFr, 1)
+            langSettingChan.listen(countFr)
+            langSettingChan.listen(countFr)
+            langSettingChan.listen(countFr, 1)
+            langSettingChan.listen(countFr)
 
-            assert.strictEqual(langSettingChanged.length, 7)
+            assert.strictEqual(langSettingChan.length, 7)
 
-            langSettingChanged.echo({langCode: 'fr'})
+            langSettingChan.send({langCode: 'fr'})
 
             setTimeout(() => {
                 assert.strictEqual(count, 10)
-                assert.strictEqual(langSettingChanged.length, 5)
+                assert.strictEqual(langSettingChan.length, 5)
 
                 defer.resolve()
             }, DELIVERY_TIME_MS)
@@ -147,14 +177,14 @@ suite('Channel', () => {
     })
 
     test('channel kicks out all listeners on clear', () => {
-        const someChannel = new Channel<undefined>()
+        const someChan = new Channel<undefined>()
 
-        someChannel.do(() => {})
-        someChannel.do(() => {})
-        someChannel.once(() => {})
-        assert.strictEqual(someChannel.length, 3)
+        someChan.listen(() => {})
+        someChan.listen(() => {})
+        someChan.listen(() => {}, 1)
+        assert.strictEqual(someChan.length, 3)
 
-        someChannel.clear()
-        assert.strictEqual(someChannel.length, 0)
+        someChan.clear()
+        assert.strictEqual(someChan.length, 0)
     })
 })
