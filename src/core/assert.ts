@@ -10,7 +10,7 @@ export class AssertionError extends Error {
 }
 
 /**
- * Ensure that any given condition is true, adding basic support for design-by-contract pgoramming.
+ * Ensure that any given condition is true, adding basic support for design-by-contract programming.
  *
  * When providing a function as opposed to a boolean as the first argument, the source code of the function will be
  * included as part of the error message in case of failure, thus providing immediate feedback to help determine the
