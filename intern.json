@@ -1,6 +1,7 @@
 {
     "environments": [{
-        "browserName": "chrome"
+        "browserName": "chrome",
+        "chromeOptions": {"args": ["headless", "disable-gpu"]}
     }],
     "capabilities": {"fixSessionCapabilities": false},
     "loader": {"script": "dojo2"},
