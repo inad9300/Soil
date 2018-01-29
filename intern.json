@@ -1,7 +1,6 @@
 {
     "environments": [{
-        "browserName": "chrome",
-        "chromeOptions": {"args": ["headless"]}
+        "browserName": "chrome"
     }],
     "capabilities": {"fixSessionCapabilities": false},
     "loader": {"script": "dojo2"},
