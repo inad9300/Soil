@@ -1,6 +1,6 @@
 # Changelog
 
-## NEXT
+## 1.0.0 - NEXT
 
 ### Added
 - `Component` and `ComponentFactory` types, encoding the shape of custom components.
