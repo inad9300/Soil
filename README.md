@@ -98,8 +98,8 @@ randomNumbersChan.listen(n => console.log('New random number received:', n))
 randomNumbersChan.send(Math.random())
 ```
 
-To get more familiar with the ideas presented above, check out the [examples](examples/), or dive into the
-[source code](src/).
+To get more familiar with the ideas presented above, check out the [documentation](https://github.com/inad9300/Soil/wiki/Documentation),
+the [examples](examples/), or dive directly into the [source code](src/).
 
 
 ## Installation
