@@ -9,7 +9,7 @@ export function createElement(html: string, isSvg = false): Element {
     }
     const elem = document.createRange().createContextualFragment(html).firstElementChild as Element
     if (isSvg) {
-        return elem.firstElementChild as Element
+        return elem.firstElementChild as SVGElement
     }
-    return elem
+    return elem as HTMLElement
 }
