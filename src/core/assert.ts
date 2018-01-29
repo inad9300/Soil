@@ -25,7 +25,10 @@ export function assert(assertion: boolean | (() => boolean), message: string = '
 
     if (!ok) {
         if (assertionIsFunction) {
-            message += ' | Assertion was: ' + assertion.toString()
+            if (message) {
+                message += ' | '
+            }
+            message += 'Assertion was: ' + assertion.toString()
         }
         throw new AssertionError(message)
     }
