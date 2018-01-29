@@ -4,15 +4,15 @@ import {DeepPartial} from '../extra/DeepPartial'
  * Assign properties to an object of type `HTMLElement` or `SVGElement`.
  */
 export function assignProperties<E extends Element, P extends DeepPartial<E>>(elem: E, props: P): void {
+    doAssignProperties(elem, props)
+}
+
+function doAssignProperties<E extends Element, P extends DeepPartial<E>>(elem: E, props: P): void {
     for (const p in props) {
         if (props.hasOwnProperty(p)) {
-            if ((props as any)[p] instanceof Object && (props[p] as Object).constructor === Object) {
-                // Go one level deeper, for properties such as `style`.
-                for (const subP in props[p]) {
-                    if ((props[p] as Object).hasOwnProperty(subP)) {
-                        (elem as any)[p][subP] = props[p][subP]
-                    }
-                }
+            if (isObject(props[p])) {
+                // Go deeper, for properties such as `style`.
+                assignNestedProperties((elem as any)[p], props[p])
             } else {
                 if (p.indexOf('-') > -1) {
                     // Deal with custom and special attributes, such as `data-*` and `aria-*` attributes.
@@ -24,4 +24,21 @@ export function assignProperties<E extends Element, P extends DeepPartial<E>>(el
             }
         }
     }
+}
+
+function assignNestedProperties(target: {[key: string]: any}, props: {[key: string]: any}) {
+    for (const p in props) {
+        if (props.hasOwnProperty(p)) {
+            if (isObject(props[p])) {
+                // Some SVG properties are even more nested.
+                assignNestedProperties(target[p], props[p])
+            } else {
+                target[p] = props[p]
+            }
+        }
+    }
+}
+
+function isObject(o: any): boolean {
+    return o instanceof Object && (o as Object).constructor === Object
 }
