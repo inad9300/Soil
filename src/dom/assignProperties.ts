@@ -12,11 +12,11 @@ function doAssignProperties<E extends Element, P extends DeepPartial<E>>(elem: E
         if (props.hasOwnProperty(p)) {
             if (isObject(props[p])) {
                 // Go deeper, for properties such as `style`.
-                assignNestedProperties((elem as any)[p], props[p])
+                assignNestedProperties((elem as any)[p], props[p] as {[key: string]: any})
             } else {
                 if (p.indexOf('-') > -1) {
                     // Deal with custom and special attributes, such as `data-*` and `aria-*` attributes.
-                    elem.setAttribute(p, props[p])
+                    elem.setAttribute(p, props[p] as any)
                 } else {
                     // Treat the rest as standard properties.
                     (elem as any)[p] = props[p]
