@@ -1,6 +1,6 @@
 {
     "name": "@soil/web",
-    "version": "0.2.1",
+    "version": "0.3.0",
     "description": "Type-safe HTML and custom components at your fingertips.",
     "main": "build/index.js",
     "types": "build/index.d.ts",
