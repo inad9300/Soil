@@ -376,51 +376,6 @@ export interface HTMLTagMap {
 export type HTMLChildren = string | (HTMLElement | Svg | string)[]
 
 /**
- * HTML element content categories, extracted from https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories
- * (deprecated, experimental or poorly-supported elements are excluded).
- */
-export namespace HTMLContent {
-
-    export type Metadata = (Base | Link | Meta | Noscript | Script | Style | Title)[]
-
-    export type FlowItems = A | Abbr | Address | Article | Aside | Audio | B | Bdo | Bdi | Blockquote | Br | Button | Canvas | Cite | Code | Data | Datalist | Del | Details | Dfn | Div | Dl | Em | Embed | Fieldset | Figure | Footer | Form | H1 | H2 | H3 | H4 | H5 | H6 | Header | Hr | I | Iframe | Img | Input | Ins | Kbd | Label | Main | Map | Mark | Meter | Nav | Noscript | Object | Ol | Output | P | Pre | Progress | Q | Ruby | S | Samp | Script | Section | Select | Small | Span | Strong | Sub | Sup | Svg | Table | Template | Textarea | Time | Ul | Var | Video | Wbr | Area | Link | Meta | string
-
-    export type Flow = HTMLContent.FlowItems[] | string
-
-    export type Sectioning = (Article | Aside | Nav | Section)[]
-
-    export type HeadingItems = H1 | H2 | H3 | H4 | H5 | H6
-
-    export type Heading = HTMLContent.HeadingItems[]
-
-    export type PhrasingItems = Abbr | Audio | B | Bdo | Br | Button | Canvas | Cite | Code | Data | Datalist | Dfn | Em | Embed | I | Iframe | Img | Input | Kbd | Label | Mark | Meter | Noscript | Object | Output | Progress | Q | Ruby | Samp | Script | Select | Small | Span | Strong | Sub | Sup | Svg | Textarea | Time | Var | Video | Wbr | A | Area | Del | Ins | Link | Map | Meta | string
-
-    export type Phrasing = PhrasingItems[] | string
-
-    export type Embedded = (Audio | Canvas | Embed | Iframe | Img | Object | Svg | Video)[]
-
-    export type Interactive = (A | Button | Details | Embed | Iframe | Label | Select | Textarea | Audio | Img | Input | Object | Video)[]
-
-    export type Palpable = HTMLChildren
-
-    export type FormAssociated = (Button | Fieldset | Input | Label | Meter | Object | Output | Progress | Select | Textarea)[]
-
-    export type FormAssociatedListed = (Button | Fieldset | Input | Object | Output | Select | Textarea)[]
-
-    export type FormAssociatedLabelable = (Button | Input | Meter | Output | Progress | Select | Textarea)[]
-
-    export type FormAssociatedSubmittable = (Button | Input | Object | Select | Textarea)[]
-
-    export type FormAssociatedResettable = (Input | Output | Select | Textarea)[]
-
-    export type ScriptSupportingItems = Script | Template
-
-    export type ScriptSupporting = HTMLContent.ScriptSupportingItems[]
-
-    export type Transparent = HTMLChildren
-}
-
-/**
  * Allowed types for the properties of HTML elements.
  */
 export type HTMLProperties<E extends HTMLElement = HTMLElement> = DeepPartial<E> & {[prop: string]: any}
@@ -451,6 +406,271 @@ export function h<K extends keyof HTMLTagMap>(name: K, props?: HTMLProperties<HT
 }
 
 /**
+ * HTML element content categories, extracted from https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories
+ * (deprecated, experimental or poorly-supported elements are excluded).
+ */
+export namespace HTMLContent {
+
+    export type Metadata = (Base | Link | Meta | Noscript | Script | Style | Title)[]
+
+    export type FlowItems = A | Abbr | Address | Article | Aside | Audio | B | Bdo | Bdi | Blockquote | Br | Button | Canvas | Cite | Code | Data | Datalist | Del | Details | Dfn | Div | Dl | Em | Embed | Fieldset | Figure | Footer | Form | H1 | H2 | H3 | H4 | H5 | H6 | Header | Hr | I | Iframe | Img | Input | Ins | Kbd | Label | Main | Map | Mark | Meter | Nav | Noscript | Object | Ol | Output | P | Pre | Progress | Q | Ruby | S | Samp | Script | Section | Select | Small | Span | Strong | Sub | Sup | Svg | Table | Template | Textarea | Time | Ul | Var | Video | Wbr | Area | Link | Meta | string
+    export type Flow = HTMLContent.FlowItems[] | string
+
+    export type Sectioning = (Article | Aside | Nav | Section)[]
+
+    export type HeadingItems = H1 | H2 | H3 | H4 | H5 | H6
+    export type Heading = HTMLContent.HeadingItems[]
+
+    export type PhrasingItems = Abbr | Audio | B | Bdo | Br | Button | Canvas | Cite | Code | Data | Datalist | Dfn | Em | Embed | I | Iframe | Img | Input | Kbd | Label | Mark | Meter | Noscript | Object | Output | Progress | Q | Ruby | Samp | Script | Select | Small | Span | Strong | Sub | Sup | Svg | Textarea | Time | Var | Video | Wbr | A | Area | Del | Ins | Link | Map | Meta | string
+    export type Phrasing = PhrasingItems[] | string
+
+    export type Embedded = (Audio | Canvas | Embed | Iframe | Img | Object | Svg | Video)[]
+
+    export type Interactive = (A | Button | Details | Embed | Iframe | Label | Select | Textarea | Audio | Img | Input | Object | Video)[]
+
+    export type Palpable = HTMLChildren
+
+    export type FormAssociated = (Button | Fieldset | Input | Label | Meter | Object | Output | Progress | Select | Textarea)[]
+    export type FormAssociatedListed = (Button | Fieldset | Input | Object | Output | Select | Textarea)[]
+    export type FormAssociatedLabelable = (Button | Input | Meter | Output | Progress | Select | Textarea)[]
+    export type FormAssociatedSubmittable = (Button | Input | Object | Select | Textarea)[]
+    export type FormAssociatedResettable = (Input | Output | Select | Textarea)[]
+
+    export type ScriptSupportingItems = Script | Template
+    export type ScriptSupporting = HTMLContent.ScriptSupportingItems[]
+
+    export type Transparent = HTMLChildren
+}
+
+/**
+ * Type aliases for the accepted children of all HTML elements.
+ */
+export namespace Children {
+
+    // Type aliases for all HTML elements, as a way to access them within the namespace without naming conflicts.
+    export type _A = HTMLTagMap['a']
+    export type _Abbr = HTMLTagMap['abbr']
+    export type _Address = HTMLTagMap['address']
+    export type _Area = HTMLTagMap['area']
+    export type _Article = HTMLTagMap['article']
+    export type _Aside = HTMLTagMap['aside']
+    export type _Audio = HTMLTagMap['audio']
+    export type _B = HTMLTagMap['b']
+    export type _Base = HTMLTagMap['base']
+    export type _Bdi = HTMLTagMap['bdi']
+    export type _Bdo = HTMLTagMap['bdo']
+    export type _Blockquote = HTMLTagMap['blockquote']
+    export type _Body = HTMLTagMap['body']
+    export type _Br = HTMLTagMap['br']
+    export type _Button = HTMLTagMap['button']
+    export type _Canvas = HTMLTagMap['canvas']
+    export type _Caption = HTMLTagMap['caption']
+    export type _Cite = HTMLTagMap['cite']
+    export type _Code = HTMLTagMap['code']
+    export type _Col = HTMLTagMap['col']
+    export type _Colgroup = HTMLTagMap['colgroup']
+    export type _Data = HTMLTagMap['data']
+    export type _Datalist = HTMLTagMap['datalist']
+    export type _Dd = HTMLTagMap['dd']
+    export type _Del = HTMLTagMap['del']
+    export type _Details = HTMLTagMap['details']
+    export type _Dfn = HTMLTagMap['dfn']
+    export type _Dialog = HTMLTagMap['dialog']
+    export type _Div = HTMLTagMap['div']
+    export type _Dl = HTMLTagMap['dl']
+    export type _Dt = HTMLTagMap['dt']
+    export type _Em = HTMLTagMap['em']
+    export type _Embed = HTMLTagMap['embed']
+    export type _Fieldset = HTMLTagMap['fieldset']
+    export type _Figcaption = HTMLTagMap['figcaption']
+    export type _Figure = HTMLTagMap['figure']
+    export type _Footer = HTMLTagMap['footer']
+    export type _Form = HTMLTagMap['form']
+    export type _H1 = HTMLTagMap['h1']
+    export type _H2 = HTMLTagMap['h2']
+    export type _H3 = HTMLTagMap['h3']
+    export type _H4 = HTMLTagMap['h4']
+    export type _H5 = HTMLTagMap['h5']
+    export type _H6 = HTMLTagMap['h6']
+    export type _Head = HTMLTagMap['head']
+    export type _Header = HTMLTagMap['header']
+    export type _Hr = HTMLTagMap['hr']
+    export type _Html = HTMLTagMap['html']
+    export type _I = HTMLTagMap['i']
+    export type _Iframe = HTMLTagMap['iframe']
+    export type _Img = HTMLTagMap['img']
+    export type _Input = HTMLTagMap['input']
+    export type _Ins = HTMLTagMap['ins']
+    export type _Kbd = HTMLTagMap['kbd']
+    export type _Label = HTMLTagMap['label']
+    export type _Legend = HTMLTagMap['legend']
+    export type _Li = HTMLTagMap['li']
+    export type _Link = HTMLTagMap['link']
+    export type _Main = HTMLTagMap['main']
+    export type _Map = HTMLTagMap['map']
+    export type _Mark = HTMLTagMap['mark']
+    export type _Meta = HTMLTagMap['meta']
+    export type _Meter = HTMLTagMap['meter']
+    export type _Nav = HTMLTagMap['nav']
+    export type _Noscript = HTMLTagMap['noscript']
+    export type _Object = HTMLTagMap['object']
+    export type _Ol = HTMLTagMap['ol']
+    export type _Optgroup = HTMLTagMap['optgroup']
+    export type _Option = HTMLTagMap['option']
+    export type _Output = HTMLTagMap['output']
+    export type _P = HTMLTagMap['p']
+    export type _Param = HTMLTagMap['param']
+    export type _Picture = HTMLTagMap['picture']
+    export type _Pre = HTMLTagMap['pre']
+    export type _Progress = HTMLTagMap['progress']
+    export type _Q = HTMLTagMap['q']
+    export type _Rp = HTMLTagMap['rp']
+    export type _Rt = HTMLTagMap['rt']
+    export type _Ruby = HTMLTagMap['ruby']
+    export type _S = HTMLTagMap['s']
+    export type _Samp = HTMLTagMap['samp']
+    export type _Script = HTMLTagMap['script']
+    export type _Section = HTMLTagMap['section']
+    export type _Select = HTMLTagMap['select']
+    export type _Small = HTMLTagMap['small']
+    export type _Source = HTMLTagMap['source']
+    export type _Span = HTMLTagMap['span']
+    export type _Strong = HTMLTagMap['strong']
+    export type _Style = HTMLTagMap['style']
+    export type _Sub = HTMLTagMap['sub']
+    export type _Summary = HTMLTagMap['summary']
+    export type _Sup = HTMLTagMap['sup']
+    export type _Table = HTMLTagMap['table']
+    export type _Tbody = HTMLTagMap['tbody']
+    export type _Td = HTMLTagMap['td']
+    export type _Template = HTMLTagMap['template']
+    export type _Textarea = HTMLTagMap['textarea']
+    export type _Tfoot = HTMLTagMap['tfoot']
+    export type _Th = HTMLTagMap['th']
+    export type _Thead = HTMLTagMap['thead']
+    export type _Time = HTMLTagMap['time']
+    export type _Title = HTMLTagMap['title']
+    export type _Tr = HTMLTagMap['tr']
+    export type _Track = HTMLTagMap['track']
+    export type _U = HTMLTagMap['u']
+    export type _Ul = HTMLTagMap['ul']
+    export type _Var = HTMLTagMap['var']
+    export type _Video = HTMLTagMap['video']
+    export type _Wbr = HTMLTagMap['wbr']
+
+    // Actual type aliases for the HTML children.
+    export type A = HTMLContent.Transparent
+    export type Abbr = HTMLContent.Phrasing
+    export type Address = HTMLContent.Flow
+    export type Area = void
+    export type Article = HTMLContent.Flow
+    export type Aside = HTMLContent.Flow
+    export type Audio = HTMLContent.Transparent
+    export type B = HTMLContent.Phrasing
+    export type Base = void
+    export type Bdi = HTMLContent.Phrasing
+    export type Bdo = HTMLContent.Phrasing
+    export type Blockquote = HTMLContent.Flow
+    export type Body = HTMLContent.Flow
+    export type Br = void
+    export type Button = HTMLContent.Phrasing
+    export type Canvas = HTMLContent.Transparent
+    export type Caption = HTMLContent.Flow
+    export type Cite = HTMLContent.Phrasing
+    export type Code = HTMLContent.Phrasing
+    export type Col = void
+    export type Colgroup = _Col[]
+    export type Data = HTMLContent.Phrasing
+    export type Datalist = HTMLContent.Phrasing | _Option[]
+    export type Dd = HTMLContent.Flow
+    export type Del = HTMLContent.Transparent
+    export type Details = (_Summary | HTMLContent.FlowItems)[] | string
+    export type Dfn = HTMLContent.Phrasing
+    export type Dialog = HTMLContent.Flow
+    export type Div = (HTMLContent.FlowItems | _Dt | _Dd | _Script | _Template)[] | string
+    export type Dl = (_Dt | _Dd | _Script | _Template | _Div)[]
+    export type Dt = HTMLContent.Flow
+    export type Em = HTMLContent.Phrasing
+    export type Embed = void
+    export type Fieldset = (_Legend | HTMLContent.FlowItems)[] | string
+    export type Figcaption = HTMLContent.Flow
+    export type Figure = (_Figcaption | HTMLContent.FlowItems)[] | string
+    export type Footer = HTMLContent.Flow
+    export type Form = HTMLContent.Flow
+    export type H1 = HTMLContent.Phrasing
+    export type H2 = HTMLContent.Phrasing
+    export type H3 = HTMLContent.Phrasing
+    export type H4 = HTMLContent.Phrasing
+    export type H5 = HTMLContent.Phrasing
+    export type H6 = HTMLContent.Phrasing
+    export type Head = HTMLContent.Metadata
+    export type Header = HTMLContent.Flow
+    export type Hr = void
+    export type Html = [_Head, _Body] | [_Head] | [_Body]
+    export type I = HTMLContent.Phrasing
+    export type Iframe = HTMLChildren
+    export type Img = void
+    export type Input = void
+    export type Ins = HTMLContent.Transparent
+    export type Kbd = HTMLContent.Phrasing
+    export type Label = HTMLContent.Phrasing
+    export type Legend = HTMLContent.Phrasing
+    export type Li = HTMLContent.Flow
+    export type Link = void
+    export type Main = HTMLContent.Flow
+    export type Map = HTMLContent.Transparent
+    export type Mark = HTMLContent.Phrasing
+    export type Meta = void
+    export type Meter = HTMLContent.Phrasing
+    export type Nav = HTMLContent.Flow
+    export type Noscript = HTMLChildren
+    export type Object = HTMLContent.Transparent
+    export type Ol = _Li[]
+    export type Optgroup = _Option[]
+    export type Option = string
+    export type Output = HTMLContent.Phrasing
+    export type P = HTMLContent.Phrasing
+    export type Param = void
+    export type Picture = (_Source | _Img | HTMLContent.ScriptSupportingItems)[]
+    export type Pre = HTMLContent.Phrasing
+    export type Progress = HTMLContent.Phrasing
+    export type Q = HTMLContent.Phrasing
+    export type Rp = string
+    export type Rt = HTMLContent.Phrasing
+    export type Ruby = HTMLContent.Phrasing
+    export type S = HTMLContent.Phrasing
+    export type Samp = HTMLContent.Phrasing
+    export type Script = string
+    export type Section = HTMLContent.Flow
+    export type Select = (_Option | _Optgroup)[]
+    export type Small = HTMLContent.Phrasing
+    export type Source = void
+    export type Span = HTMLContent.Phrasing
+    export type Strong = HTMLContent.Phrasing
+    export type Style = string
+    export type Sub = HTMLContent.Phrasing
+    export type Summary = HTMLContent.Phrasing | [HTMLContent.HeadingItems]
+    export type Sup = HTMLContent.Phrasing
+    export type Table = (_Caption | _Colgroup | _Thead | _Tbody | _Tfoot)[] | (_Caption | _Colgroup | _Thead | _Tr | _Tfoot)[]
+    export type Tbody = _Tr[]
+    export type Td = HTMLContent.Flow
+    export type Template = HTMLChildren
+    export type Textarea = string
+    export type Tfoot = _Tr[]
+    export type Th = HTMLContent.Flow
+    export type Thead = _Tr[]
+    export type Time = HTMLContent.Phrasing
+    export type Title = string
+    export type Tr = (_Td | _Th | HTMLContent.ScriptSupportingItems)[]
+    export type Track = void
+    export type U = HTMLContent.Phrasing
+    export type Ul = _Li[]
+    export type Var = HTMLContent.Phrasing
+    export type Video = HTMLContent.Transparent
+    export type Wbr = void
+}
+
+/**
  * Helpers to allow creating any concrete HTML element in a more concise manner.
  *
  * The types of these are almost always stricter than those of `h()`, e.g. `br()` does not accept children, `ul()`
@@ -458,113 +678,113 @@ export function h<K extends keyof HTMLTagMap>(name: K, props?: HTMLProperties<HT
  *
  * TODO Once TypeScript's `Exclude` is available, some of the types of `children` can be even stricter.
  */
-export const a = (props?: DeepPartial<A>, children?: HTMLContent.Transparent): A => h('a', props, children)
-export const abbr = (props?: DeepPartial<Abbr>, children?: HTMLContent.Phrasing): Abbr => h('abbr', props, children)
-export const address = (props?: DeepPartial<Address>, children?: HTMLContent.Flow): Address => h('address', props, children)
+export const a = (props?: DeepPartial<A>, children?: Children.A): A => h('a', props, children)
+export const abbr = (props?: DeepPartial<Abbr>, children?: Children.Abbr): Abbr => h('abbr', props, children)
+export const address = (props?: DeepPartial<Address>, children?: Children.Address): Address => h('address', props, children)
 export const area = (props?: DeepPartial<Area>): Area => h('area', props)
-export const article = (props?: DeepPartial<Article>, children?: HTMLContent.Flow): Article => h('article', props, children)
-export const aside = (props?: DeepPartial<Aside>, children?: HTMLContent.Flow): Aside => h('aside', props, children)
-export const audio = (props?: DeepPartial<Audio>, children?: HTMLContent.Transparent): Audio => h('audio', props, children)
-export const b = (props?: DeepPartial<B>, children?: HTMLContent.Phrasing): B => h('b', props, children)
+export const article = (props?: DeepPartial<Article>, children?: Children.Article): Article => h('article', props, children)
+export const aside = (props?: DeepPartial<Aside>, children?: Children.Aside): Aside => h('aside', props, children)
+export const audio = (props?: DeepPartial<Audio>, children?: Children.Audio): Audio => h('audio', props, children)
+export const b = (props?: DeepPartial<B>, children?: Children.B): B => h('b', props, children)
 export const base = (props?: DeepPartial<Base>): Base => h('base', props)
-export const bdi = (props?: DeepPartial<Bdi>, children?: HTMLContent.Phrasing): Bdi => h('bdi', props, children)
-export const bdo = (props?: DeepPartial<Bdo>, children?: HTMLContent.Phrasing): Bdo => h('bdo', props, children)
-export const blockquote = (props?: DeepPartial<Blockquote>, children?: HTMLContent.Flow): Blockquote => h('blockquote', props, children)
-export const body = (props?: DeepPartial<Body>, children?: HTMLContent.Flow): Body => h('body', props, children)
+export const bdi = (props?: DeepPartial<Bdi>, children?: Children.Bdi): Bdi => h('bdi', props, children)
+export const bdo = (props?: DeepPartial<Bdo>, children?: Children.Bdo): Bdo => h('bdo', props, children)
+export const blockquote = (props?: DeepPartial<Blockquote>, children?: Children.Blockquote): Blockquote => h('blockquote', props, children)
+export const body = (props?: DeepPartial<Body>, children?: Children.Body): Body => h('body', props, children)
 export const br = (props?: DeepPartial<Br>): Br => h('br', props)
-export const button = (props?: DeepPartial<Button>, children?: HTMLContent.Phrasing): Button => h('button', props, children)
-export const canvas = (props?: DeepPartial<Canvas>, children?: HTMLContent.Transparent): Canvas => h('canvas', props, children)
-export const caption = (props?: DeepPartial<Caption>, children?: HTMLContent.Flow): Caption => h('caption', props, children)
-export const cite = (props?: DeepPartial<Cite>, children?: HTMLContent.Phrasing): Cite => h('cite', props, children)
-export const code = (props?: DeepPartial<Code>, children?: HTMLContent.Phrasing): Code => h('code', props, children)
+export const button = (props?: DeepPartial<Button>, children?: Children.Button): Button => h('button', props, children)
+export const canvas = (props?: DeepPartial<Canvas>, children?: Children.Canvas): Canvas => h('canvas', props, children)
+export const caption = (props?: DeepPartial<Caption>, children?: Children.Caption): Caption => h('caption', props, children)
+export const cite = (props?: DeepPartial<Cite>, children?: Children.Cite): Cite => h('cite', props, children)
+export const code = (props?: DeepPartial<Code>, children?: Children.Code): Code => h('code', props, children)
 export const col = (props?: DeepPartial<Col>): Col => h('col', props)
-export const colgroup = (props?: DeepPartial<Colgroup>, children?: Col[]): Colgroup => h('colgroup', props, children)
-export const data = (props?: DeepPartial<Data>, children?: HTMLContent.Phrasing): Data => h('data', props, children)
-export const datalist = (props?: DeepPartial<Datalist>, children?: HTMLContent.Phrasing | Option[]): Datalist => h('datalist', props, children)
-export const dd = (props?: DeepPartial<Dd>, children?: HTMLContent.Flow): Dd => h('dd', props, children)
-export const del = (props?: DeepPartial<Del>, children?: HTMLContent.Transparent): Del => h('del', props, children)
-export const details = (props?: DeepPartial<Details>, children?: (Summary | HTMLContent.FlowItems)[] | string): Details => h('details', props, children)
-export const dfn = (props?: DeepPartial<Dfn>, children?: HTMLContent.Phrasing): Dfn => h('dfn', props, children)
-export const dialog = (props?: DeepPartial<Dialog>, children?: HTMLContent.Flow): Dialog => h('dialog', props, children)
-export const div = (props?: DeepPartial<Div>, children?: (HTMLContent.FlowItems | Dt | Dd | Script | Template)[] | string): Div => h('div', props, children)
-export const dl = (props?: DeepPartial<Dl>, children?: (Dt | Dd | Script | Template | Div)[]): Dl => h('dl', props, children)
-export const dt = (props?: DeepPartial<Dt>, children?: HTMLContent.Flow): Dt => h('dt', props, children)
-export const em = (props?: DeepPartial<Em>, children?: HTMLContent.Phrasing): Em => h('em', props, children)
+export const colgroup = (props?: DeepPartial<Colgroup>, children?: Children.Colgroup): Colgroup => h('colgroup', props, children)
+export const data = (props?: DeepPartial<Data>, children?: Children.Data): Data => h('data', props, children)
+export const datalist = (props?: DeepPartial<Datalist>, children?: Children.Datalist): Datalist => h('datalist', props, children)
+export const dd = (props?: DeepPartial<Dd>, children?: Children.Dd): Dd => h('dd', props, children)
+export const del = (props?: DeepPartial<Del>, children?: Children.Del): Del => h('del', props, children)
+export const details = (props?: DeepPartial<Details>, children?: Children.Details): Details => h('details', props, children)
+export const dfn = (props?: DeepPartial<Dfn>, children?: Children.Dfn): Dfn => h('dfn', props, children)
+export const dialog = (props?: DeepPartial<Dialog>, children?: Children.Dialog): Dialog => h('dialog', props, children)
+export const div = (props?: DeepPartial<Div>, children?: Children.Div): Div => h('div', props, children)
+export const dl = (props?: DeepPartial<Dl>, children?: Children.Dl): Dl => h('dl', props, children)
+export const dt = (props?: DeepPartial<Dt>, children?: Children.Dt): Dt => h('dt', props, children)
+export const em = (props?: DeepPartial<Em>, children?: Children.Em): Em => h('em', props, children)
 export const embed = (props?: DeepPartial<Embed>): Embed => h('embed', props)
-export const fieldset = (props?: DeepPartial<Fieldset>, children?: (Legend | HTMLContent.FlowItems)[] | string): Fieldset => h('fieldset', props, children)
-export const figcaption = (props?: DeepPartial<Figcaption>, children?: HTMLContent.Flow): Figcaption => h('figcaption', props, children)
-export const figure = (props?: DeepPartial<Figure>, children?: (Figcaption | HTMLContent.FlowItems)[] | string): Figure => h('figure', props, children)
-export const footer = (props?: DeepPartial<Footer>, children?: HTMLContent.Flow): Footer => h('footer', props, children)
-export const form = (props?: DeepPartial<Form>, children?: HTMLContent.Flow): Form => h('form', props, children)
-export const h1 = (props?: DeepPartial<H1>, children?: HTMLContent.Phrasing): H1 => h('h1', props, children)
-export const h2 = (props?: DeepPartial<H2>, children?: HTMLContent.Phrasing): H2 => h('h2', props, children)
-export const h3 = (props?: DeepPartial<H3>, children?: HTMLContent.Phrasing): H3 => h('h3', props, children)
-export const h4 = (props?: DeepPartial<H4>, children?: HTMLContent.Phrasing): H4 => h('h4', props, children)
-export const h5 = (props?: DeepPartial<H5>, children?: HTMLContent.Phrasing): H5 => h('h5', props, children)
-export const h6 = (props?: DeepPartial<H6>, children?: HTMLContent.Phrasing): H6 => h('h6', props, children)
-export const head = (props?: DeepPartial<Head>, children?: HTMLContent.Metadata): Head => h('head', props, children)
-export const header = (props?: DeepPartial<Header>, children?: HTMLContent.Flow): Header => h('header', props, children)
+export const fieldset = (props?: DeepPartial<Fieldset>, children?: Children.Fieldset): Fieldset => h('fieldset', props, children)
+export const figcaption = (props?: DeepPartial<Figcaption>, children?: Children.Figcaption): Figcaption => h('figcaption', props, children)
+export const figure = (props?: DeepPartial<Figure>, children?: Children.Figure): Figure => h('figure', props, children)
+export const footer = (props?: DeepPartial<Footer>, children?: Children.Footer): Footer => h('footer', props, children)
+export const form = (props?: DeepPartial<Form>, children?: Children.Form): Form => h('form', props, children)
+export const h1 = (props?: DeepPartial<H1>, children?: Children.H1): H1 => h('h1', props, children)
+export const h2 = (props?: DeepPartial<H2>, children?: Children.H2): H2 => h('h2', props, children)
+export const h3 = (props?: DeepPartial<H3>, children?: Children.H3): H3 => h('h3', props, children)
+export const h4 = (props?: DeepPartial<H4>, children?: Children.H4): H4 => h('h4', props, children)
+export const h5 = (props?: DeepPartial<H5>, children?: Children.H5): H5 => h('h5', props, children)
+export const h6 = (props?: DeepPartial<H6>, children?: Children.H6): H6 => h('h6', props, children)
+export const head = (props?: DeepPartial<Head>, children?: Children.Head): Head => h('head', props, children)
+export const header = (props?: DeepPartial<Header>, children?: Children.Header): Header => h('header', props, children)
 export const hr = (props?: DeepPartial<Hr>): Hr => h('hr', props)
-export const html = (props?: DeepPartial<Html>, children?: [Head, Body] | [Head] | [Body]): Html => h('html', props, children)
-export const i = (props?: DeepPartial<I>, children?: HTMLContent.Phrasing): I => h('i', props, children)
-export const iframe = (props?: DeepPartial<Iframe>, children?: HTMLChildren): Iframe => h('iframe', props, children)
+export const html = (props?: DeepPartial<Html>, children?: Children.Html): Html => h('html', props, children)
+export const i = (props?: DeepPartial<I>, children?: Children.I): I => h('i', props, children)
+export const iframe = (props?: DeepPartial<Iframe>, children?: Children.Iframe): Iframe => h('iframe', props, children)
 export const img = (props?: DeepPartial<Img>): Img => h('img', props)
 export const input = (props?: DeepPartial<Input>): Input => h('input', props)
-export const ins = (props?: DeepPartial<Ins>, children?: HTMLContent.Transparent): Ins => h('ins', props, children)
-export const kbd = (props?: DeepPartial<Kbd>, children?: HTMLContent.Phrasing): Kbd => h('kbd', props, children)
-export const label = (props?: DeepPartial<Label>, children?: HTMLContent.Phrasing): Label => h('label', props, children)
-export const legend = (props?: DeepPartial<Legend>, children?: HTMLContent.Phrasing): Legend => h('legend', props, children)
-export const li = (props?: DeepPartial<Li>, children?: HTMLContent.Flow): Li => h('li', props, children)
+export const ins = (props?: DeepPartial<Ins>, children?: Children.Ins): Ins => h('ins', props, children)
+export const kbd = (props?: DeepPartial<Kbd>, children?: Children.Kbd): Kbd => h('kbd', props, children)
+export const label = (props?: DeepPartial<Label>, children?: Children.Label): Label => h('label', props, children)
+export const legend = (props?: DeepPartial<Legend>, children?: Children.Legend): Legend => h('legend', props, children)
+export const li = (props?: DeepPartial<Li>, children?: Children.Li): Li => h('li', props, children)
 export const link = (props?: DeepPartial<Link>): Link => h('link', props)
-export const main = (props?: DeepPartial<Main>, children?: HTMLContent.Flow): Main => h('main', props, children)
-export const map = (props?: DeepPartial<Map>, children?: HTMLContent.Transparent): Map => h('map', props, children)
-export const mark = (props?: DeepPartial<Mark>, children?: HTMLContent.Phrasing): Mark => h('mark', props, children)
+export const main = (props?: DeepPartial<Main>, children?: Children.Main): Main => h('main', props, children)
+export const map = (props?: DeepPartial<Map>, children?: Children.Map): Map => h('map', props, children)
+export const mark = (props?: DeepPartial<Mark>, children?: Children.Mark): Mark => h('mark', props, children)
 export const meta = (props?: DeepPartial<Meta>): Meta => h('meta', props)
-export const meter = (props?: DeepPartial<Meter>, children?: HTMLContent.Phrasing): Meter => h('meter', props, children)
-export const nav = (props?: DeepPartial<Nav>, children?: HTMLContent.Flow): Nav => h('nav', props, children)
-export const noscript = (props?: DeepPartial<Noscript>, children?: HTMLChildren): Noscript => h('noscript', props, children)
-export const object = (props?: DeepPartial<Object>, children?: HTMLContent.Transparent): Object => h('object', props, children)
-export const ol = (props?: DeepPartial<Ol>, children?: Li[]): Ol => h('ol', props, children)
-export const optgroup = (props?: DeepPartial<Optgroup>, children?: Option[]): Optgroup => h('optgroup', props, children)
-export const option = (props?: DeepPartial<Option>, child?: string): Option => h('option', props, child)
-export const output = (props?: DeepPartial<Output>, children?: HTMLContent.Phrasing): Output => h('output', props, children)
-export const p = (props?: DeepPartial<P>, children?: HTMLContent.Phrasing): P => h('p', props, children)
+export const meter = (props?: DeepPartial<Meter>, children?: Children.Meter): Meter => h('meter', props, children)
+export const nav = (props?: DeepPartial<Nav>, children?: Children.Nav): Nav => h('nav', props, children)
+export const noscript = (props?: DeepPartial<Noscript>, children?: Children.Noscript): Noscript => h('noscript', props, children)
+export const object = (props?: DeepPartial<Object>, children?: Children.Object): Object => h('object', props, children)
+export const ol = (props?: DeepPartial<Ol>, children?: Children.Ol): Ol => h('ol', props, children)
+export const optgroup = (props?: DeepPartial<Optgroup>, children?: Children.Optgroup): Optgroup => h('optgroup', props, children)
+export const option = (props?: DeepPartial<Option>, children?: Children.Option): Option => h('option', props, children)
+export const output = (props?: DeepPartial<Output>, children?: Children.Output): Output => h('output', props, children)
+export const p = (props?: DeepPartial<P>, children?: Children.P): P => h('p', props, children)
 export const param = (props?: DeepPartial<Param>): Param => h('param', props)
-export const picture = (props?: DeepPartial<Picture>, children?: (Source | Img | HTMLContent.ScriptSupportingItems)[]): Picture => h('picture', props, children)
-export const pre = (props?: DeepPartial<Pre>, children?: HTMLContent.Phrasing): Pre => h('pre', props, children)
-export const progress = (props?: DeepPartial<Progress>, children?: HTMLContent.Phrasing): Progress => h('progress', props, children)
-export const q = (props?: DeepPartial<Q>, children?: HTMLContent.Phrasing): Q => h('q', props, children)
-export const rp = (props?: DeepPartial<Rp>, child?: string): Rp => h('rp', props, child)
-export const rt = (props?: DeepPartial<Rt>, children?: HTMLContent.Phrasing): Rt => h('rt', props, children)
-export const ruby = (props?: DeepPartial<Ruby>, children?: HTMLContent.Phrasing): Ruby => h('ruby', props, children)
-export const s = (props?: DeepPartial<S>, children?: HTMLContent.Phrasing): S => h('s', props, children)
-export const samp = (props?: DeepPartial<Samp>, children?: HTMLContent.Phrasing): Samp => h('samp', props, children)
-export const script = (props?: DeepPartial<Script>, child?: string): Script => h('script', props, child)
-export const section = (props?: DeepPartial<Section>, children?: HTMLContent.Flow): Section => h('section', props, children)
-export const select = (props?: DeepPartial<Select>, children?: (Option | Optgroup)[]): Select => h('select', props, children)
-export const small = (props?: DeepPartial<Small>, children?: HTMLContent.Phrasing): Small => h('small', props, children)
+export const picture = (props?: DeepPartial<Picture>, children?: Children.Picture): Picture => h('picture', props, children)
+export const pre = (props?: DeepPartial<Pre>, children?: Children.Pre): Pre => h('pre', props, children)
+export const progress = (props?: DeepPartial<Progress>, children?: Children.Progress): Progress => h('progress', props, children)
+export const q = (props?: DeepPartial<Q>, children?: Children.Q): Q => h('q', props, children)
+export const rp = (props?: DeepPartial<Rp>, children?: Children.Rp): Rp => h('rp', props, children)
+export const rt = (props?: DeepPartial<Rt>, children?: Children.Rt): Rt => h('rt', props, children)
+export const ruby = (props?: DeepPartial<Ruby>, children?: Children.Ruby): Ruby => h('ruby', props, children)
+export const s = (props?: DeepPartial<S>, children?: Children.S): S => h('s', props, children)
+export const samp = (props?: DeepPartial<Samp>, children?: Children.Samp): Samp => h('samp', props, children)
+export const script = (props?: DeepPartial<Script>, children?: Children.Script): Script => h('script', props, children)
+export const section = (props?: DeepPartial<Section>, children?: Children.Section): Section => h('section', props, children)
+export const select = (props?: DeepPartial<Select>, children?: Children.Select): Select => h('select', props, children)
+export const small = (props?: DeepPartial<Small>, children?: Children.Small): Small => h('small', props, children)
 export const source = (props?: DeepPartial<Source>): Source => h('source', props)
-export const span = (props?: DeepPartial<Span>, children?: HTMLContent.Phrasing): Span => h('span', props, children)
-export const strong = (props?: DeepPartial<Strong>, children?: HTMLContent.Phrasing): Strong => h('strong', props, children)
-export const style = (props?: DeepPartial<Style>, child?: string): Style => h('style', props, child)
-export const sub = (props?: DeepPartial<Sub>, children?: HTMLContent.Phrasing): Sub => h('sub', props, children)
-export const summary = (props?: DeepPartial<Summary>, children?: HTMLContent.Phrasing | [HTMLContent.HeadingItems]): Summary => h('summary', props, children)
-export const sup = (props?: DeepPartial<Sup>, children?: HTMLContent.Phrasing): Sup => h('sup', props, children)
-export const table = (props?: DeepPartial<Table>, children?: (Caption | Colgroup | Thead | Tbody | Tfoot)[] | (Caption | Colgroup | Thead | Tr | Tfoot)[]): Table => h('table', props, children)
-export const tbody = (props?: DeepPartial<Tbody>, children?: Tr[]): Tbody => h('tbody', props, children)
-export const td = (props?: DeepPartial<Td>, children?: HTMLContent.Flow): Td => h('td', props, children)
-export const template = (props?: DeepPartial<Template>, children?: HTMLChildren): Template => h('template', props, children)
-export const textarea = (props?: DeepPartial<Textarea>, child?: string): Textarea => h('textarea', props, child)
-export const tfoot = (props?: DeepPartial<Tfoot>, children?: Tr[]): Tfoot => h('tfoot', props, children)
-export const th = (props?: DeepPartial<Th>, children?: HTMLContent.Flow): Th => h('th', props, children)
-export const thead = (props?: DeepPartial<Thead>, children?: Tr[]): Thead => h('thead', props, children)
-export const time = (props?: DeepPartial<Time>, children?: HTMLContent.Phrasing): Time => h('time', props, children)
-export const title = (props?: DeepPartial<Title>, child?: string): Title => h('title', props, child)
-export const tr = (props?: DeepPartial<Tr>, children?: (Td | Th | HTMLContent.ScriptSupportingItems)[]): Tr => h('tr', props, children)
+export const span = (props?: DeepPartial<Span>, children?: Children.Span): Span => h('span', props, children)
+export const strong = (props?: DeepPartial<Strong>, children?: Children.Strong): Strong => h('strong', props, children)
+export const style = (props?: DeepPartial<Style>, children?: Children.Style): Style => h('style', props, children)
+export const sub = (props?: DeepPartial<Sub>, children?: Children.Sub): Sub => h('sub', props, children)
+export const summary = (props?: DeepPartial<Summary>, children?: Children.Summary): Summary => h('summary', props, children)
+export const sup = (props?: DeepPartial<Sup>, children?: Children.Sup): Sup => h('sup', props, children)
+export const table = (props?: DeepPartial<Table>, children?: Children.Table): Table => h('table', props, children)
+export const tbody = (props?: DeepPartial<Tbody>, children?: Children.Tbody): Tbody => h('tbody', props, children)
+export const td = (props?: DeepPartial<Td>, children?: Children.Td): Td => h('td', props, children)
+export const template = (props?: DeepPartial<Template>, children?: Children.Template): Template => h('template', props, children)
+export const textarea = (props?: DeepPartial<Textarea>, children?: Children.Textarea): Textarea => h('textarea', props, children)
+export const tfoot = (props?: DeepPartial<Tfoot>, children?: Children.Tfoot): Tfoot => h('tfoot', props, children)
+export const th = (props?: DeepPartial<Th>, children?: Children.Th): Th => h('th', props, children)
+export const thead = (props?: DeepPartial<Thead>, children?: Children.Thead): Thead => h('thead', props, children)
+export const time = (props?: DeepPartial<Time>, children?: Children.Time): Time => h('time', props, children)
+export const title = (props?: DeepPartial<Title>, children?: Children.Title): Title => h('title', props, children)
+export const tr = (props?: DeepPartial<Tr>, children?: Children.Tr): Tr => h('tr', props, children)
 export const track = (props?: DeepPartial<Track>): Track => h('track', props)
-export const u = (props?: DeepPartial<U>, children?: HTMLContent.Phrasing): U => h('u', props, children)
-export const ul = (props?: DeepPartial<Ul>, children?: Li[]): Ul => h('ul', props, children)
+export const u = (props?: DeepPartial<U>, children?: Children.U): U => h('u', props, children)
+export const ul = (props?: DeepPartial<Ul>, children?: Children.Ul): Ul => h('ul', props, children)
 // Reserved word suffixed with "_".
-export const var_ = (props?: DeepPartial<Var>, children?: HTMLContent.Phrasing): Var => h('var', props, children)
-export const video = (props?: DeepPartial<Video>, children?: HTMLContent.Transparent): Video => h('video', props, children)
+export const var_ = (props?: DeepPartial<Var>, children?: Children.Var): Var => h('var', props, children)
+export const video = (props?: DeepPartial<Video>, children?: Children.Video): Video => h('video', props, children)
 export const wbr = (props?: DeepPartial<Wbr>): Wbr => h('wbr', props)
