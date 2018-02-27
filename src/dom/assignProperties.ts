@@ -4,10 +4,6 @@ import {DeepPartial} from '../extra/DeepPartial'
  * Assign properties to an object of type `HTMLElement` or `SVGElement`.
  */
 export function assignProperties<E extends Element, P extends DeepPartial<E>>(elem: E, props: P): void {
-    doAssignProperties(elem, props)
-}
-
-function doAssignProperties<E extends Element, P extends DeepPartial<E>>(elem: E, props: P): void {
     for (const p in props) {
         if (props.hasOwnProperty(p)) {
             if (isObject(props[p])) {
