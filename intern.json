@@ -3,7 +3,7 @@
         "browserName": "chrome",
         "chromeOptions": {"args": ["headless"]}
     }],
-    "capabilities": {"fixSessionCapabilities": false},
+    "capabilities": {"fixSessionCapabilities": "no-detect"},
     "loader": {"script": "dojo2"},
     "suites": ["build/**/*.test.js"],
     "coverage": ["build/src/**/!(*.test).js"],
