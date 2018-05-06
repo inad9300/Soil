@@ -1,40 +1,33 @@
-import {DeepPartial} from '../extra/DeepPartial'
+import {isObject} from '../extra/isObject'
 
 /**
- * Assign properties to an object of type `HTMLElement` or `SVGElement`.
+ * Assign properties from an object literal to an object of type `HTMLElement`
+ * or `SVGElement`.
  */
-export function assignProperties<E extends Element, P extends DeepPartial<E>>(elem: E, props: P): void {
+export function assignProperties<E extends {[p: string]: any}, P extends {[p: string]: any}>(elem: E, props: P): void {
     for (const p in props) {
         if (props.hasOwnProperty(p)) {
-            if (isObject(props[p])) {
-                // Go deeper, for properties such as `style`.
-                assignNestedProperties((elem as any)[p], props[p] as {[key: string]: any})
+            if (p === 'role' || p.startsWith('aria-')) {
+                elem[p].setAttribute(p, props[p])
+            } else if (isObject(props[p])) {
+                // Go deeper for properties such as `style` or SVG-specific properties.
+                assignNestedProperties(elem[p], props[p])
             } else {
-                if (p.indexOf('-') > -1) {
-                    // Deal with custom and special attributes, such as `data-*` and `aria-*` attributes.
-                    elem.setAttribute(p, props[p] as any)
-                } else {
-                    // Treat the rest as standard properties.
-                    (elem as any)[p] = props[p]
-                }
+                elem[p] = props[p]
             }
         }
     }
 }
 
-function assignNestedProperties(target: {[key: string]: any}, props: {[key: string]: any}) {
+function assignNestedProperties<E extends {[p: string]: any}, P extends {[p: string]: any}>(elem: E, props: P): void {
     for (const p in props) {
         if (props.hasOwnProperty(p)) {
             if (isObject(props[p])) {
-                // Some SVG properties are even more nested.
-                assignNestedProperties(target[p], props[p])
+                elem[p] = elem[p] || {}
+                assignNestedProperties(elem[p], props[p])
             } else {
-                target[p] = props[p]
+                elem[p] = props[p]
             }
         }
     }
-}
-
-function isObject(o: any): boolean {
-    return o instanceof Object && (o as Object).constructor === Object
 }
