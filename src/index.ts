@@ -1,11 +1,12 @@
+// TODO Consider moving to separate project, e.g. @soil/dom, @soil/core|arch|components|...
 export {Component} from './core/Component'
 export {ComponentFactory} from './core/ComponentFactory'
 export {Channel} from './core/Channel'
 export {assert} from './core/assert'
 export {extend} from './core/extend'
 
-import * as _h from './dom/h'
-import * as _s from './dom/s'
+import {h as _h} from './dom/html/h'
+import * as _s from './dom/svg/s' // FIXME.
 
 // A few HTML or SVG element names conflict with JavaScript keywords (e.g. `<var>`). For this reason, they are suffixed
 // with an underscore (e.g. `var_`). When we import all the contents of the respective files with an alias, they are
@@ -18,6 +19,8 @@ s.switch = _s.switch_
 
 export {h, s}
 
+// TODO Consider removing.
 export {DeepPartial} from './extra/DeepPartial'
 
+// TODO Remove.
 export {autofocus} from './fix/autofocus'
