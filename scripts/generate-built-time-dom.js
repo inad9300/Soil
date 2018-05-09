@@ -3,14 +3,16 @@ const https = require('https')
 
 const primitiveTypes = ['boolean', 'number', 'string', 'null', 'void', 'undefined']
 
-// TODO SVG!
-
 // Types for fields that, despite being read-only, make sense to use when
 // creating HTML elements, since their nested properties are assignable.
 const modifiableReadonlyTypes = [
     'CSSStyleDeclaration',
     'DOMStringMap',
-    'DOMTokenList'
+    'DOMTokenList',
+    'SVGAnimatedEnumeration',
+    'SVGAnimatedNumber',
+    'SVGAnimatedString',
+    'SVGPoint'
 ]
 
 // Read-only types whose nested fields are all unmodifiable. Worth revisiting
@@ -34,6 +36,16 @@ const unmodifiableReadonlyTypes = [
     'NodeListOf',
     'ShadowRoot',
     'StyleSheet',
+    'SVGAnimatedAngle',
+    'SVGAnimatedLength',
+    'SVGAnimatedLengthList',
+    'SVGAnimatedNumberList',
+    'SVGAnimatedPreserveAspectRatio',
+    'SVGAnimatedRect',
+    'SVGAnimatedTransformList',
+    'SVGElementInstance',
+    'SVGPointList',
+    'SVGStringList',
     'TextTrack',
     'TextTrackList',
     'TimeRanges',
@@ -50,17 +62,25 @@ const unknownReadonlyTypes = []
 // Array containing the names of all interfaces of HTML elements (does not include ancestors).
 const htmlInterfaces = ['HTMLAnchorElement', 'HTMLAreaElement', 'HTMLAudioElement', 'HTMLBRElement', 'HTMLBaseElement', 'HTMLBodyElement', 'HTMLButtonElement', 'HTMLCanvasElement', 'HTMLDListElement', 'HTMLDataElement', 'HTMLDataListElement', 'HTMLDetailsElement', 'HTMLDialogElement', 'HTMLDivElement', 'HTMLElement', 'HTMLEmbedElement', 'HTMLFieldSetElement', 'HTMLFormElement', 'HTMLHRElement', 'HTMLHeadElement', 'HTMLHeadingElement', 'HTMLHtmlElement', 'HTMLIFrameElement', 'HTMLImageElement', 'HTMLInputElement', 'HTMLLIElement', 'HTMLLabelElement', 'HTMLLegendElement', 'HTMLLinkElement', 'HTMLMapElement', 'HTMLMetaElement', 'HTMLMeterElement', 'HTMLModElement', 'HTMLOListElement', 'HTMLObjectElement', 'HTMLOptGroupElement', 'HTMLOptionElement', 'HTMLOutputElement', 'HTMLParagraphElement', 'HTMLParamElement', 'HTMLPictureElement', 'HTMLPreElement', 'HTMLProgressElement', 'HTMLQuoteElement', 'HTMLScriptElement', 'HTMLSelectElement', 'HTMLSourceElement', 'HTMLSpanElement', 'HTMLStyleElement', 'HTMLTableCaptionElement', 'HTMLTableColElement', 'HTMLTableDataCellElement', 'HTMLTableElement', 'HTMLTableHeaderCellElement', 'HTMLTableRowElement', 'HTMLTableSectionElement', 'HTMLTemplateElement', 'HTMLTextAreaElement', 'HTMLTimeElement', 'HTMLTitleElement', 'HTMLTrackElement', 'HTMLUListElement', 'HTMLVideoElement']
 
-download('https://raw.githubusercontent.com/Microsoft/TypeScript/master/lib/lib.dom.d.ts', source => {
-    addAncestors(source, htmlInterfaces)
+/// Script-generated.
+// Array containing the names of all interfaces of SVG elements (does not include ancestors).
+const svgInterfaces = ['SVGAElement', 'SVGCircleElement', 'SVGCursorElement', 'SVGDefsElement', 'SVGDescElement', 'SVGEllipseElement', 'SVGForeignObjectElement', 'SVGGElement', 'SVGGeometryElement', 'SVGGradientElement', 'SVGGraphicsElement', 'SVGHatchElement', 'SVGHatchpathElement', 'SVGImageElement', 'SVGLineElement', 'SVGLinearGradientElement', 'SVGMarkerElement', 'SVGMeshElement', 'SVGMeshGradientElement', 'SVGMeshpatchElement', 'SVGMeshrowElement', 'SVGMetadataElement', 'SVGPathElement', 'SVGPatternElement', 'SVGPolygonElement', 'SVGPolylineElement', 'SVGRadialGradientElement', 'SVGRectElement', 'SVGSVGElement', 'SVGScriptElement', 'SVGSolidcolorElement', 'SVGStopElement', 'SVGStyleElement', 'SVGSwitchElement', 'SVGSymbolElement', 'SVGTSpanElement', 'SVGTextContentElement', 'SVGTextElement', 'SVGTextPathElement', 'SVGTextPositioningElement', 'SVGTitleElement', 'SVGUnknownElement', 'SVGUseElement', 'SVGViewElement']
 
-    // Before the element exists, fields pointing to other elements can't be used.
-    htmlInterfaces.forEach(i => unmodifiableReadonlyTypes.push(i))
+const allInterfaces = htmlInterfaces.concat(svgInterfaces)
+
+download('https://raw.githubusercontent.com/Microsoft/TypeScript/master/lib/lib.dom.d.ts', source => {
+    addAncestors(source, allInterfaces)
+
+    // Before the element exists (i.e. while it is being created, which is the
+    // case for which we want to define new interfaces), fields pointing to
+    // other elements can't be used.
+    allInterfaces.forEach(i => unmodifiableReadonlyTypes.push(i))
 
     addAncestors(source, modifiableReadonlyTypes)
 
     const out = source
         .split('\n')
-        .filter(takeInterfaces(htmlInterfaces.concat(modifiableReadonlyTypes)))
+        .filter(takeInterfaces(allInterfaces.concat(modifiableReadonlyTypes)))
         .map(ensureOneDeclarationPerLine)
         .filter(skipDeprecatedFields())
         .filter(skipFunctions)
@@ -192,7 +212,7 @@ function skipReadonlyFields(line) {
     } else {
         const knownReadonlyTypesRegExp = new RegExp(`\\breadonly\\s[a-zA-Z0-9_]+: (${
             primitiveTypes
-                .concat(htmlInterfaces)
+                .concat(allInterfaces)
                 .concat(unmodifiableReadonlyTypes)
                 .join('|')
         })(<[a-zA-Z0-9_\\s|&]+>)?( \\| null)?;`)
