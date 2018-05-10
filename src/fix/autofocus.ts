@@ -1,9 +1,11 @@
 /**
- * When creating components asynchronously (e.g. if using RequireJS to load them), the `autofocus` property will not
- * work, as the browser will look for elements with this attribute on page load, and the page would have already loaded
- * by the time the component gets inserted into the DOM. If you still wish to use the `autofocus` property as opposed
- * to set the focus programmatically by yourself on the appropriate element, you can call this function after your
- * components have been mounted in the DOM.
+ * When creating components asynchronously (e.g. if using RequireJS to load
+ * them), the `autofocus` property will not work, as the browser will look for
+ * elements with this attribute on page load, and the page would have already
+ * loaded by the time the component gets inserted into the DOM. If you still
+ * wish to use the `autofocus` property as opposed to set the focus
+ * programmatically by yourself on the appropriate element, you can call this
+ * function after your components have been mounted in the DOM.
  */
 export function autofocus(): void {
     if (document.readyState === 'loading') {

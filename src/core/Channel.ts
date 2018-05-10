@@ -4,7 +4,8 @@
 export type Listener<TMessage> = (message: TMessage) => void
 
 /**
- * Type-safe event mini-bus, or publisher/subscriber system. Useful for communicating distant components.
+ * Type-safe event mini-bus, or publisher/subscriber system. Useful for
+ * communicating distant components.
  */
 export class Channel<TMessage> {
 
@@ -18,9 +19,10 @@ export class Channel<TMessage> {
     }
 
     /**
-     * Subscribe a listener to the channel. A function is returned which can be called to unsubscribe that same
-     * listener. An optional second argument may be passed to specify the maximum number of times the listener will be
-     * notified before automatically unsubscribing it.
+     * Subscribe a listener to the channel. A function is returned which can be
+     * called to unsubscribe that same listener. An optional second argument
+     * may be passed to specify the maximum number of times the listener will
+     * be notified before automatically unsubscribing it.
      */
     listen(listener: Listener<TMessage>, times?: number): () => void {
         const timesIsDefined = times !== undefined
@@ -44,7 +46,8 @@ export class Channel<TMessage> {
     }
 
     /**
-     * Unsubscribe a listener from the channel. If none is provided, unsubscribe all listeners.
+     * Unsubscribe a listener from the channel. If none is provided,
+     * unsubscribe all listeners.
      */
     clear(listener?: Listener<TMessage>): void {
         if (listener === undefined) {
