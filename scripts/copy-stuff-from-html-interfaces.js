@@ -3,9 +3,11 @@
 const firstUp = str => str.charAt(0).toUpperCase() + str.slice(1)
 
 const elementsWithReservedNames = ['var']
-const voidElements = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr']
 
 const fixReservedTag = tag => elementsWithReservedNames.indexOf(tag) > -1 ? tag + '_' : tag
+
+/// Script-generated.
+const voidElements = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
 
 const htmlInterfaces = Array
     .from(
@@ -39,23 +41,8 @@ copy(
 `/// Script-generated.
 
 /**
- * Nice-to-remember aliases for all HTML element interfaces.
- */
-export namespace h {
-${
-    htmlInterfaces
-        .map(([tag, iface]) => `\texport type ${firstUp(tag)} = ${iface}`)
-        .join('\n')
-}
-}`)
-
-
-copy(
-`/// Script-generated.
-
-/**
  * Map from HTML tag names to their corresponding types.
- **/
+ */
 export interface HtmlTypesMap {
 ${
     htmlInterfaces
@@ -72,7 +59,7 @@ import {BuiltTimeDom} from '../BuiltTimeDom'
 
 /**
  * Map from HTML tag names to their corresponding built-time types.
- **/
+ */
 export interface BuiltTimeHtmlTypesMap {
 ${
     htmlInterfaces
@@ -99,6 +86,21 @@ ${
         .map(([tag, iface]) => voidElements.indexOf(tag) > -1
             ? `\texport const ${fixReservedTag(tag)} = (props?: BuiltTimeDom.${iface}): HtmlTypesMap['${tag}'] => x('${tag}', props)`
             : `\texport const ${fixReservedTag(tag)} = (props?: BuiltTimeDom.${iface}, children?: HtmlChildrenMap['${tag}']): HtmlTypesMap['${tag}'] => x('${tag}', props, children)`)
+        .join('\n')
+}
+}`)
+
+
+copy(
+`/// Script-generated.
+
+/**
+ * Nice-to-remember aliases for all HTML element interfaces.
+ */
+export namespace h {
+${
+    htmlInterfaces
+        .map(([tag, iface]) => `\texport type ${firstUp(tag)} = ${iface}`)
         .join('\n')
 }
 }`)

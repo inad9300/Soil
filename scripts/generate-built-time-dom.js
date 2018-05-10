@@ -6,10 +6,13 @@ const primitiveTypes = ['boolean', 'number', 'string', 'null', 'void', 'undefine
 // Types for fields that, despite being read-only, make sense to use when
 // creating HTML elements, since their nested properties are assignable.
 const modifiableReadonlyTypes = [
+    'any', // NOTE Disable once in a while to analyze the output.
     'CSSStyleDeclaration',
     'DOMStringMap',
     'DOMTokenList',
+    'SVGAnimatedBoolean',
     'SVGAnimatedEnumeration',
+    'SVGAnimatedInteger',
     'SVGAnimatedNumber',
     'SVGAnimatedString',
     'SVGPoint'
@@ -64,9 +67,11 @@ const htmlInterfaces = ['HTMLAnchorElement', 'HTMLAreaElement', 'HTMLAudioElemen
 
 /// Script-generated.
 // Array containing the names of all interfaces of SVG elements (does not include ancestors).
-const svgInterfaces = ['SVGAElement', 'SVGCircleElement', 'SVGCursorElement', 'SVGDefsElement', 'SVGDescElement', 'SVGEllipseElement', 'SVGForeignObjectElement', 'SVGGElement', 'SVGGeometryElement', 'SVGGradientElement', 'SVGGraphicsElement', 'SVGHatchElement', 'SVGHatchpathElement', 'SVGImageElement', 'SVGLineElement', 'SVGLinearGradientElement', 'SVGMarkerElement', 'SVGMeshElement', 'SVGMeshGradientElement', 'SVGMeshpatchElement', 'SVGMeshrowElement', 'SVGMetadataElement', 'SVGPathElement', 'SVGPatternElement', 'SVGPolygonElement', 'SVGPolylineElement', 'SVGRadialGradientElement', 'SVGRectElement', 'SVGSVGElement', 'SVGScriptElement', 'SVGSolidcolorElement', 'SVGStopElement', 'SVGStyleElement', 'SVGSwitchElement', 'SVGSymbolElement', 'SVGTSpanElement', 'SVGTextContentElement', 'SVGTextElement', 'SVGTextPathElement', 'SVGTextPositioningElement', 'SVGTitleElement', 'SVGUnknownElement', 'SVGUseElement', 'SVGViewElement']
+const svgInterfaces = ['SVGAElement', 'SVGCircleElement', 'SVGClipPathElement', 'SVGComponentTransferFunctionElement', 'SVGDefsElement', 'SVGDescElement', 'SVGEllipseElement', 'SVGFEBlendElement', 'SVGFEColorMatrixElement', 'SVGFEComponentTransferElement', 'SVGFECompositeElement', 'SVGFEConvolveMatrixElement', 'SVGFEDiffuseLightingElement', 'SVGFEDisplacementMapElement', 'SVGFEDistantLightElement', 'SVGFEFloodElement', 'SVGFEFuncAElement', 'SVGFEFuncBElement', 'SVGFEFuncGElement', 'SVGFEFuncRElement', 'SVGFEGaussianBlurElement', 'SVGFEImageElement', 'SVGFEMergeElement', 'SVGFEMergeNodeElement', 'SVGFEMorphologyElement', 'SVGFEOffsetElement', 'SVGFEPointLightElement', 'SVGFESpecularLightingElement', 'SVGFESpotLightElement', 'SVGFETileElement', 'SVGFETurbulenceElement', 'SVGFilterElement', 'SVGForeignObjectElement', 'SVGGElement', 'SVGGradientElement', 'SVGImageElement', 'SVGLineElement', 'SVGLinearGradientElement', 'SVGMarkerElement', 'SVGMaskElement', 'SVGMetadataElement', 'SVGPathElement', 'SVGPatternElement', 'SVGPolygonElement', 'SVGPolylineElement', 'SVGRadialGradientElement', 'SVGRectElement', 'SVGScriptElement', 'SVGStopElement', 'SVGStyleElement', 'SVGSVGElement', 'SVGSwitchElement', 'SVGSymbolElement', 'SVGTextElement', 'SVGTextContentElement', 'SVGTextPathElement', 'SVGTextPositioningElement', 'SVGTitleElement', 'SVGTSpanElement', 'SVGUseElement', 'SVGViewElement']
 
-const allInterfaces = htmlInterfaces.concat(svgInterfaces)
+const allInterfaces = htmlInterfaces
+    .concat(svgInterfaces)
+    .concat(modifiableReadonlyTypes)
 
 download('https://raw.githubusercontent.com/Microsoft/TypeScript/master/lib/lib.dom.d.ts', source => {
     addAncestors(source, allInterfaces)
@@ -80,19 +85,23 @@ download('https://raw.githubusercontent.com/Microsoft/TypeScript/master/lib/lib.
 
     const out = source
         .split('\n')
-        .filter(takeInterfaces(allInterfaces.concat(modifiableReadonlyTypes)))
+        .filter(takeInterfaces(allInterfaces))
         .map(ensureOneDeclarationPerLine)
         .filter(skipDeprecatedFields())
         .filter(skipFunctions)
         .filter(skipReadonlyFields)
         .join('\n')
 
+    const missedInterfaces = allInterfaces
+        .filter(iface => !new RegExp(`\\binterface ${iface}[\\s<]`).test(out))
+
+    console.warn('Interfaces missing in TypeScript:', missedInterfaces)
     console.warn('Unknown types:', unknownReadonlyTypes)
 
     console.info('Done.')
     fs.writeFileSync('../src/dom/BuiltTimeDom.ts', `/// Script-generated.
 
-import {AriaAttributes} from './AriaAttributes'
+import {AriaAttributes, AriaRole} from './AriaAttributes'
 
 /**
  * Subset of the interfaces defined for HTML elements which makes sense to use
@@ -212,7 +221,6 @@ function skipReadonlyFields(line) {
     } else {
         const knownReadonlyTypesRegExp = new RegExp(`\\breadonly\\s[a-zA-Z0-9_]+: (${
             primitiveTypes
-                .concat(allInterfaces)
                 .concat(unmodifiableReadonlyTypes)
                 .join('|')
         })(<[a-zA-Z0-9_\\s|&]+>)?( \\| null)?;`)
