@@ -2,7 +2,7 @@
 
 /**
  * Map from HTML tag names to their corresponding types.
- **/
+ */
 export interface HtmlTypesMap {
 	a: HTMLAnchorElement
 	abbr: HTMLElement

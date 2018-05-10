@@ -1,312 +1,171 @@
-/**
- * Set of helper functions to facilitate the work with SVG elements, specially their creation.
- *
- * NOTE The following functions silently depend on the `document` variable being globally available. Therefore, unit
- * tests of components that use them must be run inside a browser, or must expose `document` globally, e.g. through
- * PhantomJS or jsdom.
- *
- * The SVG elements considered below are based on the TypeScript (2.6.2) types for the `createElementNS()` function.
- * Some information was completed based on MDN's [SVG element reference](https://developer.mozilla.org/en-US/docs/Web/SVG/Element).
- */
+import {addChildren} from '../addChildren'
+import {assignProperties} from '../assignProperties'
+import {BuiltTimeDom} from '../BuiltTimeDom'
+import {BuiltTimeSvgTypesMap} from './BuiltTimeSvgTypesMap'
+import {DeepPartial} from '../../extra/DeepPartial'
+import {SvgTypesMap} from './SvgTypesMap'
 
-import {assignProperties} from './assignProperties'
-import {DeepPartial} from '../extra/DeepPartial'
+export namespace s {
 
-/**
- * List of all SVG tag names.
- */
-export type SVGTag
-    = 'a'
-    | 'circle'
-    | 'clipPath'
-    | 'componentTransferFunction'
-    | 'defs'
-    | 'desc'
-    | 'ellipse'
-    | 'feBlend'
-    | 'feColorMatrix'
-    | 'feComponentTransfer'
-    | 'feComposite'
-    | 'feConvolveMatrix'
-    | 'feDiffuseLighting'
-    | 'feDisplacementMap'
-    | 'feDistantLight'
-    | 'feFlood'
-    | 'feFuncA'
-    | 'feFuncB'
-    | 'feFuncG'
-    | 'feFuncR'
-    | 'feGaussianBlur'
-    | 'feImage'
-    | 'feMerge'
-    | 'feMergeNode'
-    | 'feMorphology'
-    | 'feOffset'
-    | 'fePointLight'
-    | 'feSpecularLighting'
-    | 'feSpotLight'
-    | 'feTile'
-    | 'feTurbulence'
-    | 'filter'
-    | 'foreignObject'
-    | 'g'
-    | 'gradient'
-    | 'image'
-    | 'line'
-    | 'linearGradient'
-    | 'marker'
-    | 'mask'
-    | 'metadata'
-    | 'path'
-    | 'pattern'
-    | 'polygon'
-    | 'polyline'
-    | 'radialGradient'
-    | 'rect'
-    | 'script'
-    | 'stop'
-    | 'style'
-    | 'svg'
-    | 'switch'
-    | 'symbol'
-    | 'text'
-    | 'textContent'
-    | 'textPath'
-    | 'textPositioning'
-    | 'title'
-    | 'tspan'
-    | 'use'
-    | 'view'
-
-/**
- * Aliases for SVG element types, whose native counterparts are not always easy to guess or find.
- */
-export type A = SVGAElement
-export type Circle = SVGCircleElement
-export type ClipPath = SVGClipPathElement
-export type ComponentTransferFunction = SVGComponentTransferFunctionElement
-export type Defs = SVGDefsElement
-export type Desc = SVGDescElement
-export type Ellipse = SVGEllipseElement
-export type FeBlend = SVGFEBlendElement
-export type FeColorMatrix = SVGFEColorMatrixElement
-export type FeComponentTransfer = SVGFEComponentTransferElement
-export type FeComposite = SVGFECompositeElement
-export type FeConvolveMatrix = SVGFEConvolveMatrixElement
-export type FeDiffuseLighting = SVGFEDiffuseLightingElement
-export type FeDisplacementMap = SVGFEDisplacementMapElement
-export type FeDistantLight = SVGFEDistantLightElement
-export type FeFlood = SVGFEFloodElement
-export type FeFuncA = SVGFEFuncAElement
-export type FeFuncB = SVGFEFuncBElement
-export type FeFuncG = SVGFEFuncGElement
-export type FeFuncR = SVGFEFuncRElement
-export type FeGaussianBlur = SVGFEGaussianBlurElement
-export type FeImage = SVGFEImageElement
-export type FeMerge = SVGFEMergeElement
-export type FeMergeNode = SVGFEMergeNodeElement
-export type FeMorphology = SVGFEMorphologyElement
-export type FeOffset = SVGFEOffsetElement
-export type FePointLight = SVGFEPointLightElement
-export type FeSpecularLighting = SVGFESpecularLightingElement
-export type FeSpotLight = SVGFESpotLightElement
-export type FeTile = SVGFETileElement
-export type FeTurbulence = SVGFETurbulenceElement
-export type Filter = SVGFilterElement
-export type ForeignObject = SVGForeignObjectElement
-export type G = SVGGElement
-export type Gradient = SVGGradientElement
-export type Image = SVGImageElement
-export type Line = SVGLineElement
-export type LinearGradient = SVGLinearGradientElement
-export type Marker = SVGMarkerElement
-export type Mask = SVGMaskElement
-export type Metadata = SVGMetadataElement
-export type Path = SVGPathElement
-export type Pattern = SVGPatternElement
-export type Polygon = SVGPolygonElement
-export type Polyline = SVGPolylineElement
-export type RadialGradient = SVGRadialGradientElement
-export type Rect = SVGRectElement
-export type Script = SVGScriptElement
-export type Stop = SVGStopElement
-export type Style = SVGStyleElement
-export type Svg = SVGSVGElement
-export type Switch = SVGSwitchElement
-export type Symbol = SVGSymbolElement
-export type Text = SVGTextElement
-export type TextContent = SVGTextContentElement
-export type TextPath = SVGTextPathElement
-export type TextPositioning = SVGTextPositioningElement
-export type Title = SVGTitleElement
-export type Tspan = SVGTSpanElement
-export type Use = SVGUseElement
-export type View = SVGViewElement
-
-/**
- * Map from SVG tag names to their corresponding types.
- */
-export interface SVGTagMap {
-    a: A
-    circle: Circle
-    clipPath: ClipPath
-    componentTransferFunction: ComponentTransferFunction
-    defs: Defs
-    desc: Desc
-    ellipse: Ellipse
-    feBlend: FeBlend
-    feColorMatrix: FeColorMatrix
-    feComponentTransfer: FeComponentTransfer
-    feComposite: FeComposite
-    feConvolveMatrix: FeConvolveMatrix
-    feDiffuseLighting: FeDiffuseLighting
-    feDisplacementMap: FeDisplacementMap
-    feDistantLight: FeDistantLight
-    feFlood: FeFlood
-    feFuncA: FeFuncA
-    feFuncB: FeFuncB
-    feFuncG: FeFuncG
-    feFuncR: FeFuncR
-    feGaussianBlur: FeGaussianBlur
-    feImage: FeImage
-    feMerge: FeMerge
-    feMergeNode: FeMergeNode
-    feMorphology: FeMorphology
-    feOffset: FeOffset
-    fePointLight: FePointLight
-    feSpecularLighting: FeSpecularLighting
-    feSpotLight: FeSpotLight
-    feTile: FeTile
-    feTurbulence: FeTurbulence
-    filter: Filter
-    foreignObject: ForeignObject
-    g: G
-    gradient: Gradient
-    image: Image
-    line: Line
-    linearGradient: LinearGradient
-    marker: Marker
-    mask: Mask
-    metadata: Metadata
-    path: Path
-    pattern: Pattern
-    polygon: Polygon
-    polyline: Polyline
-    radialGradient: RadialGradient
-    rect: Rect
-    script: Script
-    stop: Stop
-    style: Style
-    svg: Svg
-    switch: Switch
-    symbol: Symbol
-    text: Text
-    textContent: TextContent
-    textPath: TextPath
-    textPositioning: TextPositioning
-    title: Title
-    tspan: Tspan
-    use: Use
-    view: View
-}
-
-/**
- * Allowed types for the children of SVG elements.
- */
-export type SVGChildren = string | (SVGElement | string)[]
-
-/**
- * Allowed types for the properties of SVG elements.
- */
-export type SVGProperties<E extends SVGElement = SVGElement> = DeepPartial<E> & {[prop: string]: any}
-
-/**
- * Helper function to concisely create instances of any SVG element.
- */
-export function s<K extends keyof SVGTagMap>(name: K, props?: SVGProperties<SVGTagMap[K]>, children?: SVGChildren): SVGTagMap[K] {
-    const elem: SVGTagMap[K] = document.createElementNS('http://www.w3.org/2000/svg', name)
-
-    if (props !== undefined) {
-        assignProperties<SVGTagMap[K], SVGProperties<SVGTagMap[K]>>(elem, props)
-    }
-
-    if (children !== undefined) {
-        if (typeof children === 'string') {
-            elem.appendChild(document.createTextNode(children))
-        } else {
-            children.forEach(child => elem.appendChild(
-                typeof child === 'string'
-                    ? document.createTextNode(child)
-                    : child
-            ))
+    /**
+     * Helper function to concisely create instances of any SVG element,
+     * specially those missing from Soil (e.g. deprecated, experimental, etc.),
+     * since for the other native elements there are specialized versions of
+     * this function. The name was chosen for consistency with `h.x()`.
+     */
+    export function x<T extends keyof SvgTypesMap>(tag: T, props?: DeepPartial<BuiltTimeSvgTypesMap[T]>, children?: (Element | string)[]): SvgTypesMap[T]
+    export function x(tag: string, props?: DeepPartial<BuiltTimeDom.SVGElement>, children?: (Element | string)[]): SVGElement
+    export function x(tag: string, props?: DeepPartial<BuiltTimeDom.SVGElement>, children?: (Element | string)[]) {
+        const elem = document.createElementNS('http://www.w3.org/2000/svg', tag)
+        if (props !== undefined) {
+            assignProperties(elem, props)
         }
+        if (children !== undefined) {
+            addChildren(elem, children)
+        }
+        return elem
     }
-
-    return elem
 }
 
+/// Script-generated.
+
 /**
- * Helpers to allow creating any concrete SVG element in a more concise manner.
+ * Helpers to facilitate the concise creation of any SVG element.
+ *
+ * NOTE The following functions silently depend on the `document` variable
+ * being globally available. Therefore, unit tests of components that use them
+ * must be run inside a browser, or must expose `document` globally, e.g.
+ * through PhantomJS or jsdom.
  */
-export const a = (props?: DeepPartial<A>, children?: SVGChildren): A => s('a', props, children)
-export const circle = (props?: DeepPartial<Circle>, children?: SVGChildren): Circle => s('circle', props, children)
-export const clipPath = (props?: DeepPartial<ClipPath>, children?: SVGChildren): ClipPath => s('clipPath', props, children)
-export const componentTransferFunction = (props?: DeepPartial<ComponentTransferFunction>, children?: SVGChildren): ComponentTransferFunction => s('componentTransferFunction', props, children)
-export const defs = (props?: DeepPartial<Defs>, children?: SVGChildren): Defs => s('defs', props, children)
-export const desc = (props?: DeepPartial<Desc>, children?: SVGChildren): Desc => s('desc', props, children)
-export const ellipse = (props?: DeepPartial<Ellipse>, children?: SVGChildren): Ellipse => s('ellipse', props, children)
-export const feBlend = (props?: DeepPartial<FeBlend>, children?: SVGChildren): FeBlend => s('feBlend', props, children)
-export const feColorMatrix = (props?: DeepPartial<FeColorMatrix>, children?: SVGChildren): FeColorMatrix => s('feColorMatrix', props, children)
-export const feComponentTransfer = (props?: DeepPartial<FeComponentTransfer>, children?: SVGChildren): FeComponentTransfer => s('feComponentTransfer', props, children)
-export const feComposite = (props?: DeepPartial<FeComposite>, children?: SVGChildren): FeComposite => s('feComposite', props, children)
-export const feConvolveMatrix = (props?: DeepPartial<FeConvolveMatrix>, children?: SVGChildren): FeConvolveMatrix => s('feConvolveMatrix', props, children)
-export const feDiffuseLighting = (props?: DeepPartial<FeDiffuseLighting>, children?: SVGChildren): FeDiffuseLighting => s('feDiffuseLighting', props, children)
-export const feDisplacementMap = (props?: DeepPartial<FeDisplacementMap>, children?: SVGChildren): FeDisplacementMap => s('feDisplacementMap', props, children)
-export const feDistantLight = (props?: DeepPartial<FeDistantLight>, children?: SVGChildren): FeDistantLight => s('feDistantLight', props, children)
-export const feFlood = (props?: DeepPartial<FeFlood>, children?: SVGChildren): FeFlood => s('feFlood', props, children)
-export const feFuncA = (props?: DeepPartial<FeFuncA>, children?: SVGChildren): FeFuncA => s('feFuncA', props, children)
-export const feFuncB = (props?: DeepPartial<FeFuncB>, children?: SVGChildren): FeFuncB => s('feFuncB', props, children)
-export const feFuncG = (props?: DeepPartial<FeFuncG>, children?: SVGChildren): FeFuncG => s('feFuncG', props, children)
-export const feFuncR = (props?: DeepPartial<FeFuncR>, children?: SVGChildren): FeFuncR => s('feFuncR', props, children)
-export const feGaussianBlur = (props?: DeepPartial<FeGaussianBlur>, children?: SVGChildren): FeGaussianBlur => s('feGaussianBlur', props, children)
-export const feImage = (props?: DeepPartial<FeImage>, children?: SVGChildren): FeImage => s('feImage', props, children)
-export const feMerge = (props?: DeepPartial<FeMerge>, children?: SVGChildren): FeMerge => s('feMerge', props, children)
-export const feMergeNode = (props?: DeepPartial<FeMergeNode>, children?: SVGChildren): FeMergeNode => s('feMergeNode', props, children)
-export const feMorphology = (props?: DeepPartial<FeMorphology>, children?: SVGChildren): FeMorphology => s('feMorphology', props, children)
-export const feOffset = (props?: DeepPartial<FeOffset>, children?: SVGChildren): FeOffset => s('feOffset', props, children)
-export const fePointLight = (props?: DeepPartial<FePointLight>, children?: SVGChildren): FePointLight => s('fePointLight', props, children)
-export const feSpecularLighting = (props?: DeepPartial<FeSpecularLighting>, children?: SVGChildren): FeSpecularLighting => s('feSpecularLighting', props, children)
-export const feSpotLight = (props?: DeepPartial<FeSpotLight>, children?: SVGChildren): FeSpotLight => s('feSpotLight', props, children)
-export const feTile = (props?: DeepPartial<FeTile>, children?: SVGChildren): FeTile => s('feTile', props, children)
-export const feTurbulence = (props?: DeepPartial<FeTurbulence>, children?: SVGChildren): FeTurbulence => s('feTurbulence', props, children)
-export const filter = (props?: DeepPartial<Filter>, children?: SVGChildren): Filter => s('filter', props, children)
-export const foreignObject = (props?: DeepPartial<ForeignObject>, children?: SVGChildren): ForeignObject => s('foreignObject', props, children)
-export const g = (props?: DeepPartial<G>, children?: SVGChildren): G => s('g', props, children)
-export const gradient = (props?: DeepPartial<Gradient>, children?: SVGChildren): Gradient => s('gradient', props, children)
-export const image = (props?: DeepPartial<Image>, children?: SVGChildren): Image => s('image', props, children)
-export const line = (props?: DeepPartial<Line>, children?: SVGChildren): Line => s('line', props, children)
-export const linearGradient = (props?: DeepPartial<LinearGradient>, children?: SVGChildren): LinearGradient => s('linearGradient', props, children)
-export const marker = (props?: DeepPartial<Marker>, children?: SVGChildren): Marker => s('marker', props, children)
-export const mask = (props?: DeepPartial<Mask>, children?: SVGChildren): Mask => s('mask', props, children)
-export const metadata = (props?: DeepPartial<Metadata>, children?: SVGChildren): Metadata => s('metadata', props, children)
-export const path = (props?: DeepPartial<Path>, children?: SVGChildren): Path => s('path', props, children)
-export const pattern = (props?: DeepPartial<Pattern>, children?: SVGChildren): Pattern => s('pattern', props, children)
-export const polygon = (props?: DeepPartial<Polygon>, children?: SVGChildren): Polygon => s('polygon', props, children)
-export const polyline = (props?: DeepPartial<Polyline>, children?: SVGChildren): Polyline => s('polyline', props, children)
-export const radialGradient = (props?: DeepPartial<RadialGradient>, children?: SVGChildren): RadialGradient => s('radialGradient', props, children)
-export const rect = (props?: DeepPartial<Rect>, children?: SVGChildren): Rect => s('rect', props, children)
-export const script = (props?: DeepPartial<Script>, child?: string): Script => s('script', props, child)
-export const stop = (props?: DeepPartial<Stop>, children?: SVGChildren): Stop => s('stop', props, children)
-export const style = (props?: DeepPartial<Style>, child?: string): Style => s('style', props, child)
-export const svg = (props?: DeepPartial<Svg>, children?: SVGChildren): Svg => s('svg', props, children)
-// Reserved word suffixed with "_".
-export const switch_ = (props?: DeepPartial<Switch>, children?: SVGChildren): Switch => s('switch', props, children)
-export const symbol = (props?: DeepPartial<Symbol>, children?: SVGChildren): Symbol => s('symbol', props, children)
-export const text = (props?: DeepPartial<Text>, children?: SVGChildren): Text => s('text', props, children)
-export const textContent = (props?: DeepPartial<TextContent>, children?: SVGChildren): TextContent => s('textContent', props, children)
-export const textPath = (props?: DeepPartial<TextPath>, children?: SVGChildren): TextPath => s('textPath', props, children)
-export const textPositioning = (props?: DeepPartial<TextPositioning>, children?: SVGChildren): TextPositioning => s('textPositioning', props, children)
-export const title = (props?: DeepPartial<Title>, children?: SVGChildren): Title => s('title', props, children)
-export const tspan = (props?: DeepPartial<Tspan>, children?: SVGChildren): Tspan => s('tspan', props, children)
-export const use = (props?: DeepPartial<Use>, children?: SVGChildren): Use => s('use', props, children)
-export const view = (props?: DeepPartial<View>, children?: SVGChildren): View => s('view', props, children)
+export namespace s {
+	export const a = (props?: BuiltTimeDom.SVGAElement, children?: (SVGElement | string)[]): SvgTypesMap['a'] => x('a', props, children)
+	export const circle = (props?: BuiltTimeDom.SVGCircleElement, children?: (SVGElement | string)[]): SvgTypesMap['circle'] => x('circle', props, children)
+	export const clipPath = (props?: BuiltTimeDom.SVGClipPathElement, children?: (SVGElement | string)[]): SvgTypesMap['clipPath'] => x('clipPath', props, children)
+	export const componentTransferFunction = (props?: BuiltTimeDom.SVGComponentTransferFunctionElement, children?: (SVGElement | string)[]): SvgTypesMap['componentTransferFunction'] => x('componentTransferFunction', props, children)
+	export const defs = (props?: BuiltTimeDom.SVGDefsElement, children?: (SVGElement | string)[]): SvgTypesMap['defs'] => x('defs', props, children)
+	export const desc = (props?: BuiltTimeDom.SVGDescElement, children?: (SVGElement | string)[]): SvgTypesMap['desc'] => x('desc', props, children)
+	export const ellipse = (props?: BuiltTimeDom.SVGEllipseElement, children?: (SVGElement | string)[]): SvgTypesMap['ellipse'] => x('ellipse', props, children)
+	export const feBlend = (props?: BuiltTimeDom.SVGFEBlendElement, children?: (SVGElement | string)[]): SvgTypesMap['feBlend'] => x('feBlend', props, children)
+	export const feColorMatrix = (props?: BuiltTimeDom.SVGFEColorMatrixElement, children?: (SVGElement | string)[]): SvgTypesMap['feColorMatrix'] => x('feColorMatrix', props, children)
+	export const feComponentTransfer = (props?: BuiltTimeDom.SVGFEComponentTransferElement, children?: (SVGElement | string)[]): SvgTypesMap['feComponentTransfer'] => x('feComponentTransfer', props, children)
+	export const feComposite = (props?: BuiltTimeDom.SVGFECompositeElement, children?: (SVGElement | string)[]): SvgTypesMap['feComposite'] => x('feComposite', props, children)
+	export const feConvolveMatrix = (props?: BuiltTimeDom.SVGFEConvolveMatrixElement, children?: (SVGElement | string)[]): SvgTypesMap['feConvolveMatrix'] => x('feConvolveMatrix', props, children)
+	export const feDiffuseLighting = (props?: BuiltTimeDom.SVGFEDiffuseLightingElement, children?: (SVGElement | string)[]): SvgTypesMap['feDiffuseLighting'] => x('feDiffuseLighting', props, children)
+	export const feDisplacementMap = (props?: BuiltTimeDom.SVGFEDisplacementMapElement, children?: (SVGElement | string)[]): SvgTypesMap['feDisplacementMap'] => x('feDisplacementMap', props, children)
+	export const feDistantLight = (props?: BuiltTimeDom.SVGFEDistantLightElement, children?: (SVGElement | string)[]): SvgTypesMap['feDistantLight'] => x('feDistantLight', props, children)
+	export const feFlood = (props?: BuiltTimeDom.SVGFEFloodElement, children?: (SVGElement | string)[]): SvgTypesMap['feFlood'] => x('feFlood', props, children)
+	export const feFuncA = (props?: BuiltTimeDom.SVGFEFuncAElement, children?: (SVGElement | string)[]): SvgTypesMap['feFuncA'] => x('feFuncA', props, children)
+	export const feFuncB = (props?: BuiltTimeDom.SVGFEFuncBElement, children?: (SVGElement | string)[]): SvgTypesMap['feFuncB'] => x('feFuncB', props, children)
+	export const feFuncG = (props?: BuiltTimeDom.SVGFEFuncGElement, children?: (SVGElement | string)[]): SvgTypesMap['feFuncG'] => x('feFuncG', props, children)
+	export const feFuncR = (props?: BuiltTimeDom.SVGFEFuncRElement, children?: (SVGElement | string)[]): SvgTypesMap['feFuncR'] => x('feFuncR', props, children)
+	export const feGaussianBlur = (props?: BuiltTimeDom.SVGFEGaussianBlurElement, children?: (SVGElement | string)[]): SvgTypesMap['feGaussianBlur'] => x('feGaussianBlur', props, children)
+	export const feImage = (props?: BuiltTimeDom.SVGFEImageElement, children?: (SVGElement | string)[]): SvgTypesMap['feImage'] => x('feImage', props, children)
+	export const feMerge = (props?: BuiltTimeDom.SVGFEMergeElement, children?: (SVGElement | string)[]): SvgTypesMap['feMerge'] => x('feMerge', props, children)
+	export const feMergeNode = (props?: BuiltTimeDom.SVGFEMergeNodeElement, children?: (SVGElement | string)[]): SvgTypesMap['feMergeNode'] => x('feMergeNode', props, children)
+	export const feMorphology = (props?: BuiltTimeDom.SVGFEMorphologyElement, children?: (SVGElement | string)[]): SvgTypesMap['feMorphology'] => x('feMorphology', props, children)
+	export const feOffset = (props?: BuiltTimeDom.SVGFEOffsetElement, children?: (SVGElement | string)[]): SvgTypesMap['feOffset'] => x('feOffset', props, children)
+	export const fePointLight = (props?: BuiltTimeDom.SVGFEPointLightElement, children?: (SVGElement | string)[]): SvgTypesMap['fePointLight'] => x('fePointLight', props, children)
+	export const feSpecularLighting = (props?: BuiltTimeDom.SVGFESpecularLightingElement, children?: (SVGElement | string)[]): SvgTypesMap['feSpecularLighting'] => x('feSpecularLighting', props, children)
+	export const feSpotLight = (props?: BuiltTimeDom.SVGFESpotLightElement, children?: (SVGElement | string)[]): SvgTypesMap['feSpotLight'] => x('feSpotLight', props, children)
+	export const feTile = (props?: BuiltTimeDom.SVGFETileElement, children?: (SVGElement | string)[]): SvgTypesMap['feTile'] => x('feTile', props, children)
+	export const feTurbulence = (props?: BuiltTimeDom.SVGFETurbulenceElement, children?: (SVGElement | string)[]): SvgTypesMap['feTurbulence'] => x('feTurbulence', props, children)
+	export const filter = (props?: BuiltTimeDom.SVGFilterElement, children?: (SVGElement | string)[]): SvgTypesMap['filter'] => x('filter', props, children)
+	export const foreignObject = (props?: BuiltTimeDom.SVGForeignObjectElement, children?: (Element | string)[]): SvgTypesMap['foreignObject'] => x('foreignObject', props, children)
+	export const g = (props?: BuiltTimeDom.SVGGElement, children?: (SVGElement | string)[]): SvgTypesMap['g'] => x('g', props, children)
+	export const gradient = (props?: BuiltTimeDom.SVGGradientElement, children?: (SVGElement | string)[]): SvgTypesMap['gradient'] => x('gradient', props, children)
+	export const image = (props?: BuiltTimeDom.SVGImageElement, children?: (SVGElement | string)[]): SvgTypesMap['image'] => x('image', props, children)
+	export const line = (props?: BuiltTimeDom.SVGLineElement, children?: (SVGElement | string)[]): SvgTypesMap['line'] => x('line', props, children)
+	export const linearGradient = (props?: BuiltTimeDom.SVGLinearGradientElement, children?: (SVGElement | string)[]): SvgTypesMap['linearGradient'] => x('linearGradient', props, children)
+	export const marker = (props?: BuiltTimeDom.SVGMarkerElement, children?: (SVGElement | string)[]): SvgTypesMap['marker'] => x('marker', props, children)
+	export const mask = (props?: BuiltTimeDom.SVGMaskElement, children?: (SVGElement | string)[]): SvgTypesMap['mask'] => x('mask', props, children)
+	export const metadata = (props?: BuiltTimeDom.SVGMetadataElement, children?: (SVGElement | string)[]): SvgTypesMap['metadata'] => x('metadata', props, children)
+	export const path = (props?: BuiltTimeDom.SVGPathElement, children?: (SVGElement | string)[]): SvgTypesMap['path'] => x('path', props, children)
+	export const pattern = (props?: BuiltTimeDom.SVGPatternElement, children?: (SVGElement | string)[]): SvgTypesMap['pattern'] => x('pattern', props, children)
+	export const polygon = (props?: BuiltTimeDom.SVGPolygonElement, children?: (SVGElement | string)[]): SvgTypesMap['polygon'] => x('polygon', props, children)
+	export const polyline = (props?: BuiltTimeDom.SVGPolylineElement, children?: (SVGElement | string)[]): SvgTypesMap['polyline'] => x('polyline', props, children)
+	export const radialGradient = (props?: BuiltTimeDom.SVGRadialGradientElement, children?: (SVGElement | string)[]): SvgTypesMap['radialGradient'] => x('radialGradient', props, children)
+	export const rect = (props?: BuiltTimeDom.SVGRectElement, children?: (SVGElement | string)[]): SvgTypesMap['rect'] => x('rect', props, children)
+	export const script = (props?: BuiltTimeDom.SVGScriptElement, children?: (SVGElement | string)[]): SvgTypesMap['script'] => x('script', props, children)
+	export const stop = (props?: BuiltTimeDom.SVGStopElement, children?: (SVGElement | string)[]): SvgTypesMap['stop'] => x('stop', props, children)
+	export const style = (props?: BuiltTimeDom.SVGStyleElement, children?: (SVGElement | string)[]): SvgTypesMap['style'] => x('style', props, children)
+	export const svg = (props?: BuiltTimeDom.SVGSVGElement, children?: (SVGElement | string)[]): SvgTypesMap['svg'] => x('svg', props, children)
+	export const switch_ = (props?: BuiltTimeDom.SVGSwitchElement, children?: (SVGElement | string)[]): SvgTypesMap['switch'] => x('switch', props, children)
+	export const symbol = (props?: BuiltTimeDom.SVGSymbolElement, children?: (SVGElement | string)[]): SvgTypesMap['symbol'] => x('symbol', props, children)
+	export const text = (props?: BuiltTimeDom.SVGTextElement, children?: (SVGElement | string)[]): SvgTypesMap['text'] => x('text', props, children)
+	export const textContent = (props?: BuiltTimeDom.SVGTextContentElement, children?: (SVGElement | string)[]): SvgTypesMap['textContent'] => x('textContent', props, children)
+	export const textPath = (props?: BuiltTimeDom.SVGTextPathElement, children?: (SVGElement | string)[]): SvgTypesMap['textPath'] => x('textPath', props, children)
+	export const textPositioning = (props?: BuiltTimeDom.SVGTextPositioningElement, children?: (SVGElement | string)[]): SvgTypesMap['textPositioning'] => x('textPositioning', props, children)
+	export const title = (props?: BuiltTimeDom.SVGTitleElement, children?: (SVGElement | string)[]): SvgTypesMap['title'] => x('title', props, children)
+	export const tspan = (props?: BuiltTimeDom.SVGTSpanElement, children?: (SVGElement | string)[]): SvgTypesMap['tspan'] => x('tspan', props, children)
+	export const use = (props?: BuiltTimeDom.SVGUseElement, children?: (SVGElement | string)[]): SvgTypesMap['use'] => x('use', props, children)
+	export const view = (props?: BuiltTimeDom.SVGViewElement, children?: (SVGElement | string)[]): SvgTypesMap['view'] => x('view', props, children)
+}
+
+/// Script-generated.
+
+/**
+ * Nice-to-remember aliases for all SVG element interfaces.
+ */
+export namespace s {
+	export type A = SVGAElement
+	export type Circle = SVGCircleElement
+	export type ClipPath = SVGClipPathElement
+	export type ComponentTransferFunction = SVGComponentTransferFunctionElement
+	export type Defs = SVGDefsElement
+	export type Desc = SVGDescElement
+	export type Ellipse = SVGEllipseElement
+	export type FeBlend = SVGFEBlendElement
+	export type FeColorMatrix = SVGFEColorMatrixElement
+	export type FeComponentTransfer = SVGFEComponentTransferElement
+	export type FeComposite = SVGFECompositeElement
+	export type FeConvolveMatrix = SVGFEConvolveMatrixElement
+	export type FeDiffuseLighting = SVGFEDiffuseLightingElement
+	export type FeDisplacementMap = SVGFEDisplacementMapElement
+	export type FeDistantLight = SVGFEDistantLightElement
+	export type FeFlood = SVGFEFloodElement
+	export type FeFuncA = SVGFEFuncAElement
+	export type FeFuncB = SVGFEFuncBElement
+	export type FeFuncG = SVGFEFuncGElement
+	export type FeFuncR = SVGFEFuncRElement
+	export type FeGaussianBlur = SVGFEGaussianBlurElement
+	export type FeImage = SVGFEImageElement
+	export type FeMerge = SVGFEMergeElement
+	export type FeMergeNode = SVGFEMergeNodeElement
+	export type FeMorphology = SVGFEMorphologyElement
+	export type FeOffset = SVGFEOffsetElement
+	export type FePointLight = SVGFEPointLightElement
+	export type FeSpecularLighting = SVGFESpecularLightingElement
+	export type FeSpotLight = SVGFESpotLightElement
+	export type FeTile = SVGFETileElement
+	export type FeTurbulence = SVGFETurbulenceElement
+	export type Filter = SVGFilterElement
+	export type ForeignObject = SVGForeignObjectElement
+	export type G = SVGGElement
+	export type Gradient = SVGGradientElement
+	export type Image = SVGImageElement
+	export type Line = SVGLineElement
+	export type LinearGradient = SVGLinearGradientElement
+	export type Marker = SVGMarkerElement
+	export type Mask = SVGMaskElement
+	export type Metadata = SVGMetadataElement
+	export type Path = SVGPathElement
+	export type Pattern = SVGPatternElement
+	export type Polygon = SVGPolygonElement
+	export type Polyline = SVGPolylineElement
+	export type RadialGradient = SVGRadialGradientElement
+	export type Rect = SVGRectElement
+	export type Script = SVGScriptElement
+	export type Stop = SVGStopElement
+	export type Style = SVGStyleElement
+	export type Svg = SVGSVGElement
+	export type Switch = SVGSwitchElement
+	export type Symbol = SVGSymbolElement
+	export type Text = SVGTextElement
+	export type TextContent = SVGTextContentElement
+	export type TextPath = SVGTextPathElement
+	export type TextPositioning = SVGTextPositioningElement
+	export type Title = SVGTitleElement
+	export type Tspan = SVGTSpanElement
+	export type Use = SVGUseElement
+	export type View = SVGViewElement
+}

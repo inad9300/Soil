@@ -1,6 +1,6 @@
 /// Script-generated.
 
-import {AriaAttributes} from './AriaAttributes'
+import {AriaAttributes, AriaRole} from './AriaAttributes'
 
 /**
  * Subset of the interfaces defined for HTML elements which makes sense to use
@@ -397,6 +397,8 @@ export interface DOMStringMap {
 export interface DOMTokenList {
     [index: number]: string;
 }
+export interface DocumentEvent {
+}
 export interface Element extends Node, GlobalEventHandlers, ElementTraversal, ParentNode, ChildNode {
     readonly classList: DOMTokenList;
     className: string;
@@ -743,6 +745,7 @@ export interface HTMLEmbedElement extends HTMLElement, GetSVGDocument {
     /**
      * Gets the source associated with the media element for use by the PlayToManager.
      */
+    readonly msPlayToSource: any;
     /**
      * Sets or retrieves the name of the object.
      */
@@ -980,6 +983,7 @@ export interface HTMLImageElement extends HTMLElement {
     /**
      * Gets the source associated with the media element for use by the PlayToManager.
      */
+    readonly msPlayToSource: any;
     /**
      * Sets or retrieves the name of the object.
      */
@@ -1315,6 +1319,7 @@ export interface HTMLMediaElement extends HTMLElement {
     /**
      * Gets the source associated with the media element for use by the PlayToManager.
      */
+    readonly msPlayToSource: any;
     /**
      * Specifies whether or not to enable low-latency playback on the media element.
      */
@@ -1471,6 +1476,7 @@ export interface HTMLObjectElement extends HTMLElement, GetSVGDocument {
     /**
      * Gets the source associated with the media element for use by the PlayToManager.
      */
+    readonly msPlayToSource: any;
     /**
      * Sets or retrieves the name of the object.
      */
@@ -2057,6 +2063,284 @@ export interface ParentNode {
 }
 export interface ParentNode {
 }
+export interface SVGAElement extends SVGGraphicsElement, SVGURIReference {
+    readonly target: SVGAnimatedString;
+}
+export interface SVGAnimatedBoolean {
+    baseVal: boolean;
+}
+export interface SVGAnimatedEnumeration {
+    baseVal: number;
+}
+export interface SVGAnimatedInteger {
+    baseVal: number;
+}
+export interface SVGAnimatedNumber {
+    baseVal: number;
+}
+export interface SVGAnimatedPoints {
+}
+export interface SVGAnimatedString {
+    baseVal: string;
+}
+export interface SVGCircleElement extends SVGGraphicsElement {
+}
+export interface SVGClipPathElement extends SVGGraphicsElement, SVGUnitTypes {
+    readonly clipPathUnits: SVGAnimatedEnumeration;
+}
+export interface SVGComponentTransferFunctionElement extends SVGElement {
+    readonly amplitude: SVGAnimatedNumber;
+    readonly exponent: SVGAnimatedNumber;
+    readonly intercept: SVGAnimatedNumber;
+    readonly offset: SVGAnimatedNumber;
+    readonly slope: SVGAnimatedNumber;
+    readonly type: SVGAnimatedEnumeration;
+}
+export interface SVGDefsElement extends SVGGraphicsElement {
+}
+export interface SVGDescElement extends SVGElement {
+}
+export interface SVGElement extends Element, ElementCSSInlineStyle {
+    readonly className: any;
+    onclick: ((this: SVGElement, ev: MouseEvent) => any) | null;
+    ondblclick: ((this: SVGElement, ev: MouseEvent) => any) | null;
+    onfocusin: ((this: SVGElement, ev: FocusEvent) => any) | null;
+    onfocusout: ((this: SVGElement, ev: FocusEvent) => any) | null;
+    onload: ((this: SVGElement, ev: Event) => any) | null;
+    onmousedown: ((this: SVGElement, ev: MouseEvent) => any) | null;
+    onmousemove: ((this: SVGElement, ev: MouseEvent) => any) | null;
+    onmouseout: ((this: SVGElement, ev: MouseEvent) => any) | null;
+    onmouseover: ((this: SVGElement, ev: MouseEvent) => any) | null;
+    onmouseup: ((this: SVGElement, ev: MouseEvent) => any) | null;
+}
+export interface SVGEllipseElement extends SVGGraphicsElement {
+}
+export interface SVGFEBlendElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    readonly in1: SVGAnimatedString;
+    readonly in2: SVGAnimatedString;
+    readonly mode: SVGAnimatedEnumeration;
+}
+export interface SVGFEColorMatrixElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    readonly in1: SVGAnimatedString;
+    readonly type: SVGAnimatedEnumeration;
+}
+export interface SVGFEComponentTransferElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    readonly in1: SVGAnimatedString;
+}
+export interface SVGFECompositeElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    readonly in1: SVGAnimatedString;
+    readonly in2: SVGAnimatedString;
+    readonly k1: SVGAnimatedNumber;
+    readonly k2: SVGAnimatedNumber;
+    readonly k3: SVGAnimatedNumber;
+    readonly k4: SVGAnimatedNumber;
+    readonly operator: SVGAnimatedEnumeration;
+}
+export interface SVGFEConvolveMatrixElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    readonly bias: SVGAnimatedNumber;
+    readonly divisor: SVGAnimatedNumber;
+    readonly edgeMode: SVGAnimatedEnumeration;
+    readonly in1: SVGAnimatedString;
+    readonly kernelUnitLengthX: SVGAnimatedNumber;
+    readonly kernelUnitLengthY: SVGAnimatedNumber;
+    readonly orderX: SVGAnimatedInteger;
+    readonly orderY: SVGAnimatedInteger;
+    readonly preserveAlpha: SVGAnimatedBoolean;
+    readonly targetX: SVGAnimatedInteger;
+    readonly targetY: SVGAnimatedInteger;
+}
+export interface SVGFEDiffuseLightingElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    readonly diffuseConstant: SVGAnimatedNumber;
+    readonly in1: SVGAnimatedString;
+    readonly kernelUnitLengthX: SVGAnimatedNumber;
+    readonly kernelUnitLengthY: SVGAnimatedNumber;
+    readonly surfaceScale: SVGAnimatedNumber;
+}
+export interface SVGFEDisplacementMapElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    readonly in1: SVGAnimatedString;
+    readonly in2: SVGAnimatedString;
+    readonly scale: SVGAnimatedNumber;
+    readonly xChannelSelector: SVGAnimatedEnumeration;
+    readonly yChannelSelector: SVGAnimatedEnumeration;
+}
+export interface SVGFEDistantLightElement extends SVGElement {
+    readonly azimuth: SVGAnimatedNumber;
+    readonly elevation: SVGAnimatedNumber;
+}
+export interface SVGFEFloodElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+}
+export interface SVGFEFuncAElement extends SVGComponentTransferFunctionElement {
+}
+export interface SVGFEFuncBElement extends SVGComponentTransferFunctionElement {
+}
+export interface SVGFEFuncGElement extends SVGComponentTransferFunctionElement {
+}
+export interface SVGFEFuncRElement extends SVGComponentTransferFunctionElement {
+}
+export interface SVGFEGaussianBlurElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    readonly in1: SVGAnimatedString;
+    readonly stdDeviationX: SVGAnimatedNumber;
+    readonly stdDeviationY: SVGAnimatedNumber;
+}
+export interface SVGFEImageElement extends SVGElement, SVGFilterPrimitiveStandardAttributes, SVGURIReference {
+}
+export interface SVGFEMergeElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+}
+export interface SVGFEMergeNodeElement extends SVGElement {
+    readonly in1: SVGAnimatedString;
+}
+export interface SVGFEMorphologyElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    readonly in1: SVGAnimatedString;
+    readonly operator: SVGAnimatedEnumeration;
+    readonly radiusX: SVGAnimatedNumber;
+    readonly radiusY: SVGAnimatedNumber;
+}
+export interface SVGFEOffsetElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    readonly dx: SVGAnimatedNumber;
+    readonly dy: SVGAnimatedNumber;
+    readonly in1: SVGAnimatedString;
+}
+export interface SVGFEPointLightElement extends SVGElement {
+    readonly x: SVGAnimatedNumber;
+    readonly y: SVGAnimatedNumber;
+    readonly z: SVGAnimatedNumber;
+}
+export interface SVGFESpecularLightingElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    readonly in1: SVGAnimatedString;
+    readonly kernelUnitLengthX: SVGAnimatedNumber;
+    readonly kernelUnitLengthY: SVGAnimatedNumber;
+    readonly specularConstant: SVGAnimatedNumber;
+    readonly specularExponent: SVGAnimatedNumber;
+    readonly surfaceScale: SVGAnimatedNumber;
+}
+export interface SVGFESpotLightElement extends SVGElement {
+    readonly limitingConeAngle: SVGAnimatedNumber;
+    readonly pointsAtX: SVGAnimatedNumber;
+    readonly pointsAtY: SVGAnimatedNumber;
+    readonly pointsAtZ: SVGAnimatedNumber;
+    readonly specularExponent: SVGAnimatedNumber;
+    readonly x: SVGAnimatedNumber;
+    readonly y: SVGAnimatedNumber;
+    readonly z: SVGAnimatedNumber;
+}
+export interface SVGFETileElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    readonly in1: SVGAnimatedString;
+}
+export interface SVGFETurbulenceElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    readonly baseFrequencyX: SVGAnimatedNumber;
+    readonly baseFrequencyY: SVGAnimatedNumber;
+    readonly numOctaves: SVGAnimatedInteger;
+    readonly seed: SVGAnimatedNumber;
+    readonly stitchTiles: SVGAnimatedEnumeration;
+    readonly type: SVGAnimatedEnumeration;
+}
+export interface SVGFilterElement extends SVGElement, SVGUnitTypes, SVGURIReference {
+    readonly filterUnits: SVGAnimatedEnumeration;
+    readonly primitiveUnits: SVGAnimatedEnumeration;
+}
+export interface SVGFilterPrimitiveStandardAttributes {
+    readonly result: SVGAnimatedString;
+}
+export interface SVGFitToViewBox {
+}
+export interface SVGForeignObjectElement extends SVGGraphicsElement {
+}
+export interface SVGGElement extends SVGGraphicsElement {
+}
+export interface SVGGradientElement extends SVGElement, SVGUnitTypes, SVGURIReference {
+    readonly gradientUnits: SVGAnimatedEnumeration;
+    readonly spreadMethod: SVGAnimatedEnumeration;
+}
+export interface SVGGraphicsElement extends SVGElement, SVGTests {
+}
+export interface SVGImageElement extends SVGGraphicsElement, SVGURIReference {
+}
+export interface SVGLineElement extends SVGGraphicsElement {
+}
+export interface SVGLinearGradientElement extends SVGGradientElement {
+}
+export interface SVGMarkerElement extends SVGElement, SVGFitToViewBox {
+    readonly markerUnits: SVGAnimatedEnumeration;
+    readonly orientType: SVGAnimatedEnumeration;
+}
+export interface SVGMaskElement extends SVGElement, SVGTests, SVGUnitTypes {
+    readonly maskContentUnits: SVGAnimatedEnumeration;
+    readonly maskUnits: SVGAnimatedEnumeration;
+}
+export interface SVGMetadataElement extends SVGElement {
+}
+export interface SVGPathElement extends SVGGraphicsElement {
+}
+export interface SVGPatternElement extends SVGElement, SVGTests, SVGUnitTypes, SVGFitToViewBox, SVGURIReference {
+    readonly patternContentUnits: SVGAnimatedEnumeration;
+    readonly patternUnits: SVGAnimatedEnumeration;
+}
+export interface SVGPoint {
+    x: number;
+    y: number;
+}
+export interface SVGPolygonElement extends SVGGraphicsElement, SVGAnimatedPoints {
+}
+export interface SVGPolylineElement extends SVGGraphicsElement, SVGAnimatedPoints {
+}
+export interface SVGRadialGradientElement extends SVGGradientElement {
+}
+export interface SVGRectElement extends SVGGraphicsElement {
+}
+export interface SVGSVGElement extends SVGGraphicsElement, DocumentEvent, SVGFitToViewBox, SVGZoomAndPan {
+    currentScale: number;
+    readonly currentTranslate: SVGPoint;
+    onabort: ((this: SVGSVGElement, ev: Event) => any) | null;
+    onerror: ((this: SVGSVGElement, ev: Event) => any) | null;
+    onresize: ((this: SVGSVGElement, ev: UIEvent) => any) | null;
+    onscroll: ((this: SVGSVGElement, ev: UIEvent) => any) | null;
+    onunload: ((this: SVGSVGElement, ev: Event) => any) | null;
+    onzoom: ((this: SVGSVGElement, ev: SVGZoomEvent) => any) | null;
+}
+export interface SVGScriptElement extends SVGElement, SVGURIReference {
+    type: string;
+}
+export interface SVGStopElement extends SVGElement {
+    readonly offset: SVGAnimatedNumber;
+}
+export interface SVGStyleElement extends SVGElement {
+    disabled: boolean;
+    media: string;
+    title: string;
+    type: string;
+}
+export interface SVGSwitchElement extends SVGGraphicsElement {
+}
+export interface SVGSymbolElement extends SVGElement, SVGFitToViewBox {
+}
+export interface SVGTSpanElement extends SVGTextPositioningElement {
+}
+export interface SVGTests {
+}
+export interface SVGTextContentElement extends SVGGraphicsElement {
+    readonly lengthAdjust: SVGAnimatedEnumeration;
+}
+export interface SVGTextElement extends SVGTextPositioningElement {
+}
+export interface SVGTextPathElement extends SVGTextContentElement, SVGURIReference {
+    readonly method: SVGAnimatedEnumeration;
+    readonly spacing: SVGAnimatedEnumeration;
+}
+export interface SVGTextPositioningElement extends SVGTextContentElement {
+}
+export interface SVGTitleElement extends SVGElement {
+}
+export interface SVGURIReference {
+    readonly href: SVGAnimatedString;
+}
+export interface SVGUnitTypes {
+}
+export interface SVGUseElement extends SVGGraphicsElement, SVGURIReference {
+}
+export interface SVGViewElement extends SVGElement, SVGFitToViewBox, SVGZoomAndPan {
+}
+export interface SVGZoomAndPan {
+}
 export interface WindowEventHandlers {
     onafterprint: ((this: WindowEventHandlers, ev: Event) => any) | null;
     onbeforeprint: ((this: WindowEventHandlers, ev: Event) => any) | null;
@@ -2070,6 +2354,1000 @@ export interface WindowEventHandlers {
     onpopstate: ((this: WindowEventHandlers, ev: PopStateEvent) => any) | null;
     onstorage: ((this: WindowEventHandlers, ev: StorageEvent) => any) | null;
     onunload: ((this: WindowEventHandlers, ev: Event) => any) | null;
+}
+
+}
+
+/// Script-generated.
+
+export namespace BuiltTimeDom {
+
+export interface SVGAElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGCircleElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGEllipseElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGForeignObjectElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGGElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGImageElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGLineElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGPathElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGPolygonElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGPolylineElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGRectElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGSVGElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGSwitchElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGSymbolElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGTextElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGTextPathElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGTSpanElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGUseElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
+}
+
+export interface SVGViewElement {
+	'aria-activedescendant': string
+	'aria-atomic': string
+	'aria-autocomplete': string
+	'aria-busy': string
+	'aria-checked': string
+	'aria-colcount': string
+	'aria-colindex': string
+	'aria-colspan': string
+	'aria-controls': string
+	'aria-current': string
+	'aria-describedby': string
+	'aria-details': string
+	'aria-disabled': string
+	'aria-dropeffect': string
+	'aria-errormessage': string
+	'aria-expanded': string
+	'aria-flowto': string
+	'aria-grabbed': string
+	'aria-haspopup': string
+	'aria-hidden': string
+	'aria-invalid': string
+	'aria-keyshortcuts': string
+	'aria-label': string
+	'aria-labelledby': string
+	'aria-level': string
+	'aria-live': string
+	'aria-modal': string
+	'aria-multiline': string
+	'aria-multiselectable': string
+	'aria-orientation': string
+	'aria-owns': string
+	'aria-placeholder': string
+	'aria-posinset': string
+	'aria-pressed': string
+	'aria-readonly': string
+	'aria-relevant': string
+	'aria-required': string
+	'aria-roledescription': string
+	'aria-rowcount': string
+	'aria-rowindex': string
+	'aria-rowspan': string
+	'aria-selected': string
+	'aria-setsize': string
+	'aria-sort': string
+	'aria-valuemax': string
+	'aria-valuemin': string
+	'aria-valuenow': string
+	'aria-valuetext': string
+	role: AriaRole
 }
 
 }

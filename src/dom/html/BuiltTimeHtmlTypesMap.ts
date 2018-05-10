@@ -4,7 +4,7 @@ import {BuiltTimeDom} from '../BuiltTimeDom'
 
 /**
  * Map from HTML tag names to their corresponding built-time types.
- **/
+ */
 export interface BuiltTimeHtmlTypesMap {
 	a: BuiltTimeDom.HTMLAnchorElement
 	abbr: BuiltTimeDom.HTMLElement
