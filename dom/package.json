@@ -1,6 +1,6 @@
 {
     "name": "@soil/dom",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "description": "Declaratively create type-safe HTML and SVG elements.",
     "license": "AGPL-3.0",
     "homepage": "https://github.com/inad9300/Soil",
