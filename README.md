@@ -26,7 +26,8 @@ They create and manipulate HTML elements dynamically, with the help of type-safe
 correspondence with standard HTML elements, which provides a look-and-feel similar to regular HTML.
 
 ```js
-import {h, extend} from '@soil/web'
+import {h} from '@soil/dom'
+import {extend} from '@soil/arch'
 
 const counter = (input: {value?: number} = {}) => {
 
@@ -84,10 +85,10 @@ check out the [examples](examples/), or dive directly into the [source code](src
 
 
 ## Installation
-The package is available [at npm](https://www.npmjs.com/package/@soil/web), so it can be installed by running:
+The package is available at npm, so it can be installed by running:
 
 ```bash
-npm i -S @soil/web # AKA npm install --save @soil/web
+npm i -S @soil/dom @soil/arch # AKA npm install --save @soil/dom @soil/arch
 ```
 
 ## Compatibility
@@ -96,13 +97,10 @@ summarized below. Polyfills are offered by MDN for most of them.
 
 | Function | Source files | Chrome | Edge | Firefox | IE  | Opera | Safari
 | -------- | ------------ | ------ | ---- | ------- | --- | ----- | ------
-| [`Array.from()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from) | [`fix/autofocus.ts`](src/fix/autofocus.ts) | 45 | (Yes) | 32 | No | (Yes) | 9
 | [`Object.setPrototypeOf()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf) | [`core/assert.ts`](src/core/assert.ts) | 34 | (Yes) | 31 | 11 | (Yes) | 9
-| [`document.querySelectorAll()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) | [`fix/autofocus.ts`](src/fix/autofocus.ts)| 1 | (Yes) | 3.5 | 9 | 10 | 3.2
 | [`Object.defineProperty()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) | [`core/extend.ts`](src/core/extend.ts) | 5 | (Yes) | 4 | 9 | 11.6 | 5.1
 | [`Array.prototype.forEach()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) | [`core/Channel.ts`](src/core/Channel.ts), [`dom/h.ts`](src/dom/h.ts), [`dom/s.ts`](src/dom/s.ts) | (Yes) | (Yes) | 1.5 | 9 | (Yes) | (Yes)
 | [`Array.prototype.filter()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) | [`core/Channel.ts`](src/core/Channel.ts), [`fix/autofocus.ts`](src/fix/autofocus.ts) | (Yes) | (Yes) | 1.5 | 9 | (Yes) | (Yes)
-| [`Window.getComputedStyle()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle) | [`fix/autofocus.ts`](src/fix/autofocus.ts) | (Yes) | (Yes) | (Yes) | 9 | (Yes) | (Yes)
 
 
 ## Contributions

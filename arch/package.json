@@ -1,0 +1,44 @@
+{
+    "name": "@soil/arch",
+    "version": "0.4.0",
+    "description": "Architectural ideas to structure web applications.",
+    "license": "AGPL-3.0",
+    "homepage": "https://github.com/inad9300/Soil",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/inad9300/Soil/tree/master/arch"
+    },
+    "bugs": {
+        "url": "https://github.com/inad9300/Soil/issues"
+    },
+    "keywords": [
+        "soil",
+        "typescript",
+        "javascript",
+        "dom",
+        "html",
+        "svg",
+        "type-safe",
+        "web",
+        "library",
+        "framework",
+        "components",
+        "architecture",
+        "dependency-injection",
+        "design-by-contract"
+    ],
+    "main": "build/index.js",
+    "types": "build/index.d.ts",
+    "scripts": {
+        "precompile": "rm -rf build",
+        "compile": "tsc",
+        "pretest": "npm run compile -- --p tsconfig.test.json",
+        "test": "intern",
+        "posttest": "codecov",
+        "prepublishOnly": "npm run compile -- --sourceMap false"
+    },
+    "author": {
+        "name": "Daniel Martín",
+        "email": "inad9300@gmail.com"
+    }
+}

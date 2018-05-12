@@ -5,10 +5,14 @@
         "target": "es5",
         "lib": ["es6", "dom"],
         "strict": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,
         "outDir": "build",
         "sourceMap": true,
         "declaration": true
     },
-    "include": ["src"],
+    "include": ["**/src"],
     "exclude": ["**/*.test.ts"]
 }

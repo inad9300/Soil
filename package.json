@@ -1,47 +1,15 @@
 {
-    "name": "@soil/web",
-    "version": "0.3.0",
-    "description": "Type-safe HTML and custom components at your fingertips.",
-    "main": "build/index.js",
-    "types": "build/index.d.ts",
-    "keywords": [
-        "soil",
-        "typescript",
-        "javascript",
-        "web",
-        "type-safe",
-        "library",
-        "framework",
-        "components",
-        "architecture",
-        "dependency-injection",
-        "design-by-contract"
-    ],
-    "homepage": "https://github.com/inad9300/Soil",
+    "private": true,
+    "description": "Soil umbrella project.",
+    "license": "AGPL-3.0",
     "repository": {
         "type": "git",
         "url": "https://github.com/inad9300/Soil"
     },
-    "bugs": {
-        "url": "https://github.com/inad9300/Soil/issues"
-    },
-    "license": "AGPL-3.0",
-    "scripts": {
-        "precompile": "rm -rf build",
-        "compile": "tsc",
-        "pretest": "npm run compile -- --p tsconfig.test.json",
-        "test": "intern",
-        "posttest": "codecov",
-        "prepublishOnly": "npm run compile -- --sourceMap false"
-    },
     "devDependencies": {
         "@dojo/loader": "2.0.0",
-        "codecov": "3.0.1",
+        "codecov": "3.0.2",
         "intern": "4.2.0",
         "typescript": "2.8.3"
-    },
-    "author": {
-        "name": "Daniel Martín",
-        "email": "inad9300@gmail.com"
     }
 }
