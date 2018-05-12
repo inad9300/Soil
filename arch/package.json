@@ -1,7 +1,7 @@
 {
     "name": "@soil/arch",
     "version": "0.1.0",
-    "description": "Architectural, practical ideas for web applications.",
+    "description": "Architectural constructs for web applications.",
     "license": "AGPL-3.0",
     "homepage": "https://github.com/inad9300/Soil",
     "repository": {

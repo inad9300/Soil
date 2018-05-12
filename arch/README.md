@@ -1,6 +1,6 @@
 # [@soil/arch](https://www.npmjs.com/package/@soil/arch)
 
-Architectural, practical ideas for web applications.
+Architectural constructs for web applications.
 
 
 ## Installation
