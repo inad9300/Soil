@@ -2,8 +2,8 @@ const {suite, test} = intern.getInterface('tdd')
 const {assert} = intern.getPlugin('chai')
 import {createElement} from '../../support/testing/createElement'
 
-import {HTMLProperties, Div} from './html/h'
-import {SVGProperties, Circle} from './svg/s'
+import {h} from './html/h'
+import {s} from './svg/s'
 import {assignProperties} from './assignProperties'
 
 suite('assignProperties()', () => {
@@ -11,8 +11,8 @@ suite('assignProperties()', () => {
     test('properties of various kinds', () => {
         function fun() {}
 
-        const div = createElement('<div></div>') as Div
-        assignProperties<Div, HTMLProperties>(div, {
+        const div = createElement('<div></div>') as h.Div
+        assignProperties(div, {
             id: 'i',
             className: 'c',
             title: 't',
@@ -56,8 +56,8 @@ suite('assignProperties()', () => {
     })
 
     test('nested SVG properties', () => {
-        const circle = createElement(`<circle />`, true) as Circle
-        assignProperties<SVGElement, SVGProperties>(circle, {
+        const circle = createElement(`<circle />`, true) as s.Circle
+        assignProperties(circle, {
             cx: {
                 baseVal: {
                     value: 50

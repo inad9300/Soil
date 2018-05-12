@@ -71,7 +71,7 @@ suite('Channel', () => {
         let count = 0
         const stringChan = new Channel<string>()
 
-        const stop = stringChan.listen(newString => count++, 1)
+        const stop = stringChan.listen(_newString => count++, 1)
         assert.strictEqual(stringChan.length, 1)
         stop()
         assert.strictEqual(stringChan.length, 0)

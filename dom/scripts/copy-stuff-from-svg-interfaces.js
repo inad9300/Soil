@@ -10,7 +10,7 @@ const svgRegExp = /createElementNS\(namespaceURI: "http:\/\/www\.w3\.org\/2000\/
 
 const voidElements = []
 const elementsWithSpecialChildren = {
-    'foreignObject': '(Element | Text)[]'
+    'foreignObject': '(Element | string)[]'
 }
 
 const svgInterfaces = document
@@ -81,7 +81,7 @@ ${
         .map(([tag, iface]) => {
             return voidElements.indexOf(tag) > -1
                 ? `    export const ${fixReservedTag(tag)} = (props?: BuiltTimeDom.${iface}): SvgTypesMap['${tag}'] => ss('${tag}', props)`
-                : `    export const ${fixReservedTag(tag)} = (props?: BuiltTimeDom.${iface}, children?: ${elementsWithSpecialChildren[tag] || '(SVGElement | Text)[]'}): SvgTypesMap['${tag}'] => ss('${tag}', props, children)`
+                : `    export const ${fixReservedTag(tag)} = (props?: BuiltTimeDom.${iface}, children?: ${elementsWithSpecialChildren[tag] || '(SVGElement | string)[]'}): SvgTypesMap['${tag}'] => ss('${tag}', props, children)`
         })
         .join('\n')
 }

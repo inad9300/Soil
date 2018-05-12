@@ -1,7 +1,6 @@
 {
     "extends": "../tsconfig",
-    "include": ["./src"],
-    "exclude": ["**/*.test.ts"],
+    "include": ["src"],
     "compilerOptions": {
         "outDir": "build"
     }

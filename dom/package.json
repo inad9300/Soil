@@ -1,7 +1,7 @@
 {
     "name": "@soil/dom",
     "version": "0.4.0",
-    "description": "Type-safe HTML and SVG at your fingertips.",
+    "description": "Declaratively create type-safe HTML and SVG elements.",
     "license": "AGPL-3.0",
     "homepage": "https://github.com/inad9300/Soil",
     "repository": {
@@ -10,6 +10,10 @@
     },
     "bugs": {
         "url": "https://github.com/inad9300/Soil/issues"
+    },
+    "author": {
+        "name": "Daniel Martín",
+        "email": "inad9300@gmail.com"
     },
     "keywords": [
         "soil",
@@ -25,15 +29,8 @@
     "main": "build/index.js",
     "types": "build/index.d.ts",
     "scripts": {
-        "precompile": "rm -rf build",
-        "compile": "../node_modules/tsc",
-        "pretest": "npm run compile -- --p tsconfig.test.json",
-        "test": "intern",
-        "posttest": "codecov",
-        "prepublishOnly": "npm run compile -- --sourceMap false"
-    },
-    "author": {
-        "name": "Daniel Martín",
-        "email": "inad9300@gmail.com"
+        "precompile": "rm -rf build/",
+        "compile": "../node_modules/.bin/tsc",
+        "prepublishOnly": "npm run compile"
     }
 }

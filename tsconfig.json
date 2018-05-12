@@ -1,5 +1,8 @@
 {
+    "include": ["**/src"],
+    "exclude": ["**/*.test.ts"],
     "compilerOptions": {
+        "outDir": "build",
         "module": "umd",
         "moduleResolution": "node",
         "target": "es5",
@@ -9,10 +12,7 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,
-        "outDir": "build",
         "sourceMap": true,
         "declaration": true
-    },
-    "include": ["**/src"],
-    "exclude": ["**/*.test.ts"]
+    }
 }

@@ -29,16 +29,20 @@ initialElements.forEach(([tag, childrenCategories]) => {
 })
 
 const textToType = {
-    transparent: 'HtmlContent.TransparentContent',
-    phrasing: 'HtmlContent.PhrasingContent',
-    flow: 'HtmlContent.FlowContent',
-    metadata: 'HtmlContent.MetadataContent',
+    'transparent': 'HtmlContent.TransparentContent',
+    'phrasing': 'HtmlContent.PhrasingContent',
+    'flow': 'HtmlContent.FlowContent',
+    'metadata': 'HtmlContent.MetadataContent',
     'script-supportingelements': 'HtmlContent.ScriptSupportingElements',
-    'script,data,orscriptdocumentation': 'Text',
-    text: 'Text',
-    empty: 'void',
-    varies: `HTMLElement | SVGSVGElement | Text`,
-    'it’scomplicated': `HTMLElement | SVGSVGElement | Text`
+    'script,data,orscriptdocumentation': 'string',
+    'text': 'string',
+    'empty': 'void',
+    'varies': 'HTMLElement | SVGSVGElement | string',
+    'it’scomplicated': 'HTMLElement | SVGSVGElement | string'
+}
+
+const tagsWithSpecialTypes = {
+    iframe: '(HTMLElement | string)[]'
 }
 
 copy(
@@ -54,11 +58,23 @@ import {HtmlTypesMap} from './HtmlTypesMap'
 export interface HtmlChildrenMap {
 ${
     elements
-        .map(([tag, childrenCategories]) => `    ${tag}: ${
-            childrenCategories
+        .map(([tag, childrenCategories]) => {
+            if (tagsWithSpecialTypes[tag]) {
+                return `    ${tag}: ${tagsWithSpecialTypes[tag]}`
+            }
+
+            let type = childrenCategories
                 .map(cat => textToType[cat] || `HtmlTypesMap['${cat}']`)
                 .join(' | ')
-            }`)
-            .join('\n')
+
+            if (type.indexOf(' | ') > -1) {
+                type = '(' + type + ')'
+            }
+            if (type !== 'void') {
+                type += '[]'
+            }
+            return `    ${tag}: ${type}`
+        })
+        .join('\n')
 }
 }`)

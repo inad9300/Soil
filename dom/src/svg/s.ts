@@ -7,9 +7,9 @@ import {SvgTypesMap} from './SvgTypesMap'
 /**
  * Factory function for SVG elements.
  */
-function ss<T extends keyof SvgTypesMap>(tag: T, props?: BuiltTimeSvgTypesMap[T], children?: (Element | Text)[]): SvgTypesMap[T]
-function ss(tag: string, props?: BuiltTimeDom.SVGElement, children?: (Element | Text)[]): SVGElement
-function ss(tag: string, props?: BuiltTimeDom.SVGElement, children?: (Element | Text)[]) {
+function ss<T extends keyof SvgTypesMap>(tag: T, props?: BuiltTimeSvgTypesMap[T], children?: (Element | string)[]): SvgTypesMap[T]
+function ss(tag: string, props?: BuiltTimeDom.SVGElement, children?: (Element | string)[]): SVGElement
+function ss(tag: string, props?: BuiltTimeDom.SVGElement, children?: (Element | string)[]) {
     const elem = document.createElementNS('http://www.w3.org/2000/svg', tag)
     if (props !== undefined) {
         assignProperties(elem, props)
@@ -18,35 +18,6 @@ function ss(tag: string, props?: BuiltTimeDom.SVGElement, children?: (Element | 
         addChildren(elem, children)
     }
     return elem
-}
-
-export namespace s {
-
-    /**
-     * Type representing any nested SVG values.
-     */
-    export type Value<T extends boolean | number | Text> = {
-        baseVal: {
-            value: T
-        }
-    }
-
-    /**
-     * Helper function to simplify writting and reading nested SVG values.
-     */
-    export function value<T extends boolean | number | Text>(value: T): Value<T>
-    export function value<T extends boolean | number | Text>(value: Value<T>): T
-    export function value<T extends boolean | number | Text>(value: T | Value<T>): Value<T> | T {
-        if (value instanceof Object) {
-            return (value as Value<T>).baseVal.value
-        } else {
-            return {
-                baseVal: {
-                    value: value as T
-                }
-            }
-        }
-    }
 }
 
 /// Script-generated.
@@ -60,67 +31,67 @@ export namespace s {
  * through PhantomJS or jsdom.
  */
 export namespace s {
-    export const a = (props?: BuiltTimeDom.SVGAElement, children?: (SVGElement | Text)[]): SvgTypesMap['a'] => ss('a', props, children)
-    export const circle = (props?: BuiltTimeDom.SVGCircleElement, children?: (SVGElement | Text)[]): SvgTypesMap['circle'] => ss('circle', props, children)
-    export const clipPath = (props?: BuiltTimeDom.SVGClipPathElement, children?: (SVGElement | Text)[]): SvgTypesMap['clipPath'] => ss('clipPath', props, children)
-    export const componentTransferFunction = (props?: BuiltTimeDom.SVGComponentTransferFunctionElement, children?: (SVGElement | Text)[]): SvgTypesMap['componentTransferFunction'] => ss('componentTransferFunction', props, children)
-    export const defs = (props?: BuiltTimeDom.SVGDefsElement, children?: (SVGElement | Text)[]): SvgTypesMap['defs'] => ss('defs', props, children)
-    export const desc = (props?: BuiltTimeDom.SVGDescElement, children?: (SVGElement | Text)[]): SvgTypesMap['desc'] => ss('desc', props, children)
-    export const ellipse = (props?: BuiltTimeDom.SVGEllipseElement, children?: (SVGElement | Text)[]): SvgTypesMap['ellipse'] => ss('ellipse', props, children)
-    export const feBlend = (props?: BuiltTimeDom.SVGFEBlendElement, children?: (SVGElement | Text)[]): SvgTypesMap['feBlend'] => ss('feBlend', props, children)
-    export const feColorMatrix = (props?: BuiltTimeDom.SVGFEColorMatrixElement, children?: (SVGElement | Text)[]): SvgTypesMap['feColorMatrix'] => ss('feColorMatrix', props, children)
-    export const feComponentTransfer = (props?: BuiltTimeDom.SVGFEComponentTransferElement, children?: (SVGElement | Text)[]): SvgTypesMap['feComponentTransfer'] => ss('feComponentTransfer', props, children)
-    export const feComposite = (props?: BuiltTimeDom.SVGFECompositeElement, children?: (SVGElement | Text)[]): SvgTypesMap['feComposite'] => ss('feComposite', props, children)
-    export const feConvolveMatrix = (props?: BuiltTimeDom.SVGFEConvolveMatrixElement, children?: (SVGElement | Text)[]): SvgTypesMap['feConvolveMatrix'] => ss('feConvolveMatrix', props, children)
-    export const feDiffuseLighting = (props?: BuiltTimeDom.SVGFEDiffuseLightingElement, children?: (SVGElement | Text)[]): SvgTypesMap['feDiffuseLighting'] => ss('feDiffuseLighting', props, children)
-    export const feDisplacementMap = (props?: BuiltTimeDom.SVGFEDisplacementMapElement, children?: (SVGElement | Text)[]): SvgTypesMap['feDisplacementMap'] => ss('feDisplacementMap', props, children)
-    export const feDistantLight = (props?: BuiltTimeDom.SVGFEDistantLightElement, children?: (SVGElement | Text)[]): SvgTypesMap['feDistantLight'] => ss('feDistantLight', props, children)
-    export const feFlood = (props?: BuiltTimeDom.SVGFEFloodElement, children?: (SVGElement | Text)[]): SvgTypesMap['feFlood'] => ss('feFlood', props, children)
-    export const feFuncA = (props?: BuiltTimeDom.SVGFEFuncAElement, children?: (SVGElement | Text)[]): SvgTypesMap['feFuncA'] => ss('feFuncA', props, children)
-    export const feFuncB = (props?: BuiltTimeDom.SVGFEFuncBElement, children?: (SVGElement | Text)[]): SvgTypesMap['feFuncB'] => ss('feFuncB', props, children)
-    export const feFuncG = (props?: BuiltTimeDom.SVGFEFuncGElement, children?: (SVGElement | Text)[]): SvgTypesMap['feFuncG'] => ss('feFuncG', props, children)
-    export const feFuncR = (props?: BuiltTimeDom.SVGFEFuncRElement, children?: (SVGElement | Text)[]): SvgTypesMap['feFuncR'] => ss('feFuncR', props, children)
-    export const feGaussianBlur = (props?: BuiltTimeDom.SVGFEGaussianBlurElement, children?: (SVGElement | Text)[]): SvgTypesMap['feGaussianBlur'] => ss('feGaussianBlur', props, children)
-    export const feImage = (props?: BuiltTimeDom.SVGFEImageElement, children?: (SVGElement | Text)[]): SvgTypesMap['feImage'] => ss('feImage', props, children)
-    export const feMerge = (props?: BuiltTimeDom.SVGFEMergeElement, children?: (SVGElement | Text)[]): SvgTypesMap['feMerge'] => ss('feMerge', props, children)
-    export const feMergeNode = (props?: BuiltTimeDom.SVGFEMergeNodeElement, children?: (SVGElement | Text)[]): SvgTypesMap['feMergeNode'] => ss('feMergeNode', props, children)
-    export const feMorphology = (props?: BuiltTimeDom.SVGFEMorphologyElement, children?: (SVGElement | Text)[]): SvgTypesMap['feMorphology'] => ss('feMorphology', props, children)
-    export const feOffset = (props?: BuiltTimeDom.SVGFEOffsetElement, children?: (SVGElement | Text)[]): SvgTypesMap['feOffset'] => ss('feOffset', props, children)
-    export const fePointLight = (props?: BuiltTimeDom.SVGFEPointLightElement, children?: (SVGElement | Text)[]): SvgTypesMap['fePointLight'] => ss('fePointLight', props, children)
-    export const feSpecularLighting = (props?: BuiltTimeDom.SVGFESpecularLightingElement, children?: (SVGElement | Text)[]): SvgTypesMap['feSpecularLighting'] => ss('feSpecularLighting', props, children)
-    export const feSpotLight = (props?: BuiltTimeDom.SVGFESpotLightElement, children?: (SVGElement | Text)[]): SvgTypesMap['feSpotLight'] => ss('feSpotLight', props, children)
-    export const feTile = (props?: BuiltTimeDom.SVGFETileElement, children?: (SVGElement | Text)[]): SvgTypesMap['feTile'] => ss('feTile', props, children)
-    export const feTurbulence = (props?: BuiltTimeDom.SVGFETurbulenceElement, children?: (SVGElement | Text)[]): SvgTypesMap['feTurbulence'] => ss('feTurbulence', props, children)
-    export const filter = (props?: BuiltTimeDom.SVGFilterElement, children?: (SVGElement | Text)[]): SvgTypesMap['filter'] => ss('filter', props, children)
-    export const foreignObject = (props?: BuiltTimeDom.SVGForeignObjectElement, children?: (Element | Text)[]): SvgTypesMap['foreignObject'] => ss('foreignObject', props, children)
-    export const g = (props?: BuiltTimeDom.SVGGElement, children?: (SVGElement | Text)[]): SvgTypesMap['g'] => ss('g', props, children)
-    export const gradient = (props?: BuiltTimeDom.SVGGradientElement, children?: (SVGElement | Text)[]): SvgTypesMap['gradient'] => ss('gradient', props, children)
-    export const image = (props?: BuiltTimeDom.SVGImageElement, children?: (SVGElement | Text)[]): SvgTypesMap['image'] => ss('image', props, children)
-    export const line = (props?: BuiltTimeDom.SVGLineElement, children?: (SVGElement | Text)[]): SvgTypesMap['line'] => ss('line', props, children)
-    export const linearGradient = (props?: BuiltTimeDom.SVGLinearGradientElement, children?: (SVGElement | Text)[]): SvgTypesMap['linearGradient'] => ss('linearGradient', props, children)
-    export const marker = (props?: BuiltTimeDom.SVGMarkerElement, children?: (SVGElement | Text)[]): SvgTypesMap['marker'] => ss('marker', props, children)
-    export const mask = (props?: BuiltTimeDom.SVGMaskElement, children?: (SVGElement | Text)[]): SvgTypesMap['mask'] => ss('mask', props, children)
-    export const metadata = (props?: BuiltTimeDom.SVGMetadataElement, children?: (SVGElement | Text)[]): SvgTypesMap['metadata'] => ss('metadata', props, children)
-    export const path = (props?: BuiltTimeDom.SVGPathElement, children?: (SVGElement | Text)[]): SvgTypesMap['path'] => ss('path', props, children)
-    export const pattern = (props?: BuiltTimeDom.SVGPatternElement, children?: (SVGElement | Text)[]): SvgTypesMap['pattern'] => ss('pattern', props, children)
-    export const polygon = (props?: BuiltTimeDom.SVGPolygonElement, children?: (SVGElement | Text)[]): SvgTypesMap['polygon'] => ss('polygon', props, children)
-    export const polyline = (props?: BuiltTimeDom.SVGPolylineElement, children?: (SVGElement | Text)[]): SvgTypesMap['polyline'] => ss('polyline', props, children)
-    export const radialGradient = (props?: BuiltTimeDom.SVGRadialGradientElement, children?: (SVGElement | Text)[]): SvgTypesMap['radialGradient'] => ss('radialGradient', props, children)
-    export const rect = (props?: BuiltTimeDom.SVGRectElement, children?: (SVGElement | Text)[]): SvgTypesMap['rect'] => ss('rect', props, children)
-    export const script = (props?: BuiltTimeDom.SVGScriptElement, children?: (SVGElement | Text)[]): SvgTypesMap['script'] => ss('script', props, children)
-    export const stop = (props?: BuiltTimeDom.SVGStopElement, children?: (SVGElement | Text)[]): SvgTypesMap['stop'] => ss('stop', props, children)
-    export const style = (props?: BuiltTimeDom.SVGStyleElement, children?: (SVGElement | Text)[]): SvgTypesMap['style'] => ss('style', props, children)
-    export const svg = (props?: BuiltTimeDom.SVGSVGElement, children?: (SVGElement | Text)[]): SvgTypesMap['svg'] => ss('svg', props, children)
-    export const switch_ = (props?: BuiltTimeDom.SVGSwitchElement, children?: (SVGElement | Text)[]): SvgTypesMap['switch'] => ss('switch', props, children)
-    export const symbol = (props?: BuiltTimeDom.SVGSymbolElement, children?: (SVGElement | Text)[]): SvgTypesMap['symbol'] => ss('symbol', props, children)
-    export const text = (props?: BuiltTimeDom.SVGTextElement, children?: (SVGElement | Text)[]): SvgTypesMap['text'] => ss('text', props, children)
-    export const textContent = (props?: BuiltTimeDom.SVGTextContentElement, children?: (SVGElement | Text)[]): SvgTypesMap['textContent'] => ss('textContent', props, children)
-    export const textPath = (props?: BuiltTimeDom.SVGTextPathElement, children?: (SVGElement | Text)[]): SvgTypesMap['textPath'] => ss('textPath', props, children)
-    export const textPositioning = (props?: BuiltTimeDom.SVGTextPositioningElement, children?: (SVGElement | Text)[]): SvgTypesMap['textPositioning'] => ss('textPositioning', props, children)
-    export const title = (props?: BuiltTimeDom.SVGTitleElement, children?: (SVGElement | Text)[]): SvgTypesMap['title'] => ss('title', props, children)
-    export const tspan = (props?: BuiltTimeDom.SVGTSpanElement, children?: (SVGElement | Text)[]): SvgTypesMap['tspan'] => ss('tspan', props, children)
-    export const use = (props?: BuiltTimeDom.SVGUseElement, children?: (SVGElement | Text)[]): SvgTypesMap['use'] => ss('use', props, children)
-    export const view = (props?: BuiltTimeDom.SVGViewElement, children?: (SVGElement | Text)[]): SvgTypesMap['view'] => ss('view', props, children)
+    export const a = (props?: BuiltTimeDom.SVGAElement, children?: (SVGElement | string)[]): SvgTypesMap['a'] => ss('a', props, children)
+    export const circle = (props?: BuiltTimeDom.SVGCircleElement, children?: (SVGElement | string)[]): SvgTypesMap['circle'] => ss('circle', props, children)
+    export const clipPath = (props?: BuiltTimeDom.SVGClipPathElement, children?: (SVGElement | string)[]): SvgTypesMap['clipPath'] => ss('clipPath', props, children)
+    export const componentTransferFunction = (props?: BuiltTimeDom.SVGComponentTransferFunctionElement, children?: (SVGElement | string)[]): SvgTypesMap['componentTransferFunction'] => ss('componentTransferFunction', props, children)
+    export const defs = (props?: BuiltTimeDom.SVGDefsElement, children?: (SVGElement | string)[]): SvgTypesMap['defs'] => ss('defs', props, children)
+    export const desc = (props?: BuiltTimeDom.SVGDescElement, children?: (SVGElement | string)[]): SvgTypesMap['desc'] => ss('desc', props, children)
+    export const ellipse = (props?: BuiltTimeDom.SVGEllipseElement, children?: (SVGElement | string)[]): SvgTypesMap['ellipse'] => ss('ellipse', props, children)
+    export const feBlend = (props?: BuiltTimeDom.SVGFEBlendElement, children?: (SVGElement | string)[]): SvgTypesMap['feBlend'] => ss('feBlend', props, children)
+    export const feColorMatrix = (props?: BuiltTimeDom.SVGFEColorMatrixElement, children?: (SVGElement | string)[]): SvgTypesMap['feColorMatrix'] => ss('feColorMatrix', props, children)
+    export const feComponentTransfer = (props?: BuiltTimeDom.SVGFEComponentTransferElement, children?: (SVGElement | string)[]): SvgTypesMap['feComponentTransfer'] => ss('feComponentTransfer', props, children)
+    export const feComposite = (props?: BuiltTimeDom.SVGFECompositeElement, children?: (SVGElement | string)[]): SvgTypesMap['feComposite'] => ss('feComposite', props, children)
+    export const feConvolveMatrix = (props?: BuiltTimeDom.SVGFEConvolveMatrixElement, children?: (SVGElement | string)[]): SvgTypesMap['feConvolveMatrix'] => ss('feConvolveMatrix', props, children)
+    export const feDiffuseLighting = (props?: BuiltTimeDom.SVGFEDiffuseLightingElement, children?: (SVGElement | string)[]): SvgTypesMap['feDiffuseLighting'] => ss('feDiffuseLighting', props, children)
+    export const feDisplacementMap = (props?: BuiltTimeDom.SVGFEDisplacementMapElement, children?: (SVGElement | string)[]): SvgTypesMap['feDisplacementMap'] => ss('feDisplacementMap', props, children)
+    export const feDistantLight = (props?: BuiltTimeDom.SVGFEDistantLightElement, children?: (SVGElement | string)[]): SvgTypesMap['feDistantLight'] => ss('feDistantLight', props, children)
+    export const feFlood = (props?: BuiltTimeDom.SVGFEFloodElement, children?: (SVGElement | string)[]): SvgTypesMap['feFlood'] => ss('feFlood', props, children)
+    export const feFuncA = (props?: BuiltTimeDom.SVGFEFuncAElement, children?: (SVGElement | string)[]): SvgTypesMap['feFuncA'] => ss('feFuncA', props, children)
+    export const feFuncB = (props?: BuiltTimeDom.SVGFEFuncBElement, children?: (SVGElement | string)[]): SvgTypesMap['feFuncB'] => ss('feFuncB', props, children)
+    export const feFuncG = (props?: BuiltTimeDom.SVGFEFuncGElement, children?: (SVGElement | string)[]): SvgTypesMap['feFuncG'] => ss('feFuncG', props, children)
+    export const feFuncR = (props?: BuiltTimeDom.SVGFEFuncRElement, children?: (SVGElement | string)[]): SvgTypesMap['feFuncR'] => ss('feFuncR', props, children)
+    export const feGaussianBlur = (props?: BuiltTimeDom.SVGFEGaussianBlurElement, children?: (SVGElement | string)[]): SvgTypesMap['feGaussianBlur'] => ss('feGaussianBlur', props, children)
+    export const feImage = (props?: BuiltTimeDom.SVGFEImageElement, children?: (SVGElement | string)[]): SvgTypesMap['feImage'] => ss('feImage', props, children)
+    export const feMerge = (props?: BuiltTimeDom.SVGFEMergeElement, children?: (SVGElement | string)[]): SvgTypesMap['feMerge'] => ss('feMerge', props, children)
+    export const feMergeNode = (props?: BuiltTimeDom.SVGFEMergeNodeElement, children?: (SVGElement | string)[]): SvgTypesMap['feMergeNode'] => ss('feMergeNode', props, children)
+    export const feMorphology = (props?: BuiltTimeDom.SVGFEMorphologyElement, children?: (SVGElement | string)[]): SvgTypesMap['feMorphology'] => ss('feMorphology', props, children)
+    export const feOffset = (props?: BuiltTimeDom.SVGFEOffsetElement, children?: (SVGElement | string)[]): SvgTypesMap['feOffset'] => ss('feOffset', props, children)
+    export const fePointLight = (props?: BuiltTimeDom.SVGFEPointLightElement, children?: (SVGElement | string)[]): SvgTypesMap['fePointLight'] => ss('fePointLight', props, children)
+    export const feSpecularLighting = (props?: BuiltTimeDom.SVGFESpecularLightingElement, children?: (SVGElement | string)[]): SvgTypesMap['feSpecularLighting'] => ss('feSpecularLighting', props, children)
+    export const feSpotLight = (props?: BuiltTimeDom.SVGFESpotLightElement, children?: (SVGElement | string)[]): SvgTypesMap['feSpotLight'] => ss('feSpotLight', props, children)
+    export const feTile = (props?: BuiltTimeDom.SVGFETileElement, children?: (SVGElement | string)[]): SvgTypesMap['feTile'] => ss('feTile', props, children)
+    export const feTurbulence = (props?: BuiltTimeDom.SVGFETurbulenceElement, children?: (SVGElement | string)[]): SvgTypesMap['feTurbulence'] => ss('feTurbulence', props, children)
+    export const filter = (props?: BuiltTimeDom.SVGFilterElement, children?: (SVGElement | string)[]): SvgTypesMap['filter'] => ss('filter', props, children)
+    export const foreignObject = (props?: BuiltTimeDom.SVGForeignObjectElement, children?: (Element | string)[]): SvgTypesMap['foreignObject'] => ss('foreignObject', props, children)
+    export const g = (props?: BuiltTimeDom.SVGGElement, children?: (SVGElement | string)[]): SvgTypesMap['g'] => ss('g', props, children)
+    export const gradient = (props?: BuiltTimeDom.SVGGradientElement, children?: (SVGElement | string)[]): SvgTypesMap['gradient'] => ss('gradient', props, children)
+    export const image = (props?: BuiltTimeDom.SVGImageElement, children?: (SVGElement | string)[]): SvgTypesMap['image'] => ss('image', props, children)
+    export const line = (props?: BuiltTimeDom.SVGLineElement, children?: (SVGElement | string)[]): SvgTypesMap['line'] => ss('line', props, children)
+    export const linearGradient = (props?: BuiltTimeDom.SVGLinearGradientElement, children?: (SVGElement | string)[]): SvgTypesMap['linearGradient'] => ss('linearGradient', props, children)
+    export const marker = (props?: BuiltTimeDom.SVGMarkerElement, children?: (SVGElement | string)[]): SvgTypesMap['marker'] => ss('marker', props, children)
+    export const mask = (props?: BuiltTimeDom.SVGMaskElement, children?: (SVGElement | string)[]): SvgTypesMap['mask'] => ss('mask', props, children)
+    export const metadata = (props?: BuiltTimeDom.SVGMetadataElement, children?: (SVGElement | string)[]): SvgTypesMap['metadata'] => ss('metadata', props, children)
+    export const path = (props?: BuiltTimeDom.SVGPathElement, children?: (SVGElement | string)[]): SvgTypesMap['path'] => ss('path', props, children)
+    export const pattern = (props?: BuiltTimeDom.SVGPatternElement, children?: (SVGElement | string)[]): SvgTypesMap['pattern'] => ss('pattern', props, children)
+    export const polygon = (props?: BuiltTimeDom.SVGPolygonElement, children?: (SVGElement | string)[]): SvgTypesMap['polygon'] => ss('polygon', props, children)
+    export const polyline = (props?: BuiltTimeDom.SVGPolylineElement, children?: (SVGElement | string)[]): SvgTypesMap['polyline'] => ss('polyline', props, children)
+    export const radialGradient = (props?: BuiltTimeDom.SVGRadialGradientElement, children?: (SVGElement | string)[]): SvgTypesMap['radialGradient'] => ss('radialGradient', props, children)
+    export const rect = (props?: BuiltTimeDom.SVGRectElement, children?: (SVGElement | string)[]): SvgTypesMap['rect'] => ss('rect', props, children)
+    export const script = (props?: BuiltTimeDom.SVGScriptElement, children?: (SVGElement | string)[]): SvgTypesMap['script'] => ss('script', props, children)
+    export const stop = (props?: BuiltTimeDom.SVGStopElement, children?: (SVGElement | string)[]): SvgTypesMap['stop'] => ss('stop', props, children)
+    export const style = (props?: BuiltTimeDom.SVGStyleElement, children?: (SVGElement | string)[]): SvgTypesMap['style'] => ss('style', props, children)
+    export const svg = (props?: BuiltTimeDom.SVGSVGElement, children?: (SVGElement | string)[]): SvgTypesMap['svg'] => ss('svg', props, children)
+    export const switch_ = (props?: BuiltTimeDom.SVGSwitchElement, children?: (SVGElement | string)[]): SvgTypesMap['switch'] => ss('switch', props, children)
+    export const symbol = (props?: BuiltTimeDom.SVGSymbolElement, children?: (SVGElement | string)[]): SvgTypesMap['symbol'] => ss('symbol', props, children)
+    export const text = (props?: BuiltTimeDom.SVGTextElement, children?: (SVGElement | string)[]): SvgTypesMap['text'] => ss('text', props, children)
+    export const textContent = (props?: BuiltTimeDom.SVGTextContentElement, children?: (SVGElement | string)[]): SvgTypesMap['textContent'] => ss('textContent', props, children)
+    export const textPath = (props?: BuiltTimeDom.SVGTextPathElement, children?: (SVGElement | string)[]): SvgTypesMap['textPath'] => ss('textPath', props, children)
+    export const textPositioning = (props?: BuiltTimeDom.SVGTextPositioningElement, children?: (SVGElement | string)[]): SvgTypesMap['textPositioning'] => ss('textPositioning', props, children)
+    export const title = (props?: BuiltTimeDom.SVGTitleElement, children?: (SVGElement | string)[]): SvgTypesMap['title'] => ss('title', props, children)
+    export const tspan = (props?: BuiltTimeDom.SVGTSpanElement, children?: (SVGElement | string)[]): SvgTypesMap['tspan'] => ss('tspan', props, children)
+    export const use = (props?: BuiltTimeDom.SVGUseElement, children?: (SVGElement | string)[]): SvgTypesMap['use'] => ss('use', props, children)
+    export const view = (props?: BuiltTimeDom.SVGViewElement, children?: (SVGElement | string)[]): SvgTypesMap['view'] => ss('view', props, children)
 }
 
 /// Script-generated.

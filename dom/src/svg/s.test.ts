@@ -1,20 +1,17 @@
 const {suite, test} = intern.getInterface('tdd')
 const {assert} = intern.getPlugin('chai')
-import {createElement} from '../../support/testing/createElement'
-import {elementsAreEqual} from '../../support/testing/elementsAreEqual'
+import {createElement} from '../../../support/testing/createElement'
+import {elementsAreEqual} from '../../../support/testing/elementsAreEqual'
 
-import {s, SVGProperties, SVGTag} from './s'
-import {Tspan} from './s'
-import {a, circle, clipPath, componentTransferFunction, defs, desc, ellipse, feBlend, feColorMatrix, feComponentTransfer, feComposite, feConvolveMatrix, feDiffuseLighting, feDisplacementMap, feDistantLight, feFlood, feFuncA, feFuncB, feFuncG, feFuncR, feGaussianBlur, feImage, feMerge, feMergeNode, feMorphology, feOffset, fePointLight, feSpecularLighting, feSpotLight, feTile, feTurbulence, filter, foreignObject, g, gradient, image, line, linearGradient, marker, mask, metadata, path, pattern, polygon, polyline, radialGradient, rect, script, stop, style, svg, switch_, symbol, text, textContent, textPath, textPositioning, title, tspan, use, view} from './s'
+import {s} from './s'
 
-const allSvgFunctions = [a, circle, clipPath, componentTransferFunction, defs, desc, ellipse, feBlend, feColorMatrix, feComponentTransfer, feComposite, feConvolveMatrix, feDiffuseLighting, feDisplacementMap, feDistantLight, feFlood, feFuncA, feFuncB, feFuncG, feFuncR, feGaussianBlur, feImage, feMerge, feMergeNode, feMorphology, feOffset, fePointLight, feSpecularLighting, feSpotLight, feTile, feTurbulence, filter, foreignObject, g, gradient, image, line, linearGradient, marker, mask, metadata, path, pattern, polygon, polyline, radialGradient, rect, script, stop, style, svg, switch_, symbol, text, textContent, textPath, textPositioning, title, tspan, use, view]
-
-const allSvgTags: SVGTag[] = ['a', 'circle', 'clipPath', 'componentTransferFunction', 'defs', 'desc', 'ellipse', 'feBlend', 'feColorMatrix', 'feComponentTransfer', 'feComposite', 'feConvolveMatrix', 'feDiffuseLighting', 'feDisplacementMap', 'feDistantLight', 'feFlood', 'feFuncA', 'feFuncB', 'feFuncG', 'feFuncR', 'feGaussianBlur', 'feImage', 'feMerge', 'feMergeNode', 'feMorphology', 'feOffset', 'fePointLight', 'feSpecularLighting', 'feSpotLight', 'feTile', 'feTurbulence', 'filter', 'foreignObject', 'g', 'gradient', 'image', 'line', 'linearGradient', 'marker', 'mask', 'metadata', 'path', 'pattern', 'polygon', 'polyline', 'radialGradient', 'rect', 'script', 'stop', 'style', 'svg', 'switch', 'symbol', 'text', 'textContent', 'textPath', 'textPositioning', 'title', 'tspan', 'use', 'view']
+const allSvgFunctions = Object.keys(s).map(k => (s as any)[k])
+const allSvgTags = allSvgFunctions.map(f => f.name.endsWith('_') ? f.name.slice(0, -1) : f.name)
 
 const tagsExcludedFromCreation = ['componentTransferFunction', 'textContent', 'textPositioning']
 const tagsFailingDeepEquality = ['desc', 'foreignObject', 'title']
 
-const globalAttributesObj: SVGProperties = {
+const globalAttributesObj = {
     id: 'c',
     tabIndex: 2,
     'font-size': '20px',
@@ -30,7 +27,7 @@ suite('s()', () => {
         allSvgTags
             .filter(tag => tagsExcludedFromCreation.indexOf(tag) === -1)
             .forEach(tag => {
-                const elemFromJs = s(tag)
+                const elemFromJs = (s as any)[tag]()
                 const elemFromStr = createElement(`<${tag}></${tag}>`, true)
 
                 elementsAreEqual(elemFromJs, elemFromStr)
@@ -51,7 +48,7 @@ suite('s()', () => {
         allSvgTags
             .filter(tag => tagsExcludedFromCreation.indexOf(tag) === -1)
             .forEach(tag => {
-                const elemFromJs = s(tag, globalAttributesObj)
+                const elemFromJs = (s as any)[tag](globalAttributesObj)
                 const elemFromStr = createElement(`<${tag} ${globalAttributesStr}></${tag}>`, true)
 
                 elementsAreEqual(elemFromJs, elemFromStr)
@@ -62,11 +59,15 @@ suite('s()', () => {
         allSvgTags
             .filter(tag => tagsExcludedFromCreation.indexOf(tag) === -1)
             .forEach(tag => {
-                const elemFromJs = s(tag, {}, [
-                    s('tspan', {id: 'a'}, 'A'),
-                    s('tspan', {id: 'b'}, 'B'),
-                    s('tspan', {id: 'c'}, [
-                        '(', s('a', {href: {baseVal: 'https://developer.mozilla.org/'}}, ['MDN rocks!']), ')'
+                const elemFromJs = (s as any)[tag]({}, [
+                    s.tspan({id: 'a'}, ['A']),
+                    s.tspan({id: 'b'}, ['B']),
+                    s.tspan({id: 'c'}, [
+                        '(',
+                        s.a({href: {baseVal: 'https://developer.mozilla.org/'}}, [
+                            'MD rocks!'
+                        ]),
+                        ')'
                     ])
                 ])
 
@@ -84,14 +85,14 @@ suite('s()', () => {
     })
 
     test('elements with event listeners', () => {
-        const $count = tspan({id: 'count'}, '0')
-        const $counter = tspan({}, [
-            tspan({
+        const $count = s.tspan({id: 'count'}, ['0'])
+        const $counter = s.tspan({}, [
+            s.tspan({
                 id: 'increment-btn',
                 onclick: () => $count.textContent = '' + (parseInt($count.textContent as string) + 1)
             }),
             $count,
-            tspan({
+            s.tspan({
                 id: 'decrement-btn',
                 onclick: () => $count.textContent = '' + (parseInt($count.textContent as string) - 1)
             })
@@ -99,9 +100,9 @@ suite('s()', () => {
 
         document.body.appendChild($counter)
 
-        const countFromDom = document.getElementById('count') as any as Tspan
-        const incrementBtn = document.getElementById('increment-btn') as any as Tspan
-        const decrementBtn = document.getElementById('decrement-btn') as any as Tspan
+        const countFromDom = document.getElementById('count') as any as s.Tspan
+        const incrementBtn = document.getElementById('increment-btn') as any as s.Tspan
+        const decrementBtn = document.getElementById('decrement-btn') as any as s.Tspan
 
         click(incrementBtn) // 1
         click(incrementBtn) // 2
@@ -125,7 +126,7 @@ suite('s()', () => {
     test('specialized functions to create each SVG element', () => {
         allSvgFunctions.forEach((fn: Function, idx) => {
             const elemFromSpecializedFn: SVGElement = fn(globalAttributesObj)
-            const elemFromGenericFn = s(allSvgTags[idx], globalAttributesObj)
+            const elemFromGenericFn = (s as any)[allSvgTags[idx]](globalAttributesObj)
 
             elementsAreEqual(elemFromSpecializedFn, elemFromGenericFn)
         })

@@ -42,14 +42,14 @@ import {HtmlTypesMap} from './HtmlTypesMap'
  * https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories.
  */
 export namespace HtmlContent {
-    export type TransparentContent = HTMLElement | SVGSVGElement | Text
+    export type TransparentContent = HTMLElement | SVGSVGElement | string
 ${
     elements
         .map(([category, tags]) =>
             `    export type ${category} = ${tags
                 .filter(tag => tag !== 'math') // MathML has very poor browser support.
                 .map(tag => tag === 'Text'
-                    ? 'Text'
+                    ? 'string'
                     : tag === 'svg'
                     ? 'SVGSVGElement'
                     : `HtmlTypesMap['${tag}']`

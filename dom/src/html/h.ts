@@ -9,8 +9,8 @@ import {HtmlChildrenMap} from './HtmlChildrenMap'
  * Factory function for HTML elements.
  */
 function hh<T extends keyof HtmlTypesMap>(tag: T, props?: BuiltTimeHtmlTypesMap[T], children?: HtmlChildrenMap[T]): HtmlTypesMap[T]
-function hh(tag: string, props?: BuiltTimeDom.HTMLElement, children?: (HTMLElement | SVGSVGElement | Text)[]): HTMLElement
-function hh(tag: string, props?: BuiltTimeDom.HTMLElement, children?: (HTMLElement | SVGSVGElement | Text)[]) {
+function hh(tag: string, props?: BuiltTimeDom.HTMLElement, children?: (HTMLElement | SVGSVGElement | string)[]): HTMLElement
+function hh(tag: string, props?: BuiltTimeDom.HTMLElement, children?: (HTMLElement | SVGSVGElement | string)[]) {
     const elem = document.createElement(tag)
     if (props !== undefined) {
         assignProperties(elem, props)
@@ -27,7 +27,7 @@ export namespace h {
      * Helper function to concisely create instances of custom HTML elements,
      * whose tags are automatically prefixed with "x-".
      */
-    export const x = (tag: Exclude<string, keyof HtmlTypesMap>, props?: BuiltTimeDom.HTMLElement, children?: (HTMLElement | SVGSVGElement | Text)[]): HTMLElement => hh(`x-${tag}`, props, children)
+    export const x = (tag: Exclude<string, keyof HtmlTypesMap>, props?: BuiltTimeDom.HTMLElement, children?: (HTMLElement | SVGSVGElement | string)[]): HTMLElement => hh(`x-${tag}`, props, children)
 }
 
 /// Script-generated.
