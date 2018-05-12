@@ -1,4 +1,5 @@
-import {h, extend} from '@soil/web'
+import {h} from '@soil/dom'
+import {extend} from '@soil/arch'
 import {TodosFilterFn} from './TodosFilterFn'
 
 type OnFilterChangeFn = (filterFn: TodosFilterFn) => void
@@ -12,9 +13,9 @@ export const todoFilters = (options: Options) => {
     // Template.
 
     const $filterButtons = [
-        h.button({disabled: true, onclick: () => onFilterChange(todos => showAllTodosFilter(todos))}, 'All'),
-        h.button({disabled: true, onclick: () => onFilterChange(todos => showActiveTodosFilter(todos))}, 'Active'),
-        h.button({disabled: true, onclick: () => onFilterChange(todos => showCompletedTodosFilter(todos))}, 'Completed')
+        h.button({disabled: true, onclick: () => onFilterChange(todos => showAllTodosFilter(todos))}, ['All']),
+        h.button({disabled: true, onclick: () => onFilterChange(todos => showActiveTodosFilter(todos))}, ['Active']),
+        h.button({disabled: true, onclick: () => onFilterChange(todos => showCompletedTodosFilter(todos))}, ['Completed'])
     ]
 
     const $todoFilters = h.footer({}, $filterButtons)

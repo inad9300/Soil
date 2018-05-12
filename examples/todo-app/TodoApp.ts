@@ -1,4 +1,4 @@
-import {h, Component} from '@soil/web'
+import {h} from '@soil/dom'
 import {TodoList} from './TodoList'
 import {TodoInput} from './TodoInput'
 import {todoFilters} from './todoFilters'
@@ -18,7 +18,7 @@ export const TodoApp = ({todoInput = TodoInput(), todoList = TodoList()} = {}) =
     })
 
     const $todoApp = h.div({}, [
-        h.h1({}, 'Todo'),
+        h.h1({}, ['Todo']),
         $todoInput,
         $todoList,
         $todoFilters

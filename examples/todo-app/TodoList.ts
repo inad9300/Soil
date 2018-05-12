@@ -1,4 +1,5 @@
-import {h, extend} from '@soil/web'
+import {h} from '@soil/dom'
+import {extend} from '@soil/arch'
 import {noop} from './noop'
 import {Todo} from './Todo'
 import {show, hide} from './dom'
@@ -48,10 +49,11 @@ export const TodoList = ({todoService = TodoService()} = {}) => (options: Option
             h.label({textContent: todo.text}, [
                 h.input({
                     type: 'checkbox',
-                    onclick: (evt: MouseEvent) => updateTodoStatus($todo, todo, (evt.target as h.Input).checked)
+                    onclick: (evt: MouseEvent) =>
+                        updateTodoStatus($todo, todo, (evt.target as h.Input).checked)
                 })
             ]),
-            h.button({onclick: () => deleteTodo($todo, todo)}, '⨉')
+            h.button({onclick: () => deleteTodo($todo, todo)}, ['⨉'])
         ])
 
         $todoList.appendChild($todo)

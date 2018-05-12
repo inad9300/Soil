@@ -410,33 +410,33 @@ export interface Element extends Node, GlobalEventHandlers, ElementTraversal, Pa
     id?: string
     innerHTML?: string
     msContentZoomFactor?: number
-    onariarequest?: ((this: Element, ev?: Event) => any) | null
-    oncommand?: ((this: Element, ev?: Event) => any) | null
-    ongotpointercapture?: ((this: Element, ev?: PointerEvent) => any) | null
-    onlostpointercapture?: ((this: Element, ev?: PointerEvent) => any) | null
-    onmsgesturechange?: ((this: Element, ev?: Event) => any) | null
-    onmsgesturedoubletap?: ((this: Element, ev?: Event) => any) | null
-    onmsgestureend?: ((this: Element, ev?: Event) => any) | null
-    onmsgesturehold?: ((this: Element, ev?: Event) => any) | null
-    onmsgesturestart?: ((this: Element, ev?: Event) => any) | null
-    onmsgesturetap?: ((this: Element, ev?: Event) => any) | null
-    onmsgotpointercapture?: ((this: Element, ev?: Event) => any) | null
-    onmsinertiastart?: ((this: Element, ev?: Event) => any) | null
-    onmslostpointercapture?: ((this: Element, ev?: Event) => any) | null
-    onmspointercancel?: ((this: Element, ev?: Event) => any) | null
-    onmspointerdown?: ((this: Element, ev?: Event) => any) | null
-    onmspointerenter?: ((this: Element, ev?: Event) => any) | null
-    onmspointerleave?: ((this: Element, ev?: Event) => any) | null
-    onmspointermove?: ((this: Element, ev?: Event) => any) | null
-    onmspointerout?: ((this: Element, ev?: Event) => any) | null
-    onmspointerover?: ((this: Element, ev?: Event) => any) | null
-    onmspointerup?: ((this: Element, ev?: Event) => any) | null
-    ontouchcancel?: ((this: Element, ev?: TouchEvent) => any) | null
-    ontouchend?: ((this: Element, ev?: TouchEvent) => any) | null
-    ontouchmove?: ((this: Element, ev?: TouchEvent) => any) | null
-    ontouchstart?: ((this: Element, ev?: TouchEvent) => any) | null
-    onwebkitfullscreenchange?: ((this: Element, ev?: Event) => any) | null
-    onwebkitfullscreenerror?: ((this: Element, ev?: Event) => any) | null
+    onariarequest?: ((this: Element, ev: Event) => any) | null
+    oncommand?: ((this: Element, ev: Event) => any) | null
+    ongotpointercapture?: ((this: Element, ev: PointerEvent) => any) | null
+    onlostpointercapture?: ((this: Element, ev: PointerEvent) => any) | null
+    onmsgesturechange?: ((this: Element, ev: Event) => any) | null
+    onmsgesturedoubletap?: ((this: Element, ev: Event) => any) | null
+    onmsgestureend?: ((this: Element, ev: Event) => any) | null
+    onmsgesturehold?: ((this: Element, ev: Event) => any) | null
+    onmsgesturestart?: ((this: Element, ev: Event) => any) | null
+    onmsgesturetap?: ((this: Element, ev: Event) => any) | null
+    onmsgotpointercapture?: ((this: Element, ev: Event) => any) | null
+    onmsinertiastart?: ((this: Element, ev: Event) => any) | null
+    onmslostpointercapture?: ((this: Element, ev: Event) => any) | null
+    onmspointercancel?: ((this: Element, ev: Event) => any) | null
+    onmspointerdown?: ((this: Element, ev: Event) => any) | null
+    onmspointerenter?: ((this: Element, ev: Event) => any) | null
+    onmspointerleave?: ((this: Element, ev: Event) => any) | null
+    onmspointermove?: ((this: Element, ev: Event) => any) | null
+    onmspointerout?: ((this: Element, ev: Event) => any) | null
+    onmspointerover?: ((this: Element, ev: Event) => any) | null
+    onmspointerup?: ((this: Element, ev: Event) => any) | null
+    ontouchcancel?: ((this: Element, ev: TouchEvent) => any) | null
+    ontouchend?: ((this: Element, ev: TouchEvent) => any) | null
+    ontouchmove?: ((this: Element, ev: TouchEvent) => any) | null
+    ontouchstart?: ((this: Element, ev: TouchEvent) => any) | null
+    onwebkitfullscreenchange?: ((this: Element, ev: Event) => any) | null
+    onwebkitfullscreenerror?: ((this: Element, ev: Event) => any) | null
     outerHTML?: string
     scrollLeft?: number
     scrollTop?: number
@@ -454,15 +454,15 @@ export interface EventTarget {}
 export interface GetSVGDocument {}
 
 export interface GlobalEventHandlers {
-    onpointercancel?: ((this: GlobalEventHandlers, ev?: PointerEvent) => any) | null
-    onpointerdown?: ((this: GlobalEventHandlers, ev?: PointerEvent) => any) | null
-    onpointerenter?: ((this: GlobalEventHandlers, ev?: PointerEvent) => any) | null
-    onpointerleave?: ((this: GlobalEventHandlers, ev?: PointerEvent) => any) | null
-    onpointermove?: ((this: GlobalEventHandlers, ev?: PointerEvent) => any) | null
-    onpointerout?: ((this: GlobalEventHandlers, ev?: PointerEvent) => any) | null
-    onpointerover?: ((this: GlobalEventHandlers, ev?: PointerEvent) => any) | null
-    onpointerup?: ((this: GlobalEventHandlers, ev?: PointerEvent) => any) | null
-    onwheel?: ((this: GlobalEventHandlers, ev?: WheelEvent) => any) | null
+    onpointercancel?: ((this: GlobalEventHandlers, ev: PointerEvent) => any) | null
+    onpointerdown?: ((this: GlobalEventHandlers, ev: PointerEvent) => any) | null
+    onpointerenter?: ((this: GlobalEventHandlers, ev: PointerEvent) => any) | null
+    onpointerleave?: ((this: GlobalEventHandlers, ev: PointerEvent) => any) | null
+    onpointermove?: ((this: GlobalEventHandlers, ev: PointerEvent) => any) | null
+    onpointerout?: ((this: GlobalEventHandlers, ev: PointerEvent) => any) | null
+    onpointerover?: ((this: GlobalEventHandlers, ev: PointerEvent) => any) | null
+    onpointerup?: ((this: GlobalEventHandlers, ev: PointerEvent) => any) | null
+    onwheel?: ((this: GlobalEventHandlers, ev: WheelEvent) => any) | null
 }
 
 export interface HTMLAnchorElement extends HTMLElement, HTMLHyperlinkElementUtils {
@@ -496,8 +496,8 @@ export interface HTMLBaseElement extends HTMLElement {
 
 export interface HTMLBodyElement extends HTMLElement, WindowEventHandlers {
     bgProperties?: string
-    onorientationchange?: ((this: HTMLBodyElement, ev?: Event) => any) | null
-    onresize?: ((this: HTMLBodyElement, ev?: UIEvent) => any) | null
+    onorientationchange?: ((this: HTMLBodyElement, ev: Event) => any) | null
+    onresize?: ((this: HTMLBodyElement, ev: UIEvent) => any) | null
 }
 
 export interface HTMLButtonElement extends HTMLElement {
@@ -550,73 +550,73 @@ export interface HTMLElement extends AriaAttributes, Element, ElementCSSInlineSt
     hideFocus?: boolean
     innerText?: string
     lang?: string
-    onabort?: ((this: HTMLElement, ev?: UIEvent) => any) | null
-    onactivate?: ((this: HTMLElement, ev?: Event) => any) | null
-    onbeforeactivate?: ((this: HTMLElement, ev?: Event) => any) | null
-    onbeforecopy?: ((this: HTMLElement, ev?: Event) => any) | null
-    onbeforecut?: ((this: HTMLElement, ev?: Event) => any) | null
-    onbeforedeactivate?: ((this: HTMLElement, ev?: Event) => any) | null
-    onbeforepaste?: ((this: HTMLElement, ev?: Event) => any) | null
-    onblur?: ((this: HTMLElement, ev?: FocusEvent) => any) | null
-    oncanplay?: ((this: HTMLElement, ev?: Event) => any) | null
-    oncanplaythrough?: ((this: HTMLElement, ev?: Event) => any) | null
-    onchange?: ((this: HTMLElement, ev?: Event) => any) | null
-    onclick?: ((this: HTMLElement, ev?: MouseEvent) => any) | null
-    oncontextmenu?: ((this: HTMLElement, ev?: PointerEvent) => any) | null
-    oncopy?: ((this: HTMLElement, ev?: ClipboardEvent) => any) | null
-    oncuechange?: ((this: HTMLElement, ev?: Event) => any) | null
-    oncut?: ((this: HTMLElement, ev?: ClipboardEvent) => any) | null
-    ondblclick?: ((this: HTMLElement, ev?: MouseEvent) => any) | null
-    ondeactivate?: ((this: HTMLElement, ev?: Event) => any) | null
-    ondrag?: ((this: HTMLElement, ev?: DragEvent) => any) | null
-    ondragend?: ((this: HTMLElement, ev?: DragEvent) => any) | null
-    ondragenter?: ((this: HTMLElement, ev?: DragEvent) => any) | null
-    ondragleave?: ((this: HTMLElement, ev?: DragEvent) => any) | null
-    ondragover?: ((this: HTMLElement, ev?: DragEvent) => any) | null
-    ondragstart?: ((this: HTMLElement, ev?: DragEvent) => any) | null
-    ondrop?: ((this: HTMLElement, ev?: DragEvent) => any) | null
-    ondurationchange?: ((this: HTMLElement, ev?: Event) => any) | null
-    onemptied?: ((this: HTMLElement, ev?: Event) => any) | null
-    onended?: ((this: HTMLElement, ev?: Event) => any) | null
-    onerror?: ((this: HTMLElement, ev?: ErrorEvent) => any) | null
-    onfocus?: ((this: HTMLElement, ev?: FocusEvent) => any) | null
-    oninput?: ((this: HTMLElement, ev?: Event) => any) | null
-    oninvalid?: ((this: HTMLElement, ev?: Event) => any) | null
-    onkeydown?: ((this: HTMLElement, ev?: KeyboardEvent) => any) | null
-    onkeypress?: ((this: HTMLElement, ev?: KeyboardEvent) => any) | null
-    onkeyup?: ((this: HTMLElement, ev?: KeyboardEvent) => any) | null
-    onload?: ((this: HTMLElement, ev?: Event) => any) | null
-    onloadeddata?: ((this: HTMLElement, ev?: Event) => any) | null
-    onloadedmetadata?: ((this: HTMLElement, ev?: Event) => any) | null
-    onloadstart?: ((this: HTMLElement, ev?: Event) => any) | null
-    onmousedown?: ((this: HTMLElement, ev?: MouseEvent) => any) | null
-    onmouseenter?: ((this: HTMLElement, ev?: MouseEvent) => any) | null
-    onmouseleave?: ((this: HTMLElement, ev?: MouseEvent) => any) | null
-    onmousemove?: ((this: HTMLElement, ev?: MouseEvent) => any) | null
-    onmouseout?: ((this: HTMLElement, ev?: MouseEvent) => any) | null
-    onmouseover?: ((this: HTMLElement, ev?: MouseEvent) => any) | null
-    onmouseup?: ((this: HTMLElement, ev?: MouseEvent) => any) | null
-    onmousewheel?: ((this: HTMLElement, ev?: WheelEvent) => any) | null
-    onmscontentzoom?: ((this: HTMLElement, ev?: Event) => any) | null
-    onmsmanipulationstatechanged?: ((this: HTMLElement, ev?: Event) => any) | null
-    onpaste?: ((this: HTMLElement, ev?: ClipboardEvent) => any) | null
-    onpause?: ((this: HTMLElement, ev?: Event) => any) | null
-    onplay?: ((this: HTMLElement, ev?: Event) => any) | null
-    onplaying?: ((this: HTMLElement, ev?: Event) => any) | null
-    onprogress?: ((this: HTMLElement, ev?: ProgressEvent) => any) | null
-    onratechange?: ((this: HTMLElement, ev?: Event) => any) | null
-    onreset?: ((this: HTMLElement, ev?: Event) => any) | null
-    onscroll?: ((this: HTMLElement, ev?: UIEvent) => any) | null
-    onseeked?: ((this: HTMLElement, ev?: Event) => any) | null
-    onseeking?: ((this: HTMLElement, ev?: Event) => any) | null
-    onselect?: ((this: HTMLElement, ev?: UIEvent) => any) | null
-    onselectstart?: ((this: HTMLElement, ev?: Event) => any) | null
-    onstalled?: ((this: HTMLElement, ev?: Event) => any) | null
-    onsubmit?: ((this: HTMLElement, ev?: Event) => any) | null
-    onsuspend?: ((this: HTMLElement, ev?: Event) => any) | null
-    ontimeupdate?: ((this: HTMLElement, ev?: Event) => any) | null
-    onvolumechange?: ((this: HTMLElement, ev?: Event) => any) | null
-    onwaiting?: ((this: HTMLElement, ev?: Event) => any) | null
+    onabort?: ((this: HTMLElement, ev: UIEvent) => any) | null
+    onactivate?: ((this: HTMLElement, ev: Event) => any) | null
+    onbeforeactivate?: ((this: HTMLElement, ev: Event) => any) | null
+    onbeforecopy?: ((this: HTMLElement, ev: Event) => any) | null
+    onbeforecut?: ((this: HTMLElement, ev: Event) => any) | null
+    onbeforedeactivate?: ((this: HTMLElement, ev: Event) => any) | null
+    onbeforepaste?: ((this: HTMLElement, ev: Event) => any) | null
+    onblur?: ((this: HTMLElement, ev: FocusEvent) => any) | null
+    oncanplay?: ((this: HTMLElement, ev: Event) => any) | null
+    oncanplaythrough?: ((this: HTMLElement, ev: Event) => any) | null
+    onchange?: ((this: HTMLElement, ev: Event) => any) | null
+    onclick?: ((this: HTMLElement, ev: MouseEvent) => any) | null
+    oncontextmenu?: ((this: HTMLElement, ev: PointerEvent) => any) | null
+    oncopy?: ((this: HTMLElement, ev: ClipboardEvent) => any) | null
+    oncuechange?: ((this: HTMLElement, ev: Event) => any) | null
+    oncut?: ((this: HTMLElement, ev: ClipboardEvent) => any) | null
+    ondblclick?: ((this: HTMLElement, ev: MouseEvent) => any) | null
+    ondeactivate?: ((this: HTMLElement, ev: Event) => any) | null
+    ondrag?: ((this: HTMLElement, ev: DragEvent) => any) | null
+    ondragend?: ((this: HTMLElement, ev: DragEvent) => any) | null
+    ondragenter?: ((this: HTMLElement, ev: DragEvent) => any) | null
+    ondragleave?: ((this: HTMLElement, ev: DragEvent) => any) | null
+    ondragover?: ((this: HTMLElement, ev: DragEvent) => any) | null
+    ondragstart?: ((this: HTMLElement, ev: DragEvent) => any) | null
+    ondrop?: ((this: HTMLElement, ev: DragEvent) => any) | null
+    ondurationchange?: ((this: HTMLElement, ev: Event) => any) | null
+    onemptied?: ((this: HTMLElement, ev: Event) => any) | null
+    onended?: ((this: HTMLElement, ev: Event) => any) | null
+    onerror?: ((this: HTMLElement, ev: ErrorEvent) => any) | null
+    onfocus?: ((this: HTMLElement, ev: FocusEvent) => any) | null
+    oninput?: ((this: HTMLElement, ev: Event) => any) | null
+    oninvalid?: ((this: HTMLElement, ev: Event) => any) | null
+    onkeydown?: ((this: HTMLElement, ev: KeyboardEvent) => any) | null
+    onkeypress?: ((this: HTMLElement, ev: KeyboardEvent) => any) | null
+    onkeyup?: ((this: HTMLElement, ev: KeyboardEvent) => any) | null
+    onload?: ((this: HTMLElement, ev: Event) => any) | null
+    onloadeddata?: ((this: HTMLElement, ev: Event) => any) | null
+    onloadedmetadata?: ((this: HTMLElement, ev: Event) => any) | null
+    onloadstart?: ((this: HTMLElement, ev: Event) => any) | null
+    onmousedown?: ((this: HTMLElement, ev: MouseEvent) => any) | null
+    onmouseenter?: ((this: HTMLElement, ev: MouseEvent) => any) | null
+    onmouseleave?: ((this: HTMLElement, ev: MouseEvent) => any) | null
+    onmousemove?: ((this: HTMLElement, ev: MouseEvent) => any) | null
+    onmouseout?: ((this: HTMLElement, ev: MouseEvent) => any) | null
+    onmouseover?: ((this: HTMLElement, ev: MouseEvent) => any) | null
+    onmouseup?: ((this: HTMLElement, ev: MouseEvent) => any) | null
+    onmousewheel?: ((this: HTMLElement, ev: WheelEvent) => any) | null
+    onmscontentzoom?: ((this: HTMLElement, ev: Event) => any) | null
+    onmsmanipulationstatechanged?: ((this: HTMLElement, ev: Event) => any) | null
+    onpaste?: ((this: HTMLElement, ev: ClipboardEvent) => any) | null
+    onpause?: ((this: HTMLElement, ev: Event) => any) | null
+    onplay?: ((this: HTMLElement, ev: Event) => any) | null
+    onplaying?: ((this: HTMLElement, ev: Event) => any) | null
+    onprogress?: ((this: HTMLElement, ev: ProgressEvent) => any) | null
+    onratechange?: ((this: HTMLElement, ev: Event) => any) | null
+    onreset?: ((this: HTMLElement, ev: Event) => any) | null
+    onscroll?: ((this: HTMLElement, ev: UIEvent) => any) | null
+    onseeked?: ((this: HTMLElement, ev: Event) => any) | null
+    onseeking?: ((this: HTMLElement, ev: Event) => any) | null
+    onselect?: ((this: HTMLElement, ev: UIEvent) => any) | null
+    onselectstart?: ((this: HTMLElement, ev: Event) => any) | null
+    onstalled?: ((this: HTMLElement, ev: Event) => any) | null
+    onsubmit?: ((this: HTMLElement, ev: Event) => any) | null
+    onsuspend?: ((this: HTMLElement, ev: Event) => any) | null
+    ontimeupdate?: ((this: HTMLElement, ev: Event) => any) | null
+    onvolumechange?: ((this: HTMLElement, ev: Event) => any) | null
+    onwaiting?: ((this: HTMLElement, ev: Event) => any) | null
     outerText?: string
     spellcheck?: boolean
     tabIndex?: number
@@ -785,7 +785,7 @@ export interface HTMLMediaElement extends HTMLElement {
     readonly msPlayToSource?: any
     msRealTime?: boolean
     muted?: boolean
-    onencrypted?: ((this: HTMLMediaElement, ev?: MediaEncryptedEvent) => any) | null
+    onencrypted?: ((this: HTMLMediaElement, ev: MediaEncryptedEvent) => any) | null
     playbackRate?: number
     preload?: string
     src?: string
@@ -989,9 +989,9 @@ export interface HTMLVideoElement extends HTMLMediaElement {
     msStereo3DPackingMode?: string
     msStereo3DRenderMode?: string
     msZoom?: boolean
-    onMSVideoFormatChanged?: ((this: HTMLVideoElement, ev?: Event) => any) | null
-    onMSVideoFrameStepCompleted?: ((this: HTMLVideoElement, ev?: Event) => any) | null
-    onMSVideoOptimalLayoutChanged?: ((this: HTMLVideoElement, ev?: Event) => any) | null
+    onMSVideoFormatChanged?: ((this: HTMLVideoElement, ev: Event) => any) | null
+    onMSVideoFrameStepCompleted?: ((this: HTMLVideoElement, ev: Event) => any) | null
+    onMSVideoOptimalLayoutChanged?: ((this: HTMLVideoElement, ev: Event) => any) | null
     poster?: string
     width?: number
 }
@@ -1084,16 +1084,16 @@ export interface SVGDescElement extends SVGElement {}
 
 export interface SVGElement extends Element, ElementCSSInlineStyle {
     readonly className?: any
-    onclick?: ((this: SVGElement, ev?: MouseEvent) => any) | null
-    ondblclick?: ((this: SVGElement, ev?: MouseEvent) => any) | null
-    onfocusin?: ((this: SVGElement, ev?: FocusEvent) => any) | null
-    onfocusout?: ((this: SVGElement, ev?: FocusEvent) => any) | null
-    onload?: ((this: SVGElement, ev?: Event) => any) | null
-    onmousedown?: ((this: SVGElement, ev?: MouseEvent) => any) | null
-    onmousemove?: ((this: SVGElement, ev?: MouseEvent) => any) | null
-    onmouseout?: ((this: SVGElement, ev?: MouseEvent) => any) | null
-    onmouseover?: ((this: SVGElement, ev?: MouseEvent) => any) | null
-    onmouseup?: ((this: SVGElement, ev?: MouseEvent) => any) | null
+    onclick?: ((this: SVGElement, ev: MouseEvent) => any) | null
+    ondblclick?: ((this: SVGElement, ev: MouseEvent) => any) | null
+    onfocusin?: ((this: SVGElement, ev: FocusEvent) => any) | null
+    onfocusout?: ((this: SVGElement, ev: FocusEvent) => any) | null
+    onload?: ((this: SVGElement, ev: Event) => any) | null
+    onmousedown?: ((this: SVGElement, ev: MouseEvent) => any) | null
+    onmousemove?: ((this: SVGElement, ev: MouseEvent) => any) | null
+    onmouseout?: ((this: SVGElement, ev: MouseEvent) => any) | null
+    onmouseover?: ((this: SVGElement, ev: MouseEvent) => any) | null
+    onmouseup?: ((this: SVGElement, ev: MouseEvent) => any) | null
 }
 
 export interface SVGEllipseElement extends SVGGraphicsElement {
@@ -1381,12 +1381,12 @@ export interface SVGSVGElement extends SVGGraphicsElement, DocumentEvent, SVGFit
     currentScale?: number
     readonly currentTranslate?: SVGPoint
     readonly height?: SVGAnimatedLength
-    onabort?: ((this: SVGSVGElement, ev?: Event) => any) | null
-    onerror?: ((this: SVGSVGElement, ev?: Event) => any) | null
-    onresize?: ((this: SVGSVGElement, ev?: UIEvent) => any) | null
-    onscroll?: ((this: SVGSVGElement, ev?: UIEvent) => any) | null
-    onunload?: ((this: SVGSVGElement, ev?: Event) => any) | null
-    onzoom?: ((this: SVGSVGElement, ev?: SVGZoomEvent) => any) | null
+    onabort?: ((this: SVGSVGElement, ev: Event) => any) | null
+    onerror?: ((this: SVGSVGElement, ev: Event) => any) | null
+    onresize?: ((this: SVGSVGElement, ev: UIEvent) => any) | null
+    onscroll?: ((this: SVGSVGElement, ev: UIEvent) => any) | null
+    onunload?: ((this: SVGSVGElement, ev: Event) => any) | null
+    onzoom?: ((this: SVGSVGElement, ev: SVGZoomEvent) => any) | null
     readonly width?: SVGAnimatedLength
     readonly x?: SVGAnimatedLength
     readonly y?: SVGAnimatedLength
@@ -1450,18 +1450,18 @@ export interface SVGViewElement extends SVGElement, SVGFitToViewBox, SVGZoomAndP
 export interface SVGZoomAndPan {}
 
 export interface WindowEventHandlers {
-    onafterprint?: ((this: WindowEventHandlers, ev?: Event) => any) | null
-    onbeforeprint?: ((this: WindowEventHandlers, ev?: Event) => any) | null
-    onbeforeunload?: ((this: WindowEventHandlers, ev?: BeforeUnloadEvent) => any) | null
-    onhashchange?: ((this: WindowEventHandlers, ev?: HashChangeEvent) => any) | null
-    onmessage?: ((this: WindowEventHandlers, ev?: MessageEvent) => any) | null
-    onoffline?: ((this: WindowEventHandlers, ev?: Event) => any) | null
-    ononline?: ((this: WindowEventHandlers, ev?: Event) => any) | null
-    onpagehide?: ((this: WindowEventHandlers, ev?: PageTransitionEvent) => any) | null
-    onpageshow?: ((this: WindowEventHandlers, ev?: PageTransitionEvent) => any) | null
-    onpopstate?: ((this: WindowEventHandlers, ev?: PopStateEvent) => any) | null
-    onstorage?: ((this: WindowEventHandlers, ev?: StorageEvent) => any) | null
-    onunload?: ((this: WindowEventHandlers, ev?: Event) => any) | null
+    onafterprint?: ((this: WindowEventHandlers, ev: Event) => any) | null
+    onbeforeprint?: ((this: WindowEventHandlers, ev: Event) => any) | null
+    onbeforeunload?: ((this: WindowEventHandlers, ev: BeforeUnloadEvent) => any) | null
+    onhashchange?: ((this: WindowEventHandlers, ev: HashChangeEvent) => any) | null
+    onmessage?: ((this: WindowEventHandlers, ev: MessageEvent) => any) | null
+    onoffline?: ((this: WindowEventHandlers, ev: Event) => any) | null
+    ononline?: ((this: WindowEventHandlers, ev: Event) => any) | null
+    onpagehide?: ((this: WindowEventHandlers, ev: PageTransitionEvent) => any) | null
+    onpageshow?: ((this: WindowEventHandlers, ev: PageTransitionEvent) => any) | null
+    onpopstate?: ((this: WindowEventHandlers, ev: PopStateEvent) => any) | null
+    onstorage?: ((this: WindowEventHandlers, ev: StorageEvent) => any) | null
+    onunload?: ((this: WindowEventHandlers, ev: Event) => any) | null
 }
 
 }

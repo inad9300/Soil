@@ -1,4 +1,5 @@
-import {h, extend} from '@soil/web'
+import {h} from '@soil/dom'
+import {extend} from '@soil/arch'
 
 interface Options {
     title: string
@@ -19,8 +20,8 @@ export const modal = (options: Options) => {
             $title,
             $body,
             h.div({className: 'footer'}, [
-                h.button({className: 'cancel', onclick: close}, 'Cancel'),
-                h.button({className: 'submit', onclick: () => onSubmit()}, 'Submit'),
+                h.button({className: 'cancel', onclick: close}, ['Cancel']),
+                h.button({className: 'submit', onclick: () => onSubmit()}, ['Submit']),
                 h.div({className: 'clear'})
             ])
         ])

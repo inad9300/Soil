@@ -1,6 +1,7 @@
 {
     "dependencies": {
-        "@soil/web": "0.3.0"
+        "@soil/dom": "0.5.0",
+        "@soil/arch": "0.1.0"
     },
     "devDependencies": {
         "http-server": "0.11.1",

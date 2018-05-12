@@ -119,7 +119,7 @@ ${
         .replace('interface HTMLElement extends ', 'interface HTMLElement extends AriaAttributes, ')
         .replace(/{\n}/g, '{}')
         .replace(/export interface /g, '\nexport interface ')
-        .replace(/(\s+(?:readonly )?[a-zA-Z0-9_]+):/g, '$1?:')
+        .replace(/(\s{4}(?:readonly )?[a-zA-Z0-9_]+):/g, '$1?:')
         .replace(/;/g, '')
 }
 

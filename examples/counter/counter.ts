@@ -1,4 +1,5 @@
-import {h, extend} from '@soil/web'
+import {h} from '@soil/dom'
+import {extend} from '@soil/arch'
 
 export const counter = (options: {value?: number} = {}) => {
 
@@ -7,9 +8,9 @@ export const counter = (options: {value?: number} = {}) => {
     const $count = h.span({})
 
     const $counter = h.div({}, [
-        h.button({onclick: () => setValue(value - 1)}, '-'),
+        h.button({onclick: () => setValue(value - 1)}, ['-']),
         $count,
-        h.button({onclick: () => setValue(value + 1)}, '+')
+        h.button({onclick: () => setValue(value + 1)}, ['+'])
     ])
 
     // Initialization.

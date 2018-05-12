@@ -1,4 +1,5 @@
-import {h, extend} from '@soil/web'
+import {h} from '@soil/dom'
+import {extend} from '@soil/arch'
 import {Todo} from './Todo'
 import {TodoService} from './TodoService'
 
@@ -23,7 +24,7 @@ export const TodoInput = ({todoService = TodoService()} = {}) => (options: Optio
 
     const $todoInput = h.div({}, [
         $input,
-        h.button({onclick: addTodo}, 'Add')
+        h.button({onclick: addTodo}, ['Add'])
     ])
 
     // Initialization.
