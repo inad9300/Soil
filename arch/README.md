@@ -5,11 +5,16 @@ Architectural constructs for web applications.
 
 ## Installation
 
-The package is available [at npm](https://www.npmjs.com/package/@soil/arch), so
-it can be installed by running:
+The package is available at npm's registry, so it can be installed via npm or
+Yarn:
 
 ```bash
-npm i -S @soil/arch # AKA npm install --save @soil/arch
+npm i -S @soil/arch
+# AKA npm install --save @soil/arch
+```
+
+```bash
+yarn add @soil/arch
 ```
 
 

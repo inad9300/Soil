@@ -89,16 +89,28 @@ const counterContainer = (counterService = new CounterService) => (input = {}) =
 }
 ```
 
-To get more familiar with the ideas presented above, head to the [documentation](https://github.com/inad9300/Soil/wiki/Documentation),
-check out the [examples](examples/), or dive directly into the [source code](src/).
+To get a bit more familiar with the ideas presented above, you may head to the
+[documentation](https://github.com/inad9300/Soil/wiki/), check out the [examples](examples/),
+or dive directly into the source code!
 
 
 ## Installation
 
-The package is available at npm, so it can be installed by running:
+Soil is divided into packages that work well together but that can be used
+independently, namely:
+- [@soil/dom](https://github.com/inad9300/Soil/tree/master/dom)
+- [@soil/arch](https://github.com/inad9300/Soil/tree/master/arch)
+
+They are all available at npm's registry, so they can be installed via npm or
+Yarn:
 
 ```bash
-npm i -S @soil/dom @soil/arch # AKA npm install --save @soil/dom @soil/arch
+npm i -S @soil/dom @soil/arch
+# AKA npm install --save @soil/dom @soil/arch
+```
+
+```bash
+yarn add @soil/dom @soil/arch
 ```
 
 

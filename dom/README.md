@@ -5,11 +5,16 @@ Declaratively create type-safe HTML and SVG elements.
 
 ## Installation
 
-The package is available [at npm](https://www.npmjs.com/package/@soil/dom), so
-it can be installed by running:
+The package is available at npm's registry, so it can be installed via npm or
+Yarn:
 
 ```bash
-npm i -S @soil/dom # AKA npm install --save @soil/dom
+npm i -S @soil/dom
+# AKA npm install --save @soil/dom
+```
+
+```bash
+yarn add @soil/dom
 ```
 
 
