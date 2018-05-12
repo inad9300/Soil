@@ -501,7 +501,6 @@ export interface HTMLBodyElement extends HTMLElement, WindowEventHandlers {
 }
 
 export interface HTMLButtonElement extends HTMLElement {
-    autofocus?: boolean
     disabled?: boolean
     formAction?: string
     formEnctype?: string
@@ -707,7 +706,6 @@ export interface HTMLInputElement extends HTMLElement {
     accept?: string
     alt?: string
     autocomplete?: string
-    autofocus?: boolean
     checked?: boolean
     defaultChecked?: boolean
     defaultValue?: string
@@ -888,7 +886,6 @@ export interface HTMLScriptElement extends HTMLElement {
 }
 
 export interface HTMLSelectElement extends HTMLElement {
-    autofocus?: boolean
     disabled?: boolean
     length?: number
     multiple?: boolean
@@ -948,7 +945,6 @@ export interface HTMLTableSectionElement extends HTMLElement {}
 export interface HTMLTemplateElement extends HTMLElement {}
 
 export interface HTMLTextAreaElement extends HTMLElement {
-    autofocus?: boolean
     cols?: number
     defaultValue?: string
     disabled?: boolean

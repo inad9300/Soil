@@ -120,6 +120,7 @@ ${
         .replace(/{\n}/g, '{}')
         .replace(/export interface /g, '\nexport interface ')
         .replace(/(\s{4}(?:readonly )?[a-zA-Z0-9_]+):/g, '$1?:')
+        .replace(/\n\s{4}autofocus\?: boolean;/g, '')
         .replace(/;/g, '')
 }
 
