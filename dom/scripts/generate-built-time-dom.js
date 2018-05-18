@@ -94,7 +94,9 @@ download('https://raw.githubusercontent.com/Microsoft/TypeScript/master/lib/lib.
         .filter(skipDeprecatedFields())
         .filter(skipFunctions)
         .filter(skipReadonlyFields)
+        .filter(skipIndexSignaturesFrom(['HTMLSelectElement', 'HTMLFormElement']))
         .filter(skipComments())
+        .filter(skipSpuriousEntries)
         .join('\n')
 
     const missedInterfaces = allInterfaces
@@ -103,7 +105,6 @@ download('https://raw.githubusercontent.com/Microsoft/TypeScript/master/lib/lib.
     console.warn('Interfaces missing in TypeScript:', missedInterfaces)
     console.warn('Unknown types:', unknownReadonlyTypes)
 
-    console.info('Done.')
     fs.writeFileSync('../src/BuiltTimeDom.ts', `/// Script-generated.
 
 import {AriaAttributes, AriaRole} from './AriaAttributes'
@@ -125,6 +126,7 @@ ${
 }
 
 }`)
+    console.info('Done.')
 })
 
 function download(url, cb) {
@@ -207,7 +209,7 @@ function skipDeprecatedFields() {
 }
 
 function skipFunctions(line) {
-    if (/^\s+[a-zA-Z0-9_]+(<|\()/.test(line) && !/^\s+new\s*\(/.test(line)) {
+    if (/^\s{4}[a-zA-Z0-9_]+(<|\()/.test(line) && !/^\s{4}new\s*\(/.test(line)) {
         console.debug(`Skipping function "${line.trim()}".`)
         return false
     }
@@ -243,6 +245,25 @@ function skipReadonlyFields(line) {
     }
 }
 
+function skipIndexSignaturesFrom(ifaces) {
+    let skipNext = false
+    const regexps = ifaces.map(iface => new RegExp(`\\binterface ${iface}[\\s<]`))
+
+    return line => {
+        if (regexps.some(r => r.test(line))) {
+            console.debug(`Preparing to skip index signature from "${line.trim()}".`)
+            skipNext = true
+            return true
+        }
+        if (skipNext && /\s+\[[a-zA-Z0-9_]+: (string|number)\]: [a-zA-Z0-9_]+/.test(line)) {
+            skipNext = false
+            console.debug(`Skipping index signature "${line.trim()}".`)
+            return false
+        }
+        return true
+    }
+}
+
 function skipComments() {
     let insideComment = false
 
@@ -260,4 +281,13 @@ function skipComments() {
         }
         return !insideComment
     }
+}
+
+
+function skipSpuriousEntries(line) {
+    if (/^\s{4}Methods: string;$/.test(line)) {
+        console.debug(`Skipping spurious HTMLAnchorElement field "${line.trim()}".`)
+        return false
+    }
+    return true
 }

@@ -466,7 +466,6 @@ export interface GlobalEventHandlers {
 }
 
 export interface HTMLAnchorElement extends HTMLElement, HTMLHyperlinkElementUtils {
-    Methods?: string
     download?: string
     hreflang?: string
     rel?: string
@@ -650,7 +649,6 @@ export interface HTMLFormElement extends HTMLElement {
     name?: string
     noValidate?: boolean
     target?: string
-    [name: string]: any
 }
 
 export interface HTMLHRElement extends HTMLElement, DOML2DeprecatedColorProperty, DOML2DeprecatedSizeProperty {}
@@ -894,7 +892,6 @@ export interface HTMLSelectElement extends HTMLElement {
     selectedIndex?: number
     size?: number
     value?: string
-    [name: string]: any
 }
 
 export interface HTMLSourceElement extends HTMLElement {
