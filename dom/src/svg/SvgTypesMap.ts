@@ -7,7 +7,6 @@ export interface SvgTypesMap {
     a: SVGAElement
     circle: SVGCircleElement
     clipPath: SVGClipPathElement
-    componentTransferFunction: SVGComponentTransferFunctionElement
     defs: SVGDefsElement
     desc: SVGDescElement
     ellipse: SVGEllipseElement
@@ -58,9 +57,7 @@ export interface SvgTypesMap {
     switch: SVGSwitchElement
     symbol: SVGSymbolElement
     text: SVGTextElement
-    textContent: SVGTextContentElement
     textPath: SVGTextPathElement
-    textPositioning: SVGTextPositioningElement
     title: SVGTitleElement
     tspan: SVGTSpanElement
     use: SVGUseElement

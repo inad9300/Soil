@@ -34,7 +34,6 @@ export namespace s {
     export const a = (props?: BuiltTimeDom.SVGAElement, children?: (SVGElement | string)[]): SvgTypesMap['a'] => ss('a', props, children)
     export const circle = (props?: BuiltTimeDom.SVGCircleElement, children?: (SVGElement | string)[]): SvgTypesMap['circle'] => ss('circle', props, children)
     export const clipPath = (props?: BuiltTimeDom.SVGClipPathElement, children?: (SVGElement | string)[]): SvgTypesMap['clipPath'] => ss('clipPath', props, children)
-    export const componentTransferFunction = (props?: BuiltTimeDom.SVGComponentTransferFunctionElement, children?: (SVGElement | string)[]): SvgTypesMap['componentTransferFunction'] => ss('componentTransferFunction', props, children)
     export const defs = (props?: BuiltTimeDom.SVGDefsElement, children?: (SVGElement | string)[]): SvgTypesMap['defs'] => ss('defs', props, children)
     export const desc = (props?: BuiltTimeDom.SVGDescElement, children?: (SVGElement | string)[]): SvgTypesMap['desc'] => ss('desc', props, children)
     export const ellipse = (props?: BuiltTimeDom.SVGEllipseElement, children?: (SVGElement | string)[]): SvgTypesMap['ellipse'] => ss('ellipse', props, children)
@@ -85,9 +84,7 @@ export namespace s {
     export const switch_ = (props?: BuiltTimeDom.SVGSwitchElement, children?: (SVGElement | string)[]): SvgTypesMap['switch'] => ss('switch', props, children)
     export const symbol = (props?: BuiltTimeDom.SVGSymbolElement, children?: (SVGElement | string)[]): SvgTypesMap['symbol'] => ss('symbol', props, children)
     export const text = (props?: BuiltTimeDom.SVGTextElement, children?: (SVGElement | string)[]): SvgTypesMap['text'] => ss('text', props, children)
-    export const textContent = (props?: BuiltTimeDom.SVGTextContentElement, children?: (SVGElement | string)[]): SvgTypesMap['textContent'] => ss('textContent', props, children)
     export const textPath = (props?: BuiltTimeDom.SVGTextPathElement, children?: (SVGElement | string)[]): SvgTypesMap['textPath'] => ss('textPath', props, children)
-    export const textPositioning = (props?: BuiltTimeDom.SVGTextPositioningElement, children?: (SVGElement | string)[]): SvgTypesMap['textPositioning'] => ss('textPositioning', props, children)
     export const title = (props?: BuiltTimeDom.SVGTitleElement, children?: (SVGElement | string)[]): SvgTypesMap['title'] => ss('title', props, children)
     export const tspan = (props?: BuiltTimeDom.SVGTSpanElement, children?: (SVGElement | string)[]): SvgTypesMap['tspan'] => ss('tspan', props, children)
     export const use = (props?: BuiltTimeDom.SVGUseElement, children?: (SVGElement | string)[]): SvgTypesMap['use'] => ss('use', props, children)
@@ -103,7 +100,6 @@ export namespace s {
     export type A = SVGAElement
     export type Circle = SVGCircleElement
     export type ClipPath = SVGClipPathElement
-    export type ComponentTransferFunction = SVGComponentTransferFunctionElement
     export type Defs = SVGDefsElement
     export type Desc = SVGDescElement
     export type Ellipse = SVGEllipseElement
@@ -154,9 +150,7 @@ export namespace s {
     export type Switch = SVGSwitchElement
     export type Symbol = SVGSymbolElement
     export type Text = SVGTextElement
-    export type TextContent = SVGTextContentElement
     export type TextPath = SVGTextPathElement
-    export type TextPositioning = SVGTextPositioningElement
     export type Title = SVGTitleElement
     export type Tspan = SVGTSpanElement
     export type Use = SVGUseElement

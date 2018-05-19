@@ -71,7 +71,7 @@ const htmlInterfaces = ['HTMLAnchorElement', 'HTMLAreaElement', 'HTMLAudioElemen
 
 /// Script-generated.
 // Array containing the names of all interfaces of SVG elements (does not include ancestors).
-const svgInterfaces = ['SVGAElement', 'SVGCircleElement', 'SVGClipPathElement', 'SVGComponentTransferFunctionElement', 'SVGDefsElement', 'SVGDescElement', 'SVGEllipseElement', 'SVGFEBlendElement', 'SVGFEColorMatrixElement', 'SVGFEComponentTransferElement', 'SVGFECompositeElement', 'SVGFEConvolveMatrixElement', 'SVGFEDiffuseLightingElement', 'SVGFEDisplacementMapElement', 'SVGFEDistantLightElement', 'SVGFEFloodElement', 'SVGFEFuncAElement', 'SVGFEFuncBElement', 'SVGFEFuncGElement', 'SVGFEFuncRElement', 'SVGFEGaussianBlurElement', 'SVGFEImageElement', 'SVGFEMergeElement', 'SVGFEMergeNodeElement', 'SVGFEMorphologyElement', 'SVGFEOffsetElement', 'SVGFEPointLightElement', 'SVGFESpecularLightingElement', 'SVGFESpotLightElement', 'SVGFETileElement', 'SVGFETurbulenceElement', 'SVGFilterElement', 'SVGForeignObjectElement', 'SVGGElement', 'SVGGradientElement', 'SVGImageElement', 'SVGLineElement', 'SVGLinearGradientElement', 'SVGMarkerElement', 'SVGMaskElement', 'SVGMetadataElement', 'SVGPathElement', 'SVGPatternElement', 'SVGPolygonElement', 'SVGPolylineElement', 'SVGRadialGradientElement', 'SVGRectElement', 'SVGScriptElement', 'SVGStopElement', 'SVGStyleElement', 'SVGSVGElement', 'SVGSwitchElement', 'SVGSymbolElement', 'SVGTextElement', 'SVGTextContentElement', 'SVGTextPathElement', 'SVGTextPositioningElement', 'SVGTitleElement', 'SVGTSpanElement', 'SVGUseElement', 'SVGViewElement']
+const svgInterfaces = ['SVGAElement', 'SVGCircleElement', 'SVGClipPathElement', 'SVGDefsElement', 'SVGDescElement', 'SVGEllipseElement', 'SVGFEBlendElement', 'SVGFEColorMatrixElement', 'SVGFEComponentTransferElement', 'SVGFECompositeElement', 'SVGFEConvolveMatrixElement', 'SVGFEDiffuseLightingElement', 'SVGFEDisplacementMapElement', 'SVGFEDistantLightElement', 'SVGFEFloodElement', 'SVGFEFuncAElement', 'SVGFEFuncBElement', 'SVGFEFuncGElement', 'SVGFEFuncRElement', 'SVGFEGaussianBlurElement', 'SVGFEImageElement', 'SVGFEMergeElement', 'SVGFEMergeNodeElement', 'SVGFEMorphologyElement', 'SVGFEOffsetElement', 'SVGFEPointLightElement', 'SVGFESpecularLightingElement', 'SVGFESpotLightElement', 'SVGFETileElement', 'SVGFETurbulenceElement', 'SVGFilterElement', 'SVGForeignObjectElement', 'SVGGElement', 'SVGGradientElement', 'SVGImageElement', 'SVGLineElement', 'SVGLinearGradientElement', 'SVGMarkerElement', 'SVGMaskElement', 'SVGMetadataElement', 'SVGPathElement', 'SVGPatternElement', 'SVGPolygonElement', 'SVGPolylineElement', 'SVGRadialGradientElement', 'SVGRectElement', 'SVGScriptElement', 'SVGStopElement', 'SVGStyleElement', 'SVGSVGElement', 'SVGSwitchElement', 'SVGSymbolElement', 'SVGTextElement', 'SVGTextPathElement', 'SVGTitleElement', 'SVGTSpanElement', 'SVGUseElement', 'SVGViewElement']
 
 const allInterfaces = htmlInterfaces
     .concat(svgInterfaces)
@@ -94,6 +94,7 @@ download('https://raw.githubusercontent.com/Microsoft/TypeScript/master/lib/lib.
         .filter(skipDeprecatedFields())
         .filter(skipFunctions)
         .filter(skipReadonlyFields)
+        // Patch https://github.com/Microsoft/TypeScript/issues/24084.
         .filter(skipIndexSignaturesFrom(['HTMLSelectElement', 'HTMLFormElement']))
         .filter(skipComments())
         .filter(skipSpuriousEntries)
@@ -285,6 +286,7 @@ function skipComments() {
 
 
 function skipSpuriousEntries(line) {
+    // Patch https://github.com/Microsoft/TypeScript/issues/23608.
     if (/^\s{4}Methods: string;$/.test(line)) {
         console.debug(`Skipping spurious HTMLAnchorElement field "${line.trim()}".`)
         return false

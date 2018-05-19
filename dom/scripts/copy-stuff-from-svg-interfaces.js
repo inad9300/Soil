@@ -13,12 +13,16 @@ const elementsWithSpecialChildren = {
     'foreignObject': '(Element | string)[]'
 }
 
+// Patch https://github.com/Microsoft/TypeScript/issues/24269.
+const falseSvgTags = ['componentTransferFunction', 'textContent', 'textPositioning']
+
 const svgInterfaces = document
     .body
     .textContent
     .match(new RegExp(svgRegExp, 'g'))
     .sort()
     .map(line => line.match(svgRegExp).slice(1, 3))
+    .filter(iface => falseSvgTags.indexOf(iface[0]) === -1)
 
 
 copy(

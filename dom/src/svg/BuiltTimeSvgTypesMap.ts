@@ -9,7 +9,6 @@ export interface BuiltTimeSvgTypesMap {
     a: BuiltTimeDom.SVGAElement
     circle: BuiltTimeDom.SVGCircleElement
     clipPath: BuiltTimeDom.SVGClipPathElement
-    componentTransferFunction: BuiltTimeDom.SVGComponentTransferFunctionElement
     defs: BuiltTimeDom.SVGDefsElement
     desc: BuiltTimeDom.SVGDescElement
     ellipse: BuiltTimeDom.SVGEllipseElement
@@ -60,9 +59,7 @@ export interface BuiltTimeSvgTypesMap {
     switch: BuiltTimeDom.SVGSwitchElement
     symbol: BuiltTimeDom.SVGSymbolElement
     text: BuiltTimeDom.SVGTextElement
-    textContent: BuiltTimeDom.SVGTextContentElement
     textPath: BuiltTimeDom.SVGTextPathElement
-    textPositioning: BuiltTimeDom.SVGTextPositioningElement
     title: BuiltTimeDom.SVGTitleElement
     tspan: BuiltTimeDom.SVGTSpanElement
     use: BuiltTimeDom.SVGUseElement
