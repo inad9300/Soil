@@ -1,5 +1,5 @@
 {
-    "include": ["arch/src", "dom/src"],
+    "include": ["**/src/*.ts"],
     "exclude": ["**/*.test.ts"],
     "compilerOptions": {
         "outDir": "build",
