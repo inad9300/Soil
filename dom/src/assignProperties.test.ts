@@ -23,8 +23,7 @@ suite('assignProperties()', () => {
             onclick: fun,
             contentEditable: 'true',
             tabIndex: 8,
-            'aria-label': 'blah blah blah',
-            'data-thing': 'y'
+            'aria-label': 'blah blah blah'
         })
 
         assert.strictEqual(div.id, 'i')
@@ -51,8 +50,6 @@ suite('assignProperties()', () => {
         assert.strictEqual(div.getAttribute('tabindex'), '8')
 
         assert.strictEqual(div.getAttribute('aria-label'), 'blah blah blah')
-
-        assert.strictEqual(div.getAttribute('data-thing'), 'y')
     })
 
     test('nested SVG properties', () => {
