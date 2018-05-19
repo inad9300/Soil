@@ -5,7 +5,7 @@ import {isObject} from './isObject'
 
 suite('isObject()', () => {
 
-    test('tells apart plan objects from anything else', () => {
+    test('tells apart plain objects from anything else', () => {
         const positive = [{}, {n: 1, b: false, s: '', o: {}, a: []}, new Object]
         const negative = [0, false, true, '', Array, Promise, Element]
 

@@ -27,7 +27,7 @@ export namespace h {
      * Helper function to concisely create instances of custom HTML elements,
      * whose tags are automatically prefixed with "x-".
      */
-    export const x = (tag: Exclude<string, keyof HtmlTypesMap>, props?: BuiltTimeDom.HTMLElement, children?: (HTMLElement | SVGSVGElement | string)[]): HTMLElement => hh(`x-${tag}`, props, children)
+    export const x = (tag: string, props?: BuiltTimeDom.HTMLElement, children?: (HTMLElement | SVGSVGElement | string)[]): HTMLElement => hh(`x-${tag}`, props, children)
 }
 
 /// Script-generated.
