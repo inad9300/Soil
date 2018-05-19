@@ -5,7 +5,7 @@
     }],
     "capabilities": {"fixSessionCapabilities": "no-detect"},
     "loader": {"script": "dojo2"},
-    "suites": ["build/**/*.test.js"],
+    "suites": ["build/{dom,arch}/**/*.test.js"],
     "coverage": ["build/{dom,arch}/**/!(*.test).js"],
     "reporters": [{
         "name": "pretty"
