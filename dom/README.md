@@ -3,21 +3,6 @@
 Declaratively create type-safe HTML and SVG elements.
 
 
-## Installation
-
-The package is available at npm's registry, so it can be installed via npm or
-Yarn:
-
-```bash
-npm i -S @soil/dom
-# AKA npm install --save @soil/dom
-```
-
-```bash
-yarn add @soil/dom
-```
-
-
 ## Documentation
 
 ### `h` (namespace)
@@ -71,6 +56,21 @@ Unfortunately, creating type-safe SVG programmatically results in verbose code, 
 ```
 
 On the other hand, we have access to the whole SVG API, richer than its attribute-based counterpart, and there will be no differences between creating elements and modifying them, e.g. you would otherwise need `<circle stroke="green" />` for creation but `circle.style.stroke = 'red'` for modification.
+
+
+## Installation
+
+The package is available at npm's registry, so it can be installed via npm or
+Yarn:
+
+```bash
+npm i -S @soil/dom
+# AKA npm install --save @soil/dom
+```
+
+```bash
+yarn add @soil/dom
+```
 
 
 ## License
