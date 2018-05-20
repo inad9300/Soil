@@ -90,7 +90,7 @@ const counterContainer = (counterService = new CounterService) => (input = {}) =
 ```
 
 To get a bit more familiar with the ideas presented above, you may head to the
-[documentation](https://github.com/inad9300/Soil/wiki/), check out the [examples](examples/),
+individual sub-projects to read their documentation, check out the [examples](examples/),
 or dive directly into the source code!
 
 
