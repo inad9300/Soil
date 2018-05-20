@@ -3,21 +3,6 @@
 Architectural constructs for web applications.
 
 
-## Installation
-
-The package is available at npm's registry, so it can be installed via npm or
-Yarn:
-
-```bash
-npm i -S @soil/arch
-# AKA npm install --save @soil/arch
-```
-
-```bash
-yarn add @soil/arch
-```
-
-
 ## Documentation
 
 ### `Component` (type)
@@ -117,6 +102,21 @@ $elem.value = 8
 ```
 
 This function modifies the first argument, and returns it too.
+
+
+## Installation
+
+The package is available at npm's registry, so it can be installed via npm or
+Yarn:
+
+```bash
+npm i -S @soil/arch
+# AKA npm install --save @soil/arch
+```
+
+```bash
+yarn add @soil/arch
+```
 
 
 ## License
