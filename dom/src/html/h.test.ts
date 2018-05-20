@@ -42,8 +42,14 @@ const globalAttrs = `
 suite('h()', () => {
 
     test('elements without special requirements', () => {
-        const _x: HTMLElement = h.x('custom-element', globalProps, [])
-        elementsAreEqual(_x, createElement(`<x-custom-element ${globalAttrs}></x-custom-element>`))
+        const _x: HTMLElement = h.x('custom-element', globalProps, [
+            h.div({}, [
+                h.span({}, [
+                    h.a({href: 'https://github.com/inad9300/Soil'}, ['Soil'])
+                ])
+            ])
+        ])
+        elementsAreEqual(_x, createElement(`<x-custom-element ${globalAttrs}><div><span><a href="https://github.com/inad9300/Soil">Soil</a></span></div></x-custom-element>`))
 
         const _a: h.A = h.a(globalProps, [])
         elementsAreEqual(_a, createElement(`<a ${globalAttrs}></a>`))
