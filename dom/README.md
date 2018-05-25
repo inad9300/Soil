@@ -10,7 +10,7 @@ Declaratively create type-safe HTML and SVG elements.
 Creating HTML using strings is not type-safe. Creating them from code is too verbose. The `h` namespace gives access to shortcut functions to create any HTML element, as well as to type aliases to refer the types returned by those functions.
 
 ```js
-import {h} from '@soil/web'
+import {h} from '@soil/dom'
 
 const button: h.Button = h.button({onclick: () => alert('Clicked')}, ['Click me'])
 
@@ -31,7 +31,7 @@ They are provided under a namespace to avoid long import statements and to avoid
 Analogous to `h` for SVG elements.
 
 ```js
-import {s} from '@soil/web'
+import {s} from '@soil/dom'
 
 s.svg({width: {baseVal: {value: 100}}, height: {baseVal: {value: 100}}}, [
     s.circle({
