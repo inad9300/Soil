@@ -12,10 +12,11 @@ Creating HTML using strings is not type-safe. Creating them from code is too ver
 ```js
 import {h} from '@soil/web'
 
-const button: h.Button = h.button({onclick: () => alert('Clicked')}, 'Click me')
+const button: h.Button = h.button({onclick: () => alert('Clicked')}, ['Click me'])
 
 const paragraph: h.P = h.p({}, [
-    'Text with ', h.a({href: '...'}, 'link')
+    'Text with ',
+    h.a({href: '...'}, ['link'])
 ])
 
 const input: h.Input = h.input({placeholder: 'Input 1'})
