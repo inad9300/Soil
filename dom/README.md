@@ -20,7 +20,7 @@ const paragraph: h.P = h.p({}, [
 
 const input: h.Input = h.input({placeholder: 'Input 1'})
 
-const customElement: HTMLElement = h.h('x-custom-element')
+const customElement: HTMLElement = h.x('custom-element')
 ```
 
 They are provided under a namespace to avoid long import statements and to avoid polluting the scope with plenty of functions and types (`a`, `A`, `b`, `B`, ...). As a nice side effect the auto-completion experience is better too.
