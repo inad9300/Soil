@@ -38,32 +38,29 @@ import {h} from '@soil/dom'
 import {extend} from '@soil/arch'
 
 const counter = (input: {value?: number} = {}) => {
+    const value = input.value || 0
 
-    const $count = h.span({})
+    const count = h.span()
 
-    const $counter = h.div({}, [
-        h.button({onclick: () => api.value = api.value - 1}, ['-']),
-        $count,
-        h.button({onclick: () => api.value = api.value + 1}, ['+'])
+    const counter = h.div({}, [
+        h.button({onclick: () => api.value--}, ['-']),
+        count,
+        h.button({onclick: () => api.value++}, ['+'])
     ])
-
-    const state = {
-        value: input.value || 0
-    }
 
     const api = {
         get value() {
-            return state.value
+            return value
         },
         set value(v: number) {
-            state.value = v
-            $count.textContent = '' + v
+            value = v
+            count.textContent = '' + v
         }
     }
 
-    api.value = api.value
+    api.value = value
 
-    return extend($counter, api)
+    return extend(counter, api)
 }
 ```
 
@@ -72,10 +69,10 @@ Custom components can then be used in a way similar to native ones.
 ```js
 import {counter} from './counter'
 
-const $counter = counter({value: 0})
-$counter.value++
+const counterApp = counter({value: 0})
+counterApp.value++
 
-document.body.appendChild($counter)
+document.body.appendChild(counterApp)
 ```
 
 Purely [presentational components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
