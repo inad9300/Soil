@@ -99,10 +99,10 @@ const api = {
     set value(n: number) { /* ... */ }
 }
 
-const $elem = h.div()
-extend($elem, api)
+const elem = h.div()
+extend(elem, api)
 
-$elem.value = 8
+elem.value = 8
 ```
 
 This function modifies the first argument, and returns it too.
