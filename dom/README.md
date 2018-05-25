@@ -19,7 +19,7 @@ const paragraph: h.P = h.p({}, [
     h.a({href: '...'}, ['link'])
 ])
 
-const input: h.Input = h.input({placeholder: 'Input 1'})
+const input: h.Input = h.input({placeholder: 'Input...'})
 
 const customElement: HTMLElement = h.x('custom-element')
 ```
