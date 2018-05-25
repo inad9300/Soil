@@ -10,7 +10,8 @@ Architectural constructs for web applications.
 Components are the main building block of your web applications. They are functions responsible for creating instances of custom HTML elements, which typically are regular HTML elements extended with custom functions, getters and setters.
 
 ```js
-import {Component, h} from '@soil/web'
+import {Component} from '@soil/arch'
+import {h} from '@soil/dom'
 
 type Input = {
     x?: number
@@ -30,7 +31,8 @@ In most cases, it is better to let TypeScript figure out the type of your compon
 When components need dependencies, they can be defined as a high-order function to separate them from normal input.
 
 ```js
-import {ComponentFactory} from '@soil/web'
+import {ComponentFactory} from '@soil/arch'
+import {h} from '@soil/dom'
 
 type Input = {
     x?: number
@@ -50,7 +52,7 @@ As with `Component`, in most cases TypeScript will be able to infer the type for
 Components may easily communicate with their parents, children and siblings. However when two components are further away from each other, the communication is more complicated. For this cases, a publish-subscribe pattern can be used.
 
 ```js
-import {Channel} from '@soil/web'
+import {Channel} from '@soil/arch'
 
 export const randomNumbersChan = new Channel<number>()
 
@@ -68,10 +70,11 @@ randomNumbersChan.send(Math.random())
 This function provides the basic means to achieve programming by contract.
 
 ```js
-import {assert} from '@soil/web'
+import {assert, Component} from '@soil/arch'
 
 const counter: Component = (input: {value?: number} = {}) => {
     assert(value > -1, 'Negative values are not allowed.')
+    // ...
 }
 ```
 
@@ -86,7 +89,8 @@ assert(() => 1 > 2) // Error: Assertion was: function () { return 1 > 2; }
 Custom components are typically created by extending existing HTML elements. Functions like the native `Object.assign()` are a valid approach for most cases. However, they usually ignore getters and setters.
 
 ```js
-import {extend, h} from '@soil/web'
+import {extend} from '@soil/arch'
+import {h} from '@soil/dom'
 
 const api = {
     C: 'A constant',
