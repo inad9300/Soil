@@ -42,9 +42,9 @@ const counter = (input: {value?: number} = {}) => {
     const $count = h.span({})
 
     const $counter = h.div({}, [
-        h.button({onclick: () => api.value = api.value - 1}, '-'),
+        h.button({onclick: () => api.value = api.value - 1}, ['-']),
         $count,
-        h.button({onclick: () => api.value = api.value + 1}, '+')
+        h.button({onclick: () => api.value = api.value + 1}, ['+'])
     ])
 
     const state = {
