@@ -10,18 +10,18 @@ Declaratively create type-safe HTML and SVG elements.
 Creating HTML using strings is not type-safe. Creating them from code is too verbose. The `h` namespace gives access to shortcut functions to create any HTML element, as well as to type aliases to refer the types returned by those functions.
 
 ```js
-import {h} from '@soil/web'
+import {h} from '@soil/dom'
 
-const button: h.Button = h.button({onclick: () => alert('Clicked')}, 'Click me')
+const button: h.Button = h.button({onclick: () => alert('Clicked')}, ['Click me'])
 
 const paragraph: h.P = h.p({}, [
-    'Text with ', h.a({href: '...'}, 'link')
+    'Text with ',
+    h.a({href: '...'}, ['link'])
 ])
 
-const input1: h.Input = h.input({placeholder: 'Input 1'})
-const input2: h.Input = h.h('input', {placeholder: 'Input 2'})
+const input: h.Input = h.input({placeholder: 'Input...'})
 
-const customElement: HTMLElement = h.h('x-custom-element')
+const customElement: HTMLElement = h.x('custom-element')
 ```
 
 They are provided under a namespace to avoid long import statements and to avoid polluting the scope with plenty of functions and types (`a`, `A`, `b`, `B`, ...). As a nice side effect the auto-completion experience is better too.
@@ -31,7 +31,7 @@ They are provided under a namespace to avoid long import statements and to avoid
 Analogous to `h` for SVG elements.
 
 ```js
-import {s} from '@soil/web'
+import {s} from '@soil/dom'
 
 s.svg({width: {baseVal: {value: 100}}, height: {baseVal: {value: 100}}}, [
     s.circle({
