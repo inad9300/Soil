@@ -13,7 +13,6 @@ export const TodoInput = ({todoService = TodoService()} = {}) => (options: Optio
 
     const $input = h.input({
         type: 'text',
-        autofocus: true,
         placeholder: `What's left?`,
         onkeydown: (evt: KeyboardEvent) => {
             if (evt.key === 'Enter') {
