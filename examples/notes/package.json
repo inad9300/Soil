@@ -1,0 +1,13 @@
+{
+    "dependencies": {
+        "@soil/dom": "0.6.0"
+    },
+    "devDependencies": {
+        "parcel-bundler": "1.8.1",
+        "typescript": "2.9.1"
+    },
+    "scripts": {
+        "NOTE To temporarily increase the maximum number of inotify watches, run": "sudo sysctl fs.inotify.max_user_watches=99999",
+        "start": "parcel index.html"
+    }
+}
