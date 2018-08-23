@@ -13,9 +13,10 @@
     <script src="node_modules/systemjs/dist/system.js"></script>
     <script>
         SystemJS.config({
-            paths: {
-                '@soil/dom': 'node_modules/@soil/dom/build/index',
-                '@soil/arch': 'node_modules/@soil/arch/build/index'
+            baseURL: 'node_modules',
+            map: {
+                '@soil/dom': '@soil/dom/build/sys/index',
+                '@soil/arch': '@soil/arch/build/sys/index'
             },
             packages: {
                 '': {defaultExtension: 'js'}

@@ -1,12 +1,12 @@
 {
     "dependencies": {
-        "@soil/dom": "0.5.1",
-        "@soil/arch": "0.1.1"
+        "@soil/dom": "0.6.5",
+        "@soil/arch": "0.6.5"
     },
     "devDependencies": {
         "http-server": "0.11.1",
-        "browserify": "16.1.0",
-        "typescript": "2.7.1"
+        "browserify": "16.2.2",
+        "typescript": "3.0.1"
     },
     "scripts": {
         "precompile": "rm -rf build",

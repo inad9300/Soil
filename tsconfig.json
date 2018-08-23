@@ -13,6 +13,7 @@
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,
         "sourceMap": true,
-        "declaration": true
+        "declaration": true,
+        "forceConsistentCasingInFileNames": true
     }
 }

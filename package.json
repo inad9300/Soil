@@ -16,9 +16,9 @@
     },
     "devDependencies": {
         "@dojo/loader": "2.0.0",
-        "codecov": "3.0.2",
-        "intern": "4.2.0",
-        "typescript": "2.8.3"
+        "codecov": "3.0.4",
+        "intern": "4.2.3",
+        "typescript": "3.0.1"
     },
     "scripts": {
         "precompile": "rm -rf build/",

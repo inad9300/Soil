@@ -1,10 +1,11 @@
 {
     "dependencies": {
-        "@soil/dom": "0.6.0"
+        "@soil/dom": "0.6.5",
+        "@soil/arch": "0.6.5"
     },
     "devDependencies": {
-        "parcel-bundler": "1.8.1",
-        "typescript": "2.9.1"
+        "parcel-bundler": "1.9.7",
+        "typescript": "3.0.1"
     },
     "scripts": {
         "NOTE To temporarily increase the maximum number of inotify watches, run": "sudo sysctl fs.inotify.max_user_watches=99999",

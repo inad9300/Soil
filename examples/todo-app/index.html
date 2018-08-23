@@ -10,13 +10,14 @@
     <script src="build/app.js"></script>
     <script>
         require.config({
+            baseUrl: 'node_modules',
             packages: [{
                 name: '@soil/dom',
-                location: 'node_modules/@soil/dom/build',
+                location: '@soil/dom/build/amd',
                 main: 'index'
             }, {
                 name: '@soil/arch',
-                location: 'node_modules/@soil/arch/build',
+                location: '@soil/arch/build/amd',
                 main: 'index'
             }]
         })

@@ -1,6 +1,6 @@
 {
     "name": "@soil/arch",
-    "version": "0.1.1",
+    "version": "0.6.5",
     "description": "Architectural constructs for web applications.",
     "license": "AGPL-3.0",
     "homepage": "https://github.com/inad9300/Soil",
@@ -27,11 +27,18 @@
         "web",
         "applications"
     ],
-    "main": "build/index.js",
-    "types": "build/index.d.ts",
+    "main": "build/umd/index.js",
+    "module": "build/es6/index.js",
+    "types": "build/umd/index.d.ts",
+    "typings": "build/umd/index.d.ts",
     "scripts": {
+        "compile:amd": "../node_modules/.bin/tsc --module amd --outDir build/amd",
+        "compile:cjs": "../node_modules/.bin/tsc --module commonjs --outDir build/cjs",
+        "compile:es6": "../node_modules/.bin/tsc --module es6 --outDir build/es6",
+        "compile:system": "../node_modules/.bin/tsc --module system --outDir build/sys",
+        "compile:umd": "../node_modules/.bin/tsc --module umd --outDir build/umd",
         "precompile": "rm -rf build/",
-        "compile": "../node_modules/.bin/tsc",
-        "prepublishOnly": "npm run compile"
+        "compile": "npm run compile:amd && npm run compile:cjs && npm run compile:es6 && npm run compile:system && npm run compile:umd",
+        "prepare": "npm run compile"
     }
 }
