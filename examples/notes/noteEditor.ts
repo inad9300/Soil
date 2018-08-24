@@ -11,7 +11,7 @@ export const noteEditor = (input: NoteEditorInput) => {
     const $noteEditorInfo = h.p({className: 'note-editor-info'})
 
     const $noteEditorInput = h.textarea({
-        className: 'node-editor-input',
+        className: 'note-editor-input',
         oninput: event => input.onNoteEditorChange((event.target as h.Textarea).value)
     })
 
@@ -25,5 +25,9 @@ export const noteEditor = (input: NoteEditorInput) => {
         $noteEditorInput.value = note.body
     }
 
-    return Object.assign($noteEditor, {setNote})
+    function focus() {
+        $noteEditorInput.focus()
+    }
+
+    return Object.assign($noteEditor, {setNote, focus})
 }

@@ -10,6 +10,8 @@ type AppInput = {
 
 export const app = (input: AppInput) => {
 
+    const notes = input.notes
+
     const $toolbar = toolbar({
         onNewNote: () => {
             const newNote = {
@@ -18,7 +20,7 @@ export const app = (input: AppInput) => {
                 timestamp: Date.now()
             }
 
-            input.notes.push(newNote)
+            notes.push(newNote)
             $noteSelectors.addNote(newNote)
 
             selectNote(newNote)
@@ -27,51 +29,60 @@ export const app = (input: AppInput) => {
             const activeNote = $noteSelectors.getActive().getNote()
             $noteSelectors.deleteNote(activeNote)
 
-            const idx = input.notes.findIndex(note => note.id === activeNote.id)
-            input.notes.slice(idx, 1)
+            const idx = notes.findIndex(note => note.id === activeNote.id)
+            notes.splice(idx, 1)
 
-            selectNote(input.notes[0])
+            if (notes.length > 0) {
+                selectNote(notes[0])
+            } else {
+                $noteEditor.setNote({
+                    id: 0,
+                    body: '',
+                    timestamp: Date.now()
+                })
+            }
         },
-        onSearchNote: searchText => $noteSelectors.filterNotes(searchText)
+        onSearchNote: searchText => {
+            $noteSelectors.filterNotes(searchText)
+            const firstVisible = $noteSelectors.getFirstVisible()
+            if (firstVisible) {
+                $noteSelectors.setActive(firstVisible)
+                $noteEditor.setNote(firstVisible)
+            }
+        }
     })
 
     const $noteSelectors = noteSelectors({
-        onNoteSelected: note => selectNote(note)
+        onNoteSelected: selectNote
     })
 
     const $noteEditor = noteEditor({
         onNoteEditorChange: noteBody => {
             const activeSelector = $noteSelectors.getActive()
-            const activeNote = activeSelector.getNote()
-
-            activeNote.body = noteBody
-            activeSelector.setNote(activeNote)
+            if (activeSelector) {
+                const activeNote = activeSelector.getNote()
+                activeNote.body = noteBody
+                activeSelector.setNote(activeNote)
+            }
         }
     })
 
     const $app = h.div({id: 'app'}, [
+        $toolbar,
         h.div({className: 'note-container'}, [
-            $toolbar,
             $noteSelectors,
             $noteEditor
         ])
     ])
 
-    function selectNote(note?: Note) {
-        if (note) {
-            $noteSelectors.setActive(note)
-            $noteEditor.setNote(note)
-        } else {
-            $noteEditor.setNote({
-                id: 0,
-                body: '',
-                timestamp: Date.now()
-            })
-        }
+    function selectNote(note: Note) {
+        $noteSelectors.setActive(note)
+        $noteEditor.setNote(note)
+        $noteEditor.focus()
     }
 
-    input.notes.forEach($noteSelectors.addNote)
-    selectNote(input.notes[0])
+    notes.forEach($noteSelectors.addNote)
+    selectNote(notes[0])
 
     return $app
 }

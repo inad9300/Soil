@@ -62,6 +62,7 @@
     background-color: #dcdadc;
 }
 .toolbar-button {
+    margin-right: 5px;
     background-color: #ffffff;
 }
 .toolbar-button:active {

@@ -8,7 +8,7 @@ const notes: Note[] = [
 ]
 
 document
-    .getElementById('app')!
+    .getElementById('app-container')!
     .appendChild(
         app({notes})
     )

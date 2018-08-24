@@ -18,7 +18,7 @@ export const noteSelectors = (input: NoteSelectorsInput) => {
         $noteSelectors.appendChild(
             Object.assign(
                 noteSelector({note}),
-                {onclick: input.onNoteSelected}
+                {onclick: () => input.onNoteSelected(note)}
             )
         )
     }
@@ -43,6 +43,14 @@ export const noteSelectors = (input: NoteSelectorsInput) => {
             })
     }
 
+    function getFirstVisible(): Note | void {
+        for (const child of getChildren()) {
+            if (!child.classList.contains('hidden')) {
+                return child.getNote()
+            }
+        }
+    }
+
     function filterNotes(searchText: string) {
         searchText = searchText.toLowerCase()
 
@@ -56,5 +64,5 @@ export const noteSelectors = (input: NoteSelectorsInput) => {
             })
     }
 
-    return Object.assign($noteSelectors, {addNote, deleteNote, getActive, setActive, filterNotes})
+    return Object.assign($noteSelectors, {addNote, deleteNote, getActive, setActive, getFirstVisible, filterNotes})
 }
