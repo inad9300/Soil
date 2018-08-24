@@ -7,4 +7,6 @@ and originally in [Comparing Frontend Approaches](https://medium.com/actualize-n
 
 To start the application, run `npm start`.
 
+___
+
 ![Screenshot](./screenshot.png)
