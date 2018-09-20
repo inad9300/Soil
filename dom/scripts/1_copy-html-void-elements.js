@@ -1,4 +1,5 @@
 // Source: https://developer.mozilla.org/en-US/docs/Glossary/Empty_element.
+// Target: ./copy-stuff-from-html-interfaces.js.
 
 copy(
 `/// Script-generated.

@@ -1,4 +1,5 @@
 // Source: https://www.w3.org/TR/wai-aria-1.1/.
+// Target: ../src/AriaAttributes.ts.
 
 const roles = Array
     .from(
