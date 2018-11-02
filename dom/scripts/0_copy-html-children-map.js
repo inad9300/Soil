@@ -1,4 +1,5 @@
 // Source: https://www.w3.org/TR/html52/fullindex.html.
+// Target: ../src/html/HtmlChildrenMap.ts.
 
 const elements = []
 const initialElements = Array

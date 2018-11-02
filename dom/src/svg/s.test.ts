@@ -11,7 +11,7 @@ const globalProps = {
     'aria-label': 'An accessible label.',
     dataset: {x: 'y'},
     style: {color: 'black'},
-    className: {baseVal: 'b'}
+    classList: {value: 'b'} // NOTE `className` has been deprecated for SVG elements (https://github.com/Microsoft/TypeScript/issues/19548#issuecomment-378984184).
 }
 
 const globalAttrs = `
@@ -202,6 +202,31 @@ suite('s()', () => {
         elementsAreEqual(_view, createElement(`<view ${globalAttrs}></view>`, true))
     })
 
+    test('elements with children', () => {
+        const g1 = s.g({
+            style: {fill: 'white', stroke: 'green', strokeWidth: '5'}
+        }, [
+            s.circle({
+                cx: {baseVal: {value: 40}},
+                cy: {baseVal: {value: 40}},
+                r: {baseVal: {value: 25}}
+            }),
+            s.circle({
+                cx: {baseVal: {value: 60}},
+                cy: {baseVal: {value: 60}},
+                r: {baseVal: {value: 25}}
+            })
+        ])
+
+        const g2 = createElement(`
+            <g fill="white" stroke="green" stroke-width="5">
+                <circle cx="40" cy="40" r="25" />
+                <circle cx="60" cy="60" r="25" />
+            </g>`, true) as s.G
+
+        elementsAreEqual(g1, g2)
+    })
+
     test('event listeners', () => {
         const $count = s.tspan({id: 'count'}, ['0'])
         const $counter = s.tspan({}, [
@@ -218,9 +243,10 @@ suite('s()', () => {
 
         document.body.appendChild($counter)
 
-        const countFromDom = document.getElementById('count') as any as s.Tspan
-        const incrementBtn = document.getElementById('increment-btn') as any as s.Tspan
-        const decrementBtn = document.getElementById('decrement-btn') as any as s.Tspan
+        // NOTE Double cast required due to https://github.com/Microsoft/TypeScript/issues/4689.
+        const countFromDom = document.getElementById('count') as Element as s.Tspan
+        const incrementBtn = document.getElementById('increment-btn') as Element as s.Tspan
+        const decrementBtn = document.getElementById('decrement-btn') as Element as s.Tspan
 
         click(incrementBtn) // 1
         click(incrementBtn) // 2

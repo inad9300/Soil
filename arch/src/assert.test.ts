@@ -18,6 +18,6 @@ suite('assert()', () => {
             .to.throw(AssertionError, /^(Two must not be different from 2)$/)
 
         expect(() => assert(() => 2 !== 2, 'Two must not be different from 2'))
-            .to.throw(AssertionError, /^(Two must not be different from 2) .* 2 !== 2/)
+            .to.throw(AssertionError, /^(Two must not be different from 2)[\s\S]*2 !== 2/)
     })
 })

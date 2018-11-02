@@ -55,21 +55,9 @@ suite('assignProperties()', () => {
     test('nested SVG properties', () => {
         const circle = createElement(`<circle />`, true) as s.Circle
         assignProperties(circle, {
-            cx: {
-                baseVal: {
-                    value: 50
-                }
-            },
-            cy: {
-                baseVal: {
-                    value: 50
-                }
-            },
-            r: {
-                baseVal: {
-                    value: 40
-                }
-            },
+            cx: {baseVal: {value: 50}},
+            cy: {baseVal: {value: 50}},
+            r: {baseVal: {value: 40}},
             style: {
                 stroke: 'green',
                 strokeWidth: '4',
@@ -83,5 +71,14 @@ suite('assignProperties()', () => {
         assert.strictEqual(circle.style.stroke, 'green')
         assert.strictEqual(circle.style.strokeWidth, '4')
         assert.strictEqual(circle.style.fill, 'yellow')
+    })
+
+    test('nested object properties not present in target', () => {
+        const target = {o1: {}}
+        const source = {o1: {o2: {x: 3}}}
+
+        assignProperties(target, source)
+
+        assert.strictEqual((target as any).o1.o2.x, 3)
     })
 })

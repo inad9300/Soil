@@ -6,8 +6,8 @@
     },
     "devDependencies": {
         "http-server": "0.11.1",
-        "requirejs": "2.3.5",
-        "typescript": "3.0.1"
+        "requirejs": "2.3.6",
+        "typescript": "3.1.6"
     },
     "scripts": {
         "precompile": "rm -rf build",

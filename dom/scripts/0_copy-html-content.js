@@ -1,4 +1,5 @@
 // Source: https://www.w3.org/TR/html52/fullindex.html.
+// Target: ../src/html/HtmlContent.ts.
 
 const snakeToCamel = str => str.replace(/(\-\w)/g, match => match[1].toUpperCase())
 

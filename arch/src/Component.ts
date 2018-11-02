@@ -9,6 +9,7 @@
  * Components).
  *
  * Note that in most situations it is better to let TypeScript infer the type
- * rather than explicitly specifying it.
+ * rather than explicitly specifying it. This type is mostly for documentation
+ * purposees.
  */
 export type Component<TInput = any, TOutput = any> = (input: TInput) => TOutput

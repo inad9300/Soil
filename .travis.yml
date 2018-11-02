@@ -3,9 +3,9 @@ addons:
   chrome: stable
 language: node_js
 node_js:
-  - '10.1.0'
+  - '10.13.0'
 before_install:
-  - npm i -g npm@6.0.1
+  - npm i -g npm@6.4.1
 cache:
   directories:
     - node_modules

@@ -1,13 +1,29 @@
+// Target (automatic): ../src/BuiltTimeDom.ts.
+
 const fs = require('fs')
 const https = require('https')
+
+console.debug = () => {}
+
+/// Script-generated.
+// Array containing the names of all interfaces of HTML elements (does not include ancestors).
+const htmlInterfaces = ['HTMLAnchorElement', 'HTMLAreaElement', 'HTMLAudioElement', 'HTMLBRElement', 'HTMLBaseElement', 'HTMLBodyElement', 'HTMLButtonElement', 'HTMLCanvasElement', 'HTMLDListElement', 'HTMLDataElement', 'HTMLDataListElement', 'HTMLDetailsElement', 'HTMLDialogElement', 'HTMLDivElement', 'HTMLElement', 'HTMLEmbedElement', 'HTMLFieldSetElement', 'HTMLFormElement', 'HTMLHRElement', 'HTMLHeadElement', 'HTMLHeadingElement', 'HTMLHtmlElement', 'HTMLIFrameElement', 'HTMLImageElement', 'HTMLInputElement', 'HTMLLIElement', 'HTMLLabelElement', 'HTMLLegendElement', 'HTMLLinkElement', 'HTMLMapElement', 'HTMLMetaElement', 'HTMLMeterElement', 'HTMLModElement', 'HTMLOListElement', 'HTMLObjectElement', 'HTMLOptGroupElement', 'HTMLOptionElement', 'HTMLOutputElement', 'HTMLParagraphElement', 'HTMLParamElement', 'HTMLPictureElement', 'HTMLPreElement', 'HTMLProgressElement', 'HTMLQuoteElement', 'HTMLScriptElement', 'HTMLSelectElement', 'HTMLSourceElement', 'HTMLSpanElement', 'HTMLStyleElement', 'HTMLTableCaptionElement', 'HTMLTableColElement', 'HTMLTableDataCellElement', 'HTMLTableElement', 'HTMLTableHeaderCellElement', 'HTMLTableRowElement', 'HTMLTableSectionElement', 'HTMLTemplateElement', 'HTMLTextAreaElement', 'HTMLTimeElement', 'HTMLTitleElement', 'HTMLTrackElement', 'HTMLUListElement', 'HTMLVideoElement']
+
+/// Script-generated.
+// Array containing the names of all interfaces of SVG elements (does not include ancestors).
+const svgInterfaces = ['SVGAElement', 'SVGCircleElement', 'SVGClipPathElement', 'SVGDefsElement', 'SVGDescElement', 'SVGEllipseElement', 'SVGFEBlendElement', 'SVGFEColorMatrixElement', 'SVGFEComponentTransferElement', 'SVGFECompositeElement', 'SVGFEConvolveMatrixElement', 'SVGFEDiffuseLightingElement', 'SVGFEDisplacementMapElement', 'SVGFEDistantLightElement', 'SVGFEFloodElement', 'SVGFEFuncAElement', 'SVGFEFuncBElement', 'SVGFEFuncGElement', 'SVGFEFuncRElement', 'SVGFEGaussianBlurElement', 'SVGFEImageElement', 'SVGFEMergeElement', 'SVGFEMergeNodeElement', 'SVGFEMorphologyElement', 'SVGFEOffsetElement', 'SVGFEPointLightElement', 'SVGFESpecularLightingElement', 'SVGFESpotLightElement', 'SVGFETileElement', 'SVGFETurbulenceElement', 'SVGFilterElement', 'SVGForeignObjectElement', 'SVGGElement', 'SVGGradientElement', 'SVGImageElement', 'SVGLineElement', 'SVGLinearGradientElement', 'SVGMarkerElement', 'SVGMaskElement', 'SVGMetadataElement', 'SVGPathElement', 'SVGPatternElement', 'SVGPolygonElement', 'SVGPolylineElement', 'SVGRadialGradientElement', 'SVGRectElement', 'SVGScriptElement', 'SVGStopElement', 'SVGStyleElement', 'SVGSVGElement', 'SVGSwitchElement', 'SVGSymbolElement', 'SVGTextElement', 'SVGTextPathElement', 'SVGTitleElement', 'SVGTSpanElement', 'SVGUseElement', 'SVGViewElement']
 
 const primitiveTypes = ['boolean', 'number', 'string', 'null', 'void', 'undefined']
 
 // Types for fields that, despite being read-only, make sense to use when
-// creating HTML elements, since their nested properties are assignable.
+// creating HTML elements, since some of their nested properties are assignable.
 const modifiableReadonlyTypes = [
-    'any', // NOTE Disable once in a while to analyze the output.
+    // Entries expected to appear as missing interfaces in the final output.
+    'any', // NOTE Disable (comment) once in a while to analyze the output.
+    'Node & ParentNode',
+
     'CSSStyleDeclaration',
+    'DOMRect',
     'DOMStringMap',
     'DOMTokenList',
     'SVGAngle',
@@ -21,24 +37,24 @@ const modifiableReadonlyTypes = [
     'SVGAnimatedRect',
     'SVGAnimatedString',
     'SVGLength',
-    'SVGPoint',
-    'SVGPreserveAspectRatio',
-    'SVGRect'
+    'SVGPreserveAspectRatio'
 ]
 
-// Read-only types whose nested fields are all unmodifiable. Worth revisiting
-// once in a while.
+// Read-only types whose nested fields are all unmodifiable (or that are in practice deeply unmodifiable).
+// NOTE Worth revisiting once in a while.
 const unmodifiableReadonlyTypes = [
     'AudioTrackList',
     'CSSRule',
     'Document',
     'DocumentFragment',
+    'DOMRectReadOnly',
     'HTMLAreasCollection',
     'HTMLCollection',
     'HTMLCollectionBase',
     'HTMLCollectionOf',
     'HTMLFormControlsCollection',
     'HTMLOptionsCollection',
+    'HTMLSlotElement',
     'MediaError',
     'MediaKeys',
     'MSGraphicsTrust',
@@ -51,7 +67,9 @@ const unmodifiableReadonlyTypes = [
     'SVGAnimatedNumberList',
     'SVGAnimatedTransformList',
     'SVGElementInstance',
+    'SVGPoint',
     'SVGPointList',
+    'SVGRect',
     'SVGStringList',
     'TextTrack',
     'TextTrackList',
@@ -64,14 +82,6 @@ const unmodifiableReadonlyTypes = [
 // These types must be reviewed in order to determine whether any of their
 // properties can be modified or not (will be printed in the end).
 const unknownReadonlyTypes = []
-
-/// Script-generated.
-// Array containing the names of all interfaces of HTML elements (does not include ancestors).
-const htmlInterfaces = ['HTMLAnchorElement', 'HTMLAreaElement', 'HTMLAudioElement', 'HTMLBRElement', 'HTMLBaseElement', 'HTMLBodyElement', 'HTMLButtonElement', 'HTMLCanvasElement', 'HTMLDListElement', 'HTMLDataElement', 'HTMLDataListElement', 'HTMLDetailsElement', 'HTMLDialogElement', 'HTMLDivElement', 'HTMLElement', 'HTMLEmbedElement', 'HTMLFieldSetElement', 'HTMLFormElement', 'HTMLHRElement', 'HTMLHeadElement', 'HTMLHeadingElement', 'HTMLHtmlElement', 'HTMLIFrameElement', 'HTMLImageElement', 'HTMLInputElement', 'HTMLLIElement', 'HTMLLabelElement', 'HTMLLegendElement', 'HTMLLinkElement', 'HTMLMapElement', 'HTMLMetaElement', 'HTMLMeterElement', 'HTMLModElement', 'HTMLOListElement', 'HTMLObjectElement', 'HTMLOptGroupElement', 'HTMLOptionElement', 'HTMLOutputElement', 'HTMLParagraphElement', 'HTMLParamElement', 'HTMLPictureElement', 'HTMLPreElement', 'HTMLProgressElement', 'HTMLQuoteElement', 'HTMLScriptElement', 'HTMLSelectElement', 'HTMLSourceElement', 'HTMLSpanElement', 'HTMLStyleElement', 'HTMLTableCaptionElement', 'HTMLTableColElement', 'HTMLTableDataCellElement', 'HTMLTableElement', 'HTMLTableHeaderCellElement', 'HTMLTableRowElement', 'HTMLTableSectionElement', 'HTMLTemplateElement', 'HTMLTextAreaElement', 'HTMLTimeElement', 'HTMLTitleElement', 'HTMLTrackElement', 'HTMLUListElement', 'HTMLVideoElement']
-
-/// Script-generated.
-// Array containing the names of all interfaces of SVG elements (does not include ancestors).
-const svgInterfaces = ['SVGAElement', 'SVGCircleElement', 'SVGClipPathElement', 'SVGDefsElement', 'SVGDescElement', 'SVGEllipseElement', 'SVGFEBlendElement', 'SVGFEColorMatrixElement', 'SVGFEComponentTransferElement', 'SVGFECompositeElement', 'SVGFEConvolveMatrixElement', 'SVGFEDiffuseLightingElement', 'SVGFEDisplacementMapElement', 'SVGFEDistantLightElement', 'SVGFEFloodElement', 'SVGFEFuncAElement', 'SVGFEFuncBElement', 'SVGFEFuncGElement', 'SVGFEFuncRElement', 'SVGFEGaussianBlurElement', 'SVGFEImageElement', 'SVGFEMergeElement', 'SVGFEMergeNodeElement', 'SVGFEMorphologyElement', 'SVGFEOffsetElement', 'SVGFEPointLightElement', 'SVGFESpecularLightingElement', 'SVGFESpotLightElement', 'SVGFETileElement', 'SVGFETurbulenceElement', 'SVGFilterElement', 'SVGForeignObjectElement', 'SVGGElement', 'SVGGradientElement', 'SVGImageElement', 'SVGLineElement', 'SVGLinearGradientElement', 'SVGMarkerElement', 'SVGMaskElement', 'SVGMetadataElement', 'SVGPathElement', 'SVGPatternElement', 'SVGPolygonElement', 'SVGPolylineElement', 'SVGRadialGradientElement', 'SVGRectElement', 'SVGScriptElement', 'SVGStopElement', 'SVGStyleElement', 'SVGSVGElement', 'SVGSwitchElement', 'SVGSymbolElement', 'SVGTextElement', 'SVGTextPathElement', 'SVGTitleElement', 'SVGTSpanElement', 'SVGUseElement', 'SVGViewElement']
 
 const allInterfaces = htmlInterfaces
     .concat(svgInterfaces)
@@ -94,10 +104,8 @@ download('https://raw.githubusercontent.com/Microsoft/TypeScript/master/lib/lib.
         .filter(skipDeprecatedFields())
         .filter(skipFunctions)
         .filter(skipReadonlyFields)
-        // Patch https://github.com/Microsoft/TypeScript/issues/24084.
         .filter(skipIndexSignaturesFrom(['HTMLSelectElement', 'HTMLFormElement']))
         .filter(skipComments())
-        .filter(skipSpuriousEntries)
         .join('\n')
 
     const missedInterfaces = allInterfaces
@@ -219,7 +227,6 @@ function skipFunctions(line) {
 
 function skipReadonlyFields(line) {
     if (!/\breadonly\s/.test(line)) {
-        // Writable, allow.
         return true
     }
 
@@ -282,14 +289,4 @@ function skipComments() {
         }
         return !insideComment
     }
-}
-
-
-function skipSpuriousEntries(line) {
-    // Patch https://github.com/Microsoft/TypeScript/issues/23608.
-    if (/^\s{4}Methods: string;$/.test(line)) {
-        console.debug(`Skipping spurious HTMLAnchorElement field "${line.trim()}".`)
-        return false
-    }
-    return true
 }

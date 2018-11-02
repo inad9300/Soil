@@ -24,7 +24,8 @@ const component: Component<Input, Output> = (/* Input */) = {
 }
 ```
 
-In most cases, it is better to let TypeScript figure out the type of your component based on the input it takes and its return value; it will lead to less verbose code, and it will still be type safe.
+In most cases, it is better to let TypeScript figure out the type of your component based on the input it takes and its return value; it will lead to less verbose code, and it will still be type safe. Therefore, this type exists mostly for
+documentation purposes.
 
 ### `ComponentFactory` (type)
 
@@ -45,7 +46,8 @@ const f: ComponentFactory<Input, Output> = (/* Dependencies */) => (/* Input */)
 }
 ```
 
-As with `Component`, in most cases TypeScript will be able to infer the type for you based on the actual input and output. This will lead to less verbose code, and it will still be type safe.
+As with `Component`, in most cases TypeScript will be able to infer the type for you based on the actual input and output. This will lead to less verbose code, and it will still be type safe. Therefore, this type exists mostly for documentation
+purposes.
 
 ### `Channel` (class)
 
@@ -58,11 +60,11 @@ export const randomNumbersChan = new Channel<number>()
 
 // ...
 
-randomNumbersChan.listen(n => console.log('New random number received:', n))
+randomNumbersChan.sub(n => console.log('New random number received:', n))
 
 // ...
 
-randomNumbersChan.send(Math.random())
+randomNumbersChan.pub(Math.random())
 ```
 
 ### `assert()` (function)

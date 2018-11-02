@@ -14,16 +14,16 @@ suite('Channel', () => {
         let count = 0
         const stringChan = new Channel<string>()
 
-        stringChan.listen(newString => {
+        stringChan.sub(newString => {
             count++
             assert.strictEqual(newString, 'S')
         }, 1)
         assert.strictEqual(stringChan.length, 1)
 
-        stringChan.send('S')
+        stringChan.pub('S')
         setTimeout(() => {
             assert.strictEqual(stringChan.length, 0)
-            stringChan.send('!S')
+            stringChan.pub('!S')
 
             setTimeout(() => {
                 assert.strictEqual(count, 1)
@@ -41,19 +41,19 @@ suite('Channel', () => {
         let count = 0
         const stringChan = new Channel<string>()
 
-        stringChan.listen(newString => {
+        stringChan.sub(newString => {
             count++
             assert.strictEqual(newString, 'S')
         }, 3)
         assert.strictEqual(stringChan.length, 1)
 
-        stringChan.send('S')
+        stringChan.pub('S')
         setTimeout(() => {
             assert.strictEqual(stringChan.length, 1)
-            stringChan.send('S')
-            stringChan.send('S')
-            stringChan.send('!S')
-            stringChan.send('!S')
+            stringChan.pub('S')
+            stringChan.pub('S')
+            stringChan.pub('!S')
+            stringChan.pub('!S')
 
             setTimeout(() => {
                 assert.strictEqual(count, 3)
@@ -71,12 +71,12 @@ suite('Channel', () => {
         let count = 0
         const stringChan = new Channel<string>()
 
-        const stop = stringChan.listen(_newString => count++, 1)
+        const stop = stringChan.sub(_newString => count++, 1)
         assert.strictEqual(stringChan.length, 1)
         stop()
         assert.strictEqual(stringChan.length, 0)
 
-        stringChan.send('S')
+        stringChan.pub('S')
         setTimeout(() => {
             assert.strictEqual(count, 0)
 
@@ -92,21 +92,21 @@ suite('Channel', () => {
         let count = 0
         const numberChan = new Channel<number>()
 
-        const stop = numberChan.listen(newNumber => {
+        const stop = numberChan.sub(newNumber => {
             count++
             assert.strictEqual(newNumber, 1)
         })
         assert.strictEqual(numberChan.length, 1)
 
-        numberChan.send(1)
-        numberChan.send(1)
-        numberChan.send(1)
+        numberChan.pub(1)
+        numberChan.pub(1)
+        numberChan.pub(1)
 
         setTimeout(() => {
             stop()
             assert.strictEqual(numberChan.length, 0)
 
-            numberChan.send(7)
+            numberChan.pub(7)
 
             setTimeout(() => {
                 assert.strictEqual(count, 3)
@@ -136,9 +136,9 @@ suite('Channel', () => {
             assert.deepEqual(newLang, {langCode: 'fr'})
         }
 
-        langSettingChan.listen(countEn, 1)
-        langSettingChan.listen(countEn, 1)
-        langSettingChan.listen(newLang => {
+        langSettingChan.sub(countEn, 1)
+        langSettingChan.sub(countEn, 1)
+        langSettingChan.sub(newLang => {
             if (count <= 2) {
                 assert.deepEqual(newLang, {langCode: 'en'})
             } else {
@@ -148,22 +148,22 @@ suite('Channel', () => {
         })
         assert.strictEqual(langSettingChan.length, 3)
 
-        langSettingChan.send({langCode: 'en'})
+        langSettingChan.pub({langCode: 'en'})
 
         setTimeout(() => {
             assert.strictEqual(langSettingChan.length, 1)
             assert.strictEqual(count, 3)
 
-            langSettingChan.listen(countFr)
-            langSettingChan.listen(countFr, 1)
-            langSettingChan.listen(countFr)
-            langSettingChan.listen(countFr)
-            langSettingChan.listen(countFr, 1)
-            langSettingChan.listen(countFr)
+            langSettingChan.sub(countFr)
+            langSettingChan.sub(countFr, 1)
+            langSettingChan.sub(countFr)
+            langSettingChan.sub(countFr)
+            langSettingChan.sub(countFr, 1)
+            langSettingChan.sub(countFr)
 
             assert.strictEqual(langSettingChan.length, 7)
 
-            langSettingChan.send({langCode: 'fr'})
+            langSettingChan.pub({langCode: 'fr'})
 
             setTimeout(() => {
                 assert.strictEqual(count, 10)
@@ -179,9 +179,9 @@ suite('Channel', () => {
     test('channel kicks out all listeners on clear', () => {
         const someChan = new Channel<undefined>()
 
-        someChan.listen(() => {})
-        someChan.listen(() => {})
-        someChan.listen(() => {}, 1)
+        someChan.sub(() => {})
+        someChan.sub(() => {})
+        someChan.sub(() => {}, 1)
         assert.strictEqual(someChan.length, 3)
 
         someChan.clear()

@@ -13,7 +13,7 @@ const elementsWithSpecialChildren = {
     'foreignObject': '(Element | string)[]'
 }
 
-// Patch https://github.com/Microsoft/TypeScript/issues/24269.
+// NOTE Patches https://github.com/Microsoft/TypeScript/issues/24269.
 const falseSvgTags = ['componentTransferFunction', 'textContent', 'textPositioning']
 
 const svgInterfaces = document
@@ -24,7 +24,7 @@ const svgInterfaces = document
     .map(line => line.match(svgRegExp).slice(1, 3))
     .filter(iface => falseSvgTags.indexOf(iface[0]) === -1)
 
-
+// Target: ./generate-built-time-dom.js
 copy(
 `/// Script-generated.
 // Array containing the names of all interfaces of SVG elements (does not include ancestors).
@@ -35,7 +35,7 @@ const svgInterfaces = ` + JSON.stringify(
     .replace(/,/g, `, `)
 )
 
-
+// Target: ../src/svg/SvgTypesMap.ts
 copy(
 `/// Script-generated.
 
@@ -50,7 +50,7 @@ ${
 }
 }`)
 
-
+// Target: ../src/svg/BuiltTimeSvgTypesMap.ts
 copy(
 `/// Script-generated.
 
@@ -67,7 +67,7 @@ ${
 }
 }`)
 
-
+// Target: ../src/svg/s.ts
 copy(
 `/// Script-generated.
 
@@ -91,7 +91,7 @@ ${
 }
 }`)
 
-
+// Target: ../src/svg/s.ts
 copy(
 `/// Script-generated.
 

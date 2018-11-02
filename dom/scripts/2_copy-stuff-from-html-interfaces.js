@@ -22,7 +22,7 @@ const htmlInterfaces = Array
         row.cells[1].querySelector('.idl').textContent.trim()
     ])
 
-
+// Target: ./generate-built-time.dom.js.
 copy(
 `/// Script-generated.
 // Array containing the names of all interfaces of HTML elements (does not include ancestors).
@@ -36,7 +36,7 @@ const htmlInterfaces = ` + JSON.stringify(
     .replace(/,/g, `, `)
 )
 
-
+// Target: ../src/html/HtmlTypesMap.ts
 copy(
 `/// Script-generated.
 
@@ -51,7 +51,7 @@ ${
 }
 }`)
 
-
+// Target: ../src/html/BuiltTimeHtmlTypesMap.ts
 copy(
 `/// Script-generated.
 
@@ -68,7 +68,7 @@ ${
 }
 }`)
 
-
+// Target: ../src/html/h.ts
 copy(
 `/// Script-generated.
 
@@ -90,7 +90,7 @@ ${
 }
 }`)
 
-
+// Target: ../src/html/h.ts
 copy(
 `/// Script-generated.
 

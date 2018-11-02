@@ -1,5 +1,5 @@
-// Generate and copy to the clipboard a TypeScript interface mapping SVG
-// elements to its attributes. Source: https://www.w3.org/TR/SVG2/attindex.html.
+// Source: https://www.w3.org/TR/SVG2/attindex.html.
+// Target: ../src/BuiltTimeDom.ts.
 
 const firstsUp = (str, count) => str.slice(0, count).toUpperCase() + str.slice(count)
 
@@ -19,7 +19,7 @@ const unknownElems = []
 
 Array
     .from(document.querySelector('.attrtable tbody').rows)
-    .forEach((row, idx) => {
+    .forEach(row => {
         const [attrCell, elemsCell] = row.cells
         const attrName = attrCell.querySelector('.attr-name').textContent.trim()
         if (!attrName.startsWith('aria-') && attrName !== 'role') {
