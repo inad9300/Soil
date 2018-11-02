@@ -32,8 +32,8 @@ suite('addChildren()', () => {
         
         assert.strictEqual(g.children.length, 2)
         assert.strictEqual(g.childNodes.length, 3)
-        assert.strictEqual(g.firstElementChild!.tagName, 'A')
-        assert.strictEqual(g.lastElementChild!.tagName, 'CIRCLE')
+        assert.strictEqual(g.firstElementChild!.tagName, 'a')
+        assert.strictEqual(g.lastElementChild!.tagName, 'circle')
         assert.strictEqual(g.lastChild!.nodeType, Node.TEXT_NODE)
         assert.strictEqual(g.lastChild!.textContent, 'test text')
     })
