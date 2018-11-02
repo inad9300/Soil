@@ -26,7 +26,7 @@ suite('addChildren()', () => {
     test('works for SVG elements', () => {
         const g = createElement('<g></g>', true) as s.G
         const a = createElement('<a></a>', true) as s.A
-        const circle = createElement('<circle></circle>') as s.Circle
+        const circle = createElement('<circle />') as s.Circle
 
         addChildren(g, [a, circle, 'test text'])
         

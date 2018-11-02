@@ -84,4 +84,13 @@ suite('assignProperties()', () => {
         assert.strictEqual(circle.style.strokeWidth, '4')
         assert.strictEqual(circle.style.fill, 'yellow')
     })
+
+    test('object properties not present in target', () => {
+        const target = {x: 3}
+        const source = {o: {y: 4}}
+
+        assignProperties(target, source)
+
+        assert.strictEqual((target as any).o.y, 4)
+    })
 })
