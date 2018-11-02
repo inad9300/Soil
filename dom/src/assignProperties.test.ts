@@ -91,6 +91,6 @@ suite('assignProperties()', () => {
 
         assignProperties(target, source)
 
-        assert.strictEqual((target as any).o.y, 4)
+        assert.strictEqual((target as any).o1.o2.x, 3)
     })
 })
