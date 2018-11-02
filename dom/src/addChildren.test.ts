@@ -17,8 +17,8 @@ suite('addChildren()', () => {
         
         assert.strictEqual(div.children.length, 2)
         assert.strictEqual(div.childNodes.length, 3)
-        assert.strictEqual(div.firstElementChild!.tagName, 'SPAN')
-        assert.strictEqual(div.lastElementChild!.tagName, 'STRONG')
+        assert.strictEqual(div.firstElementChild!.tagName.toLowerCase(), 'span')
+        assert.strictEqual(div.lastElementChild!.tagName.toLowerCase(), 'strong')
         assert.strictEqual(div.lastChild!.nodeType, Node.TEXT_NODE)
         assert.strictEqual(div.lastChild!.textContent, 'test text')
     })
@@ -32,8 +32,8 @@ suite('addChildren()', () => {
         
         assert.strictEqual(g.children.length, 2)
         assert.strictEqual(g.childNodes.length, 3)
-        assert.strictEqual(g.firstElementChild!.tagName, 'a')
-        assert.strictEqual(g.lastElementChild!.tagName, 'circle')
+        assert.strictEqual(g.firstElementChild!.tagName.toLowerCase(), 'a')
+        assert.strictEqual(g.lastElementChild!.tagName.toLowerCase(), 'circle')
         assert.strictEqual(g.lastChild!.nodeType, Node.TEXT_NODE)
         assert.strictEqual(g.lastChild!.textContent, 'test text')
     })
