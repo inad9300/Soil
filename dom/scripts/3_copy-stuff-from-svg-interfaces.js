@@ -13,7 +13,7 @@ const elementsWithSpecialChildren = {
     'foreignObject': '(Element | string)[]'
 }
 
-// Patches https://github.com/Microsoft/TypeScript/issues/24269.
+// NOTE Patches https://github.com/Microsoft/TypeScript/issues/24269.
 const falseSvgTags = ['componentTransferFunction', 'textContent', 'textPositioning']
 
 const svgInterfaces = document

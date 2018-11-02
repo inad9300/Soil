@@ -24,36 +24,38 @@ export class Channel<TMessage> {
      * may be passed to specify the maximum number of times the listener will
      * be notified before automatically unsubscribing it.
      */
-    listen(listener: Listener<TMessage>, times?: number): () => void {
+    sub(listener: Listener<TMessage>, times?: number): () => void {
         const timesIsDefined = times !== undefined
 
         const listenerWrapper = (message: TMessage) => {
-            if (timesIsDefined && --(times as number) === 0) {
-                this.clear(listenerWrapper)
+            if (timesIsDefined && --times! === 0) {
+                this.unsub(listenerWrapper)
             }
             listener(message)
         }
 
         this.listeners.push(listenerWrapper)
-        return () => this.clear(listenerWrapper)
+        return () => this.unsub(listenerWrapper)
+    }
+
+    /**
+     * Unsubscribe a listener from the channel.
+     */
+    private unsub(listener: Listener<TMessage>): void {
+        this.listeners = this.listeners.filter(l => l !== listener)
     }
 
     /**
      * Send an event to all listeners, with a payload.
      */
-    send(message: TMessage): void {
+    pub(message: TMessage): void {
         this.listeners.slice().forEach(l => l(message))
     }
 
     /**
-     * Unsubscribe a listener from the channel. If none is provided,
-     * unsubscribe all listeners.
+     * Unsubscribe all listeners from the channel.
      */
-    clear(listener?: Listener<TMessage>): void {
-        if (listener === undefined) {
-            this.listeners = []
-        } else {
-            this.listeners = this.listeners.filter(l => l !== listener)
-        }
+    clear(): void {
+        this.listeners = []
     }
 }

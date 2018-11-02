@@ -1,7 +1,9 @@
-// Target: ../src/BuiltTimeDom.ts.
+// Target (automatic): ../src/BuiltTimeDom.ts.
 
 const fs = require('fs')
 const https = require('https')
+
+console.debug = () => {}
 
 /// Script-generated.
 // Array containing the names of all interfaces of HTML elements (does not include ancestors).
@@ -14,14 +16,16 @@ const svgInterfaces = ['SVGAElement', 'SVGCircleElement', 'SVGClipPathElement', 
 const primitiveTypes = ['boolean', 'number', 'string', 'null', 'void', 'undefined']
 
 // Types for fields that, despite being read-only, make sense to use when
-// creating HTML elements, since their nested properties are assignable.
+// creating HTML elements, since some of their nested properties are assignable.
 const modifiableReadonlyTypes = [
+    // Entries expected to appear as missing interfaces in the final output.
     'any', // NOTE Disable (comment) once in a while to analyze the output.
+    'Node & ParentNode',
+
     'CSSStyleDeclaration',
     'DOMRect',
     'DOMStringMap',
     'DOMTokenList',
-    'Node & ParentNode',
     'SVGAngle',
     'SVGAnimatedAngle',
     'SVGAnimatedBoolean',
@@ -36,7 +40,7 @@ const modifiableReadonlyTypes = [
     'SVGPreserveAspectRatio'
 ]
 
-// Read-only types whose nested fields are all unmodifiable.
+// Read-only types whose nested fields are all unmodifiable (or that are in practice deeply unmodifiable).
 // NOTE Worth revisiting once in a while.
 const unmodifiableReadonlyTypes = [
     'AudioTrackList',
@@ -50,6 +54,7 @@ const unmodifiableReadonlyTypes = [
     'HTMLCollectionOf',
     'HTMLFormControlsCollection',
     'HTMLOptionsCollection',
+    'HTMLSlotElement',
     'MediaError',
     'MediaKeys',
     'MSGraphicsTrust',

@@ -11,7 +11,7 @@ const globalProps = {
     'aria-label': 'An accessible label.',
     dataset: {x: 'y'},
     style: {color: 'black'},
-    className: {baseVal: 'b'}
+    classList: {value: 'b'} // NOTE `className` has been deprecated for SVG elements (https://github.com/Microsoft/TypeScript/issues/19548#issuecomment-378984184).
 }
 
 const globalAttrs = `
@@ -218,9 +218,10 @@ suite('s()', () => {
 
         document.body.appendChild($counter)
 
-        const countFromDom = document.getElementById('count') as any as s.Tspan
-        const incrementBtn = document.getElementById('increment-btn') as any as s.Tspan
-        const decrementBtn = document.getElementById('decrement-btn') as any as s.Tspan
+        // NOTE Double cast required due to https://github.com/Microsoft/TypeScript/issues/4689.
+        const countFromDom = document.getElementById('count') as Element as s.Tspan
+        const incrementBtn = document.getElementById('increment-btn') as Element as s.Tspan
+        const decrementBtn = document.getElementById('decrement-btn') as Element as s.Tspan
 
         click(incrementBtn) // 1
         click(incrementBtn) // 2

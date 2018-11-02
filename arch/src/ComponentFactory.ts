@@ -5,6 +5,7 @@ import {Component} from './Component'
  * injected.
  *
  * Note that in most situations it is better to let TypeScript infer the type
- * rather than explicitly specifying it.
+ * rather than explicitly specifying it. This type is mostly for documentation
+ * purposes.
  */
 export type ComponentFactory<TInput = any, TOutput = any> = (...dependencies: any[]) => Component<TInput, TOutput>
