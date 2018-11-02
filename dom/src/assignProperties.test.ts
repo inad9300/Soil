@@ -55,21 +55,9 @@ suite('assignProperties()', () => {
     test('nested SVG properties', () => {
         const circle = createElement(`<circle />`, true) as s.Circle
         assignProperties(circle, {
-            cx: {
-                baseVal: {
-                    value: 50
-                }
-            },
-            cy: {
-                baseVal: {
-                    value: 50
-                }
-            },
-            r: {
-                baseVal: {
-                    value: 40
-                }
-            },
+            cx: {baseVal: {value: 50}},
+            cy: {baseVal: {value: 50}},
+            r: {baseVal: {value: 40}},
             style: {
                 stroke: 'green',
                 strokeWidth: '4',
