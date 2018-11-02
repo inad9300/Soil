@@ -202,6 +202,31 @@ suite('s()', () => {
         elementsAreEqual(_view, createElement(`<view ${globalAttrs}></view>`, true))
     })
 
+    test('elements with children', () => {
+        const g1 = s.g({
+            style: {fill: 'white', stroke: 'green', strokeWidth: '5'}
+        }, [
+            s.circle({
+                cx: {baseVal: {value: 40}},
+                cy: {baseVal: {value: 40}},
+                r: {baseVal: {value: 25}}
+            }),
+            s.circle({
+                cx: {baseVal: {value: 60}},
+                cy: {baseVal: {value: 60}},
+                r: {baseVal: {value: 25}}
+            })
+        ])
+
+        const g2 = createElement(`
+            <g fill="white" stroke="green" stroke-width="5">
+                <circle cx="40" cy="40" r="25" />
+                <circle cx="60" cy="60" r="25" />
+            </g>`, true) as s.G
+
+        elementsAreEqual(g1, g2)
+    })
+
     test('event listeners', () => {
         const $count = s.tspan({id: 'count'}, ['0'])
         const $counter = s.tspan({}, [

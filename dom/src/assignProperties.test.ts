@@ -85,9 +85,9 @@ suite('assignProperties()', () => {
         assert.strictEqual(circle.style.fill, 'yellow')
     })
 
-    test('object properties not present in target', () => {
-        const target = {x: 3}
-        const source = {o: {y: 4}}
+    test('nested object properties not present in target', () => {
+        const target = {o1: {}}
+        const source = {o1: {o2: {x: 3}}}
 
         assignProperties(target, source)
 
