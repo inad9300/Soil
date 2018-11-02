@@ -17,10 +17,10 @@ suite('addChildren()', () => {
         
         assert.strictEqual(div.children.length, 2)
         assert.strictEqual(div.childNodes.length, 3)
-        assert.strictEqual(div.firstElementChild.tagName, 'SPAN')
-        assert.strictEqual(div.lastElementChild.tagName, 'STRONG')
-        assert.strictEqual(div.lastChild.nodeType, Node.TEXT_NODE)
-        assert.strictEqual(div.lastChild.textContent, 'test text')
+        assert.strictEqual(div.firstElementChild!.tagName, 'SPAN')
+        assert.strictEqual(div.lastElementChild!.tagName, 'STRONG')
+        assert.strictEqual(div.lastChild!.nodeType, Node.TEXT_NODE)
+        assert.strictEqual(div.lastChild!.textContent, 'test text')
     })
 
     test('works for SVG elements', () => {
@@ -32,9 +32,9 @@ suite('addChildren()', () => {
         
         assert.strictEqual(g.children.length, 2)
         assert.strictEqual(g.childNodes.length, 3)
-        assert.strictEqual(g.firstElementChild.tagName, 'A')
-        assert.strictEqual(g.lastElementChild.tagName, 'CIRCLE')
-        assert.strictEqual(g.lastChild.nodeType, Node.TEXT_NODE)
-        assert.strictEqual(g.lastChild.textContent, 'test text')
+        assert.strictEqual(g.firstElementChild!.tagName, 'A')
+        assert.strictEqual(g.lastElementChild!.tagName, 'CIRCLE')
+        assert.strictEqual(g.lastChild!.nodeType, Node.TEXT_NODE)
+        assert.strictEqual(g.lastChild!.textContent, 'test text')
     })
 })
