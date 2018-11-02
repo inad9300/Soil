@@ -1,8 +1,8 @@
 {
     "private": true,
     "dependencies": {
-        "@soil/dom": "0.6.5",
-        "@soil/arch": "0.6.5"
+        "@soil/dom": "0.6.6",
+        "@soil/arch": "0.6.6"
     },
     "devDependencies": {
         "http-server": "0.11.1",
