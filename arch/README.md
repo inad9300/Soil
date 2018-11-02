@@ -58,11 +58,11 @@ export const randomNumbersChan = new Channel<number>()
 
 // ...
 
-randomNumbersChan.listen(n => console.log('New random number received:', n))
+randomNumbersChan.sub(n => console.log('New random number received:', n))
 
 // ...
 
-randomNumbersChan.send(Math.random())
+randomNumbersChan.pub(Math.random())
 ```
 
 ### `assert()` (function)
