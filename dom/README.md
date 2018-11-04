@@ -1,6 +1,6 @@
 # [@soil/dom](https://www.npmjs.com/package/@soil/dom)
 
-Declaratively create type-safe HTML and SVG elements.
+Declaratively create type-safe HTML and SVG elements. One way to think of it is as "HTML-in-JS".
 
 
 ## Documentation
