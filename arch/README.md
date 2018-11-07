@@ -107,7 +107,7 @@ extend(elem, api)
 elem.value = 8
 ```
 
-This function modifies the first argument, and returns it too.
+This function modifies its first argument, and returns it too.
 
 
 ## Installation
