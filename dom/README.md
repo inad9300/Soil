@@ -24,7 +24,7 @@ const input: h.Input = h.input({placeholder: 'Input...'})
 const customElement: HTMLElement = h.x('custom-element')
 ```
 
-They are provided under a namespace to avoid long import statements and to avoid polluting the scope with plenty of functions and types (`a`, `A`, `b`, `B`, ...). As a nice side effect the auto-completion experience is better too.
+They are provided under a namespace to avoid polluting the scope with plenty of functions and types (`a`, `A`, `b`, `B`, ...); to prevent problems with reserved words such as `var` and `switch`, which would be required for elements such as [`<var>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/var) and [`<switch>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/switch); and to avoid long import statements. As a nice side effect the auto-completion experience is better too.
 
 ### `s` (namespace)
 
