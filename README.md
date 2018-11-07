@@ -33,7 +33,7 @@ They create and manipulate HTML elements dynamically, with the help of
 type-safe functions with a one-to-one correspondence with standard HTML
 elements, which provides a look-and-feel similar to regular HTML.
 
-```js
+```ts
 import {h} from '@soil/dom'
 import {extend} from '@soil/arch'
 
@@ -66,7 +66,7 @@ export const counter = (input: {value?: number} = {}) => {
 
 Custom components can then be used in a way similar to native ones.
 
-```js
+```ts
 import {counter} from './counter'
 
 const counterApp = counter({value: 0})
@@ -80,7 +80,7 @@ have no dependencies, but container components may have them, including other
 components. For this, [pure dependency injection](http://blog.ploeh.dk/2014/06/10/pure-di/)
 is recommended, which can be achieved [through default parameters](https://medium.freecodecamp.org/how-to-take-advantage-of-javascripts-default-parameters-for-dependency-injection-98fc423328e1).
 
-```js
+```ts
 const counterContainer = (counterService = new CounterService) => (input = {}) => {
     // ...
 }
