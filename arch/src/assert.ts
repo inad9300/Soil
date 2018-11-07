@@ -29,7 +29,7 @@ export function assert(assertion: boolean | (() => boolean), message: string = '
     if (!ok) {
         if (assertionIsFunction) {
             if (message) {
-                message += '\n\t'
+                message += ' // '
             }
             message += 'Assertion was: ' + assertion.toString()
         }
