@@ -37,7 +37,7 @@ elements, which provides a look-and-feel similar to regular HTML.
 import {h} from '@soil/dom'
 import {extend} from '@soil/arch'
 
-const counter = (input: {value?: number} = {}) => {
+export const counter = (input: {value?: number} = {}) => {
     const value = input.value || 0
 
     const count = h.span()
