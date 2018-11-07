@@ -5,8 +5,7 @@
 export function extend<T, U>(target: T, source: U): T & U {
     for (const prop in source) {
         if (source.hasOwnProperty(prop)) {
-            Object.defineProperty(target, prop,
-                Object.getOwnPropertyDescriptor(source, prop) as PropertyDescriptor)
+            Object.defineProperty(target, prop, Object.getOwnPropertyDescriptor(source, prop)!)
         }
     }
     return target as T & U
