@@ -1,7 +1,7 @@
 /**
  * Signature for the listener functions called when an event is sent.
  */
-export type Listener<TMessage> = (message: TMessage) => void
+type Listener<TMessage> = (message: TMessage) => void
 
 /**
  * Type-safe event mini-bus, or publisher/subscriber system. Useful for
