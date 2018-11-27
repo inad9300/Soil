@@ -116,7 +116,7 @@ download('https://raw.githubusercontent.com/Microsoft/TypeScript/master/lib/lib.
 
     fs.writeFileSync('../src/BuiltTimeDom.ts', `/// Script-generated.
 
-import {AriaAttributes, AriaRole} from './AriaAttributes'
+import {AriaAttributes} from './AriaAttributes'
 
 /**
  * Subset of the interfaces defined for HTML elements which makes sense to use

@@ -8,6 +8,7 @@ export function assignProperties<E extends {[p: string]: any}, P extends {[p: st
     for (const p in props) {
         if (props.hasOwnProperty(p)) {
             if (p === 'role' || p.startsWith('aria-')) {
+                // First-class support for accessibility attributes.
                 elem.setAttribute(p, props[p])
             } else if (isObject(props[p])) {
                 // Go deeper for properties such as `style` or SVG-specific properties.

@@ -2,13 +2,7 @@
  * Specialized type of error to easily identify exceptions originated in
  * `assert()` expressions.
  */
-export class AssertionError extends Error {
-
-    constructor(message: string) {
-        super(message)
-        Object.setPrototypeOf(this, AssertionError.prototype)
-    }
-}
+export class AssertionError extends Error {}
 
 /**
  * Ensure that a given condition is true, adding basic support for design-by-

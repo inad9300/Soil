@@ -43,13 +43,15 @@ Array
     })
 
 console.warn(
-    'Elements for which no interface was found:',
+    'Elements for which no interface was found in the current browser:',
     unknownElems
         .filter((val, idx, arr) => arr.indexOf(val) === idx)
         .sort()
         .join(', ')
         + '.'
 )
+
+const htmlAriaAttributesCount = 49
 
 copy(
 `/// Script-generated.
@@ -58,14 +60,16 @@ export namespace BuiltTimeDom {
 
 ` +
     Object.keys(svgAriaAttrs).map(iface =>
-        `export interface ${iface} {\n` +
-            svgAriaAttrs[iface]
-                .map(attr => attr === 'role'
-                    ? '    role?: AriaRole'
-                    : `    '${attr}'?: string`)
-                .join('\n')
-        + `\n}`
+        svgAriaAttrs[iface].length === htmlAriaAttributesCount
+            ? `export interface ${iface} extends AriaAttributes {}`
+            : `export interface ${iface} {\n` +
+                  svgAriaAttrs[iface]
+                      .map(attr => attr === 'role'
+                          ? '    role?: AriaRole'
+                          : `    '${attr}'?: string`)
+                      .join('\n')
+              + `\n}`
     )
-    .join('\n\n')
+    .join('\n')
 + '\n\n}'
 )
