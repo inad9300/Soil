@@ -2,7 +2,7 @@
  * Specialized type of error to easily identify exceptions originated in
  * `assert()` expressions.
  */
-export class AssertionError extends Error {}
+class AssertionError extends Error {}
 
 /**
  * Ensure that a given condition is true, adding basic support for design-by-

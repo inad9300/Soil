@@ -1,7 +1,7 @@
 const {suite, test} = intern.getInterface('tdd')
 const {expect} = intern.getPlugin('chai')
 
-import {assert, AssertionError} from './assert'
+import {assert} from './assert'
 
 suite('assert()', () => {
 
@@ -15,9 +15,9 @@ suite('assert()', () => {
 
     test('false statements throw an exception', () => {
         expect(() => assert(2 !== 2, 'Two must not be different from 2'))
-            .to.throw(AssertionError, /^(Two must not be different from 2)$/)
+            .to.throw(Error, /^(Two must not be different from 2)$/)
 
         expect(() => assert(() => 2 !== 2, 'Two must not be different from 2'))
-            .to.throw(AssertionError, /^(Two must not be different from 2)[\s\S]*2 !== 2/)
+            .to.throw(Error, /^(Two must not be different from 2)[\s\S]*2 !== 2/)
     })
 })
