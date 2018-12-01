@@ -2,8 +2,7 @@
     "extends": "../../tsconfig",
     "compilerOptions": {
         "module": "system",
-        "outDir": "build",
-        "declaration": false
+        "outDir": "build"
     },
     "include": ["."]
 }

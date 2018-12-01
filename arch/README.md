@@ -49,14 +49,14 @@ const f: ComponentFactory<Input, Output> = (/* Dependencies */) => (/* Input */)
 As with `Component`, in most cases TypeScript will be able to infer the type for you based on the actual input and output. This will lead to less verbose code, and it will still be type safe. Therefore, this type exists mostly for documentation
 purposes.
 
-### `Channel` (class)
+### `chan` (function)
 
-Components may easily communicate with their parents, children and siblings. However when two components are further away from each other, the communication is more complicated. For this cases, a publish-subscribe pattern can be used.
+Components may easily communicate with their parents, children and siblings. However when two components are further away from each other, the communication is more complicated. For this cases, a publish-subscribe pattern can be used, through so-called "channels".
 
 ```ts
-import {Channel} from '@soil/arch'
+import {chan} from '@soil/arch'
 
-export const randomNumbersChan = new Channel<number>()
+export const randomNumbersChan = chan<number>()
 
 // ...
 

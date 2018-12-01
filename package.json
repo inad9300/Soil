@@ -18,7 +18,13 @@
         "@dojo/loader": "2.0.0",
         "codecov": "3.1.0",
         "intern": "4.3.3",
-        "typescript": "3.1.6"
+        "rollup-plugin-typescript": "1.0.0",
+        "rollup": "0.67.3",
+        "ts-loader": "5.3.1",
+        "tslib": "1.9.3",
+        "typescript": "3.2.1",
+        "webpack-cli": "3.1.2",
+        "webpack": "4.26.1"
     },
     "scripts": {
         "precompile": "rm -rf build/",

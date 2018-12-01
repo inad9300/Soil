@@ -82,11 +82,9 @@ copy(
 export namespace s {
 ${
     svgInterfaces
-        .map(([tag, iface]) => {
-            return voidElements.indexOf(tag) > -1
-                ? `    export const ${fixReservedTag(tag)} = (props?: BuiltTimeDom.${iface}): SvgTypesMap['${tag}'] => ss('${tag}', props)`
-                : `    export const ${fixReservedTag(tag)} = (props?: BuiltTimeDom.${iface}, children?: ${elementsWithSpecialChildren[tag] || '(SVGElement | string)[]'}): SvgTypesMap['${tag}'] => ss('${tag}', props, children)`
-        })
+        .map(([tag, iface]) => voidElements.indexOf(tag) > -1
+                ? `    export function ${fixReservedTag(tag)}(props?: BuiltTimeDom.${iface}): SvgTypesMap['${tag}'] { return _s('${tag}', props) }`
+                : `    export function ${fixReservedTag(tag)}(props?: BuiltTimeDom.${iface}, children?: ${elementsWithSpecialChildren[tag] || '(SVGElement | string)[]'}): SvgTypesMap['${tag}'] { return _s('${tag}', props, children) }`)
         .join('\n')
 }
 }`)

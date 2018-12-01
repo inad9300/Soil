@@ -1,6 +1,6 @@
 {
     "name": "@soil/dom",
-    "version": "0.6.6",
+    "version": "0.7.0",
     "description": "Declaratively create type-safe HTML and SVG elements.",
     "license": "AGPL-3.0",
     "homepage": "https://github.com/inad9300/Soil",
@@ -28,16 +28,16 @@
     ],
     "main": "build/umd/index.js",
     "module": "build/es6/index.js",
-    "types": "build/umd/index.d.ts",
-    "typings": "build/umd/index.d.ts",
+    "types": "build/es6/index.d.ts",
+    "typings": "build/es6/index.d.ts",
+    "sideEffects": false,
     "scripts": {
-        "compile:amd": "../node_modules/.bin/tsc --module amd --outDir build/amd",
-        "compile:cjs": "../node_modules/.bin/tsc --module commonjs --outDir build/cjs",
         "compile:es6": "../node_modules/.bin/tsc --module es6 --outDir build/es6",
-        "compile:system": "../node_modules/.bin/tsc --module system --outDir build/sys",
-        "compile:umd": "../node_modules/.bin/tsc --module umd --outDir build/umd",
+        "compile:umd": "../node_modules/.bin/tsc --module umd --outDir build/umd --declaration false",
+        "compile:system": "../node_modules/.bin/tsc --module system --outDir build/system --declaration false",
+        "compile:browser": "../node_modules/.bin/rollup -c",
         "precompile": "rm -rf build/",
-        "compile": "npm run compile:amd && npm run compile:cjs && npm run compile:es6 && npm run compile:system && npm run compile:umd",
+        "compile": "npm run compile:umd && npm run compile:es6 && npm run compile:system && npm run compile:browser",
         "prepare": "npm run compile"
     }
 }

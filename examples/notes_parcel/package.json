@@ -1,4 +1,5 @@
 {
+    "private": true,
     "dependencies": {
         "@soil/dom": "0.6.6",
         "@soil/arch": "0.6.6"

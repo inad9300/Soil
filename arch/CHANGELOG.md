@@ -1,9 +1,9 @@
 # Changelog
 
-## 1.0.0 - NEXT
+## 1.0.0
 
 ### Added
 - `Component` and `ComponentFactory` types, encoding the shape of custom components.
-- `Channel` class, allowing for communications between distant components.
-- `assert()` function, as a means towards contract programming.
-- `extend()` function, to facilitate the extension of HTML elements.
+- `chan()` function, helping with communications between distant components.
+- `assert()` function, for basic contract programming support.
+- `extend()` function, to facilitate the extension of HTML elements with custom properties, including getters and setters.

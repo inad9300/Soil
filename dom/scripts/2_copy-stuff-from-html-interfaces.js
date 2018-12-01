@@ -84,8 +84,8 @@ export namespace h {
 ${
     htmlInterfaces
         .map(([tag, iface]) => voidElements.indexOf(tag) > -1
-            ? `    export const ${fixReservedTag(tag)} = (props?: BuiltTimeDom.${iface}): HtmlTypesMap['${tag}'] => hh('${tag}', props)`
-            : `    export const ${fixReservedTag(tag)} = (props?: BuiltTimeDom.${iface}, children?: HtmlChildrenMap['${tag}']): HtmlTypesMap['${tag}'] => hh('${tag}', props, children)`)
+            ? `    export function ${fixReservedTag(tag)}(props?: BuiltTimeDom.${iface}): HtmlTypesMap['${tag}'] { return _h('${tag}', props) }`
+            : `    export function ${fixReservedTag(tag)}(props?: BuiltTimeDom.${iface}, children?: HtmlChildrenMap['${tag}']): HtmlTypesMap['${tag}'] { return _h('${tag}', props, children) }`)
         .join('\n')
 }
 }`)
