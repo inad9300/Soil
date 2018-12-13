@@ -27,18 +27,15 @@
         "web",
         "applications"
     ],
-    "main": "build/umd/index.js",
+    "main": "build/umd.js",
     "module": "build/es6/index.js",
     "types": "build/es6/index.d.ts",
     "typings": "build/es6/index.d.ts",
     "sideEffects": false,
     "scripts": {
-        "compile:es6": "../node_modules/.bin/tsc --module es6 --outDir build/es6 --declaration",
         "compile:umd": "../node_modules/.bin/webpack",
-        "compile:system": "../node_modules/.bin/tsc --module system --outDir build/system",
-        "compile:browser": "../node_modules/.bin/rollup -c",
-        "precompile": "rm -rf build/",
-        "compile": "npm run compile:umd && npm run compile:es6 && npm run compile:system && npm run compile:browser",
-        "prepare": "npm run compile"
+        "compile:es6": "../node_modules/.bin/tsc -m es6 --outDir build/es6 --declaration",
+        "compile:system": "../node_modules/.bin/tsc -m system --outDir build/system",
+        "prepare": "rm -rf build/ && npm run compile:umd && npm run compile:es6 && npm run compile:system"
     }
 }

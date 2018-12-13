@@ -177,7 +177,7 @@ suite('s()', () => {
         const _svg: s.Svg = s.svg(globalProps, [])
         elementsAreEqual(_svg, createElement(`<svg ${globalAttrs}></svg>`, true))
 
-        const _switch: s.Switch = s.switch_(globalProps, [])
+        const _switch: s.Switch = s.switch(globalProps, [])
         elementsAreEqual(_switch, createElement(`<switch ${globalAttrs}></switch>`, true))
 
         const _symbol: s.Symbol = s.symbol(globalProps, [])

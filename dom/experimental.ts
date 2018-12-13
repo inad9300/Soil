@@ -20,17 +20,17 @@ type DeepPartial<T> = {
                     : DeepPartial<T[P]>
 }
 
-type PickDefined<T> = Pick<T, {
-    [P in keyof T]: T[P] extends undefined ? never : IfEquals<T[P], {}, never, P>
-}[keyof T]>
+type PickDefined<O> = Pick<O, {
+    [K in keyof O]: O[K] extends undefined ? never : K /* IfEquals<O[K], {}, never, K> */
+}[keyof O]>
 
 // FIXME
 type DeepPickDefined<T> = PickDefined<{
-    [P in keyof T]: T[P] extends Array<infer U>
+    [P in keyof T]: /* T[P] extends Array<infer U>
         ? Array<DeepPickDefined<U>>
         : T[P] extends ReadonlyArray<infer U>
             ? ReadonlyArray<DeepPickDefined<U>>
-            : T[P] extends Primitive | Function
+            : */ T[P] extends Primitive | Function
                 ? T[P]
                 : DeepPickDefined<T[P]>
 }>
@@ -51,10 +51,10 @@ let dpd: DPD = {
     b: false,
     // u: undefined,
     o: {
-        n: undefined!,
+        // n: undefined!,
         b: false,
-        u: undefined,
-        WAT: 666
+        // u: undefined,
+        // WAT: 666
     }
 }
 
@@ -126,6 +126,8 @@ type ElementOptions<E extends Element> =
 function form(_props: ElementOptions<HTMLFormElement>): HTMLFormElement {
     return document.createElement('form')
 }
+
+// TODO Void elements.
 
 form({
     // ooooooo: 'evt',

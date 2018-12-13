@@ -20,13 +20,6 @@ export function chan<TMessage>() {
 
     return {
         /**
-         * Return the number of listeners on the channel.
-         */
-        get size(): number {
-            return listeners.length
-        },
-
-        /**
          * Subscribe a listener to the channel. A function is returned which can be
          * called to unsubscribe that same listener. An optional second argument
          * may be passed to specify the maximum number of times the listener will
@@ -51,6 +44,13 @@ export function chan<TMessage>() {
          */
         pub(message: TMessage): void {
             listeners.slice().forEach(l => l(message))
+        },
+
+        /**
+         * Return the number of listeners on the channel.
+         */
+        get size(): number {
+            return listeners.length
         },
 
         /**

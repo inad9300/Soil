@@ -330,7 +330,7 @@ suite('h()', () => {
         const _ul: h.Ul = h.ul(globalProps, [])
         elementsAreEqual(_ul, createElement(`<ul ${globalAttrs}></ul>`))
 
-        const _var: h.Var = h.var_(globalProps, [])
+        const _var: h.Var = h.var(globalProps, [])
         elementsAreEqual(_var, createElement(`<var ${globalAttrs}></var>`))
 
         const _video: h.Video = h.video(globalProps, [])

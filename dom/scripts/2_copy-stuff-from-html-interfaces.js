@@ -2,10 +2,6 @@
 
 const firstUp = str => str.charAt(0).toUpperCase() + str.slice(1)
 
-const elementsWithReservedNames = ['var']
-
-const fixReservedTag = tag => elementsWithReservedNames.indexOf(tag) > -1 ? tag + '_' : tag
-
 /// Script-generated.
 const voidElements = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
 
@@ -80,12 +76,12 @@ copy(
  * must be run inside a browser, or must expose \`document\` globally, e.g.
  * through PhantomJS or jsdom.
  */
-export namespace h {
+export const h = {
 ${
     htmlInterfaces
         .map(([tag, iface]) => voidElements.indexOf(tag) > -1
-            ? `    export function ${fixReservedTag(tag)}(props?: BuiltTimeDom.${iface}): HtmlTypesMap['${tag}'] { return _h('${tag}', props) }`
-            : `    export function ${fixReservedTag(tag)}(props?: BuiltTimeDom.${iface}, children?: HtmlChildrenMap['${tag}']): HtmlTypesMap['${tag}'] { return _h('${tag}', props, children) }`)
+            ? `    ${tag}: (props?: BuiltTimeDom.${iface}): HtmlTypesMap['${tag}'] => _h('${tag}', props),`
+            : `    ${tag}: (props?: BuiltTimeDom.${iface}, children?: HtmlChildrenMap['${tag}']): HtmlTypesMap['${tag}'] => _h('${tag}', props, children),`)
         .join('\n')
 }
 }`)

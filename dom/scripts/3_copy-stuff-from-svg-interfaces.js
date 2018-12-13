@@ -2,10 +2,6 @@
 
 const firstUp = str => str.charAt(0).toUpperCase() + str.slice(1)
 
-const elementsWithReservedNames = ['switch']
-
-const fixReservedTag = tag => elementsWithReservedNames.indexOf(tag) > -1 ? tag + '_' : tag
-
 const svgRegExp = /createElementNS\(namespaceURI: "http:\/\/www\.w3\.org\/2000\/svg", qualifiedName: "([a-zA-Z]+)"\): (SVG[a-zA-Z]+Element);/
 
 const voidElements = []
@@ -79,12 +75,12 @@ copy(
  * must be run inside a browser, or must expose \`document\` globally, e.g.
  * through PhantomJS or jsdom.
  */
-export namespace s {
+export const s = {
 ${
     svgInterfaces
         .map(([tag, iface]) => voidElements.indexOf(tag) > -1
-                ? `    export function ${fixReservedTag(tag)}(props?: BuiltTimeDom.${iface}): SvgTypesMap['${tag}'] { return _s('${tag}', props) }`
-                : `    export function ${fixReservedTag(tag)}(props?: BuiltTimeDom.${iface}, children?: ${elementsWithSpecialChildren[tag] || '(SVGElement | string)[]'}): SvgTypesMap['${tag}'] { return _s('${tag}', props, children) }`)
+                ? `    ${tag}: (props?: BuiltTimeDom.${iface}): SvgTypesMap['${tag}'] => _s('${tag}', props),`
+                : `    ${tag}: (props?: BuiltTimeDom.${iface}, children?: ${elementsWithSpecialChildren[tag] || '(SVGElement | string)[]'}): SvgTypesMap['${tag}'] => _s('${tag}', props, children),`)
         .join('\n')
 }
 }`)

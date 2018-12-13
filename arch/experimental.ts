@@ -1,5 +1,4 @@
-/*
-import {chan} from './chan'
+import {chan} from './src/chan'
 
 const Radio = {
     userDeleted: chan<number>()
@@ -47,4 +46,3 @@ function prop<V>(initial?: V) {
         }
     }
 }
-*/
