@@ -13,12 +13,12 @@
             baseUrl: 'node_modules',
             packages: [{
                 name: '@soil/dom',
-                location: '@soil/dom/build/umd',
-                main: 'index'
+                location: '@soil/dom/build',
+                main: 'umd.js'
             }, {
                 name: '@soil/arch',
-                location: '@soil/arch/build/umd',
-                main: 'index'
+                location: '@soil/arch/build',
+                main: 'umd.js'
             }]
         })
         require(['main'])

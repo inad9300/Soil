@@ -13,30 +13,18 @@
     <script type="systemjs-packagemap">
     {
         "packages": {
-            "@soil/dom": "/node_modules/@soil/dom/build/system/index",
-            "@soil/arch": "/node_modules/@soil/arch/build/system/index"
+            "@soil/dom": "/node_modules/@soil/dom/build/system.js",
+            "@soil/arch": "/node_modules/@soil/arch/build/system.js"
         }
     }
     </script>
     <script src="node_modules/systemjs/dist/system.js"></script>
+    <script src="node_modules/systemjs/dist/extras/named-register.js"></script>
     <script>
-        // Work-around to add ".js" as default extension. See
-        // https://guybedford.com/systemjs-2.0#comment-4155467995 and
-        // https://github.com/Microsoft/TypeScript/issues/28790.
-        var systemResolve = System.resolve;
-        System.resolve = function (name, parent) {
-            return Promise
-                .resolve(systemResolve(name, parent))
-                .then(function (resolved) {
-                    if (!resolved.split('/').pop().includes('.')) {
-                        resolved += '.js'
-                    }
-                    return resolved
-                })
-        }
-    </script>
-    <script>
-        System.import('/build/main.js')
+        // FIXME...
+        System.import('/build/main.js').then(function () {
+            System.import('main')
+        })
     </script>
 </body>
 </html>

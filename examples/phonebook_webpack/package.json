@@ -1,20 +1,18 @@
 {
     "private": true,
     "dependencies": {
-        "@soil/dom": "0.6.6",
-        "@soil/arch": "0.6.6"
+        "@soil/dom": "0.7.1",
+        "@soil/arch": "0.7.1"
     },
     "devDependencies": {
         "http-server": "0.11.1",
         "ts-loader": "5.3.1",
-        "typescript": "3.2.1",
+        "typescript": "3.2.2",
         "webpack-cli": "3.1.2",
-        "webpack": "4.26.1"
+        "webpack": "4.27.1"
     },
     "scripts": {
-        "precompile": "rm -rf build",
-        "compile": "webpack",
-        "prestart": "npm run compile",
+        "prestart": "rm -rf build && webpack",
         "start": "http-server"
     }
 }

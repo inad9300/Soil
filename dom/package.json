@@ -1,6 +1,6 @@
 {
     "name": "@soil/dom",
-    "version": "0.7.0",
+    "version": "0.7.1",
     "description": "Declaratively create type-safe HTML and SVG elements.",
     "license": "AGPL-3.0",
     "homepage": "https://github.com/inad9300/Soil",
@@ -34,7 +34,7 @@
     "scripts": {
         "compile:umd": "../node_modules/.bin/webpack",
         "compile:es6": "../node_modules/.bin/tsc -m es6 --outDir build/es6 --declaration",
-        "compile:system": "../node_modules/.bin/tsc -m system --outDir build/system",
-        "prepare": "rm -rf build/ && npm run compile:umd && npm run compile:es6 && npm run compile:system"
+        "compile:system": "../node_modules/.bin/tsc -m system --outFile build/system.js",
+        "prepare": "rm -rf build && npm run compile:umd && npm run compile:es6 && npm run compile:system"
     }
 }

@@ -1,0 +1,3 @@
+- Fix SystemJS integration
+- Investigate Parcel's warnings:
+    ⚠️  Could not load source file "../../src/index.ts" in source map of "node_modules/@soil/dom/build/es6/index.js".

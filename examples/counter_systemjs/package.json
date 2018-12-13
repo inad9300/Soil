@@ -1,18 +1,16 @@
 {
     "private": true,
     "dependencies": {
-        "@soil/dom": "0.6.6",
-        "@soil/arch": "0.6.6"
+        "@soil/dom": "0.7.1",
+        "@soil/arch": "0.7.1"
     },
     "devDependencies": {
         "http-server": "0.11.1",
         "systemjs": "2.1.1",
-        "typescript": "3.2.1"
+        "typescript": "3.2.2"
     },
     "scripts": {
-        "precompile": "rm -rf build",
-        "compile": "tsc",
-        "prestart": "npm run compile",
+        "prestart": "rm -rf build && tsc",
         "start": "http-server"
     }
 }

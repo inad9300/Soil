@@ -1,19 +1,16 @@
 {
     "private": true,
     "dependencies": {
-        "@soil/dom": "0.6.6",
-        "@soil/arch": "0.6.6"
+        "@soil/dom": "0.7.1",
+        "@soil/arch": "0.7.1"
     },
     "devDependencies": {
         "http-server": "0.11.1",
         "browserify": "16.2.3",
-        "typescript": "3.2.1"
+        "typescript": "3.2.2"
     },
     "scripts": {
-        "precompile": "rm -rf build",
-        "compile": "tsc",
-        "bundle": "browserify -e build/main.js -o build/app.js -d",
-        "prestart": "npm run compile && npm run bundle",
+        "prestart": "rm -rf build && tsc && browserify -e build/main.js -o build/app.js -d",
         "start": "http-server"
     }
 }

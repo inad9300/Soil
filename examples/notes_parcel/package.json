@@ -1,16 +1,14 @@
 {
     "private": true,
     "dependencies": {
-        "@soil/dom": "0.6.6",
-        "@soil/arch": "0.6.6"
+        "@soil/dom": "0.7.1",
+        "@soil/arch": "0.7.1"
     },
     "devDependencies": {
         "parcel-bundler": "1.10.3",
-        "typescript": "3.1.6"
+        "typescript": "3.2.2"
     },
     "scripts": {
-        "NOTE `make` and possibly other commands are needed by some transitive dependencies, run": "sudo apt-get install build-essential",
-        "NOTE To temporarily increase the maximum number of inotify watches, run": "sudo sysctl fs.inotify.max_user_watches=99999",
         "start": "parcel index.html"
     }
 }
