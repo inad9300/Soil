@@ -220,11 +220,11 @@ suite('s()', () => {
 
         const g2 = createElement(
             '<g style="fill: white; stroke: green; stroke-width: 5;">' +
-                '<circle cy="40" r="25" cx="40" />' +
-                '<circle cy="60" r="25" cx="60" />' +
+                '<circle cx="40" cy="40" r="25" />' +
+                '<circle cx="60" cy="60" r="25" />' +
             '</g>', true) as s.G
 
-        elementsAreEqual(g1, g2)
+        elementsAreEqual(g1, g2, {stringComparison: false})
     })
 
     test('event listeners', () => {
