@@ -4,10 +4,6 @@ const Radio = {
     userDeleted: chan<number>()
 }
 
-// https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
-// TODO Type-safetify?
-const customEvent = new CustomEvent<number>('xyz', {detail: 42})
-
 const UserStore = () => {
     let users: number[] = []
     const usersChan = chan<number[]>()
@@ -50,3 +46,26 @@ function prop<V>(initial?: V) {
         }
     }
 }
+
+function chann<D>(name: string) {
+    return {
+        pub: (elem: HTMLElement, detail: D, eventInit: EventInit = {}) => {
+            const customEvent = new CustomEvent<D>(name, {detail, ...eventInit})
+            elem.dispatchEvent(customEvent)
+        },
+        sub: (elem: HTMLElement, listener: (customEvent: CustomEvent<D>) => void) => {
+            elem.addEventListener(name, listener)
+            return () => elem.removeEventListener(name, listener)
+        }
+    }
+}
+
+const div = document.createElement('div')
+const randomChan = chann<number>('randomChan')
+
+const unsub = randomChan.sub(div, evt => {
+    console.log('event received!', evt)
+})
+
+randomChan.pub(div, Math.random())
+randomChan.pub(div, Math.random())
