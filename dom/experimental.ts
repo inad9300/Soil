@@ -1,3 +1,5 @@
+// until(), repeat(), etc. "directives"
+
 type Nil = null | undefined
 
 type Primitive = boolean | number | string | symbol | Nil
