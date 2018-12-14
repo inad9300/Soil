@@ -1,6 +1,6 @@
 {
     "extends": "./tsconfig",
-    "include": ["**/src/*.ts"],
+    "include": ["dom/src/**/*.ts", "arch/src/**/*.ts"],
     "exclude": [],
     "compilerOptions": {
         "types": ["intern"],

@@ -7,7 +7,10 @@ Architectural constructs for web applications.
 
 ### `Component` (type)
 
-Components are the main building block of your web applications. They are functions responsible for creating instances of custom HTML elements, which typically are regular HTML elements extended with custom functions, getters and setters.
+Components are the main building block of your web applications. They are
+functions responsible for creating instances of custom HTML elements, which
+typically are regular HTML elements extended with custom functions, getters and
+setters.
 
 ```ts
 import {Component} from '@soil/arch'
@@ -24,12 +27,15 @@ const component: Component<Input, Output> = (/* Input */) = {
 }
 ```
 
-In most cases, it is better to let TypeScript figure out the type of your component based on the input it takes and its return value; it will lead to less verbose code, and it will still be type safe. Therefore, this type exists mostly for
-documentation purposes.
+In most cases, it is better to let TypeScript figure out the type of your
+component based on the input it takes and its return value; it will lead to less
+verbose code, and it will still be type safe. Therefore, this type exists mostly
+for documentation purposes.
 
 ### `ComponentFactory` (type)
 
-When components need dependencies, they can be defined as a high-order function to separate them from normal input.
+When components need dependencies, they can be defined as a high-order function
+to separate them from normal input.
 
 ```ts
 import {ComponentFactory} from '@soil/arch'
@@ -46,12 +52,17 @@ const f: ComponentFactory<Input, Output> = (/* Dependencies */) => (/* Input */)
 }
 ```
 
-As with `Component`, in most cases TypeScript will be able to infer the type for you based on the actual input and output. This will lead to less verbose code, and it will still be type safe. Therefore, this type exists mostly for documentation
-purposes.
+As with `Component`, in most cases TypeScript will be able to infer the type for
+you based on the actual input and output. This will lead to less verbose code,
+and it will still be type safe. Therefore, this type exists mostly for
+documentation purposes.
 
 ### `chan()` (function)
 
-Components may easily communicate with their parents, children and siblings. However when two components are further away from each other, the communication is more complicated. For this cases, a publish-subscribe pattern can be used, through so-called "channels".
+Components may easily communicate with their parents, children and siblings.
+However when two components are further away from each other, the communication
+is more complicated. For this cases, a publish-subscribe pattern can be used,
+through so-called "channels".
 
 ```ts
 import {chan} from '@soil/arch'
@@ -80,7 +91,8 @@ const counter: Component = (input: {value?: number} = {}) => {
 }
 ```
 
-When providing a function as the first argument, its source will be added to the error message to provide the programmer with more context for debugging.
+When providing a function as the first argument, its source will be added to the
+error message to provide the programmer with more context for debugging.
 
 ```ts
 assert(() => 1 > 2) // Error: Assertion was: function () { return 1 > 2; }
@@ -88,7 +100,9 @@ assert(() => 1 > 2) // Error: Assertion was: function () { return 1 > 2; }
 
 ### `extend()` (function)
 
-Custom components are typically created by extending existing HTML elements. Functions like the native `Object.assign()` are a valid approach for most cases. However, they usually ignore getters and setters.
+Custom components are typically created by extending existing HTML elements.
+Functions like the native `Object.assign()` are a valid approach for most cases.
+However, they usually ignore getters and setters.
 
 ```ts
 import {extend} from '@soil/arch'

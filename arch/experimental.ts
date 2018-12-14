@@ -4,6 +4,10 @@ const Radio = {
     userDeleted: chan<number>()
 }
 
+// https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
+// TODO Type-safetify?
+const customEvent = new CustomEvent<number>('xyz', {detail: 42})
+
 const UserStore = () => {
     let users: number[] = []
     const usersChan = chan<number[]>()

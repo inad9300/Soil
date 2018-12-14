@@ -7,7 +7,7 @@ interface Options {
     onAddTodo(todo: Todo): void
 }
 
-const TodoInputFactory = (todoService: TodoService) => (options: Options) => {
+const todoInputFactory = (todoService: TodoService) => (options: Options) => {
 
     // Template.
 
@@ -58,5 +58,5 @@ const TodoInputFactory = (todoService: TodoService) => (options: Options) => {
     })
 }
 
-export const todoInput = TodoInputFactory(todoService)
+export const todoInput = todoInputFactory(todoService)
 export type TodoInput = typeof todoInput

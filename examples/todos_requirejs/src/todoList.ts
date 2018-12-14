@@ -12,7 +12,7 @@ interface Options {
     onSizeChange?: OnSizeChangeFn
 }
 
-const TodoListFactory = (todoService: TodoService) => (options: Options = {}) => {
+const todoListFactory = (todoService: TodoService) => (options: Options = {}) => {
 
     // Template.
 
@@ -100,5 +100,5 @@ const TodoListFactory = (todoService: TodoService) => (options: Options = {}) =>
     })
 }
 
-export const todoList = TodoListFactory(todoService)
+export const todoList = todoListFactory(todoService)
 export type TodoList = typeof todoList

@@ -3,7 +3,7 @@ import {todoList, TodoList} from './todoList'
 import {todoInput, TodoInput} from './todoInput'
 import {todoFilters} from './todoFilters'
 
-const TodoAppFactory = (todoInput: TodoInput, todoList: TodoList) => () => {
+const todoAppFactory = (todoInput: TodoInput, todoList: TodoList) => () => {
 
     // Template.
 
@@ -37,5 +37,5 @@ const TodoAppFactory = (todoInput: TodoInput, todoList: TodoList) => () => {
     return $self
 }
 
-export const todoApp = TodoAppFactory(todoInput, todoList)
+export const todoApp = todoAppFactory(todoInput, todoList)
 export type TodoApp = typeof todoApp

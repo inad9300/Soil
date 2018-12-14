@@ -37,14 +37,14 @@ elements, which provides a look-and-feel similar to regular HTML.
 import {h} from '@soil/dom'
 import {extend} from '@soil/arch'
 
-export const counter = (input: {value?: number} = {}) => {
-    const value = input.value || 0
+export const counter = (props: {value: number}) => {
+    const value = props.value
 
-    const count = h.span()
+    const $count = h.span()
 
-    const counter = h.div({}, [
+    const $self = h.div({}, [
         h.button({onclick: () => api.value--}, ['-']),
-        count,
+        $count,
         h.button({onclick: () => api.value++}, ['+'])
     ])
 
@@ -54,13 +54,13 @@ export const counter = (input: {value?: number} = {}) => {
         },
         set value(v: number) {
             value = v
-            count.textContent = '' + v
+            $count.textContent = '' + v
         }
     }
 
     api.value = value
 
-    return extend(counter, api)
+    return extend($self, api)
 }
 ```
 
@@ -69,22 +69,34 @@ Custom components can then be used in a way similar to native ones.
 ```ts
 import {counter} from './counter'
 
-const counterApp = counter({value: 0})
-counterApp.value++
+const $counter = counter({value: 0})
 
-document.body.appendChild(counterApp)
+$counter.value++
+
+document.body.appendChild($counter)
 ```
 
-Purely [presentational components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
-have no dependencies, but container components may have them, including other
+While purely [presentational components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
+have no dependencies, container components may have them, including other
 components. For this, [pure dependency injection](http://blog.ploeh.dk/2014/06/10/pure-di/)
-is recommended, which can be achieved [through default parameters](https://medium.freecodecamp.org/how-to-take-advantage-of-javascripts-default-parameters-for-dependency-injection-98fc423328e1).
+is recommended, which could be achieved [through default parameters](https://medium.freecodecamp.org/how-to-take-advantage-of-javascripts-default-parameters-for-dependency-injection-98fc423328e1), or through explicit factory functions, as illustrated bellow.
 
 ```ts
-const counterContainer = (counterService = new CounterService) => (input = {}) => {
+import {counterService, CounterService} from './counterService'
+
+export const counterFactory = (counterService: CounterService) => (props: {}) => {
     // ...
 }
+
+export const counter = counterFactory(counterService)
+
+export type Counter = typeof counter
 ```
+
+Communicating adjacent components is usually easy. What about distant
+components? There are [plenty of alternatives](https://www.javascriptstuff.com/component-communication/)
+out there. One possibility is to use the native [`CustomEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent),
+which integrates nicely with web components based on native DOM elements.
 
 To get a bit more familiar with the ideas presented above, you may head to the
 individual sub-projects to read their documentation, check out the [examples](examples/),

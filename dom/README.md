@@ -1,13 +1,17 @@
 # [@soil/dom](https://www.npmjs.com/package/@soil/dom)
 
-Declaratively create type-safe HTML and SVG elements. One way to think of it might be as "HTML-in-JS".
+Declaratively create type-safe HTML and SVG elements. One way to think of it
+might be as "HTML-in-JS".
 
 
 ## Documentation
 
 ### `h` (namespace)
 
-Creating HTML using strings is not type-safe. Creating them from code is too verbose. The `h` namespace gives access to shortcut functions to create any HTML element, as well as to type aliases to refer the types returned by those functions.
+Creating HTML using strings is not type-safe. Creating them from code is too
+verbose. The `h` namespace gives access to shortcut functions to create any HTML
+element, as well as to type aliases to refer the types returned by those
+functions.
 
 ```ts
 import {h} from '@soil/dom'
@@ -24,7 +28,13 @@ const input: h.Input = h.input({placeholder: 'Input...'})
 const customElement: HTMLElement = h.x('custom-element')
 ```
 
-They are provided under a namespace to avoid polluting the scope with plenty of functions and types (`a`, `A`, `b`, `B`, ...); to prevent problems with reserved words such as `var` and `switch`, which would be required for elements such as [`<var>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/var) and [`<switch>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/switch); and to avoid long import statements. As a nice side effect the auto-completion experience is better too.
+They are provided under a namespace to avoid polluting the scope with plenty of
+functions and types (`a`, `A`, `b`, `B`, ...); to prevent problems with reserved
+words such as `var` and `switch`, which would be required for elements such as
+[`<var>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/var) and
+[`<switch>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/switch);
+and to avoid long import statements. As a nice side effect the auto-completion
+experience is better too.
 
 ### `s` (namespace)
 
@@ -47,7 +57,9 @@ s.svg({width: {baseVal: {value: 100}}, height: {baseVal: {value: 100}}}, [
 ])
 ```
 
-Unfortunately, creating type-safe SVG programmatically results in verbose code, and the difference between attributes and properties is bigger than in the HTML case. The code above produces the same circle than the following HTML:
+Unfortunately, creating type-safe SVG programmatically results in verbose code,
+and the difference between attributes and properties is bigger than in the HTML
+case. The code above produces the same circle than the following HTML:
 
 ```html
 <svg width="100" height="100">
@@ -55,7 +67,10 @@ Unfortunately, creating type-safe SVG programmatically results in verbose code, 
 </svg>
 ```
 
-On the other hand, we have access to the whole SVG API, richer than its attribute-based counterpart, and there will be no differences between creating elements and modifying them, e.g. you would otherwise need `<circle stroke="green" />` for creation but `circle.style.stroke = 'red'` for modification.
+On the other hand, we have access to the whole SVG API, richer than its
+attribute-based counterpart, and there will be no differences between creating
+elements and modifying them, e.g. you would otherwise need `<circle stroke="green" />`
+for creation but `circle.style.stroke = 'red'` for modification.
 
 
 ## Installation
