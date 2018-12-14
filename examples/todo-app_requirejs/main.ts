@@ -1,6 +1,3 @@
-import {TodoApp} from './TodoApp'
+import {todoApp} from './TodoApp'
 
-const todoApp = TodoApp()
-const $todoApp = todoApp()
-
-document.body.appendChild($todoApp)
+document.body.appendChild(todoApp())

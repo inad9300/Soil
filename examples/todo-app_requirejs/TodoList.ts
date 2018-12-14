@@ -1,9 +1,8 @@
 import {h} from '@soil/dom'
 import {extend} from '@soil/arch'
-import {noop} from './noop'
 import {Todo} from './Todo'
-import {show, hide} from './dom'
-import {TodoService} from './TodoService'
+import {noop, show, hide} from './utils'
+import {todoService, TodoService} from './TodoService'
 import {TodosFilterFn} from './TodosFilterFn'
 
 type OnSizeChangeFn = (newSize: number) => void
@@ -13,11 +12,11 @@ interface Options {
     onSizeChange?: OnSizeChangeFn
 }
 
-export const TodoList = ({todoService = TodoService()} = {}) => (options: Options = {}) => {
+const TodoListFactory = (todoService: TodoService) => (options: Options = {}) => {
 
     // Template.
 
-    const $todoList = h.ul()
+    const $self = h.ul()
 
     // Initialization.
 
@@ -56,9 +55,9 @@ export const TodoList = ({todoService = TodoService()} = {}) => (options: Option
             h.button({onclick: () => deleteTodo($todo, todo)}, ['⨉'])
         ])
 
-        $todoList.appendChild($todo)
+        $self.appendChild($todo)
         applyActiveFilter()
-        onSizeChange($todoList.children.length)
+        onSizeChange($self.children.length)
     }
 
     function updateTodoStatus($todo: h.Li, todo: Todo, completed: boolean) {
@@ -74,25 +73,25 @@ export const TodoList = ({todoService = TodoService()} = {}) => (options: Option
 
     function deleteTodo($todo: h.Li, todo: Todo) {
         todoService.deleteTodo(todo).then(() => {
-            $todoList.removeChild($todo)
-            onSizeChange($todoList.children.length)
+            $self.removeChild($todo)
+            onSizeChange($self.children.length)
         })
     }
 
     function applyActiveFilter() {
-        const checkboxes = (Array.from($todoList.children) as h.Li[])
+        const checkboxes = (Array.from($self.children) as h.Li[])
             .map(li => li.querySelector('input[type=checkbox]') as h.Input)
 
         activeFilter(checkboxes)
             .forEach((shouldShow, idx) => {
-                const $todo = $todoList.children[idx] as h.Li
+                const $todo = $self.children[idx] as h.Li
                 shouldShow ? show($todo) : hide($todo)
             })
     }
 
     // External API.
 
-    return extend($todoList, {
+    return extend($self, {
         get filter() { return activeFilter },
         set filter(f: TodosFilterFn) { setFilter(f) },
         get onSizeChange() { return onSizeChange },
@@ -100,3 +99,6 @@ export const TodoList = ({todoService = TodoService()} = {}) => (options: Option
         addTodo
     })
 }
+
+export const todoList = TodoListFactory(todoService)
+export type TodoList = typeof todoList

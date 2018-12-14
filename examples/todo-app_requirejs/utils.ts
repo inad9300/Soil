@@ -1,3 +1,5 @@
+export function noop() {}
+
 export function hide(el: Element) {
     el.classList.add('hidden')
 }

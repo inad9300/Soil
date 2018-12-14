@@ -18,7 +18,7 @@ export const todoFilters = (options: Options) => {
         h.button({disabled: true, onclick: () => onFilterChange(todos => showCompletedTodosFilter(todos))}, ['Completed'])
     ]
 
-    const $todoFilters = h.footer({}, $filterButtons)
+    const $self = h.footer({}, $filterButtons)
 
     // Initialization.
 
@@ -53,7 +53,7 @@ export const todoFilters = (options: Options) => {
         $filterButtons.forEach(btn => btn.disabled = true)
     }
 
-    return extend($todoFilters, {
+    return extend($self, {
         get onFilterChange() { return onFilterChange },
         set onFilterChange(f: OnFilterChangeFn) { setOnFilterChange(f) },
         enable,

@@ -1,19 +1,19 @@
 import {h} from '@soil/dom'
 import {extend} from '@soil/arch'
 import {Todo} from './Todo'
-import {TodoService} from './TodoService'
+import {todoService, TodoService} from './TodoService'
 
 interface Options {
     onAddTodo(todo: Todo): void
 }
 
-export const TodoInput = ({todoService = TodoService()} = {}) => (options: Options) => {
+const TodoInputFactory = (todoService: TodoService) => (options: Options) => {
 
     // Template.
 
     const $input = h.input({
         type: 'text',
-        placeholder: `What's left?`,
+        placeholder: `What's left??`,
         onkeydown: (evt: KeyboardEvent) => {
             if (evt.key === 'Enter') {
                 addTodo()
@@ -21,7 +21,7 @@ export const TodoInput = ({todoService = TodoService()} = {}) => (options: Optio
         }
     })
 
-    const $todoInput = h.div({}, [
+    const $self = h.div({}, [
         $input,
         h.button({onclick: addTodo}, ['Add'])
     ])
@@ -52,8 +52,11 @@ export const TodoInput = ({todoService = TodoService()} = {}) => (options: Optio
 
     // External API.
 
-    return extend($todoInput, {
+    return extend($self, {
         get onAddTodo() { return onAddTodo },
         set onAddTodo(f: Options['onAddTodo']) { setOnAddTodo(f) }
     })
 }
+
+export const todoInput = TodoInputFactory(todoService)
+export type TodoInput = typeof todoInput

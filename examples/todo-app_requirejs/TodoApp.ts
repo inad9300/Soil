@@ -1,9 +1,9 @@
 import {h} from '@soil/dom'
-import {TodoList} from './TodoList'
-import {TodoInput} from './TodoInput'
+import {todoList, TodoList} from './TodoList'
+import {todoInput, TodoInput} from './TodoInput'
 import {todoFilters} from './todoFilters'
 
-export const TodoApp = ({todoInput = TodoInput(), todoList = TodoList()} = {}) => () => {
+const TodoAppFactory = (todoInput: TodoInput, todoList: TodoList) => () => {
 
     // Template.
 
@@ -17,7 +17,7 @@ export const TodoApp = ({todoInput = TodoInput(), todoList = TodoList()} = {}) =
         onFilterChange: filter => $todoList.filter = filter
     })
 
-    const $todoApp = h.div({}, [
+    const $self = h.div({}, [
         h.h1({}, ['Todo']),
         $todoInput,
         $todoList,
@@ -34,5 +34,8 @@ export const TodoApp = ({todoInput = TodoInput(), todoList = TodoList()} = {}) =
         }
     }
 
-    return $todoApp
+    return $self
 }
+
+export const todoApp = TodoAppFactory(todoInput, todoList)
+export type TodoApp = typeof todoApp

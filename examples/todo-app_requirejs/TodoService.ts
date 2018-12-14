@@ -6,7 +6,7 @@ let todos: Todo[] = [
     {id: 2, text: 'Eat!', completed: false}
 ]
 
-export function TodoService() {
+const TodoServiceFactory = () => {
 
     function findTodos(): Promise<Todo[]> {
         return new Promise((resolve, _reject) => resolve(todos))
@@ -43,3 +43,6 @@ export function TodoService() {
 
     return {findTodos, createTodo, updateTodoStatus, deleteTodo}
 }
+
+export const todoService = TodoServiceFactory()
+export type TodoService = typeof todoService
