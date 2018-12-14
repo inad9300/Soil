@@ -10,8 +10,8 @@ const globalProps = {
     tabIndex: 2,
     'aria-label': 'An accessible label.',
     dataset: {x: 'y'},
-    style: {color: 'black'},
-    classList: {value: 'b'} // NOTE `className` has been deprecated for SVG elements (https://github.com/Microsoft/TypeScript/issues/19548#issuecomment-378984184).
+    classList: {value: 'b'}, // NOTE `className` has been deprecated for SVG elements (https://github.com/Microsoft/TypeScript/issues/19548#issuecomment-378984184).
+    style: {color: 'black'}
 }
 
 const globalAttrs = `
@@ -19,8 +19,8 @@ const globalAttrs = `
     tabindex="2"
     aria-label="An accessible label."
     data-x="y"
-    style="color: black;"
     class="b"
+    style="color: black;"
 `
 
 suite('s()', () => {
@@ -218,11 +218,11 @@ suite('s()', () => {
             })
         ])
 
-        const g2 = createElement(`
-            <g fill="white" stroke="green" stroke-width="5">
-                <circle cx="40" cy="40" r="25" />
-                <circle cx="60" cy="60" r="25" />
-            </g>`, true) as s.G
+        const g2 = createElement(
+            '<g fill="white" stroke="green" stroke-width="5">' +
+                '<circle cx="40" cy="40" r="25" />' +
+                '<circle cx="60" cy="60" r="25" />' +
+            '</g>', true) as s.G
 
         elementsAreEqual(g1, g2)
     })
