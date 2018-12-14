@@ -1,4 +1,4 @@
 tsconfig.json
 webpack.config.js
 experimental.ts
-src
+*.test.ts

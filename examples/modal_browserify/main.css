@@ -1,3 +1,9 @@
+@import './src/modal.css';
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: sans-serif;
 }
@@ -15,12 +21,11 @@ button {
 }
 
 .login.modal .body input {
-    box-sizing: border-box;
     display: block;
     width: 100%;
-    padding: 3px 5px;
+    padding: 5px 6px;
 }
 
 .login.modal .body input:not(:last-child) {
-    margin-bottom: 7px;
+    margin-bottom: 10px;
 }

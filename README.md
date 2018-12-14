@@ -27,7 +27,7 @@ reliability, testability, reusability, development experience and performance.
 Soil encourages an architecture around *components*, conceptually similar to
 the [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components)'
 proposal. Components are responsible for rendering parts of UI and controlling
-the user interaction with them.
+the user interaction with them, and are framework-agnostic.
 
 They create and manipulate HTML elements dynamically, with the help of
 type-safe functions with a one-to-one correspondence with standard HTML

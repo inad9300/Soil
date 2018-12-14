@@ -1,8 +1,8 @@
 {
     "extends": "../../tsconfig",
+    "include": ["src"],
     "compilerOptions": {
         "module": "system",
         "outFile": "build/main.js"
-    },
-    "include": ["."]
+    }
 }

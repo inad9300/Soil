@@ -1,0 +1,36 @@
+.modal.overlay {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.modal .container {
+    width: 400px;
+    margin: 64px auto;
+    background: white;
+    border-radius: 9px 9px 3px 3px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.modal .container .title {
+    padding: 15px;
+    background: lightgray;
+    border-bottom: 1px solid darkgray;
+    border-radius: 3px 3px 0 0;
+}
+
+.modal .container .body {
+    padding: 15px;
+}
+
+.modal .container .footer {
+    padding: 15px;
+    border-top: 1px solid darkgray;
+}
+
+.modal .container .footer .submit {
+    float: right;
+}

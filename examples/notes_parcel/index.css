@@ -98,9 +98,11 @@ body {
 .note-selector-timestamp {
     font-size: 0.7em;
 }
-.note-editor,
-.note-editor-input {
+.note-editor {
     font-size: 0.9em;
+}
+.note-editor-input {
+    font-size: 1.2em;
 }
 
 /* GENERIC */
