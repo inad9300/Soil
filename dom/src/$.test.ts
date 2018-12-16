@@ -21,6 +21,6 @@ suite('$()', () => {
                 </div>
             `)
         )
-        assert.strictEqual($('.wrapper span').textContent, 'needle')
+        assert.strictEqual($('.wrapper span')!.textContent, 'needle')
     })
 })
