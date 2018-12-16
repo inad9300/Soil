@@ -1,6 +1,6 @@
 const {suite, test} = intern.getInterface('tdd')
 
-import {h, s} from './index'
+import {h, s, $, $$} from './index'
 
 suite('index (@soil/dom)', () => {
 
@@ -10,5 +10,8 @@ suite('index (@soil/dom)', () => {
 
         ha.href
         sa.href
+
+        $('*')
+        $$('*')
     })
 })
