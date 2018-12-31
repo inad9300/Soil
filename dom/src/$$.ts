@@ -1,9 +1,8 @@
 /**
  * Enhanced alias of `document.querySelectorAll()`, for the sake of conciseness.
  * In contrast with the native function, the return type is `Array` and not
- * `NodeListOf`.
- *
- * The function signatures are derived from the native interface `NodeSelector`.
+ * `NodeListOf`, and an optional element can be provided as first parameter to
+ * determine the selection context.
  */
 export function $$<K extends keyof HTMLElementTagNameMap>(selector: K): HTMLElementTagNameMap[K][]
 export function $$<K extends keyof HTMLElementTagNameMap>(element: Element, selector: K): HTMLElementTagNameMap[K][]
