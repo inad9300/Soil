@@ -1,6 +1,7 @@
 /**
  * Function for DOM element selection, similar to the native `ParentNode.querySelector()`. It takes
  * advantage of the "universal" understanding of `$` as a selector function for maximum conciseness.
+ * An optional element can be provided as first parameter to determine the selection context.
  */
 export function $<K extends keyof HTMLElementTagNameMap>(selector: K): HTMLElementTagNameMap[K] | null
 export function $<K extends keyof HTMLElementTagNameMap>(element: Element, selector: K): HTMLElementTagNameMap[K] | null
