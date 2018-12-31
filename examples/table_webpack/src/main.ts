@@ -23,9 +23,11 @@ const $table = table(colDefs)
 
 document.body.appendChild($table)
 
+const rndInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
+
 setInterval(() => {
     $table.update(
-        Array(10).fill(0).map(() => ({
+        Array(rdnInt(5, 25)).fill(0).map(() => ({
             text: Math.random().toString(36).substr(2),
             count: Math.random()
         }))
