@@ -17,11 +17,11 @@
     "devDependencies": {
         "@dojo/loader": "2.0.0",
         "codecov": "3.1.0",
-        "intern": "4.3.3",
-        "ts-loader": "5.3.1",
-        "typescript": "3.2.2",
-        "webpack-cli": "3.1.2",
-        "webpack": "4.27.1"
+        "intern": "4.4.1",
+        "ts-loader": "5.3.3",
+        "typescript": "3.3.3",
+        "webpack-cli": "3.2.3",
+        "webpack": "4.29.3"
     },
     "scripts": {
         "pretest": "rm -rf build && tsc --p tsconfig.test.json",

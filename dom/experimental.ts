@@ -6,17 +6,33 @@ type IfEquals<X, Y, Then, Else> =
             ? Then
             : Else
 
-type Clean<T> = Pick<T, {
-    [P in keyof T]: string extends P
+type WellDefinedKeys<T> = {
+    [K in keyof T]: string extends K
         ? never
-        : number extends P
+        : number extends K
             ? never
-            : T[P] extends never
+            : T[K] extends never
                 ? never
-                : IfEquals<T[P], {}, never, P>
+                : IfEquals<T[K], {}, never, K>
 } extends {[_ in keyof T]: infer U}
     ? U
-    : never>
+    : never
+
+// type TheKeys = WellDefinedKeys<{o: {}, n: never, [k: string]: any, b: boolean}>
+
+type Clean<O> = Pick<O, WellDefinedKeys<O>>
+
+type PickWellDefinedKeys<T> = {
+    [K in keyof T]: string extends K
+        ? never
+        : number extends K
+            ? never
+            : T[K] extends never
+                ? never
+                : IfEquals<T[K], {}, never, T[K]>
+}
+
+type TTT = PickWellDefinedKeys<{n: number, nv: never, b: boolean, a: {}, [k: string]: any, o: {b: boolean, n: never, o: {}}}>
 
 // FIXME?
 type DeepClean<T> = Clean<{
@@ -34,7 +50,9 @@ type DeepClean<T> = Clean<{
 let DC: DeepClean<{n: number, o: {b: boolean, n: never, o: {}}}> = {
     n: 9,
     o: {
-        b: true
+        b: true,
+        // n: 0 as never,
+        // o: {}
     }
 }
 
@@ -60,19 +78,16 @@ type DeepProps<T> = {
                     : DeepProps<T>
 }
 
-type FormProps = Props<HTMLFormElement>
+type FormProps = DeepProps<HTMLFormElement>
 
-function form(_props: FormProps): HTMLFormElement {
-    return document.createElement('form')
-}
-
-form({
-    ooooooo: undefined,
+const fp: FormProps = {
+    unknownProp: undefined,
     name: 'myForm',
     onclick: (evt: MouseEvent) => console.log('WAT?', evt),
     style: {
         display: 'block',
+        // ATTRIBUTE_NODE: 9,
         parentRule: {},
-        asdf: '99'
+        anotherUnknownProp: '99'
     }
-})
+}
