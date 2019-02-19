@@ -5,7 +5,7 @@ const Radio = {
 }
 
 class Store<D extends Record<string, any>, K extends keyof D> {
-    data: D
+    private data: D
 
     set(k: K, v: D[K]) {
         this.data[k] = v
