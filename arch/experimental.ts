@@ -4,6 +4,18 @@ const Radio = {
     userDeleted: chan<number>()
 }
 
+class Store<D extends Record<string, any>, K extends keyof D> {
+    data: D
+
+    set(k: K, v: D[K]) {
+        this.data[k] = v
+    }
+
+    get(k: K) {
+        return this.data[k]
+    }
+}
+
 const UserStore = () => {
     let users: number[] = []
     const usersChan = chan<number[]>()
