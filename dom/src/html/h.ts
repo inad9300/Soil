@@ -4,19 +4,18 @@ import {BuiltTimeDom} from '../BuiltTimeDom'
 import {BuiltTimeHtmlTypesMap} from './BuiltTimeHtmlTypesMap'
 import {HtmlTypesMap} from './HtmlTypesMap'
 import {HtmlChildrenMap} from './HtmlChildrenMap'
+import {Props} from '../Props'
 
 /**
  * Factory function for HTML elements.
  */
-function _h<T extends keyof HtmlTypesMap>(tag: T, props?: BuiltTimeHtmlTypesMap[T], children?: HtmlChildrenMap[T]): HtmlTypesMap[T]
-function _h(tag: string, props?: BuiltTimeDom.HTMLElement, children?: (HTMLElement | SVGSVGElement | string)[]): HTMLElement
-function _h(tag: string, props?: BuiltTimeDom.HTMLElement, children?: (HTMLElement | SVGSVGElement | string)[]) {
+function _h<T extends keyof HtmlTypesMap>(tag: T, props?: BuiltTimeHtmlTypesMap[T], children?: HtmlChildrenMap[T]): HtmlTypesMap[T] {
     const elem = document.createElement(tag)
     if (props !== undefined) {
         assignProperties(elem, props)
     }
     if (children !== undefined) {
-        addChildren(elem, children)
+        addChildren(elem, children as (Element | string)[])
     }
     return elem
 }
@@ -61,6 +60,7 @@ export const h = {
     dfn: (props?: BuiltTimeDom.HTMLElement, children?: HtmlChildrenMap['dfn']): HtmlTypesMap['dfn'] => _h('dfn', props, children),
     dialog: (props?: BuiltTimeDom.HTMLDialogElement, children?: HtmlChildrenMap['dialog']): HtmlTypesMap['dialog'] => _h('dialog', props, children),
     div: (props?: BuiltTimeDom.HTMLDivElement, children?: HtmlChildrenMap['div']): HtmlTypesMap['div'] => _h('div', props, children),
+    // div: (props?: Props<HTMLDivElement>, children?: HtmlChildrenMap['div']): HtmlTypesMap['div'] => _h('div', props as any, children),
     dl: (props?: BuiltTimeDom.HTMLDListElement, children?: HtmlChildrenMap['dl']): HtmlTypesMap['dl'] => _h('dl', props, children),
     dt: (props?: BuiltTimeDom.HTMLElement, children?: HtmlChildrenMap['dt']): HtmlTypesMap['dt'] => _h('dt', props, children),
     em: (props?: BuiltTimeDom.HTMLElement, children?: HtmlChildrenMap['em']): HtmlTypesMap['em'] => _h('em', props, children),

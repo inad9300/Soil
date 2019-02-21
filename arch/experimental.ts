@@ -81,30 +81,3 @@ const unsub = randomChan.sub(div, evt => {
 
 randomChan.pub(div, Math.random())
 randomChan.pub(div, Math.random())
-
-// 
-
-type Props<T> = any
-let h, extend, assignProperties: any
-
-function component(f: (i: any) => [HTMLElement, any]) {
-    return (p: Props<any>) => {
-        const [e, a] = f(p)
-        extend(e, a)
-        assignProperties(e, p)
-        return e
-    }
-}
-
-const myComponent = component(input => {
-    const $btn = h.button()
-
-    return [$btn, {
-        get t() {
-            return
-        }
-    }]
-})
-
-const mc = myComponent({ className: 'abc' })
-mc.click()

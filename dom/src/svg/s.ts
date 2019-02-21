@@ -7,9 +7,7 @@ import {SvgTypesMap} from './SvgTypesMap'
 /**
  * Factory function for SVG elements.
  */
-function _s<T extends keyof SvgTypesMap>(tag: T, props?: BuiltTimeSvgTypesMap[T], children?: (Element | string)[]): SvgTypesMap[T]
-function _s(tag: string, props?: BuiltTimeDom.SVGElement, children?: (Element | string)[]): SVGElement
-function _s(tag: string, props?: BuiltTimeDom.SVGElement, children?: (Element | string)[]) {
+function _s<T extends keyof SvgTypesMap>(tag: T, props?: BuiltTimeSvgTypesMap[T], children?: (Element | string)[]): SvgTypesMap[T] {
     const elem = document.createElementNS('http://www.w3.org/2000/svg', tag)
     if (props !== undefined) {
         assignProperties(elem, props)

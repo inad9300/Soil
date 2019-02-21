@@ -24,7 +24,7 @@ function assignNestedProperties<E extends {[p: string]: any}, P extends {[p: str
     for (const p in props) {
         if (props.hasOwnProperty(p)) {
             if (isObject(props[p])) {
-                if (!elem[p]) {
+                if (!elem.hasOwnProperty(p)) {
                     elem[p as string] = {}
                 }
                 assignNestedProperties(elem[p], props[p])
