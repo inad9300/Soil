@@ -98,10 +98,10 @@ type Or<A, B> = A extends true
 
 type If<T, A, B> = T extends true ? A : B
 
-type Is<A, B> =
+type Equals<A, B> =
     (<T> () => T extends A ? 1 : 2) extends
     (<T> () => T extends B ? 1 : 2)
         ? true
         : false
 
-type T = Or<Is<1, 1>, Is<1, 2>> extends true ? true : false
+type T = Or<Equals<1, 1>, Equals<1, 2>> extends true ? true : false
