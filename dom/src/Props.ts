@@ -45,7 +45,7 @@ type _Props<E extends Record<any, any>> = {
  * From a given `Element`, pick those properties that can be used when creating
  * them. That means recursively ignoring:
  * - Index signatures.
- * - Functions (except those accepting a callback).
+ * - Functions (TODO except those accepting a callback as first argument).
  * - Read-only primitive properties.
  * - TODO Read-only non-primitive properties whose properties cannot be
  *   modified at creation time, e.g. `readonly form: HTMLFormElement | null`.
