@@ -4,7 +4,7 @@ import {BuiltTimeDom} from '../BuiltTimeDom'
 import {BuiltTimeHtmlTypesMap} from './BuiltTimeHtmlTypesMap'
 import {HtmlTypesMap} from './HtmlTypesMap'
 import {HtmlChildrenMap} from './HtmlChildrenMap'
-import {Props} from '../Props'
+// import {Props} from '../Props'
 
 /**
  * Factory function for HTML elements.
