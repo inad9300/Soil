@@ -4,6 +4,7 @@ import {assignProperties} from './src/assignProperties'
 import {addChildren} from './src/addChildren'
 
 // TODO Specialize for HTML and SVG elements.
+// TODO Add children type parameter, defaulting to void[].
 function component<E extends Element, C extends Record<string, any>>(
     base: () => E,
     derived: (base: E) => C
