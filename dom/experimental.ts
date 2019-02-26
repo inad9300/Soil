@@ -43,3 +43,16 @@ const mc = myComponent({data: Symbol('t')}, [])
 
 mc.data = Symbol('tt')
 mc.click()
+
+/*
+// <C extends void | Element = void>
+// children?: C extends void ? never : C[]
+
+element((props, children) => {
+    const $self = h.div({}, [])
+
+    const api = {}
+
+    return [$self, api]
+})
+*/
