@@ -38,7 +38,7 @@ import {h} from '@soil/dom'
 import {extend} from '@soil/arch'
 
 export const counter = (props: {value: number}) => {
-    const value = props.value
+    let value = props.value
 
     const $count = h.span()
 
