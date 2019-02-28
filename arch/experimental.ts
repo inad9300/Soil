@@ -81,27 +81,3 @@ const unsub = randomChan.sub(div, evt => {
 
 randomChan.pub(div, Math.random())
 randomChan.pub(div, Math.random())
-
-//
-
-type And<A, B> = A extends true
-    ? B extends true
-        ? true
-        : false
-    : false
-
-type Or<A, B> = A extends true
-    ? true
-    : B extends true
-        ? true
-        : false
-
-type If<T, A, B> = T extends true ? A : B
-
-type Equals<A, B> =
-    (<T> () => T extends A ? 1 : 2) extends
-    (<T> () => T extends B ? 1 : 2)
-        ? true
-        : false
-
-type T = Or<Equals<1, 1>, Equals<1, 2>> extends true ? true : false

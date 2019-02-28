@@ -16,14 +16,16 @@
     },
     "devDependencies": {
         "@dojo/loader": "2.0.0",
-        "codecov": "3.1.0",
+        "codecov": "3.2.0",
         "intern": "4.4.1",
+        "jsdom": "13.2.0",
         "ts-loader": "5.3.3",
-        "typescript": "3.3.3",
+        "typescript": "3.3.3333",
         "webpack-cli": "3.2.3",
-        "webpack": "4.29.3"
+        "webpack": "4.29.5"
     },
     "scripts": {
+        "postinstall": "cd dom/scripts && ./update-types.js",
         "pretest": "rm -rf build && tsc --p tsconfig.test.json",
         "test": "intern",
         "posttest": "codecov"

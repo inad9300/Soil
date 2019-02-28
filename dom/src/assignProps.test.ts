@@ -4,15 +4,15 @@ import {createElement} from '../../support/testing/createElement'
 
 import {h} from './html/h'
 import {s} from './svg/s'
-import {assignProperties} from './assignProperties'
+import {assignProps} from './assignProps'
 
-suite('assignProperties()', () => {
+suite('assignProps()', () => {
 
     test('properties of various kinds', () => {
         function fun() {}
 
         const div = createElement('<div></div>') as h.Div
-        assignProperties(div, {
+        assignProps(div, {
             id: 'i',
             className: 'c',
             title: 't',
@@ -54,7 +54,7 @@ suite('assignProperties()', () => {
 
     test('nested SVG properties', () => {
         const circle = createElement(`<circle />`, true) as s.Circle
-        assignProperties(circle, {
+        assignProps(circle, {
             cx: {baseVal: {value: 50}},
             cy: {baseVal: {value: 50}},
             r: {baseVal: {value: 40}},
@@ -77,7 +77,7 @@ suite('assignProperties()', () => {
         const target = {o1: {}}
         const source = {o1: {o2: {x: 3}}}
 
-        assignProperties(target, source)
+        assignProps(target, source)
 
         assert.strictEqual((target as any).o1.o2.x, 3)
     })

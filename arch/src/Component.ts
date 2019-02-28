@@ -12,4 +12,4 @@
  * rather than explicitly specifying it. This type is mostly for documentation
  * purposees.
  */
-export type Component<TInput = any, TOutput = any> = (input: TInput) => TOutput
+export type Component<I = any, O extends Element = Element> = (input: I) => O

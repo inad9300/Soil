@@ -8,4 +8,4 @@ import {Component} from './Component'
  * rather than explicitly specifying it. This type is mostly for documentation
  * purposes.
  */
-export type ComponentFactory<TInput = any, TOutput = any> = (...dependencies: any[]) => Component<TInput, TOutput>
+export type ComponentFactory<I = any, O extends Element = Element> = (...dependencies: any[]) => Component<I, O>

@@ -12,5 +12,6 @@ let _b: Props<h.Button> = {
     disabled: true,
     style: {
         display: 'block'
-    }
+    },
+    onclick: (_evt: MouseEvent) => {}
 }
