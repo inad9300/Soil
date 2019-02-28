@@ -1,20 +1,20 @@
 /**
  * Signature for the listener functions called when an event is sent.
  */
-type Listener<TMessage> = (message: TMessage) => void
+type Listener<Msg> = (msg: Msg) => void
 
 /**
  * Type-safe event mini-bus, or publisher/subscriber system. Useful for
  * communicating distant components.
  */
-export function chan<TMessage>() {
+export function chan<Msg>() {
 
-    let listeners: Listener<TMessage>[] = []
+    let listeners: Listener<Msg>[] = []
 
     /**
      * Unsubscribe a listener from the channel.
      */
-    function unsub(listener: Listener<TMessage>): void {
+    function unsub(listener: Listener<Msg>): void {
         listeners = listeners.filter(l => l !== listener)
     }
 
@@ -25,14 +25,14 @@ export function chan<TMessage>() {
          * may be passed to specify the maximum number of times the listener will
          * be notified before automatically unsubscribing it.
          */
-        sub(listener: Listener<TMessage>, times?: number): () => void {
+        sub(listener: Listener<Msg>, times?: number): () => void {
             const timesIsDefined = times !== undefined
 
-            const listenerWrapper = (message: TMessage) => {
+            const listenerWrapper = (msg: Msg) => {
                 if (timesIsDefined && --times! === 0) {
                     unsub(listenerWrapper)
                 }
-                listener(message)
+                listener(msg)
             }
 
             listeners.push(listenerWrapper)
@@ -42,8 +42,8 @@ export function chan<TMessage>() {
         /**
          * Send an event to all listeners, with a payload.
          */
-        pub(message: TMessage): void {
-            listeners.slice().forEach(l => l(message))
+        pub<M extends Msg = Msg>(msg: M): void {
+            listeners.slice().forEach(l => l(msg))
         },
 
         /**

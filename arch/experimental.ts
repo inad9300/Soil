@@ -1,5 +1,12 @@
 import {chan} from './src/chan'
 
+const HH = chan<{
+    msg: 'userDeleted' | 'usersFetched',
+    id?: number
+}>()
+
+HH.pub({msg: 'userDeleted', id: 9})
+
 const Radio = {
     userDeleted: chan<number>()
 }
