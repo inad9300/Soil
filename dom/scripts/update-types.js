@@ -136,7 +136,7 @@ update('../src/html/HTMLElementChildrenMap.ts', 'https://www.w3.org/TR/html52/fu
         'script-supportingelements': 'HTMLElementContent.ScriptSupportingElements',
         'script,data,orscriptdocumentation': 'string',
         'text': 'string',
-        'empty': 'never',
+        'empty': 'void',
         'varies': 'string | HTMLElement | SVGSVGElement',
         'it’scomplicated': 'string | HTMLElement | SVGSVGElement'
     }
@@ -153,7 +153,7 @@ import {HTMLElementContent} from './HTMLElementContent'
  * Map from HTML tag names to the types accepted as children by their
  * corresponding HTML elements.
  */
-export interface HTMLElementChildrenMap extends Record<keyof HTMLElementTagNameMap, never | (string | Element)[]> {
+export interface HTMLElementChildrenMap extends Record<keyof HTMLElementTagNameMap, void | (string | Element)[]> {
 ${
     elems
         .map(([tag, childrenCategories]) => {
@@ -168,7 +168,7 @@ ${
             if (type.indexOf(' | ') > -1) {
                 type = '(' + type + ')'
             }
-            if (type !== 'never') {
+            if (type !== 'void') {
                 type += '[]'
             }
             return `    ${tag}: ${type}`

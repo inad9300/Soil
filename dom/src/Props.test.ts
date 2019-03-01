@@ -15,3 +15,5 @@ let _b: Props<h.Button> = {
     },
     onclick: (_evt: MouseEvent) => {}
 }
+
+let _i: Props<h.I> = {}

@@ -66,13 +66,16 @@ function prop<V>(initial?: V) {
     }
 }
 
-function chann<D>(name: string) {
+let n = 0
+
+function chann<Msg>(elem: HTMLElement) {
+    const name = 'custom-event-' + (++n)
     return {
-        pub: (elem: HTMLElement, detail: D, eventInit: EventInit = {}) => {
-            const customEvent = new CustomEvent<D>(name, {detail, ...eventInit})
+        pub: (detail: Msg, eventInit: EventInit = {}) => {
+            const customEvent = new CustomEvent<Msg>(name, {detail, ...eventInit})
             elem.dispatchEvent(customEvent)
         },
-        sub: (elem: HTMLElement, listener: (customEvent: CustomEvent<D>) => void) => {
+        sub: (listener: (customEvent: CustomEvent<Msg>) => void) => {
             elem.addEventListener(name, listener)
             return () => elem.removeEventListener(name, listener)
         }
@@ -80,11 +83,11 @@ function chann<D>(name: string) {
 }
 
 const div = document.createElement('div')
-const randomChan = chann<number>('randomChan')
+const randomChan = chann<number>(div)
 
-const unsub = randomChan.sub(div, evt => {
+const unsub = randomChan.sub(evt => {
     console.log('event received!', evt)
 })
 
-randomChan.pub(div, Math.random())
-randomChan.pub(div, Math.random())
+randomChan.pub(Math.random())
+randomChan.pub(Math.random())

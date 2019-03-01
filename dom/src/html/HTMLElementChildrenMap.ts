@@ -6,27 +6,27 @@ import {HTMLElementContent} from './HTMLElementContent'
  * Map from HTML tag names to the types accepted as children by their
  * corresponding HTML elements.
  */
-export interface HTMLElementChildrenMap extends Record<keyof HTMLElementTagNameMap, never | (string | Element)[]> {
+export interface HTMLElementChildrenMap extends Record<keyof HTMLElementTagNameMap, void | (string | Element)[]> {
     a: HTMLElementContent.TransparentContent[]
     abbr: HTMLElementContent.PhrasingContent[]
     address: HTMLElementContent.FlowContent[]
-    area: never
+    area: void
     article: HTMLElementContent.FlowContent[]
     aside: HTMLElementContent.FlowContent[]
     audio: (HTMLElementTagNameMap['source'] | HTMLElementContent.TransparentContent)[]
     b: HTMLElementContent.PhrasingContent[]
-    base: never
+    base: void
     bdi: HTMLElementContent.PhrasingContent[]
     bdo: HTMLElementContent.PhrasingContent[]
     blockquote: HTMLElementContent.FlowContent[]
     body: HTMLElementContent.FlowContent[]
-    br: never
+    br: void
     button: HTMLElementContent.PhrasingContent[]
     canvas: HTMLElementContent.TransparentContent[]
     caption: HTMLElementContent.FlowContent[]
     cite: HTMLElementContent.PhrasingContent[]
     code: HTMLElementContent.PhrasingContent[]
-    col: never
+    col: void
     colgroup: (HTMLElementTagNameMap['col'] | HTMLElementTagNameMap['template'])[]
     data: HTMLElementContent.PhrasingContent[]
     datalist: (HTMLElementContent.PhrasingContent | HTMLElementTagNameMap['option'])[]
@@ -39,7 +39,7 @@ export interface HTMLElementChildrenMap extends Record<keyof HTMLElementTagNameM
     dl: (HTMLElementTagNameMap['dt'] | HTMLElementTagNameMap['dd'] | HTMLElementContent.ScriptSupportingElements)[]
     dt: HTMLElementContent.FlowContent[]
     em: HTMLElementContent.PhrasingContent[]
-    embed: never
+    embed: void
     fieldset: (HTMLElementTagNameMap['legend'] | HTMLElementContent.FlowContent)[]
     figcaption: HTMLElementContent.FlowContent[]
     figure: (HTMLElementTagNameMap['figcaption'] | HTMLElementContent.FlowContent)[]
@@ -53,22 +53,22 @@ export interface HTMLElementChildrenMap extends Record<keyof HTMLElementTagNameM
     h6: HTMLElementContent.PhrasingContent[]
     head: HTMLElementContent.MetadataContent[]
     header: HTMLElementContent.FlowContent[]
-    hr: never
+    hr: void
     html: (HTMLElementTagNameMap['head'] | HTMLElementTagNameMap['body'])[]
     i: HTMLElementContent.PhrasingContent[]
     iframe: (string | HTMLElement)[]
-    img: never
-    input: never
+    img: void
+    input: void
     ins: HTMLElementContent.TransparentContent[]
     kbd: HTMLElementContent.PhrasingContent[]
     label: HTMLElementContent.PhrasingContent[]
     legend: HTMLElementContent.PhrasingContent[]
     li: HTMLElementContent.FlowContent[]
-    link: never
+    link: void
     main: HTMLElementContent.FlowContent[]
     map: (HTMLElementContent.TransparentContent | HTMLElementTagNameMap['area'])[]
     mark: HTMLElementContent.PhrasingContent[]
-    meta: never
+    meta: void
     meter: HTMLElementContent.PhrasingContent[]
     nav: HTMLElementContent.FlowContent[]
     noscript: (string | HTMLElement | SVGSVGElement)[]
@@ -78,7 +78,7 @@ export interface HTMLElementChildrenMap extends Record<keyof HTMLElementTagNameM
     option: string[]
     output: HTMLElementContent.PhrasingContent[]
     p: HTMLElementContent.PhrasingContent[]
-    param: never
+    param: void
     picture: (HTMLElementTagNameMap['source'] | HTMLElementTagNameMap['img'] | HTMLElementContent.ScriptSupportingElements)[]
     pre: HTMLElementContent.PhrasingContent[]
     progress: HTMLElementContent.PhrasingContent[]
@@ -94,7 +94,7 @@ export interface HTMLElementChildrenMap extends Record<keyof HTMLElementTagNameM
     section: HTMLElementContent.FlowContent[]
     select: (HTMLElementTagNameMap['option'] | HTMLElementTagNameMap['optgroup'] | HTMLElementContent.ScriptSupportingElements)[]
     small: HTMLElementContent.PhrasingContent[]
-    source: never
+    source: void
     span: HTMLElementContent.PhrasingContent[]
     strong: HTMLElementContent.PhrasingContent[]
     style: (string | HTMLElement | SVGSVGElement)[]
@@ -112,10 +112,10 @@ export interface HTMLElementChildrenMap extends Record<keyof HTMLElementTagNameM
     time: HTMLElementContent.PhrasingContent[]
     title: string[]
     tr: (HTMLElementTagNameMap['th'] | HTMLElementTagNameMap['td'] | HTMLElementContent.ScriptSupportingElements)[]
-    track: never
+    track: void
     u: HTMLElementContent.PhrasingContent[]
     ul: (HTMLElementTagNameMap['li'] | HTMLElementContent.ScriptSupportingElements)[]
     var: HTMLElementContent.PhrasingContent[]
     video: (HTMLElementTagNameMap['source'] | HTMLElementContent.TransparentContent)[]
-    wbr: never
+    wbr: void
 }

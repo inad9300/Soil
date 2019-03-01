@@ -6,7 +6,7 @@ import {Props} from './Props'
  * Assign properties from an object literal to an object of type `HTMLElement`
  * or `SVGElement`.
  */
-export function assignProps<E extends Element, P extends Props<E>>(elem: E, props: P): void {
+export function assignProps<E extends Element, P extends Props<E> & AriaAttributes>(elem: E, props: P): void {
     for (const p in props) {
         if (props.hasOwnProperty(p)) {
             if (p === 'role' || p.startsWith('aria-')) {
