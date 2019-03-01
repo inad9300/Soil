@@ -13,7 +13,7 @@ function html<T extends keyof HTMLElementTagNameMap>(tag: T) {
             assignProps(elem, props)
         }
         if (children !== undefined) {
-            addChildren(elem, children as any[])
+            addChildren(elem, children as Exclude<typeof children, void>)
         }
         return elem
     }
