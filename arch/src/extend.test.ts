@@ -1,7 +1,8 @@
+import 'intern'
+import {extend} from './extend'
+
 const {suite, test} = intern.getInterface('tdd')
 const {assert} = intern.getPlugin('chai')
-
-import {extend} from './extend'
 
 suite('extend()', () => {
 

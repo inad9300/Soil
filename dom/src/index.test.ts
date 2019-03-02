@@ -1,6 +1,7 @@
-const {suite, test} = intern.getInterface('tdd')
-
+import 'intern'
 import {h, s} from './index'
+
+const {suite, test} = intern.getInterface('tdd')
 
 suite('index (@soil/dom)', () => {
 

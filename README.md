@@ -6,6 +6,10 @@ A foundational library to help building long-lasting web applications.
 [![codecov](https://codecov.io/gh/inad9300/Soil/branch/master/graph/badge.svg)](https://codecov.io/gh/inad9300/Soil)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Finad9300%2FSoil.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Finad9300%2FSoil?ref=badge_shield)
 
+**Important** This library is a work in progress. For its ideas to perform at
+their best, new TypeScript features need to be released and/or developed.
+Therefore, it should be considered experimental.
+
 
 ## Motivation
 

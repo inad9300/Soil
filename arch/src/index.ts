@@ -1,5 +1,4 @@
 export {assert} from './assert'
 export {chan} from './chan'
-export {Component} from './Component'
-export {ComponentFactory} from './ComponentFactory'
+export {element} from './element'
 export {extend} from './extend'

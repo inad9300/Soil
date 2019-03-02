@@ -1,10 +1,11 @@
-const {suite, test} = intern.getInterface('tdd')
-const {assert} = intern.getPlugin('chai')
-import {createElement} from '../../support/testing/createElement'
-
+import 'intern'
+import {createElement} from '../../shared/testing/createElement'
 import {h} from './html/h'
 import {s} from './svg/s'
 import {addChildren} from './addChildren'
+
+const {suite, test} = intern.getInterface('tdd')
+const {assert} = intern.getPlugin('chai')
 
 suite('addChildren()', () => {
 
@@ -14,7 +15,7 @@ suite('addChildren()', () => {
         const strong = createElement('<strong></strong>') as h.Strong
 
         addChildren(div, [span, strong, 'test text'])
-        
+
         assert.strictEqual(div.children.length, 2)
         assert.strictEqual(div.childNodes.length, 3)
         assert.strictEqual(div.firstElementChild!.tagName.toLowerCase(), 'span')
@@ -29,7 +30,7 @@ suite('addChildren()', () => {
         const circle = createElement('<circle />') as s.Circle
 
         addChildren(g, [a, circle, 'test text'])
-        
+
         assert.strictEqual(g.children.length, 2)
         assert.strictEqual(g.childNodes.length, 3)
         assert.strictEqual(g.firstElementChild!.tagName.toLowerCase(), 'a')

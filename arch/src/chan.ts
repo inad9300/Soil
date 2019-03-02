@@ -20,10 +20,10 @@ export function chan<Msg>() {
 
     return {
         /**
-         * Subscribe a listener to the channel. A function is returned which can be
-         * called to unsubscribe that same listener. An optional second argument
-         * may be passed to specify the maximum number of times the listener will
-         * be notified before automatically unsubscribing it.
+         * Subscribe a listener to the channel. A function is returned which can
+         * be called to unsubscribe that same listener. An optional second
+         * argument may be passed to specify the maximum number of times the
+         * listener will be notified before automatically unsubscribing it.
          */
         sub(listener: Listener<Msg>, times?: number): () => void {
             const timesIsDefined = times !== undefined
@@ -57,7 +57,7 @@ export function chan<Msg>() {
          * Unsubscribe all listeners from the channel.
          */
         clear(): void {
-            listeners = []
+            listeners.length = 0
         }
     }
 }

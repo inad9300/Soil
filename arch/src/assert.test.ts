@@ -1,11 +1,12 @@
+import 'intern'
+import {assert} from './assert'
+
 const {suite, test} = intern.getInterface('tdd')
 const {expect} = intern.getPlugin('chai')
 
-import {assert} from './assert'
-
 suite('assert()', () => {
 
-    test('true statements are ignored', () => {
+    test('true statements do not throw any exception', () => {
         expect(() => assert(2 === 2))
             .not.to.throw()
 

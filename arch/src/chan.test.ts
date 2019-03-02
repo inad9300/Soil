@@ -1,14 +1,15 @@
+import 'intern'
+import {chan} from './chan'
+
 const {suite, test} = intern.getInterface('tdd')
 const {assert} = intern.getPlugin('chai')
 
-import {chan} from './chan'
-
 // Maximum time sending a message should take.
-const DELIVERY_TIME_MS = 10
+const MAX_DELIVERY_TIME_MS = 10
 
-suite('chan', () => {
+suite('chan()', () => {
 
-    test('channel with one one-time listener', t => {
+    test('channel with 1 one-time listener', t => {
         const defer = t.async()
 
         let count = 0
@@ -29,13 +30,13 @@ suite('chan', () => {
                 assert.strictEqual(count, 1)
 
                 defer.resolve()
-            }, DELIVERY_TIME_MS)
-        }, DELIVERY_TIME_MS)
+            }, MAX_DELIVERY_TIME_MS)
+        }, MAX_DELIVERY_TIME_MS)
 
         return defer.promise
     })
 
-    test('channel with one three-times listener', t => {
+    test('channel with 1 three-times listener', t => {
         const defer = t.async()
 
         let count = 0
@@ -59,13 +60,13 @@ suite('chan', () => {
                 assert.strictEqual(count, 3)
 
                 defer.resolve()
-            }, DELIVERY_TIME_MS)
-        }, DELIVERY_TIME_MS)
+            }, MAX_DELIVERY_TIME_MS)
+        }, MAX_DELIVERY_TIME_MS)
 
         return defer.promise
     })
 
-    test('channel with one one-time listener which stops before being triggered', t => {
+    test('channel with 1 one-time listener which stops before being triggered', t => {
         const defer = t.async()
 
         let count = 0
@@ -81,12 +82,12 @@ suite('chan', () => {
             assert.strictEqual(count, 0)
 
             defer.resolve()
-        }, DELIVERY_TIME_MS)
+        }, MAX_DELIVERY_TIME_MS)
 
         return defer.promise
     })
 
-    test('channel with one listener which stops listening after 3 messages', t => {
+    test('channel with 1 listener which stops listening after 3 messages', t => {
         const defer = t.async()
 
         let count = 0
@@ -112,8 +113,8 @@ suite('chan', () => {
                 assert.strictEqual(count, 3)
 
                 defer.resolve()
-            }, DELIVERY_TIME_MS)
-        }, DELIVERY_TIME_MS)
+            }, MAX_DELIVERY_TIME_MS)
+        }, MAX_DELIVERY_TIME_MS)
 
         return defer.promise
     })
@@ -170,8 +171,8 @@ suite('chan', () => {
                 assert.strictEqual(langSettingChan.size, 5)
 
                 defer.resolve()
-            }, DELIVERY_TIME_MS)
-        }, DELIVERY_TIME_MS)
+            }, MAX_DELIVERY_TIME_MS)
+        }, MAX_DELIVERY_TIME_MS)
 
         return defer.promise
     })

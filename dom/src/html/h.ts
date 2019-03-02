@@ -1,4 +1,5 @@
 import {addChildren} from '../addChildren'
+import {AriaAttributes} from '../AriaAttributes'
 import {assignProps} from '../assignProps'
 import {HTMLElementChildrenMap} from './HTMLElementChildrenMap'
 import {Props} from '../Props'
@@ -7,7 +8,7 @@ import {Props} from '../Props'
  * Factory function for HTML elements.
  */
 function html<T extends keyof HTMLElementTagNameMap>(tag: T) {
-    return (props?: Props<HTMLElementTagNameMap[T]>, children?: HTMLElementChildrenMap[T]): HTMLElementTagNameMap[T] => {
+    return (props?: Props<HTMLElementTagNameMap[T]> & AriaAttributes, children?: HTMLElementChildrenMap[T]): HTMLElementTagNameMap[T] => {
         const elem = document.createElement(tag)
         if (props !== undefined) {
             assignProps(elem, props)

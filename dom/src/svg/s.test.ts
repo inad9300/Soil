@@ -1,9 +1,10 @@
+import 'intern'
+import {createElement} from '../../../shared/testing/createElement'
+import {elementsAreEqual} from '../../../shared/testing/elementsAreEqual'
+import {s} from './s'
+
 const {suite, test} = intern.getInterface('tdd')
 const {assert} = intern.getPlugin('chai')
-import {createElement} from '../../../support/testing/createElement'
-import {elementsAreEqual} from '../../../support/testing/elementsAreEqual'
-
-import {s} from './s'
 
 const globalProps = {
     id: 'c',

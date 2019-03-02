@@ -1,7 +1,8 @@
+import 'intern'
+import {isPlainObject, PlainObject} from './isPlainObject'
+
 const {suite, test} = intern.getInterface('tdd')
 const {assert} = intern.getPlugin('chai')
-
-import {isPlainObject, PlainObject} from './isPlainObject'
 
 suite('isPlainObject()', () => {
 

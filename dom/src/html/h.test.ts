@@ -1,9 +1,10 @@
+import 'intern'
+import {createElement} from '../../../shared/testing/createElement'
+import {elementsAreEqual} from '../../../shared/testing/elementsAreEqual'
+import {h} from './h'
+
 const {suite, test} = intern.getInterface('tdd')
 const {assert} = intern.getPlugin('chai')
-import {createElement} from '../../../support/testing/createElement'
-import {elementsAreEqual} from '../../../support/testing/elementsAreEqual'
-
-import {h} from './h'
 
 // Source: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#List_of_global_attributes.
 

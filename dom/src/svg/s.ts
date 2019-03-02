@@ -1,4 +1,5 @@
 import {addChildren} from '../addChildren'
+import {AriaAttributes} from '../AriaAttributes'
 import {assignProps} from '../assignProps'
 import {Props} from '../Props'
 
@@ -6,7 +7,7 @@ import {Props} from '../Props'
  * Factory function for SVG elements.
  */
 function svg<T extends keyof SVGElementTagNameMap>(tag: T) {
-    return (props?: Props<SVGElementTagNameMap[T]>, children?: (string | Element)[]): SVGElementTagNameMap[T] => {
+    return (props?: Props<SVGElementTagNameMap[T]> & AriaAttributes, children?: (string | Element)[]): SVGElementTagNameMap[T] => {
         const elem = document.createElementNS('http://www.w3.org/2000/svg', tag)
         if (props !== undefined) {
             assignProps(elem, props)

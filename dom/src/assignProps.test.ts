@@ -1,10 +1,11 @@
-const {suite, test} = intern.getInterface('tdd')
-const {assert} = intern.getPlugin('chai')
-import {createElement} from '../../support/testing/createElement'
-
+import 'intern'
+import {createElement} from '../../shared/testing/createElement'
 import {h} from './html/h'
 import {s} from './svg/s'
 import {assignProps} from './assignProps'
+
+const {suite, test} = intern.getInterface('tdd')
+const {assert} = intern.getPlugin('chai')
 
 suite('assignProps()', () => {
 
@@ -77,7 +78,7 @@ suite('assignProps()', () => {
         const target = {o1: {}}
         const source = {o1: {o2: {x: 3}}}
 
-        assignProps(target, source)
+        assignProps(target as any, source)
 
         assert.strictEqual((target as any).o1.o2.x, 3)
     })
