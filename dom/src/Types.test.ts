@@ -39,3 +39,5 @@ const _and1: And<true, true> = true
 const _and2: And<true, false> = false
 const _and3: And<false, true> = false
 const _and4: And<false, false> = false
+
+console.log(_eq1, _eq2, _isa1, _isa2, _ro1, _ro2, _idx1, _idx2, _idx3, _idx4, _cb1, _cb2, _cb3, _not1, _not2, _or1, _or2, _or3, _or4, _or31, _or32, _or33, _or34, _or35, _or36, _or37, _or38, _and1, _and2, _and3, _and4)

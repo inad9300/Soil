@@ -17,3 +17,5 @@ let _b: Props<h.Button> = {
 }
 
 let _i: Props<h.I> = {}
+
+console.log(_a, _f, _b, _i)

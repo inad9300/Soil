@@ -38,7 +38,7 @@ suite('element()', () => {
         const myCounter = counter({value: 9})
         document.body.appendChild(myCounter)
 
-        assert.strictEqual(myCounter.querySelector('span').textContent, '9')
+        assert.strictEqual(myCounter.querySelector('span')!.textContent, '9')
 
         myCounter.value++;
         myCounter.value--;
@@ -46,7 +46,7 @@ suite('element()', () => {
         myCounter.dec();
         myCounter.inc();
 
-        assert.strictEqual(myCounter.querySelector('span').textContent, '10')
+        assert.strictEqual(myCounter.querySelector('span')!.textContent, '10')
     })
 
     test('creates non-void HTML elements', () => {
