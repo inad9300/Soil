@@ -1,5 +1,21 @@
 import {chan} from './src/chan'
 
+const ref = <E extends Element = Element> () => {
+    const init = (elem: E) => {
+        (init as any).ref = elem
+        return elem
+    }
+    return init as ((elem: E) => E) & {ref: E}
+}
+
+// const count = ref()
+//
+// h.div({}, [
+//     h.button({onclick: () => ctrl.value--}, ['-']),
+//     count(h.span({}, ['0'])),
+//     h.button({onclick: () => ctrl.value++}, ['+'])
+// ])
+
 const HH = chan<{
     msg: 'userDeleted' | 'usersFetched',
     id?: number
