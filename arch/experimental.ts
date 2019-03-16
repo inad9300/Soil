@@ -1,5 +1,6 @@
 import {chan} from './src/chan'
 
+// Alternatively, return a function which converts itself into an Element without a reference change...
 const ref = <E extends Element = Element> () => {
     const init = (elem: E) => {
         (init as any).ref = elem
