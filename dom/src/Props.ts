@@ -42,4 +42,4 @@ type _Props<E extends Record<any, any>> = {
  * - Read-only non-primitive properties whose properties cannot be modified
  *   at creation time, e.g. `readonly form: HTMLFormElement | null`.
  */
-export type Props<E extends Partial<Element> & AriaAttributes> = _Props<PickPropKeys<E>>
+export type Props<E extends Partial<Element & AriaAttributes>> = _Props<PickPropKeys<E>> & AriaAttributes

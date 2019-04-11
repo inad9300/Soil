@@ -11,9 +11,11 @@ let _b: Props<h.Button> = {
     className: 'Go!',
     disabled: true,
     style: {
-        display: 'block'
+        display: 'block',
+        textAlign: 'center'
     },
-    onclick: (_evt: MouseEvent) => {}
+    onclick: (_evt: MouseEvent) => {},
+    'aria-label': 'x'
 }
 
 let _i: Props<h.I> = {}

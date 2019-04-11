@@ -16,12 +16,12 @@
     },
     "devDependencies": {
         "@dojo/loader": "2.0.0",
-        "codecov": "3.2.0",
+        "codecov": "3.3.0",
         "intern": "4.4.2",
         "jsdom": "14.0.0",
         "ts-loader": "5.3.3",
-        "typescript": "3.3.3333",
-        "webpack-cli": "3.2.3",
+        "typescript": "3.4.3",
+        "webpack-cli": "3.3.0",
         "webpack": "4.29.6"
     },
     "scripts": {

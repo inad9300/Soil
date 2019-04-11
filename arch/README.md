@@ -14,48 +14,55 @@ setters. The `element()` function facilitates and streamlines the creation of
 such components, in a way that makes them resemble native elements.
 
 `element()` accepts a function which serves as the definition of the custom
-component. In turn, that function accepts a list of properties the element knows
-about, and returns a two-size tuple containing the internal DOM structure of the
-element (its "template") and a number of functions which will determine the ways
-one is allowed to interact with it (its "controller").
-
-Note how the controller needs to implement the interface of the properties
-supported by the component. Following from this, there is no need to perform an
-initial assignment of the properties to the internal DOM elements: this will
-happen automatically, enforcing consistent behaviour between initialization and
-later usage.
+component. In turn, that function is responsible for returning a two-size tuple
+containing the internal DOM structure of the element (its "template") and a
+number of functions which will determine the ways one is allowed to interact
+with it (its "controller"), and optionally accepts a series of children.
 
 ```ts
 import {element} from '@soil/arch'
 import {h} from '@soil/dom'
 
-const fancyLink = element((props: {x: number}) => {
-    const tmpl = h.a({/* ... */})
+const fancyLink = element(() => {
+    const tmpl = h.a({href: 'https://example.org/'}, ['Fancy Link'])
 
     const ctrl = {
-        f: () => console.log('A custom function.')
+        set secret(s: number) {
+            tmpl.dataset.secret = '' + s
+        },
+        fly: () => console.log('Taking off...')
     }
 
     return [tmpl, ctrl]
 })
 
-const myFancyLink = fancyLink({x: 1})
-myFancyLink.x = 2
-myFancyLink.f()
+const aFancyLink = fancyLink({secret: 1, className: 'a-fancy-link'})
+aFancyLink.secret = 2
+aFancyLink.fly()
 ```
+
+Note how the controller implement the interface of the properties supported by
+the component. Following from this, there is no need to perform an initial
+assignment of the properties to the internal DOM elements: this will happen
+automatically, enforcing consistent behaviour between initialization and later
+usage, as we are accustomed to with native interfaces.
 
 #### Dependencies
 
-When components need dependencies, they can be defined as a high-order function
-to separate them from normal input.
+When components need dependencies, they can be defined as a high-order function.
+To facilitate both regular development and testing, both the factory function
+and the default instance can be exported.
 
 ```ts
 import {element} from '@soil/arch'
 import {h} from '@soil/dom'
+import {serviceX, ServiceX} from './ServiceX'
 
-const customElemFactory = (/* Dependencies */) => element((/* Input */) => {
+export const elemXFactory = (serviceX: ServiceX) => element(() => {
    // ...
 })
+
+export const elemX = elemXFactory(serviceX)
 ```
 
 ### `chan()` (function)
@@ -98,31 +105,6 @@ error message to provide the programmer with more context for debugging.
 ```ts
 assert(() => 1 > 2) // Error: Assertion was: function () { return 1 > 2; }
 ```
-
-### `extend()` (function)
-
-Custom components are typically created by extending existing HTML elements.
-Functions like the native `Object.assign()` are a valid approach for most cases.
-However, they usually ignore getters and setters.
-
-```ts
-import {extend} from '@soil/arch'
-import {h} from '@soil/dom'
-
-const api = {
-    C: 'A constant',
-    someMethod() { /* ... */ },
-    get value() { /* ... */ },
-    set value(n: number) { /* ... */ }
-}
-
-const elem = h.div()
-extend(elem, api)
-
-elem.value = 8
-```
-
-This function modifies its first argument, and returns it too.
 
 
 ## Installation

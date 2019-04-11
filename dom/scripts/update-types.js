@@ -4,7 +4,8 @@ const fs = require('fs')
 const https = require('https')
 const {JSDOM} = require('jsdom')
 
-const snakeToCamel = str => str.replace(/(\-\w)/g, match => match[1].toUpperCase())
+const textToCamel = str => str.replace(/((\-| )\w)/g, match => match[1].toUpperCase())
+const ucfirst = str => str.charAt(0).toUpperCase() + str.slice(1)
 
 function update(filename, url, cb) {
     try {
@@ -19,6 +20,7 @@ function update(filename, url, cb) {
         console.error(`Error downloading ${url}`, err)
     }
 }
+
 
 update('../src/AriaAttributes.ts', 'https://www.w3.org/TR/wai-aria-1.1/', doc => {
     const roles = Array
@@ -42,6 +44,7 @@ ${attrs.map(a => `    '${a}'?: string`).join('\n')}
 `
 })
 
+
 update('../src/html/HTMLElementContent.ts', 'https://www.w3.org/TR/html52/fullindex.html', doc => {
     const elems = Array
         .from(
@@ -53,10 +56,9 @@ update('../src/html/HTMLElementContent.ts', 'https://www.w3.org/TR/html52/fullin
                 .querySelectorAll('tbody tr')
         )
         .map(row => [
-            snakeToCamel(
+            textToCamel(
                 row.cells[0].textContent
                     .trim()
-                    .replace(' ', '-')
                     .replace('*', '')
             ),
             Array
@@ -98,6 +100,7 @@ ${
 }
 `
 })
+
 
 update('../src/html/HTMLElementChildrenMap.ts', 'https://www.w3.org/TR/html52/fullindex.html', doc => {
     const elems = []
@@ -178,3 +181,118 @@ ${
 }
 `
 })
+
+
+// const specialSvgCatNames = {
+//     'never-rendered element': 'NeverRenderedElements'
+// }
+//
+// const svgCatName = cat => specialSvgCatNames[cat.toLowerCase()]
+//     || (ucfirst(textToCamel(cat)) + (cat.toLowerCase().endsWith('element') ? 's' : ''))
+
+
+// update('../src/svg/SVGElementContent.ts', 'https://svgwg.org/svg2-draft/single-page.html', doc => {
+//     const elemsByCat = {}
+//
+//     Array
+//         .from(doc.querySelectorAll('.element-summary'))
+//         .forEach(summ => {
+//             const tag = summ.querySelector('.element-summary-name .element-name dfn').textContent
+//
+//             Array
+//                 .from(summ.querySelectorAll('dl > dt:first-child + dd > a'))
+//                 .map(cat => svgCatName(cat.textContent))
+//                 .forEach(cat => {
+//                     if (elemsByCat[cat]) {
+//                         elemsByCat[cat].push(tag)
+//                     } else {
+//                         elemsByCat[cat] = [tag]
+//                     }
+//                 })
+//         })
+//
+//     return `/// Script-generated.
+//
+// /**
+//  * Content categories for SVG elements. For reference, see:
+//  * https://developer.mozilla.org/en-US/docs/Web/SVG/Element#SVG_elements_by_category.
+//  */
+// export namespace SVGElementContent {
+// ${
+//     Object
+//         .keys(elemsByCat)
+//         .map(cat =>
+//             `    export type ${cat} = ${elemsByCat[cat]
+//                 .filter(tag => tag !== 'unknown')
+//                 .map(tag => tag === 'Text'
+//                     ? 'string'
+//                     : `SVGElementTagNameMap['${tag}']`
+//                 )
+//                 .join(' | ')}`)
+//         .join('\n')
+// }
+// }
+// `
+// })
+
+
+// update('../src/svg/SVGElementChildrenMap.ts', 'https://svgwg.org/svg2-draft/single-page.html', doc => {
+//     const contentByTag = {}
+//
+//     Array
+//         .from(doc.querySelectorAll('.element-summary'))
+//         .forEach(summ => {
+//             const tag = summ.querySelector('.element-summary-name .element-name dfn').textContent
+//
+//             const content = Array
+//                 .from(summ.querySelectorAll('dl > dt'))
+//                 .filter(elem => elem.textContent === 'Content model:')
+//                 .pop()
+//                 .nextElementSibling
+//
+//             contentByTag[tag] = {
+//                 categories: Array
+//                     .from(content.querySelectorAll('ul.no-bullets > li > a'))
+//                     .map(cat => svgCatName(cat.textContent)),
+//                 elements: Array
+//                     .from(content.querySelectorAll(':scope > .element-name > a > span'))
+//                     .map(tag => tag.textContent)
+//             }
+//         })
+//
+//     return `/// Script-generated.
+//
+// import {SVGElementContent} from './SVGElementContent'
+//
+// /**
+//  * Map from SVG tag names to the types accepted as children by their
+//  * corresponding SVG elements.
+//  */
+// export interface SVGElementChildrenMap extends Record<keyof SVGElementTagNameMap, void | (string | SVGElement)[]> {
+// ${
+//     Object
+//         .keys(contentByTag)
+//         .map(tag => {
+//             // if (tagsWithSpecialTypes[tag]) {
+//             //     return `    ${tag}: ${tagsWithSpecialTypes[tag]}`
+//             // }
+//
+//             let type = [
+//                 ...contentByTag[tag].categories.map(cat => `SVGElementContent.${cat}`),
+//                 ...contentByTag[tag].elements.map(tag => `SVGElementTagNameMap['${tag}']`)
+//             ]
+//             .join(' | ')
+//
+//             if (type.indexOf(' | ') > -1) {
+//                 type = '(' + type + ')'
+//             }
+//             // if (type !== 'void') {
+//             //     type += '[]'
+//             // }
+//             return `    ${tag}: ${type}[]`
+//         })
+//         .join('\n')
+// }
+// }
+// `
+// })

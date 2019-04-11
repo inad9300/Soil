@@ -1,5 +1,5 @@
 import {AriaAttributes} from './AriaAttributes'
-import {isPlainObject, PlainObject} from './isPlainObject'
+import {isPlainObject} from './isPlainObject'
 import {Props} from './Props'
 
 /**
@@ -22,7 +22,7 @@ export function assignProps<E extends Element, P extends Props<E> & AriaAttribut
     }
 }
 
-function assignNestedProps<T extends PlainObject, P extends PlainObject>(target: T, props: P): void {
+function assignNestedProps<T extends Record<any, any>, P extends Record<any, any>>(target: T, props: P): void {
     for (const p in props) {
         if (props.hasOwnProperty(p)) {
             if (isPlainObject(props[p])) {

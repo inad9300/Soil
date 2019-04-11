@@ -61,7 +61,7 @@ suite('element()', () => {
             ])
 
             const ctrl = {
-                onclose: () => {}
+                onclose: (_: Event) => {}
             }
 
             return [tmpl, ctrl]
