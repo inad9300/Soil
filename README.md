@@ -39,33 +39,28 @@ elements, which provides a look-and-feel similar to regular HTML.
 
 ```ts
 import {h} from '@soil/dom'
-import {extend} from '@soil/arch'
+import {element} from '@soil/arch'
 
-export const counter = (props: {value: number}) => {
-    let value = props.value
-
+export const counter = element(() => {
     const $count = h.span()
 
-    const $self = h.div({}, [
-        h.button({onclick: () => api.value--}, ['-']),
+    const tmpl = h.div({}, [
+        h.button({onclick: () => ctrl.count--}, ['-']),
         $count,
-        h.button({onclick: () => api.value++}, ['+'])
+        h.button({onclick: () => ctrl.count++}, ['+'])
     ])
 
-    const api = {
-        get value() {
-            return value
+    const ctrl = {
+        get count() {
+            return parseInt($count.textContent, 10)
         },
-        set value(v: number) {
-            value = v
-            $count.textContent = '' + v
+        set count(c: number) {
+            $count.textContent = '' + c
         }
     }
 
-    api.value = value
-
-    return extend($self, api)
-}
+    return [tmpl, ctrl]
+})
 ```
 
 Custom components can then be used in a way similar to native ones.
@@ -73,11 +68,13 @@ Custom components can then be used in a way similar to native ones.
 ```ts
 import {counter} from './counter'
 
-const $counter = counter({value: 0})
+const $counter = counter({count: 1})
 
 $counter.value++
 
 document.body.appendChild($counter)
+
+$counter.value++
 ```
 
 While purely [presentational components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
