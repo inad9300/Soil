@@ -127,9 +127,6 @@ suite('s()', () => {
         const _g: s.G = s.g(globalProps, [])
         elementsAreEqual(_g, createElement(`<g ${globalAttrs}></g>`, true))
 
-        const _gradient: s.Gradient = s.gradient(globalProps, [])
-        elementsAreEqual(_gradient, createElement(`<gradient ${globalAttrs}></gradient>`, true))
-
         const _image: s.Image = s.image(globalProps, [])
         elementsAreEqual(_image, createElement(`<image ${globalAttrs}></image>`, true))
 

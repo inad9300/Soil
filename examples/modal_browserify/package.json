@@ -7,7 +7,7 @@
     "devDependencies": {
         "http-server": "0.11.1",
         "browserify": "16.2.3",
-        "typescript": "3.2.2"
+        "typescript": "3.4.5"
     },
     "scripts": {
         "prestart": "rm -rf build && tsc && browserify -e build/main.js -o build/app.js -d",

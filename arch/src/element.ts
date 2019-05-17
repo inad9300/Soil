@@ -15,7 +15,7 @@ export function element<
     E extends Element,
     A extends Props<E> & Record<string, any>,
     C extends void | (string | Element)[]
->(definition: (children?: C) => [E, A]) {
+>(definition: (children: C) => [E, A]) {
     return (props: Props<E & A>, children: C): E & A => {
         const [elem, api] = definition(children)
         extend(elem, api)

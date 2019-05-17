@@ -1,10 +1,10 @@
 import {h} from './html/h'
 import {Props} from './Props'
 
-let a: h.A
+let a: h.A = undefined as any
 let _a: Props<h.A> = a
 
-let f: h.Form
+let f: h.Form = undefined as any
 let _f: Props<h.Form> = f
 
 let _b: Props<h.Button> = {

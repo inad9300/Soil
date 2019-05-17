@@ -32,17 +32,21 @@ type H = {
  * being globally available. Therefore, unit tests of components that use them
  * must be run inside a browser, or must expose `document` globally, e.g.
  * through PhantomJS or jsdom.
+ *
+ * TODO Missing: <rb>, <rtc>.
  */
 export const h: H = {
     a: html('a'),
     abbr: html('abbr'),
     address: html('address'),
+    applet: html('applet'),
     area: html('area'),
     article: html('article'),
     aside: html('aside'),
     audio: html('audio'),
     b: html('b'),
     base: html('base'),
+    basefont: html('basefont'),
     bdi: html('bdi'),
     bdo: html('bdo'),
     blockquote: html('blockquote'),
@@ -62,6 +66,7 @@ export const h: H = {
     details: html('details'),
     dfn: html('dfn'),
     dialog: html('dialog'),
+    dir: html('dir'),
     div: html('div'),
     dl: html('dl'),
     dt: html('dt'),
@@ -70,8 +75,11 @@ export const h: H = {
     fieldset: html('fieldset'),
     figcaption: html('figcaption'),
     figure: html('figure'),
+    font: html('font'),
     footer: html('footer'),
     form: html('form'),
+    frame: html('frame'),
+    frameset: html('frameset'),
     h1: html('h1'),
     h2: html('h2'),
     h3: html('h3'),
@@ -80,6 +88,7 @@ export const h: H = {
     h6: html('h6'),
     head: html('head'),
     header: html('header'),
+    hgroup: html('hgroup'),
     hr: html('hr'),
     html: html('html'),
     i: html('i'),
@@ -95,6 +104,8 @@ export const h: H = {
     main: html('main'),
     map: html('map'),
     mark: html('mark'),
+    marquee: html('marquee'),
+    menu: html('menu'),
     meta: html('meta'),
     meter: html('meter'),
     nav: html('nav'),
@@ -110,16 +121,15 @@ export const h: H = {
     pre: html('pre'),
     progress: html('progress'),
     q: html('q'),
-    rb: html('rb'),
     rp: html('rp'),
     rt: html('rt'),
-    rtc: html('rtc'),
     ruby: html('ruby'),
     s: html('s'),
     samp: html('samp'),
     script: html('script'),
     section: html('section'),
     select: html('select'),
+    slot: html('slot'),
     small: html('small'),
     source: html('source'),
     span: html('span'),
@@ -154,12 +164,14 @@ export namespace h {
     export type A = HTMLElementTagNameMap['a']
     export type Abbr = HTMLElementTagNameMap['abbr']
     export type Address = HTMLElementTagNameMap['address']
+    export type Applet = HTMLElementTagNameMap['applet']
     export type Area = HTMLElementTagNameMap['area']
     export type Article = HTMLElementTagNameMap['article']
     export type Aside = HTMLElementTagNameMap['aside']
     export type Audio = HTMLElementTagNameMap['audio']
     export type B = HTMLElementTagNameMap['b']
     export type Base = HTMLElementTagNameMap['base']
+    export type Basefont = HTMLElementTagNameMap['basefont']
     export type Bdi = HTMLElementTagNameMap['bdi']
     export type Bdo = HTMLElementTagNameMap['bdo']
     export type Blockquote = HTMLElementTagNameMap['blockquote']
@@ -179,6 +191,7 @@ export namespace h {
     export type Details = HTMLElementTagNameMap['details']
     export type Dfn = HTMLElementTagNameMap['dfn']
     export type Dialog = HTMLElementTagNameMap['dialog']
+    export type Dir = HTMLElementTagNameMap['dir']
     export type Div = HTMLElementTagNameMap['div']
     export type Dl = HTMLElementTagNameMap['dl']
     export type Dt = HTMLElementTagNameMap['dt']
@@ -187,8 +200,11 @@ export namespace h {
     export type Fieldset = HTMLElementTagNameMap['fieldset']
     export type Figcaption = HTMLElementTagNameMap['figcaption']
     export type Figure = HTMLElementTagNameMap['figure']
+    export type Font = HTMLElementTagNameMap['font']
     export type Footer = HTMLElementTagNameMap['footer']
     export type Form = HTMLElementTagNameMap['form']
+    export type Frame = HTMLElementTagNameMap['frame']
+    export type Frameset = HTMLElementTagNameMap['frameset']
     export type H1 = HTMLElementTagNameMap['h1']
     export type H2 = HTMLElementTagNameMap['h2']
     export type H3 = HTMLElementTagNameMap['h3']
@@ -197,6 +213,7 @@ export namespace h {
     export type H6 = HTMLElementTagNameMap['h6']
     export type Head = HTMLElementTagNameMap['head']
     export type Header = HTMLElementTagNameMap['header']
+    export type Hgroup = HTMLElementTagNameMap['hgroup']
     export type Hr = HTMLElementTagNameMap['hr']
     export type Html = HTMLElementTagNameMap['html']
     export type I = HTMLElementTagNameMap['i']
@@ -212,6 +229,8 @@ export namespace h {
     export type Main = HTMLElementTagNameMap['main']
     export type Map = HTMLElementTagNameMap['map']
     export type Mark = HTMLElementTagNameMap['mark']
+    export type Marquee = HTMLElementTagNameMap['marquee']
+    export type Menu = HTMLElementTagNameMap['menu']
     export type Meta = HTMLElementTagNameMap['meta']
     export type Meter = HTMLElementTagNameMap['meter']
     export type Nav = HTMLElementTagNameMap['nav']
@@ -227,16 +246,15 @@ export namespace h {
     export type Pre = HTMLElementTagNameMap['pre']
     export type Progress = HTMLElementTagNameMap['progress']
     export type Q = HTMLElementTagNameMap['q']
-    export type Rb = HTMLElementTagNameMap['rb']
     export type Rp = HTMLElementTagNameMap['rp']
     export type Rt = HTMLElementTagNameMap['rt']
-    export type Rtc = HTMLElementTagNameMap['rtc']
     export type Ruby = HTMLElementTagNameMap['ruby']
     export type S = HTMLElementTagNameMap['s']
     export type Samp = HTMLElementTagNameMap['samp']
     export type Script = HTMLElementTagNameMap['script']
     export type Section = HTMLElementTagNameMap['section']
     export type Select = HTMLElementTagNameMap['select']
+    export type Slot = HTMLElementTagNameMap['slot']
     export type Small = HTMLElementTagNameMap['small']
     export type Source = HTMLElementTagNameMap['source']
     export type Span = HTMLElementTagNameMap['span']

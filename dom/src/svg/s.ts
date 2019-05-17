@@ -66,7 +66,6 @@ export const s: S = {
     filter: svg('filter'),
     foreignObject: svg('foreignObject'),
     g: svg('g'),
-    gradient: svg('gradient'),
     image: svg('image'),
     line: svg('line'),
     linearGradient: svg('linearGradient'),
@@ -130,7 +129,6 @@ export namespace s {
     export type Filter = SVGFilterElement
     export type ForeignObject = SVGForeignObjectElement
     export type G = SVGGElement
-    export type Gradient = SVGGradientElement
     export type Image = SVGImageElement
     export type Line = SVGLineElement
     export type LinearGradient = SVGLinearGradientElement

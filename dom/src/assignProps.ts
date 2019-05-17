@@ -14,7 +14,7 @@ export function assignProps<E extends Element, P extends Props<E> & AriaAttribut
                 elem.setAttribute(p, props[p as keyof AriaAttributes] || '')
             } else if (isPlainObject(props[p])) {
                 // Go deeper for properties such as `style` or SVG-specific properties.
-                assignNestedProps(elem[p as keyof E], props[p])
+                assignNestedProps(elem[p as keyof E], props[p]!)
             } else {
                 elem[p as keyof E] = (props as unknown as E)[p as keyof E]
             }
@@ -27,7 +27,7 @@ function assignNestedProps<T extends Record<any, any>, P extends Record<any, any
         if (props.hasOwnProperty(p)) {
             if (isPlainObject(props[p])) {
                 if (!target.hasOwnProperty(p)) {
-                    target[p as string] = {}
+                    target[p] = {} as any
                 }
                 assignNestedProps(target[p], props[p])
             } else {

@@ -1,21 +1,43 @@
 import {chan} from './src/chan'
+import {h} from '../dom/src'
 
-// Alternatively, return a function which converts itself into an Element without a reference change...
-const ref = <E extends Element = Element> () => {
-    const init = (elem: E) => {
-        (init as any).ref = elem
-        return elem
-    }
-    return init as ((elem: E) => E) & {ref: E}
-}
-
-// const count = ref()
+// function ref<E extends Element, F extends () => E>(elemFn: F): F & {ref?: E} {
+//     const wrapFn: F & {ref?: E} = ((...args: any[]) => {
+//         const elem = elemFn.apply(null, args as any)
+//         wrapFn.ref = elem
+//         return elem
+//     }) as any
+//     return wrapFn
+// }
+//
+// const count = ref(h.span)
 //
 // h.div({}, [
-//     h.button({onclick: () => ctrl.value--}, ['-']),
-//     count(h.span({}, ['0'])),
-//     h.button({onclick: () => ctrl.value++}, ['+'])
+//     h.button({onclick: () => null}, ['-']),
+//     count({}, ['0']),
+//     h.button({onclick: () => null}, ['+'])
 // ])
+//
+// count.ref
+
+const toInt = (s?: string | null) => parseInt(s!, 10)
+
+const counter = (opts: {count: number}) => {
+    const count = h.span({}, ['' + (opts.count || 0)])
+
+    const tmpl = h.div({}, [
+        h.button({}, ['-']),
+        count,
+        h.button({}, ['+']),
+    ])
+
+    const ctrl = {
+        inc: () => count.textContent = '' + (toInt(count.textContent) + 1),
+        dec: () => count.textContent = '' + (toInt(count.textContent) - 1),
+    }
+
+    return Object.assign(tmpl, ctrl)
+}
 
 const HH = chan<{
     msg: 'userDeleted' | 'usersFetched',

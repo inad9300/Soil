@@ -52,6 +52,9 @@ suite('h()', () => {
         const _address: h.Address = h.address(globalProps, [])
         elementsAreEqual(_address, createElement(`<address ${globalAttrs}></address>`))
 
+        const _applet: h.Applet = h.applet(globalProps, [])
+        elementsAreEqual(_applet, createElement(`<applet ${globalAttrs}></applet>`))
+
         const _area: h.Area = h.area(globalProps)
         elementsAreEqual(_area, createElement(`<area ${globalAttrs}>`))
 
@@ -70,6 +73,9 @@ suite('h()', () => {
         const _base: h.Base = h.base(globalProps)
         elementsAreEqual(_base, createElement(`<base ${globalAttrs}>`))
 
+        const _basefont: h.Basefont = h.basefont(globalProps, [])
+        elementsAreEqual(_basefont, createElement(`<basefont ${globalAttrs}></basefont>`))
+
         const _bdi: h.Bdi = h.bdi(globalProps, [])
         elementsAreEqual(_bdi, createElement(`<bdi ${globalAttrs}></bdi>`))
 
@@ -78,6 +84,9 @@ suite('h()', () => {
 
         const _blockquote: h.Blockquote = h.blockquote(globalProps, [])
         elementsAreEqual(_blockquote, createElement(`<blockquote ${globalAttrs}></blockquote>`))
+
+        // const _body: h.Body = h.body(globalProps, [])
+        // elementsAreEqual(_body, createElement(`<body ${globalAttrs}></body>`))
 
         const _br: h.Br = h.br(globalProps)
         elementsAreEqual(_br, createElement(`<br ${globalAttrs}>`))
@@ -88,11 +97,20 @@ suite('h()', () => {
         const _canvas: h.Canvas = h.canvas(globalProps, [])
         elementsAreEqual(_canvas, createElement(`<canvas ${globalAttrs}></canvas>`))
 
+        // const _caption: h.Caption = h.caption(globalProps, [])
+        // elementsAreEqual(_caption, createElement(`<caption ${globalAttrs}></caption>`))
+
         const _cite: h.Cite = h.cite(globalProps, [])
         elementsAreEqual(_cite, createElement(`<cite ${globalAttrs}></cite>`))
 
         const _code: h.Code = h.code(globalProps, [])
         elementsAreEqual(_code, createElement(`<code ${globalAttrs}></code>`))
+
+        // const _col: h.Col = h.col(globalProps)
+        // elementsAreEqual(_col, createElement(`<col ${globalAttrs}></col>`))
+
+        // const _colgroup: h.Colgroup = h.colgroup(globalProps, [])
+        // elementsAreEqual(_colgroup, createElement(`<colgroup ${globalAttrs}></colgroup>`))
 
         const _data: h.Data = h.data(globalProps, [])
         elementsAreEqual(_data, createElement(`<data ${globalAttrs}></data>`))
@@ -114,6 +132,9 @@ suite('h()', () => {
 
         const _dialog: h.Dialog = h.dialog(globalProps, [])
         elementsAreEqual(_dialog, createElement(`<dialog ${globalAttrs}></dialog>`))
+
+        const _dir: h.Dir = h.dir(globalProps, [])
+        elementsAreEqual(_dir, createElement(`<dir ${globalAttrs}></dir>`))
 
         const _div: h.Div = h.div(globalProps, [])
         elementsAreEqual(_div, createElement(`<div ${globalAttrs}></div>`))
@@ -139,11 +160,20 @@ suite('h()', () => {
         const _figure: h.Figure = h.figure(globalProps, [])
         elementsAreEqual(_figure, createElement(`<figure ${globalAttrs}></figure>`))
 
+        const _font: h.Font = h.font(globalProps, [])
+        elementsAreEqual(_font, createElement(`<font ${globalAttrs}></font>`))
+
         const _footer: h.Footer = h.footer(globalProps, [])
         elementsAreEqual(_footer, createElement(`<footer ${globalAttrs}></footer>`))
 
         const _form: h.Form = h.form(globalProps, [])
         elementsAreEqual(_form, createElement(`<form ${globalAttrs}></form>`))
+
+        const _frame: h.Frame = h.frame(globalProps, [])
+        elementsAreEqual(_frame, createElement(`<frame ${globalAttrs}></frame>`))
+
+        const _frameset: h.Frameset = h.frameset(globalProps, [])
+        elementsAreEqual(_frameset, createElement(`<frameset ${globalAttrs}></frameset>`))
 
         const _h1: h.H1 = h.h1(globalProps, [])
         elementsAreEqual(_h1, createElement(`<h1 ${globalAttrs}></h1>`))
@@ -163,11 +193,20 @@ suite('h()', () => {
         const _h6: h.H6 = h.h6(globalProps, [])
         elementsAreEqual(_h6, createElement(`<h6 ${globalAttrs}></h6>`))
 
+        // const _head: h.Head = h.head(globalProps, [])
+        // elementsAreEqual(_head, createElement(`<head ${globalAttrs}></head>`))
+
         const _header: h.Header = h.header(globalProps, [])
         elementsAreEqual(_header, createElement(`<header ${globalAttrs}></header>`))
 
+        const _hgroup: h.Hgroup = h.hgroup(globalProps, [])
+        elementsAreEqual(_hgroup, createElement(`<hgroup ${globalAttrs}></hgroup>`))
+
         const _hr: h.Hr = h.hr(globalProps)
         elementsAreEqual(_hr, createElement(`<hr ${globalAttrs}>`))
+
+        // const _html: h.Html = h.html(globalProps, [])
+        // elementsAreEqual(_html, createElement(`<html ${globalAttrs}></html>`))
 
         const _i: h.I = h.i(globalProps, [])
         elementsAreEqual(_i, createElement(`<i ${globalAttrs}></i>`))
@@ -207,6 +246,12 @@ suite('h()', () => {
 
         const _mark: h.Mark = h.mark(globalProps, [])
         elementsAreEqual(_mark, createElement(`<mark ${globalAttrs}></mark>`))
+
+        const _marquee: h.Marquee = h.marquee(globalProps, [])
+        elementsAreEqual(_marquee, createElement(`<marquee ${globalAttrs}></marquee>`))
+
+        const _menu: h.Menu = h.menu(globalProps, [])
+        elementsAreEqual(_menu, createElement(`<menu ${globalAttrs}></menu>`))
 
         const _meta: h.Meta = h.meta(globalProps)
         elementsAreEqual(_meta, createElement(`<meta ${globalAttrs}>`))
@@ -253,17 +298,11 @@ suite('h()', () => {
         const _q: h.Q = h.q(globalProps, [])
         elementsAreEqual(_q, createElement(`<q ${globalAttrs}></q>`))
 
-        const _rb: h.Rb = h.rb(globalProps, [])
-        elementsAreEqual(_rb, createElement(`<rb ${globalAttrs}></rb>`))
-
         const _rp: h.Rp = h.rp(globalProps, [])
         elementsAreEqual(_rp, createElement(`<rp ${globalAttrs}></rp>`))
 
         const _rt: h.Rt = h.rt(globalProps, [])
         elementsAreEqual(_rt, createElement(`<rt ${globalAttrs}></rt>`))
-
-        const _rtc: h.Rtc = h.rtc(globalProps, [])
-        elementsAreEqual(_rtc, createElement(`<rtc ${globalAttrs}></rtc>`))
 
         const _ruby: h.Ruby = h.ruby(globalProps, [])
         elementsAreEqual(_ruby, createElement(`<ruby ${globalAttrs}></ruby>`))
@@ -282,6 +321,9 @@ suite('h()', () => {
 
         const _select: h.Select = h.select(globalProps, [])
         elementsAreEqual(_select, createElement(`<select ${globalAttrs}></select>`))
+
+        const _slot: h.Slot = h.slot(globalProps, [])
+        elementsAreEqual(_slot, createElement(`<slot ${globalAttrs}></slot>`))
 
         const _small: h.Small = h.small(globalProps, [])
         elementsAreEqual(_small, createElement(`<small ${globalAttrs}></small>`))
@@ -310,17 +352,35 @@ suite('h()', () => {
         const _table: h.Table = h.table(globalProps, [])
         elementsAreEqual(_table, createElement(`<table ${globalAttrs}></table>`))
 
+        // const _tbody: h.Tbody = h.tbody(globalProps, [])
+        // elementsAreEqual(_tbody, createElement(`<tbody ${globalAttrs}></tbody>`))
+
+        // const _td: h.Td = h.td(globalProps, [])
+        // elementsAreEqual(_td, createElement(`<td ${globalAttrs}></td>`))
+
         const _template: h.Template = h.template(globalProps, [])
         elementsAreEqual(_template, createElement(`<template ${globalAttrs}></template>`))
 
         const _textarea: h.Textarea = h.textarea(globalProps, [])
         elementsAreEqual(_textarea, createElement(`<textarea ${globalAttrs}></textarea>`))
 
+        // const _tfoot: h.Tfoot = h.tfoot(globalProps, [])
+        // elementsAreEqual(_tfoot, createElement(`<tfoot ${globalAttrs}></tfoot>`))
+
+        // const _th: h.Th = h.th(globalProps, [])
+        // elementsAreEqual(_th, createElement(`<th ${globalAttrs}></th>`))
+
+        // const _thead: h.Thead = h.thead(globalProps, [])
+        // elementsAreEqual(_thead, createElement(`<thead ${globalAttrs}></thead>`))
+
         const _time: h.Time = h.time(globalProps, [])
         elementsAreEqual(_time, createElement(`<time ${globalAttrs}></time>`))
 
         const _title: h.Title = h.title(globalProps, [])
         elementsAreEqual(_title, createElement(`<title ${globalAttrs}></title>`))
+
+        // const _tr: h.Tr = h.tr(globalProps, [])
+        // elementsAreEqual(_tr, createElement(`<tr ${globalAttrs}></tr>`))
 
         const _track: h.Track = h.track(globalProps)
         elementsAreEqual(_track, createElement(`<track ${globalAttrs}>`))

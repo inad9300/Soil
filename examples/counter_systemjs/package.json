@@ -7,7 +7,7 @@
     "devDependencies": {
         "http-server": "0.11.1",
         "systemjs": "2.1.1",
-        "typescript": "3.2.2"
+        "typescript": "3.4.5"
     },
     "scripts": {
         "prestart": "rm -rf build && tsc",
