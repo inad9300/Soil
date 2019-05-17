@@ -2,6 +2,6 @@ sudo: required
 addons:
   chrome: stable
 language: node_js
-node_js: '12.2.0'
+node_js: '11.0.0'
 before_install: npm i -g npm@6.9.0
 cache: npm
