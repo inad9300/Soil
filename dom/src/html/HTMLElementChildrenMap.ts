@@ -87,7 +87,7 @@ export interface HTMLElementChildrenMap extends Record<keyof HTMLElementTagNameM
     rp: HTMLElementContent.PhrasingContent[]
     rt: HTMLElementContent.PhrasingContent[]
     rtc: HTMLElementContent.PhrasingContent[]
-    ruby: (HTMLElementContent.PhrasingContent | HTMLElementTagNameMap['rp'] | HTMLElementTagNameMap['rt'] | HTMLElementTagNameMap['rb'] | HTMLElementTagNameMap['rtc'])[]
+    ruby: (HTMLElementContent.PhrasingContent | HTMLElementTagNameMap['rp'] | HTMLElementTagNameMap['rt']/* | HTMLElementTagNameMap['rb'] | HTMLElementTagNameMap['rtc']*/)[]
     s: HTMLElementContent.PhrasingContent[]
     samp: HTMLElementContent.PhrasingContent[]
     script: string[]

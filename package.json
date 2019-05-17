@@ -25,9 +25,9 @@
         "webpack": "4.31.0"
     },
     "scripts": {
-        "postinstall": "cd dom/scripts && ./update-types.js",
         "pretest": "rm -rf build && tsc --p tsconfig.test.json",
         "test": "intern",
-        "posttest": "codecov"
+        "posttest": "codecov",
+        "update-types": "cd dom/scripts && ./update-types.js"
     }
 }
