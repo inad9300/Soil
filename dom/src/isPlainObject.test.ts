@@ -1,4 +1,3 @@
-import 'intern'
 import {isPlainObject} from './isPlainObject'
 
 const {suite, test} = intern.getInterface('tdd')

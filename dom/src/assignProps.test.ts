@@ -1,4 +1,3 @@
-import 'intern'
 import {createElement} from '../../shared/testing/createElement'
 import {h} from './html/h'
 import {s} from './svg/s'

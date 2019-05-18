@@ -1,4 +1,3 @@
-import 'intern'
 import {createElement} from '../../../shared/testing/createElement'
 import {elementsAreEqual} from '../../../shared/testing/elementsAreEqual'
 import {s} from './s'

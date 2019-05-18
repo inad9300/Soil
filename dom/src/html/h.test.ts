@@ -1,4 +1,3 @@
-import 'intern'
 import {createElement} from '../../../shared/testing/createElement'
 import {elementsAreEqual} from '../../../shared/testing/elementsAreEqual'
 import {h} from './h'
@@ -169,11 +168,11 @@ suite('h()', () => {
         const _form: h.Form = h.form(globalProps, [])
         elementsAreEqual(_form, createElement(`<form ${globalAttrs}></form>`))
 
-        const _frame: h.Frame = h.frame(globalProps, [])
-        elementsAreEqual(_frame, createElement(`<frame ${globalAttrs}></frame>`))
+        // const _frame: h.Frame = h.frame(globalProps, [])
+        // elementsAreEqual(_frame, createElement(`<frame ${globalAttrs}></frame>`))
 
-        const _frameset: h.Frameset = h.frameset(globalProps, [])
-        elementsAreEqual(_frameset, createElement(`<frameset ${globalAttrs}></frameset>`))
+        // const _frameset: h.Frameset = h.frameset(globalProps, [])
+        // elementsAreEqual(_frameset, createElement(`<frameset ${globalAttrs}></frameset>`))
 
         const _h1: h.H1 = h.h1(globalProps, [])
         elementsAreEqual(_h1, createElement(`<h1 ${globalAttrs}></h1>`))

@@ -26,7 +26,7 @@ function assignNestedProps<T extends Record<any, any>, P extends Record<any, any
     for (const p in props) {
         if (props.hasOwnProperty(p)) {
             if (isPlainObject(props[p])) {
-                if (!target.hasOwnProperty(p)) {
+                if (target[p] === undefined) {
                     target[p] = {} as any
                 }
                 assignNestedProps(target[p], props[p])

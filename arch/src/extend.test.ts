@@ -1,4 +1,3 @@
-import 'intern'
 import {extend} from './extend'
 
 const {suite, test} = intern.getInterface('tdd')

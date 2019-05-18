@@ -1,4 +1,3 @@
-import 'intern'
 import {element} from './element'
 import {h} from '../../dom/src/html/h'
 

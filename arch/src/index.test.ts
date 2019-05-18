@@ -1,4 +1,3 @@
-import 'intern'
 import {element, chan, assert} from './index'
 
 const {suite, test} = intern.getInterface('tdd')

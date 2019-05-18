@@ -10,14 +10,11 @@
         },
         "fixSessionCapabilities": "no-detect"
     },
-    "tunnelOptions": {
-        "drivers": [{"name": "chrome", "version": "74.0.3729.6"}]
-    },
-    "loader": {"script": "dojo2"},
+    "loader": "dojo2",
     "suites": ["build/{dom,arch}/**/*.test.js"],
     "coverage": ["build/{dom,arch}/**/!(*.test).js"],
     "reporters": [{
-        "name": "simple"
+        "name": "pretty"
     }, {
         "name": "jsoncoverage",
         "options": {"filename": "coverage.json"}

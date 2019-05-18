@@ -3,6 +3,7 @@
     "include": ["dom/src/**/*.ts", "arch/src/**/*.ts"],
     "exclude": [],
     "compilerOptions": {
+        "module": "amd",
         "types": ["intern"],
         "skipLibCheck": true
     }

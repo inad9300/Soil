@@ -1,4 +1,3 @@
-import 'intern'
 import {assert} from './assert'
 
 const {suite, test} = intern.getInterface('tdd')

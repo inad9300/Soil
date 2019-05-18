@@ -1,4 +1,3 @@
-import 'intern'
 import {chan} from './chan'
 
 const {suite, test} = intern.getInterface('tdd')
