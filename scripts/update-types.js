@@ -46,7 +46,7 @@ ${attrs.map(a => `    '${a}'?: string`).join('\n')}
 })
 
 
-update(path.resolve(__dirname, '../src/html/HTMLElementContent.ts'), 'https://www.w3.org/TR/html52/fullindex.html', doc => {
+update(path.resolve(__dirname, '../src/HTMLElementContent.ts'), 'https://www.w3.org/TR/html52/fullindex.html', doc => {
     const elems = Array
         .from(
             doc
@@ -103,7 +103,7 @@ ${
 })
 
 
-update(path.resolve(__dirname, '../src/html/HTMLElementChildrenMap.ts'), 'https://www.w3.org/TR/html52/fullindex.html', doc => {
+update(path.resolve(__dirname, '../src/HTMLElementChildrenMap.ts'), 'https://www.w3.org/TR/html52/fullindex.html', doc => {
     const elems = []
     const initialElems = Array
         .from(
