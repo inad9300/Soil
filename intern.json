@@ -1,18 +1,25 @@
 {
     "debug": false,
-    "environments": {
+    "environments": [{
         "browserName": "chrome",
         "goog:chromeOptions": {
             "args": ["headless", "disable-gpu", "window-size=1024,768"]
-        },
+        }
+    }, {
+        "browserName": "firefox",
         "moz:firefoxOptions": {
             "args": ["-headless", "--window-size=1024,768"]
-        },
+        }
+    }],
+    "capabilities": {
         "fixSessionCapabilities": "no-detect"
     },
+    "tunnelOptions": {
+        "drivers": ["firefox", "chrome"]
+    },
     "loader": "dojo2",
-    "suites": ["build/{dom,arch}/**/*.test.js"],
-    "coverage": ["build/{dom,arch}/**/!(*.test).js"],
+    "suites": ["dist/src/**/*.test.js"],
+    "coverage": ["dist/src/**/!(*.test).js"],
     "reporters": [{
         "name": "pretty"
     }, {

@@ -1,7 +1,8 @@
 {
-    "exclude": ["**/*.test.ts"],
+    "include": ["src/**/*.ts"],
+    "exclude": ["src/**/*.test.ts"],
     "compilerOptions": {
-        "outDir": "build",
+        "outDir": "dist",
         "module": "umd",
         "moduleResolution": "node",
         "target": "es5",

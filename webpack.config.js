@@ -1,8 +1,12 @@
+const path = require('path')
+
 module.exports = {
     entry: './src/index.ts',
     output: {
+        library: 'soil',
         libraryTarget: 'umd',
-        filename: 'umd.js'
+        filename: 'umd.js',
+        path: path.resolve(__dirname, 'dist')
     },
     devtool: 'source-map',
     mode: 'production',

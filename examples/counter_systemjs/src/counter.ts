@@ -1,29 +1,23 @@
 import {h} from '@soil/dom'
-import {extend} from '@soil/arch'
+import {element} from '@soil/arch'
 
-export const counter = (props: {value: number}) => {
+export const counter = element(() => {
+    const count = h('span')
 
-    const $count = h.span({})
-
-    const $self = h.div({}, [
-        h.button({onclick: () => setValue(state.value - 1)}, ['-']),
-        $count,
-        h.button({onclick: () => setValue(state.value + 1)}, ['+'])
+    const tmpl = h('div', {}, [
+        h('button', {onclick: () => ctrl.value--}, ['-']),
+        count,
+        h('button', {onclick: () => ctrl.value++}, ['+'])
     ])
 
-    const state = {
-        value: 0
+    const ctrl = {
+        get value() {
+            return parseInt(count.textContent!, 10)
+        },
+        set value(c: number) {
+            count.textContent = '' + c
+        }
     }
 
-    setValue(props.value)
-
-    function setValue(v: number) {
-        state.value = v
-        $count.textContent = '' + v
-    }
-
-    return extend($self, {
-        get value() { return state.value },
-        set value(v: number) { setValue(v) }
-    })
-}
+    return [tmpl, ctrl]
+})

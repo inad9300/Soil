@@ -16,7 +16,7 @@ const todoListFactory = (todoService: TodoService) => (options: Options = {}) =>
 
     // Template.
 
-    const $self = h.ul()
+    const $self = h('ul')
 
     // Initialization.
 

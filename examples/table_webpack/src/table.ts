@@ -75,7 +75,7 @@ export const table = <R> (colDefs: ColDef<R>[]) => {
         colDefs.map(colDef => {
             $tfootRow.appendChild(colDef.footerCell
                 ? colDef.footerCell(data)
-                : h.td())
+                : h('td'))
         })
     }
 
