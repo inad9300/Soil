@@ -4,11 +4,17 @@ import {h} from '../src'
 
 // Raw element creation.
 
-const btn = document.createElement('button')
+const html = document.createElement
+
+const btn = html('button')
 {
-    btn.textContent = 'Send'
+    btn.className = 'text-danger'
     btn.onclick = () => console.log('Sending...')
+    btn.append('Delete')
 }
+
+const t = html('table')
+t.append(html('tbody'))
 
 
 // Unique channel/store for the entire application.

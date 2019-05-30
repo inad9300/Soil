@@ -6,7 +6,7 @@ import {HTMLElementContent} from './HTMLElementContent'
  * Map from HTML tag names to the types accepted as children by their
  * corresponding HTML elements.
  */
-export interface HTMLElementChildrenMap extends Record<keyof HTMLElementTagNameMap, void | (string | Element)[]> {
+export interface HTMLElementChildrenMap {
     a: HTMLElementContent.TransparentContent[]
     abbr: HTMLElementContent.PhrasingContent[]
     address: HTMLElementContent.FlowContent[]
@@ -83,10 +83,10 @@ export interface HTMLElementChildrenMap extends Record<keyof HTMLElementTagNameM
     pre: HTMLElementContent.PhrasingContent[]
     progress: HTMLElementContent.PhrasingContent[]
     q: HTMLElementContent.PhrasingContent[]
-    rb: HTMLElementContent.PhrasingContent[]
+    // rb: HTMLElementContent.PhrasingContent[]
     rp: HTMLElementContent.PhrasingContent[]
     rt: HTMLElementContent.PhrasingContent[]
-    rtc: HTMLElementContent.PhrasingContent[]
+    // rtc: HTMLElementContent.PhrasingContent[]
     ruby: (HTMLElementContent.PhrasingContent | HTMLElementTagNameMap['rp'] | HTMLElementTagNameMap['rt']/* | HTMLElementTagNameMap['rb'] | HTMLElementTagNameMap['rtc']*/)[]
     s: HTMLElementContent.PhrasingContent[]
     samp: HTMLElementContent.PhrasingContent[]
@@ -118,4 +118,20 @@ export interface HTMLElementChildrenMap extends Record<keyof HTMLElementTagNameM
     var: HTMLElementContent.PhrasingContent[]
     video: (HTMLElementTagNameMap['source'] | HTMLElementContent.TransparentContent)[]
     wbr: void
+}
+
+/**
+ * Deprecated elements still declared in `HTMLElementTagNameMap`.
+ */
+export interface HTMLElementChildrenMap {
+    applet: void | (string | Element)[]
+    basefont: void | (string | Element)[]
+    dir: void | (string | Element)[]
+    font: void | (string | Element)[]
+    frame: void | (string | Element)[]
+    frameset: void | (string | Element)[]
+    hgroup: void | (string | Element)[]
+    marquee: void | (string | Element)[]
+    menu: void | (string | Element)[]
+    slot: void | (string | Element)[]
 }

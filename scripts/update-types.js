@@ -5,6 +5,9 @@ const path = require('path')
 const https = require('https')
 const {JSDOM} = require('jsdom')
 
+
+// Helper functions.
+
 const textToCamel = str => str.replace(/((\-| )\w)/g, match => match[1].toUpperCase())
 // const ucfirst = str => str.charAt(0).toUpperCase() + str.slice(1)
 
@@ -22,6 +25,8 @@ function update(filename, url, cb) {
     }
 }
 
+
+// ARIA attributes.
 
 update(path.resolve(__dirname, '../src/AriaAttributes.ts'), 'https://www.w3.org/TR/wai-aria-1.1/', doc => {
     const roles = Array
@@ -45,6 +50,8 @@ ${attrs.map(a => `    '${a}'?: string`).join('\n')}
 `
 })
 
+
+// HTML element content categories.
 
 update(path.resolve(__dirname, '../src/HTMLElementContent.ts'), 'https://www.w3.org/TR/html52/fullindex.html', doc => {
     const elems = Array
@@ -103,6 +110,8 @@ ${
 })
 
 
+// HTML element children.
+
 update(path.resolve(__dirname, '../src/HTMLElementChildrenMap.ts'), 'https://www.w3.org/TR/html52/fullindex.html', doc => {
     const elems = []
     const initialElems = Array
@@ -157,7 +166,7 @@ import {HTMLElementContent} from './HTMLElementContent'
  * Map from HTML tag names to the types accepted as children by their
  * corresponding HTML elements.
  */
-export interface HTMLElementChildrenMap extends Record<keyof HTMLElementTagNameMap, void | (string | Element)[]> {
+export interface HTMLElementChildrenMap {
 ${
     elems
         .map(([tag, childrenCategories]) => {
@@ -180,9 +189,27 @@ ${
         .join('\n')
 }
 }
+
+/**
+ * Deprecated elements still declared in \`HTMLElementTagNameMap\`.
+ */
+export interface HTMLElementChildrenMap {
+    applet: void | (string | Element)[]
+    basefont: void | (string | Element)[]
+    dir: void | (string | Element)[]
+    font: void | (string | Element)[]
+    frame: void | (string | Element)[]
+    frameset: void | (string | Element)[]
+    hgroup: void | (string | Element)[]
+    marquee: void | (string | Element)[]
+    menu: void | (string | Element)[]
+    slot: void | (string | Element)[]
+}
 `
 })
 
+
+// Other.
 
 // const specialSvgCatNames = {
 //     'never-rendered element': 'NeverRenderedElements'
@@ -269,7 +296,7 @@ ${
 //  * Map from SVG tag names to the types accepted as children by their
 //  * corresponding SVG elements.
 //  */
-// export interface SVGElementChildrenMap extends Record<keyof SVGElementTagNameMap, void | (string | SVGElement)[]> {
+// export interface SVGElementChildrenMap {
 // ${
 //     Object
 //         .keys(contentByTag)
