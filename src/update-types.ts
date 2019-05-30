@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 
-const fs = require('fs')
-const path = require('path')
-const https = require('https')
-const {JSDOM} = require('jsdom')
+import * as fs from 'fs'
+import * as path from 'path'
+import * as https from 'https'
+import {JSDOM} from 'jsdom'
 
 
 // Helper functions.
 
-const textToCamel = str => str.replace(/((\-| )\w)/g, match => match[1].toUpperCase())
-// const ucfirst = str => str.charAt(0).toUpperCase() + str.slice(1)
+const textToCamel = (str: string) => str.replace(/((\-| )\w)/g, match => match[1].toUpperCase())
+// const ucfirst = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
-function update(filename, url, cb) {
+function update(filename: string, url: string, cb: (doc: Document) => string) {
     try {
         https.get(url, res => {
             res.setEncoding('utf8')
@@ -28,15 +28,15 @@ function update(filename, url, cb) {
 
 // ARIA attributes.
 
-update(path.resolve(__dirname, '../src/AriaAttributes.ts'), 'https://www.w3.org/TR/wai-aria-1.1/', doc => {
+update(path.resolve(__dirname, 'AriaAttributes.ts'), 'https://www.w3.org/TR/wai-aria-1.1/', doc => {
     const roles = Array
-        .from(doc.getElementById('role_definitions').querySelectorAll('dt a'))
-        .map(el => el.textContent.trim())
+        .from(doc.getElementById('role_definitions')!.querySelectorAll('dt a'))
+        .map(el => el.textContent!.trim())
         .filter(r => r.indexOf('abstract role') === -1)
 
     const attrs = Array
-        .from(doc.getElementById('state_prop_def').querySelectorAll('dt a'))
-        .map(el => el.textContent.trim())
+        .from(doc.getElementById('state_prop_def')!.querySelectorAll('dt a'))
+        .map(el => el.textContent!.trim())
 
     return `/// Script-generated.
 
@@ -53,28 +53,28 @@ ${attrs.map(a => `    '${a}'?: string`).join('\n')}
 
 // HTML element content categories.
 
-update(path.resolve(__dirname, '../src/HTMLElementContent.ts'), 'https://www.w3.org/TR/html52/fullindex.html', doc => {
+update(path.resolve(__dirname, 'HTMLElementContent.ts'), 'https://www.w3.org/TR/html52/fullindex.html', doc => {
     const elems = Array
-        .from(
+        .from<HTMLTableRowElement>(
             doc
-                .querySelector('#element-content-categories')
-                .nextElementSibling
-                .nextElementSibling
-                .nextElementSibling
+                .querySelector('#element-content-categories')!
+                .nextElementSibling!
+                .nextElementSibling!
+                .nextElementSibling!
                 .querySelectorAll('tbody tr')
         )
         .map(row => [
             textToCamel(
-                row.cells[0].textContent
+                row.cells[0].textContent!
                     .trim()
                     .replace('*', '')
             ),
             Array
                 .from(row.cells[1].querySelectorAll('a'))
-                .map(el => el.textContent.trim())
+                .map(el => el.textContent!.trim())
                 .concat(
                     // Elements with exceptions.
-                    row.cells[2].textContent
+                    row.cells[2].textContent!
                         .trim()
                         .slice(0, -1)
                         .split(';')
@@ -94,7 +94,7 @@ export namespace HTMLElementContent {
 ${
     elems
         .map(([category, tags]) =>
-            `    export type ${category} = ${tags
+            `    export type ${category} = ${(tags as string[])
                 .filter(tag => tag !== 'math') // MathML has very poor browser support yet.
                 .map(tag => tag === 'Text'
                     ? 'string'
@@ -112,19 +112,19 @@ ${
 
 // HTML element children.
 
-update(path.resolve(__dirname, '../src/HTMLElementChildrenMap.ts'), 'https://www.w3.org/TR/html52/fullindex.html', doc => {
-    const elems = []
-    const initialElems = Array
-        .from(
+update(path.resolve(__dirname, 'HTMLElementChildrenMap.ts'), 'https://www.w3.org/TR/html52/fullindex.html', doc => {
+    const elems: [string, string[]][] = []
+    const initialElems: [string, string[]][] = Array
+        .from<HTMLTableRowElement>(
             doc
-                .querySelector('#index-elements')
-                .nextElementSibling
-                .nextElementSibling
+                .querySelector('#index-elements')!
+                .nextElementSibling!
+                .nextElementSibling!
                 .querySelectorAll('tbody tr')
         )
         .map(row => [
-            row.cells[0].textContent.trim(),
-            row.cells[4].textContent
+            row.cells[0].textContent!.trim(),
+            row.cells[4].textContent!
                 .toLowerCase()
                 .replace('one ', '')
                 .replace(/[\s*]/g, '')
@@ -133,10 +133,11 @@ update(path.resolve(__dirname, '../src/HTMLElementChildrenMap.ts'), 'https://www
 
     initialElems.forEach(([tag, childrenCategories]) => {
         if (tag.indexOf(',') > -1) {
-            return tag
+            const subElems: [string, string[]][] = tag
                 .split(',')
                 .map(t => [t.trim(), childrenCategories])
-                .forEach(([tag, childrenCategories]) => elems.push([tag, childrenCategories]))
+
+            return subElems.forEach(([tag, childrenCategories]) => elems.push([tag, childrenCategories]))
         }
         return elems.push([tag, childrenCategories])
     })
@@ -170,12 +171,12 @@ export interface HTMLElementChildrenMap {
 ${
     elems
         .map(([tag, childrenCategories]) => {
-            if (tagsWithSpecialTypes[tag]) {
-                return `    ${tag}: ${tagsWithSpecialTypes[tag]}`
+            if (tagsWithSpecialTypes[tag as keyof typeof tagsWithSpecialTypes]) {
+                return `    ${tag}: ${tagsWithSpecialTypes[tag as keyof typeof tagsWithSpecialTypes]}`
             }
 
             let type = childrenCategories
-                .map(cat => textToType[cat] || `HTMLElementTagNameMap['${cat}']`)
+                .map(cat => textToType[cat as keyof typeof textToType] || `HTMLElementTagNameMap['${cat}']`)
                 .join(' | ')
 
             if (type.indexOf(' | ') > -1) {
@@ -219,7 +220,7 @@ export interface HTMLElementChildrenMap {
 //     || (ucfirst(textToCamel(cat)) + (cat.toLowerCase().endsWith('element') ? 's' : ''))
 
 
-// update(path.resolve(__dirname, '../src/svg/SVGElementContent.ts'), 'https://svgwg.org/svg2-draft/single-page.html', doc => {
+// update(path.resolve(__dirname, 'SVGElementContent.ts'), 'https://svgwg.org/svg2-draft/single-page.html', doc => {
 //     const elemsByCat = {}
 //
 //     Array
@@ -264,7 +265,7 @@ export interface HTMLElementChildrenMap {
 // })
 
 
-// update(path.resolve(__dirname, '../src/svg/SVGElementChildrenMap.ts'), 'https://svgwg.org/svg2-draft/single-page.html', doc => {
+// update(path.resolve(__dirname, 'SVGElementChildrenMap.ts'), 'https://svgwg.org/svg2-draft/single-page.html', doc => {
 //     const contentByTag = {}
 //
 //     Array
