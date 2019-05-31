@@ -1,6 +1,6 @@
 {
     "include": ["src/**/*.ts"],
-    "exclude": ["src/**/*.test.ts"],
+    "exclude": ["src/**/*.test.ts", "src/**/*.script.ts"],
     "compilerOptions": {
         "outDir": "dist",
         "module": "umd",

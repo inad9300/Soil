@@ -201,7 +201,7 @@ suite('s()', () => {
     })
 
     test('elements with children', () => {
-        const g1 = s('g', {
+        const g0 = s('g', {
             style: {fill: 'white', stroke: 'green', strokeWidth: '5px'}
         }, [
             s('circle', {
@@ -216,13 +216,42 @@ suite('s()', () => {
             })
         ])
 
-        const g2 = createElement(
+        // NOTE Chrome may add the circles' attributes in different orders each time.
+
+        const g1 = createElement(
             '<g style="fill: white; stroke: green; stroke-width: 5px;">' +
                 '<circle cx="40" cy="40" r="25" />' +
                 '<circle cx="60" cy="60" r="25" />' +
             '</g>', true) as s.G
 
-        elementsAreEqual(g1, g2, {stringComparison: false})
+        const g2 = createElement(
+            '<g style="fill: white; stroke: green; stroke-width: 5px;">' +
+                '<circle cy="40" cx="40" r="25" />' +
+                '<circle cy="60" cx="60" r="25" />' +
+            '</g>', true) as s.G
+
+        const g3 = createElement(
+            '<g style="fill: white; stroke: green; stroke-width: 5px;">' +
+                '<circle r="25" cy="40" cx="40" />' +
+                '<circle r="25" cy="60" cx="60" />' +
+            '</g>', true) as s.G
+
+        const g4 = createElement(
+            '<g style="fill: white; stroke: green; stroke-width: 5px;">' +
+                '<circle r="25" cx="40" cy="40" />' +
+                '<circle r="25" cx="60" cy="60" />' +
+            '</g>', true) as s.G
+
+        const gs = [g1, g2, g3, g4]
+        for (const g of gs) {
+            try {
+                elementsAreEqual(g0, g)
+            } catch {
+                if (g !== gs.slice(-1)[0]) {
+                    continue;
+                }
+            }
+        }
     })
 
     test('event listeners', () => {

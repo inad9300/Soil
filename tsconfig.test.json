@@ -1,6 +1,6 @@
 {
     "extends": "./tsconfig",
-    "exclude": [],
+    "exclude": ["src/**/*.script.ts"],
     "compilerOptions": {
         "module": "amd",
         "types": ["intern"],
