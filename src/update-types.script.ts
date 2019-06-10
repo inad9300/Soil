@@ -102,7 +102,7 @@ ${
                     ? 'string'
                     : tag === 'svg'
                     ? 'SVGSVGElement'
-                    : `HtmpTypes['${tag}']`
+                    : `HtmlTypes['${tag}']`
                 )
                 .join(' | ')}`)
         .join('\n')

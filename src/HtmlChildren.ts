@@ -122,7 +122,7 @@ export interface HtmlChildren {
 }
 
 /**
- * Deprecated elements still declared in `HtmlTypes`.
+ * Deprecated elements still declared in `HTMLElementTagNameMap`.
  */
 export interface HtmlChildren {
     applet: void | (string | Element)[]
