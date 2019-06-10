@@ -53,7 +53,7 @@ ${attrs.map(a => `    '${a}'?: string`).join('\n')}
 
 // HTML element content categories.
 
-update(path.resolve(__dirname, 'HTMLElementContent.ts'), 'https://www.w3.org/TR/html52/fullindex.html', doc => {
+update(path.resolve(__dirname, 'HtmlContent.ts'), 'https://www.w3.org/TR/html52/fullindex.html', doc => {
     const elems = Array
         .from<HTMLTableRowElement>(
             doc
@@ -85,11 +85,13 @@ update(path.resolve(__dirname, 'HTMLElementContent.ts'), 'https://www.w3.org/TR/
 
     return `/// Script-generated.
 
+import {HtmlTypes} from './HtmlTypes'
+
 /**
  * Content categories for HTML elements. For reference, see:
  * https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories.
  */
-export namespace HTMLElementContent {
+export namespace HtmlContent {
     export type TransparentContent = string | HTMLElement | SVGSVGElement
 ${
     elems
@@ -100,7 +102,7 @@ ${
                     ? 'string'
                     : tag === 'svg'
                     ? 'SVGSVGElement'
-                    : `HTMLElementTagNameMap['${tag}']`
+                    : `HtmpTypes['${tag}']`
                 )
                 .join(' | ')}`)
         .join('\n')
@@ -112,7 +114,7 @@ ${
 
 // HTML element children.
 
-update(path.resolve(__dirname, 'HTMLElementChildrenMap.ts'), 'https://www.w3.org/TR/html52/fullindex.html', doc => {
+update(path.resolve(__dirname, 'HtmlChildren.ts'), 'https://www.w3.org/TR/html52/fullindex.html', doc => {
     const elems: [string, string[]][] = []
     const initialElems: [string, string[]][] = Array
         .from<HTMLTableRowElement>(
@@ -143,11 +145,11 @@ update(path.resolve(__dirname, 'HTMLElementChildrenMap.ts'), 'https://www.w3.org
     })
 
     const textToType = {
-        'transparent': 'HTMLElementContent.TransparentContent',
-        'phrasing': 'HTMLElementContent.PhrasingContent',
-        'flow': 'HTMLElementContent.FlowContent',
-        'metadata': 'HTMLElementContent.MetadataContent',
-        'script-supportingelements': 'HTMLElementContent.ScriptSupportingElements',
+        'transparent': 'HtmlContent.TransparentContent',
+        'phrasing': 'HtmlContent.PhrasingContent',
+        'flow': 'HtmlContent.FlowContent',
+        'metadata': 'HtmlContent.MetadataContent',
+        'script-supportingelements': 'HtmlContent.ScriptSupportingElements',
         'script,data,orscriptdocumentation': 'string',
         'text': 'string',
         'empty': 'void',
@@ -161,13 +163,14 @@ update(path.resolve(__dirname, 'HTMLElementChildrenMap.ts'), 'https://www.w3.org
 
     return `/// Script-generated.
 
-import {HTMLElementContent} from './HTMLElementContent'
+import {HtmlContent} from './HtmlContent'
+import {HtmlTypes} from './HtmlTypes'
 
 /**
  * Map from HTML tag names to the types accepted as children by their
  * corresponding HTML elements.
  */
-export interface HTMLElementChildrenMap {
+export interface HtmlChildren {
 ${
     elems
         .map(([tag, childrenCategories]) => {
@@ -176,7 +179,7 @@ ${
             }
 
             let type = childrenCategories
-                .map(cat => textToType[cat as keyof typeof textToType] || `HTMLElementTagNameMap['${cat}']`)
+                .map(cat => textToType[cat as keyof typeof textToType] || `HtmlTypes['${cat}']`)
                 .join(' | ')
 
             if (type.indexOf(' | ') > -1) {
@@ -194,7 +197,7 @@ ${
 /**
  * Deprecated elements still declared in \`HTMLElementTagNameMap\`.
  */
-export interface HTMLElementChildrenMap {
+export interface HtmlChildren {
     applet: void | (string | Element)[]
     basefont: void | (string | Element)[]
     dir: void | (string | Element)[]
