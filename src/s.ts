@@ -74,8 +74,6 @@ export function s(elem: s.Title, props?: Props<s.Title>, children?: SvgChild[]):
 export function s(elem: s.Tspan, props?: Props<s.Tspan>, children?: SvgChild[]): s.Tspan
 export function s(elem: s.Use, props?: Props<s.Use>, children?: SvgChild[]): s.Use
 export function s(elem: s.View, props?: Props<s.View>, children?: SvgChild[]): s.View
-// TODO Collapse signatures above into something similar to the one below.
-// export function s<T extends keyof SvgTypes, E extends SvgTypes[T]>(elem: E, props?: Props<E> & AriaAttributes, children?: SvgChild[]): E
 export function s<T extends keyof SvgTypes, E extends SvgTypes[T]>(tag: T, props?: Props<E> & AriaAttributes, children?: SvgChild[]): E
 export function s(tagOrElem: keyof SvgTypes | SVGElement, props?: Props<SVGElement> & AriaAttributes, children?: SvgChild[]): SVGElement {
     const elem = typeof tagOrElem === 'string' ? document.createElementNS(SVG_NS, tagOrElem) : tagOrElem

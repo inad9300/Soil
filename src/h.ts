@@ -135,8 +135,6 @@ export function h(elem: h.Ul, props?: Props<h.Ul>, children?: HtmlChildren['ul']
 export function h(elem: h.Var, props?: Props<h.Var>, children?: HtmlChildren['var']): h.Var
 export function h(elem: h.Video, props?: Props<h.Video>, children?: HtmlChildren['video']): h.Video
 export function h(elem: h.Wbr, props?: Props<h.Wbr>, children?: HtmlChildren['wbr']): h.Wbr
-// TODO Collapse signatures above into something similar to the one below.
-// export function h<T extends keyof HtmlTypes, E extends HtmlTypes[T]>(elem: E, props?: Props<E> & AriaAttributes, children?: HtmlChildren[T]): E
 export function h<T extends keyof HtmlTypes, E extends HtmlTypes[T]>(tag: T, props?: Props<E> & AriaAttributes, children?: HtmlChildren[T]): E
 export function h(tagOrElem: keyof HtmlTypes | HTMLElement, props?: Props<HTMLElement> & AriaAttributes, children?: void | (string | Element)[]): HTMLElement {
     const elem = typeof tagOrElem === 'string' ? document.createElement(tagOrElem) : tagOrElem
