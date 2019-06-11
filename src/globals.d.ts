@@ -1,5 +1,5 @@
 /**
- * Elements not jet part of `HTMLElementTagNameMap`.
+ * Elements not yet part of `HTMLElementTagNameMap`.
  */
 interface HTMLElementTagNameMap {
     rb: HTMLElement
