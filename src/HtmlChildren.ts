@@ -122,17 +122,17 @@ export interface HtmlChildren {
 }
 
 /**
- * Deprecated elements still declared in `HTMLElementTagNameMap`.
+ * Elements declared in `HTMLElementTagNameMap` but not in the spec.
  */
 export interface HtmlChildren {
-    applet: void | (string | Element)[]
-    basefont: void | (string | Element)[]
-    dir: void | (string | Element)[]
-    font: void | (string | Element)[]
-    frame: void | (string | Element)[]
-    frameset: void | (string | Element)[]
-    hgroup: void | (string | Element)[]
-    marquee: void | (string | Element)[]
-    menu: void | (string | Element)[]
-    slot: void | (string | Element)[]
+    applet: (string | Element)[]
+    basefont: (string | Element)[]
+    dir: (string | Element)[]
+    font: (string | Element)[]
+    frame: (string | Element)[]
+    frameset: (string | Element)[]
+    hgroup: (string | Element)[]
+    marquee: (string | Element)[]
+    menu: (string | Element)[]
+    slot: (string | Element)[]
 }
