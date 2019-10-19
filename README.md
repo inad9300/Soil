@@ -11,7 +11,7 @@ think of it might be as "HTML-in-JS".
 
 ## Motivation
 
-The pace with which the web ecosystem evolves is unthinkably fast. At the same
+The pace at which the web ecosystem evolves is unthinkably fast. At the same
 time, trendy web frameworks often offer poor interoperability with standard
 technologies, and the technical burden they introduce tends to be significant
 and clearer than the benefits. Projects based on them are left with the choice
