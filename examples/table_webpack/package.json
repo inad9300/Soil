@@ -5,7 +5,7 @@
         "@soil/arch": "0.8.0"
     },
     "devDependencies": {
-        "http-server": "0.11.1",
+        "http-server": "0.11.2",
         "ts-loader": "6.0.0",
         "typescript": "3.4.5",
         "webpack-cli": "3.3.2",
